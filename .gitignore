@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+
+# Raw brand kit / client media — far too large for git (54GB+, includes
+# multi-GB raw footage). Assets are referenced by the site via relative
+# paths on disk but are not version-controlled.
+assets/

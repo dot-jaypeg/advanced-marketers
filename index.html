@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers — Revenue First. Always.</title>
+<meta name="description" content="Advanced Marketers is a full-stack digital marketing agency in Orange County, CA. Google Premier Partner. 500+ brands scaled since 2016.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/AM_BrandKit_2026/AM%20LOGOS/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/AM_BrandKit_2026/AM%20LOGOS/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/AM_BrandKit_2026/AM%20LOGOS/favicon-180.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <img src="assets/AM_BrandKit_2026/AM%20LOGOS/wordmark-white.png" alt="" class="loader__mark">
+    <div class="loader__meter">
+      <span class="loader__pct" id="loaderPct">0</span><span class="loader__pct-sign">%</span>
+    </div>
+    <div class="loader__bar"><div class="loader__bar-fill" id="loaderBarFill"></div></div>
+  </div>
+</div>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-label" id="cursorLabel"></div>
+
+<div class="progress-rail"><div class="progress-rail__fill" id="scrollFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__inner">
+    <a href="#home" class="brand" data-cursor="hover">
+      <img src="assets/AM_BrandKit_2026/AM%20LOGOS/wordmark-black.png" alt="Advanced Marketers">
+    </a>
+
+    <nav class="primary-nav" id="primaryNav">
+      <a href="#home" data-nav-link class="primary-nav__link" data-cursor="hover">HOME</a>
+      <a href="#local-services" data-nav-link class="primary-nav__link" data-cursor="hover">LOCAL SERVICES</a>
+      <a href="#departments" data-nav-link class="primary-nav__link" data-cursor="hover">DEPARTMENTS</a>
+      <a href="#case-studies" data-nav-link class="primary-nav__link" data-cursor="hover">CASE STUDIES</a>
+      <a href="#about" data-nav-link class="primary-nav__link" data-cursor="hover">ABOUT</a>
+      <a href="#contact" data-nav-link class="primary-nav__link" data-cursor="hover">CONTACT</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--nav" data-cursor="hover">START A PROJECT</a>
+
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" data-cursor="hover">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" data-nav-link>HOME</a>
+  <a href="#local-services" data-nav-link>LOCAL SERVICES</a>
+  <a href="#departments" data-nav-link>DEPARTMENTS</a>
+  <a href="#case-studies" data-nav-link>CASE STUDIES</a>
+  <a href="#about" data-nav-link>ABOUT</a>
+  <a href="#contact" data-nav-link>CONTACT</a>
+</div>
+
+<div class="scroll-wrapper" id="scrollWrapper">
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="hero">
+    <video class="hero__video" id="heroVideo" autoplay muted loop playsinline
+      poster="assets/AM_BrandKit_2026/AM_BrutalistStock/AM_Brutalist-2.jpg">
+      <source src="assets/am-content/PLUMBERS.mp4" type="video/mp4">
+    </video>
+    <div class="hero__scrim"></div>
+
+    <div class="hero__grid">
+      <p class="kicker" data-reveal>ORANGE COUNTY, CA — FULL&#8209;STACK DIGITAL MARKETING</p>
+
+      <div class="hero__main">
+        <h1 class="hero__headline">
+          <span class="hero__line-wrap"><span class="hero__line" data-reveal>revenue</span></span>
+          <span class="hero__line-wrap"><span class="hero__line" data-reveal>first.</span></span>
+          <span class="hero__line-wrap"><span class="hero__line hero__line--accent" data-reveal>always.</span></span>
+        </h1>
+
+        <a href="#contact" class="btn btn--primary hero__cta" data-cursor="hover">GET A GROWTH PLAN &#8594;</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-cue">
+      <span>SCROLL</span>
+      <span class="hero__scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <div class="trust-strip">
+    <div class="partner-badges" data-reveal>
+      <div class="partner-badge-item">
+        <p class="partner-badge-item__mark">Google</p>
+        <p class="partner-badge-item__caption">Google Premier Partners<br>2016&#8211;2025</p>
+      </div>
+      <div class="partner-badge-item">
+        <p class="partner-badge-item__mark">Clutch</p>
+        <p class="partner-badge-item__caption">Top Agencies in California<br>2018&#8211;2025</p>
+      </div>
+      <div class="partner-badge-item">
+        <p class="partner-badge-item__mark">Meta</p>
+        <p class="partner-badge-item__caption">Meta Business Partners<br>2016&#8211;2025</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <div class="section-head" data-num="01">
+      <p class="section-num" data-reveal>01 / THE AGENCY</p>
+      <h2 class="section-title" data-reveal>WE DON'T DO<br>VANITY METRICS.</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__copy" data-reveal>
+        <p class="lead-copy">
+          Since 2016, ADVANCED MARKETERS has built and grown over 500 brands on Facebook, Google,
+          Instagram, TikTok, and beyond — from Orange County, CA to the rest of the country.
+          We're not a creative studio that does ads on the side. We're a full-stack revenue
+          engine: strategy, media buying, web, and creative, under one roof, accountable to
+          one number. Yours.
+        </p>
+        <!-- Long-form agency copy / brand story can be pasted here -->
+      </div>
+
+      <div class="about__stats" data-reveal>
+        <div class="stat-card">
+          <span class="stat-card__num" data-count="10">0</span>
+          <span class="stat-card__unit">YRS</span>
+          <span class="stat-card__label">In business since 2016</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__num" data-count="500">0</span>
+          <span class="stat-card__unit">+</span>
+          <span class="stat-card__label">Brands built &amp; scaled</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__num" data-count="3">0</span>
+          <span class="stat-card__unit">%</span>
+          <span class="stat-card__label">Top performers, all Google Partners nationwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INDUSTRY FOCUS ============ -->
+  <section id="local-services" class="industries">
+    <div class="section-head" data-num="02">
+      <p class="section-num" data-reveal>02 / LOCAL SERVICES</p>
+      <h2 class="section-title" data-reveal>WE SPEAK<br>BLUE&#8209;COLLAR REVENUE.</h2>
+      <p class="section-sub" data-reveal>
+        Plumbers. HVAC crews. Roofers. Landscaping crews. The trades that keep Orange
+        County running — and the ones we've built our sharpest playbooks around.
+      </p>
+    </div>
+
+    <div class="local-impact">
+      <p class="local-impact__eyebrow" data-reveal>NUMBERS DON'T LIE.</p>
+      <h3 class="local-impact__headline">WE'RE NOT MARKETERS.<br>WE'RE GROWTH EXPERTS.</h3>
+
+      <div class="flip-stats">
+        <div class="flip-card" data-reveal tabindex="0">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front">
+              <span class="flip-card__num"><span class="stat-card__num">$</span><span class="stat-card__num" data-count="1.75" data-decimals="2">0</span><span class="stat-card__unit">M+</span></span>
+            </div>
+            <div class="flip-card__face flip-card__face--back">
+              <p class="flip-card__detail">Generated revenue for contractors</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" data-reveal tabindex="0">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front">
+              <span class="flip-card__num"><span class="stat-card__num">$</span><span class="stat-card__num" data-count="50">0</span><span class="stat-card__unit">M+</span></span>
+            </div>
+            <div class="flip-card__face flip-card__face--back">
+              <p class="flip-card__detail">Annual revenue influenced, nationwide</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card" data-reveal tabindex="0">
+          <div class="flip-card__inner">
+            <div class="flip-card__face flip-card__face--front">
+              <span class="flip-card__num"><span class="stat-card__num" data-count="40">0</span><span class="stat-card__unit">+</span></span>
+            </div>
+            <div class="flip-card__face flip-card__face--back">
+              <p class="flip-card__detail">Contractors scaled from $30K to $250K+/mo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="local-impact__closing" data-reveal>
+        $170M+ generated for service businesses — no fluff, just data&#8209;driven precision.
+        That's the ADVANCED&reg; standard.
+      </p>
+    </div>
+
+    <div class="industry-rail" id="industryRail">
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">01</div>
+        <h3 class="industry-card__title">PLUMBING</h3>
+        <div class="industry-card__body">
+          <p>
+            Emergency calls don't wait for a marketing plan. We build always-on Local
+            Services Ads, Google Ads, and landing pages engineered around flat&#8209;rate
+            service specials — so every dispatcher-ready lead comes in already primed
+            on authoritative, transparent pricing.
+          </p>
+          <ul class="industry-card__list">
+            <li>Local Services Ads &amp; Google Guarantee setup</li>
+            <li>Flat&#8209;rate service special funnels</li>
+            <li>Call tracking tied straight to booked jobs</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">02</div>
+        <h3 class="industry-card__title">HVAC</h3>
+        <div class="industry-card__body">
+          <p>
+            Seasonal demand means the campaign has to scale before the heat wave hits,
+            not after. We pace budget to weather and demand signals, and build offer
+            pages around flat&#8209;rate service specials and maintenance plans that read
+            as authoritative pricing — never as a discount.
+          </p>
+          <ul class="industry-card__list">
+            <li>Demand-paced Google &amp; Meta media buying</li>
+            <li>Maintenance-plan &amp; tune-up funnels</li>
+            <li>Review &amp; reputation systems that compound</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">03</div>
+        <h3 class="industry-card__title">ROOFING</h3>
+        <div class="industry-card__body">
+          <p>
+            Roofing is a high-ticket, high-trust sale. Our creative leans brutalist and
+            proof-driven — drone footage, before/after grids, and inspection-first offers —
+            paired with flat&#8209;rate service specials that close bigger jobs without
+            racing to the bottom on price.
+          </p>
+          <ul class="industry-card__list">
+            <li>Drone &amp; on-site content production</li>
+            <li>Insurance-claim &amp; inspection funnels</li>
+            <li>High-ticket lead qualification systems</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">04</div>
+        <h3 class="industry-card__title">LANDSCAPING</h3>
+        <div class="industry-card__body">
+          <p>
+            Landscaping sells on transformation. We build before/after proof funnels,
+            seasonal campaign pacing for the spring rush, and flat&#8209;rate package
+            offers that win the map pack without racing to the bottom on price.
+          </p>
+          <ul class="industry-card__list">
+            <li>Before/after visual proof funnels</li>
+            <li>Seasonal demand pacing across Google &amp; Meta</li>
+            <li>Flat&#8209;rate package &amp; maintenance-plan offers</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CASE STUDIES ============ -->
+  <section id="case-studies" class="case-studies">
+    <div class="section-head" data-num="03">
+      <p class="section-num" data-reveal>03 / CASE STUDIES</p>
+      <h2 class="section-title" data-reveal>PROOF.<br>NOT PROMISES.</h2>
+    </div>
+
+    <div class="cs-grid">
+
+      <article class="cs-tile cs-tile--feature" data-reveal>
+        <div class="cs-tile__media" data-cursor-text="WATCH">
+          <video class="cs-tile__video" muted loop playsinline preload="metadata"
+            poster="assets/client-work/Lincoln%20Plumbing%204/PHOTOS/DSCF3453.jpg">
+            <source src="assets/client-work/Lincoln%20Plumbing%203/VIDEOS/Lincolns%20plumbing%20Landing%20page.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="cs-tile__body">
+          <p class="cs-tile__kicker">FEATURED / WEB &amp; UX</p>
+          <h3 class="cs-tile__title">LINCOLN PLUMBING</h3>
+          <p class="cs-tile__copy">
+            A full landing-page prototype rebuild — new information architecture, a
+            flat&#8209;rate service-special booking flow, and a UX layout upgrade built to
+            convert emergency search traffic into booked jobs, not just page views.
+          </p>
+          <span class="cs-tile__tag">Web Design · UX Prototyping · Paid Search</span>
+        </div>
+      </article>
+
+      <article class="cs-tile cs-tile--feature cs-tile--reverse" data-reveal>
+        <div class="cs-tile__media" data-cursor-text="SOON">
+          <div class="img-placeholder" data-client="Major League Plumbing">
+            <span>VIDEO PLACEHOLDER<br>MAJOR LEAGUE PLUMBING</span>
+          </div>
+        </div>
+        <div class="cs-tile__body">
+          <p class="cs-tile__kicker">PAID SOCIAL · CREATIVE</p>
+          <h3 class="cs-tile__title">MAJOR LEAGUE PLUMBING</h3>
+          <p class="cs-tile__copy">
+            Full-funnel Meta &amp; Google creative built around flat&#8209;rate service
+            specials, engineered to keep cost-per-booked-job down as ad spend scales up.
+          </p>
+          <span class="cs-tile__tag">Paid Social · Video Production</span>
+        </div>
+      </article>
+
+      <article class="cs-tile cs-tile--feature" data-reveal>
+        <div class="cs-tile__media" data-cursor-text="WATCH">
+          <video class="cs-tile__video cs-tile__video--fit" muted loop playsinline preload="none">
+            <source src="assets/client-work/am-client-content/misc/AM%20EXPORTS/Rosewood%20Promo%20Reel%2002.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="cs-tile__body">
+          <p class="cs-tile__kicker">BRAND &amp; CONTENT · PAID MEDIA</p>
+          <h3 class="cs-tile__title">ROSEWOOD LANDSCAPING</h3>
+          <p class="cs-tile__copy">
+            Brand, content, and paid media built for a premium landscaping &amp;
+            tree-service audience — proof-driven creative for a high-ticket, high-trust sale.
+          </p>
+          <span class="cs-tile__tag">Paid Social · Brand &amp; Content</span>
+        </div>
+      </article>
+
+      <article class="cs-tile cs-tile--feature cs-tile--reverse" data-reveal>
+        <div class="cs-tile__media" data-cursor-text="WATCH">
+          <video class="cs-tile__video cs-tile__video--fit" muted loop playsinline preload="metadata">
+            <source src="assets/client-work/NUVE%20PUSH%20IN/V2/Nuve360%20V2.3%20Push%20In.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="cs-tile__body">
+          <p class="cs-tile__kicker">FULL-STACK · PRODUCT</p>
+          <h3 class="cs-tile__title">NUVE</h3>
+          <p class="cs-tile__copy">
+            Full-stack growth partner across Google, Meta, and web for a smart-home
+            climate brand — product-forward creative built to convert on category trust.
+          </p>
+          <span class="cs-tile__tag">Google Ads · Meta · Web</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ============ CONTRACTOR SPOTLIGHT ============ -->
+    <div class="spotlight">
+      <div class="section-head" data-num="04">
+        <p class="section-num" data-reveal>04 / INDUSTRY LEADERS</p>
+        <h2 class="section-title" data-reveal>THE BIGGEST NAMES<br>IN THE CONTRACTOR GAME.</h2>
+      </div>
+
+      <div class="quote-rail">
+
+        <figure class="quote-card" data-reveal>
+          <div class="quote-card__photo">
+            <div class="img-placeholder" data-client="Danny Cardenas"><span>DANNY<br>PHOTO PLACEHOLDER</span></div>
+          </div>
+          <blockquote>"Revenue first, always — that's not a tagline with these guys, it's the whole operation."</blockquote>
+          <figcaption>DANNY CARDENAS</figcaption>
+        </figure>
+
+        <figure class="quote-card" data-reveal>
+          <div class="quote-card__photo">
+            <img src="assets/client-work/ISH/DSCF8188.jpg" alt="Ismael Valdez">
+          </div>
+          <blockquote>"They understand the trades. It's not a template — it's a system built for how we actually book jobs."</blockquote>
+          <figcaption>ISMAEL VALDEZ</figcaption>
+        </figure>
+
+        <figure class="quote-card" data-reveal>
+          <div class="quote-card__photo">
+            <div class="img-placeholder" data-client="Carlos"><span>CARLOS<br>PHOTO PLACEHOLDER</span></div>
+          </div>
+          <blockquote>"Every dollar in has to answer for itself. That's the standard here, no exceptions."</blockquote>
+          <figcaption>CARLOS</figcaption>
+        </figure>
+
+        <figure class="quote-card" data-reveal>
+          <div class="quote-card__photo">
+            <div class="img-placeholder" data-client="Brian"><span>BRIAN<br>PHOTO PLACEHOLDER</span></div>
+          </div>
+          <blockquote>"Flat-rate, authoritative, no race to the bottom. That's how we scaled past our competition."</blockquote>
+          <figcaption>BRIAN</figcaption>
+        </figure>
+
+        <figure class="quote-card" data-reveal>
+          <div class="quote-card__photo">
+            <div class="img-placeholder" data-client="David"><span>DAVID<br>PHOTO PLACEHOLDER</span></div>
+          </div>
+          <blockquote>"They run our marketing like it's their own P&amp;L. That's rare in this industry."</blockquote>
+          <figcaption>DAVID</figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPARTMENTS ============ -->
+  <section id="departments" class="departments">
+    <div class="section-head" data-num="05">
+      <p class="section-num" data-reveal>05 / DEPARTMENTS</p>
+      <h2 class="section-title" data-reveal>ONE TEAM.<br>FOUR ENGINES.</h2>
+    </div>
+
+    <div class="dept-list">
+      <div class="dept-row" data-reveal data-cursor="hover">
+        <span class="dept-row__index">01</span>
+        <h3 class="dept-row__name">GOOGLE</h3>
+        <p class="dept-row__desc">Search, LSA, Performance Max, and Shopping — run by a Premier Partner team.</p>
+      </div>
+      <div class="dept-row" data-reveal data-cursor="hover">
+        <span class="dept-row__index">02</span>
+        <h3 class="dept-row__name">META</h3>
+        <p class="dept-row__desc">Facebook &amp; Instagram media buying built on creative testing velocity.</p>
+      </div>
+      <div class="dept-row" data-reveal data-cursor="hover">
+        <span class="dept-row__index">03</span>
+        <h3 class="dept-row__name">WEB</h3>
+        <p class="dept-row__desc">Conversion-first landing pages, UX prototyping, and full site builds.</p>
+      </div>
+      <div class="dept-row" data-reveal data-cursor="hover">
+        <span class="dept-row__index">04</span>
+        <h3 class="dept-row__name">CREATIVE</h3>
+        <p class="dept-row__desc">Video production, brand systems, and content built to stop the scroll.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section id="contact" class="final-cta">
+    <h2 class="final-cta__title" data-reveal>LET'S TALK<br>REVENUE.</h2>
+    <!-- TODO: point to the dedicated contact page once it exists -->
+    <a href="#" class="btn btn--primary btn--xl" data-reveal data-cursor="hover">WORK WITH US &#8594;</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__top">
+    <img src="assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-white.png" alt="Advanced Marketers" class="site-footer__logo">
+    <a href="#contact" class="btn btn--footer" data-cursor="hover">CONTACT US &#8594;</a>
+  </div>
+
+  <div class="site-footer__grid">
+    <div class="site-footer__col">
+      <p class="site-footer__label">LOCATIONS</p>
+      <p class="site-footer__address"><strong>Orange, CA</strong><br>135 S Lemon St Ste D<br>Orange, CA 92865</p>
+      <p class="site-footer__address"><strong>Mexico</strong><br>Av. Acueducto 4851&#8211;Piso 2<br>Real Acueducto, 45116<br>Zapopan, Jal., Mexico</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">CONTACT</p>
+      <p><a href="tel:+16502500405" data-cursor="hover">(650) 250&#8209;0405</a></p>
+      <p><a href="mailto:support@advancedmarketers.co" data-cursor="hover">support@advancedmarketers.co</a></p>
+      <p>8AM&#8211;4PM Pacific, M&#8211;F</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">SOCIAL</p>
+      <p><a href="https://www.instagram.com/advancedmarketers" target="_blank" rel="noopener noreferrer" data-cursor="hover">Instagram</a></p>
+      <p><a href="https://www.linkedin.com/company/advanced-marketers" target="_blank" rel="noopener noreferrer" data-cursor="hover">LinkedIn</a></p>
+      <p><a href="https://www.tiktok.com/@advancedmarketers?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer" data-cursor="hover">TikTok</a></p>
+      <p><a href="https://www.youtube.com/@chrisbclosing" target="_blank" rel="noopener noreferrer" data-cursor="hover">YouTube</a></p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">SITE</p>
+      <p><a href="#local-services" data-cursor="hover">Local Services</a></p>
+      <p><a href="#departments" data-cursor="hover">Departments</a></p>
+      <p><a href="#case-studies" data-cursor="hover">Case Studies</a></p>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>&copy; 2026 ADVANCED MARKETERS. REVENUE FIRST. ALWAYS.</p>
+    <p>GOOGLE PREMIER PARTNER — TOP 3% NATIONWIDE</p>
+  </div>
+</footer>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

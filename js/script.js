@@ -318,6 +318,69 @@
     });
   });
 
+  /* -------------------------- case studies carousel --------------------------- */
+  /* Auto-rotates through clients on a timer; any manual interaction (arrow,
+     dot, drag/swipe/wheel on the track) cancels the timer for good rather
+     than fighting the visitor for control. */
+
+  const csTrack = document.getElementById('csTrack');
+  if (csTrack) {
+    const csSlides = Array.from(csTrack.children);
+    const csDotsWrap = document.getElementById('csDots');
+    const csPrev = document.getElementById('csPrev');
+    const csNext = document.getElementById('csNext');
+    let csCurrent = 0;
+    let csAutoplay = !prefersReducedMotion;
+    let csTimer = null;
+
+    csSlides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'cs-carousel__dot';
+      dot.setAttribute('aria-label', `Go to client ${i + 1}`);
+      dot.addEventListener('click', () => { csGoTo(i); csStopAutoplay(); });
+      csDotsWrap.appendChild(dot);
+    });
+    const csDots = Array.from(csDotsWrap.children);
+
+    function csUpdateDots() {
+      csDots.forEach((d, i) => d.classList.toggle('is-active', i === csCurrent));
+    }
+
+    function csGoTo(i) {
+      csCurrent = (i + csSlides.length) % csSlides.length;
+      csSlides[csCurrent].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      csUpdateDots();
+    }
+
+    function csStopAutoplay() {
+      csAutoplay = false;
+      if (csTimer) clearInterval(csTimer);
+    }
+
+    csPrev.addEventListener('click', () => { csGoTo(csCurrent - 1); csStopAutoplay(); });
+    csNext.addEventListener('click', () => { csGoTo(csCurrent + 1); csStopAutoplay(); });
+
+    ['pointerdown', 'wheel', 'touchstart'].forEach((evt) => {
+      csTrack.addEventListener(evt, csStopAutoplay, { passive: true, once: true });
+    });
+
+    const csSlideObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const idx = csSlides.indexOf(entry.target);
+          if (idx !== -1) { csCurrent = idx; csUpdateDots(); }
+        }
+      });
+    }, { root: csTrack, threshold: 0.6 });
+    csSlides.forEach((s) => csSlideObserver.observe(s));
+
+    if (csAutoplay) {
+      csTimer = setInterval(() => { if (csAutoplay) csGoTo(csCurrent + 1); }, 5000);
+    }
+
+    csUpdateDots();
+  }
+
   /* --------------------------------- mobile menu ------------------------------ */
 
   burger.addEventListener('click', () => {
@@ -488,7 +551,7 @@
       let cy = -99999;
       let time = Math.random() * 1000;
 
-      const colorFor = (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`;
+      const colorFor = (idx, total) => `rgba(116, 117, 236, ${0.18 - idx * (0.1 / total)})`;
 
       const draw = () => traceContours(ctx, w, h, time, cx, cy, colorFor);
 

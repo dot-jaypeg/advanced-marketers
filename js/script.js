@@ -397,7 +397,7 @@
     const RADIUS = 360;
     const STRENGTH = 0.32;
 
-    const traceContours = (ctx, w, h, cx, cy, colorFor) => {
+    const traceContours = (ctx, w, h, time, cx, cy, colorFor) => {
       const cols = Math.ceil(w / CELL) + 1;
       const rows = Math.ceil(h / CELL) + 1;
       const grid = new Float32Array(cols * rows);
@@ -406,15 +406,15 @@
         for (let i = 0; i < cols; i++) {
           const px = i * CELL;
           const py = j * CELL;
-          let sx = px * SCALE;
-          let sy = py * SCALE;
+          let sx = px * SCALE + time * 0.6;
+          let sy = py * SCALE + time;
 
           const dx = px - cx;
           const dy = py - cy;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < RADIUS && dist > 0.001) {
-            const t = 1 - dist / RADIUS;
-            const falloff = t * t * (3 - 2 * t);
+            const ft = 1 - dist / RADIUS;
+            const falloff = ft * ft * (3 - 2 * ft);
             const push = falloff * STRENGTH;
             sx += (dx / dist) * push;
             sy += (dy / dist) * push;
@@ -491,12 +491,13 @@
       let raf = null;
       let cx = -99999;
       let cy = -99999;
+      let time = Math.random() * 1000;
 
       const colorFor = variant === 'dark'
         ? (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`
         : (idx, total) => `rgba(10, 10, 10, ${0.05 - idx * (0.03 / total)})`;
 
-      const draw = () => traceContours(ctx, w, h, cx, cy, colorFor);
+      const draw = () => traceContours(ctx, w, h, time, cx, cy, colorFor);
 
       const resize = () => {
         const rect = canvas.parentElement.getBoundingClientRect();
@@ -511,6 +512,7 @@
       };
 
       const tick = () => {
+        time += 0.0006;
         const rect = canvas.getBoundingClientRect();
         const targetX = clientX - rect.left;
         const targetY = clientY - rect.top;
@@ -521,7 +523,7 @@
       };
 
       const start = () => {
-        if (prefersReducedMotion || !hasHover) { draw(); return; }
+        if (prefersReducedMotion) { draw(); return; }
         if (running) return;
         running = true;
         raf = requestAnimationFrame(tick);

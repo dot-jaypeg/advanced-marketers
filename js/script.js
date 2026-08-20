@@ -301,6 +301,23 @@
     });
   });
 
+  /* --------------------------- department accordion --------------------------- */
+  /* Hover/focus already expands a row via CSS; this click handler just gives
+     touch devices (no real :hover) a way to reach the same expanded state,
+     one row open at a time. */
+
+  const deptItems = document.querySelectorAll('.dept-item');
+  deptItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+      deptItems.forEach((d) => { d.classList.remove('is-open'); d.setAttribute('aria-expanded', 'false'); });
+      if (!isOpen) { item.classList.add('is-open'); item.setAttribute('aria-expanded', 'true'); }
+    });
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+    });
+  });
+
   /* --------------------------------- mobile menu ------------------------------ */
 
   burger.addEventListener('click', () => {

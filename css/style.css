@@ -126,7 +126,7 @@ button {
 }
 
 .kicker, .section-num, .cs-tile__kicker, .stat-card__label,
-.dept-row__index, .industry-card__index, .primary-nav__link,
+.dept-item__index, .industry-card__index, .primary-nav__link,
 .site-footer__label, .hero__scroll-cue, .cs-tile__tag {
   font-family: var(--font-label);
   text-transform: uppercase;
@@ -253,7 +253,7 @@ button {
 .industry-card,
 .cs-tile,
 .quote-card,
-.dept-row,
+.dept-item,
 .partner-badge-item {
   position: relative;
 }
@@ -263,7 +263,7 @@ button {
 .industry-card::before,
 .cs-tile::before,
 .quote-card::before,
-.dept-row::before,
+.dept-item::before,
 .partner-badge-item::before {
   content: '';
   position: absolute;
@@ -285,7 +285,7 @@ button {
 .industry-card:hover::before, .industry-card:focus-visible::before, .industry-card.is-open::before,
 .cs-tile:hover::before,
 .quote-card:hover::before,
-.dept-row:hover::before,
+.dept-item:hover::before, .dept-item:focus-visible::before, .dept-item.is-open::before,
 .partner-badge-item:hover::before {
   opacity: 1;
 }
@@ -1179,68 +1179,97 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 /* ------------------------------- departments -------------------------------- */
 
-.dept-row {
-  display: grid;
-  grid-template-columns: 80px 1fr 2fr;
+/* Vertical hover accordion: five rows share a fixed-height column, and the
+   hovered/focused/opened one grows via flex while the rest stay narrow —
+   same mechanic as a horizontal flex accordion, just turned 90 degrees. */
+.dept-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: clamp(560px, 78vh, 820px);
+  overflow: hidden;
+}
+
+.dept-item {
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.65s cubic-bezier(0.5, 0, 0.1, 1);
+}
+.dept-item:hover, .dept-item:focus-visible, .dept-item.is-open { flex: 5; }
+
+.dept-item__media { position: absolute; inset: 0; }
+.dept-item__media .img-placeholder { position: absolute; inset: 0; height: 100%; }
+
+.dept-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.85) 100%);
+  z-index: 1;
+}
+
+.dept-item__collapsed {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
   align-items: center;
-  gap: 32px;
-  padding: 40px 0;
-  transition: background 0.35s var(--ease), padding 0.35s var(--ease);
+  gap: 24px;
+  padding: 0 clamp(24px, 4vw, 48px);
+  opacity: 1;
+  transition: opacity 0.3s var(--ease);
 }
+.dept-item:hover .dept-item__collapsed,
+.dept-item:focus-visible .dept-item__collapsed,
+.dept-item.is-open .dept-item__collapsed { opacity: 0; }
 
-.dept-row:hover {
-  background: var(--black);
-  color: var(--white);
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.dept-row__index {
+.dept-item__index {
   font-family: var(--font-label);
   font-size: 13px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-soft);
 }
-.dept-row:hover .dept-row__index { color: var(--accent-soft); }
 
-.dept-row__name {
+.dept-item__name {
   font-family: var(--font-display);
   font-weight: 900;
   text-transform: uppercase;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--white);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   letter-spacing: -0.03em;
 }
 
-.dept-row__desc {
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(10,10,10,0.65);
-  max-width: 460px;
+.dept-item__expanded {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  max-width: 640px;
+  padding: clamp(28px, 4vw, 48px);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s var(--ease) 0.1s, transform 0.4s var(--ease) 0.1s;
 }
-.dept-row:hover .dept-row__desc { color: rgba(250,250,250,0.75); }
+.dept-item:hover .dept-item__expanded,
+.dept-item:focus-visible .dept-item__expanded,
+.dept-item.is-open .dept-item__expanded { opacity: 1; transform: translateY(0); }
 
-.dept-row--featured {
-  background: var(--accent-gradient);
-  color: var(--white);
-  border-bottom-color: transparent;
-  padding: clamp(28px, 4vw, 40px) 24px;
-}
-.dept-row--featured > div { grid-column: 2 / -1; }
-.dept-row--featured .dept-row__index { color: rgba(250,250,250,0.7); }
-.dept-row--featured .dept-row__desc { color: rgba(250,250,250,0.85); }
-.dept-row--featured .dept-row__badge {
-  display: inline-block;
-  margin-top: 10px;
+.dept-item__eyebrow {
   font-family: var(--font-label);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 5px 10px;
-  border: 1px solid rgba(250,250,250,0.4);
+  color: var(--accent-soft);
+  margin-bottom: 10px;
 }
-.dept-row--featured:hover { background: var(--accent-gradient); color: var(--white); padding-left: 24px; padding-right: 24px; }
-.dept-row--featured:hover .dept-row__desc { color: rgba(250,250,250,0.85); }
+
+.dept-item__desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(250,250,250,0.85);
+}
 
 /* ---------------------------------- packages ---------------------------------- */
 
@@ -1557,11 +1586,36 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   .package-grid { grid-template-columns: 1fr; }
   .package-addons { grid-template-columns: 1fr; }
   .reviews-grid { grid-template-columns: 1fr; }
+
+  /* No hover on touch, so the accordion just becomes a stack of cards with
+     everything already expanded instead of an interaction nobody can reach. */
+  .dept-stack { height: auto; gap: 16px; }
+  .dept-item { flex: none !important; display: flex; flex-direction: column; }
+  .dept-item::after { content: none; }
+  .dept-item__media { position: relative; height: 200px; }
+  .dept-item__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.55) 100%);
+  }
+  .dept-item__collapsed {
+    position: relative;
+    opacity: 1;
+    background: var(--black);
+    padding: 20px clamp(20px, 4vw, 32px);
+  }
+  .dept-item__expanded {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    max-width: none;
+    background: var(--black);
+    padding: 0 clamp(20px, 4vw, 32px) 28px;
+  }
 }
 
 @media (max-width: 640px) {
-  .dept-row { grid-template-columns: 1fr; gap: 10px; }
-  .dept-row__desc { max-width: none; }
   .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
   .quote-rail { grid-template-columns: 1fr; }
   .site-footer__top { flex-direction: column; align-items: flex-start; gap: 24px; }

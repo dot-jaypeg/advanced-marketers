@@ -97,6 +97,35 @@ body {
 }
 body[data-theme="dark"] .page-bg { background-color: var(--black); }
 
+/* Fine CRT-static flicker, visible only over the light theme — a 6-frame
+   filmstrip of independently-seeded feTurbulence noise, stepped via
+   background-position so each tick is genuinely new noise (not one pattern
+   panning), same as the topo canvas's opacity being theme-gated. Kept very
+   low-opacity/overlay-like (basicagency.com / basic-dept style) rather than
+   a loud "static screen" effect. */
+.static-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='180'%3E%3Cfilter id='n0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='n1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='17' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='n3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='24' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='n4'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='31' stitchTiles='stitch'/%3E%3C/filter%3E%3Cfilter id='n5'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='42' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect x='0' width='180' height='180' filter='url(%23n0)'/%3E%3Crect x='180' width='180' height='180' filter='url(%23n1)'/%3E%3Crect x='360' width='180' height='180' filter='url(%23n2)'/%3E%3Crect x='540' width='180' height='180' filter='url(%23n3)'/%3E%3Crect x='720' width='180' height='180' filter='url(%23n4)'/%3E%3Crect x='900' width='180' height='180' filter='url(%23n5)'/%3E%3C/svg%3E");
+  background-size: 1080px 180px;
+  background-repeat: repeat;
+  animation: staticFlicker 0.5s steps(6) infinite;
+}
+body[data-theme="light"] .static-overlay { opacity: 0.05; }
+
+@keyframes staticFlicker {
+  from { background-position: 0 0; }
+  to   { background-position: -1080px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .static-overlay { animation: none; }
+}
+
 .scroll-wrapper.is-smooth {
   position: fixed;
   top: 0;
@@ -779,13 +808,13 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 /* ------------------------------- industries -------------------------------- */
 
-.industries { color: var(--white); }
-.industries .section-sub { color: rgba(250,250,250,0.62); }
+.industries, .different { color: var(--white); }
+.industries .section-sub, .different .section-sub { color: rgba(250,250,250,0.62); }
 
 .industries .stat-card { border-color: var(--white); }
 .industries .stat-card__label { color: rgba(250,250,250,0.55); }
 .industries .stat-card__unit { color: var(--accent-soft); }
-.industries .section-num, .packages .section-num { color: var(--accent-soft); }
+.industries .section-num, .packages .section-num, .different .section-num { color: var(--accent-soft); }
 
 .local-impact { margin-bottom: clamp(56px, 8vw, 100px); }
 
@@ -1447,35 +1476,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .final-cta > * {
   position: relative;
   z-index: 1;
-}
-
-.final-cta::before {
-  content: '';
-  position: absolute;
-  inset: -30%;
-  background-image:
-    radial-gradient(circle, var(--accent-soft) 0%, transparent 50%),
-    radial-gradient(circle, var(--accent) 0%, transparent 55%),
-    radial-gradient(circle, var(--accent-deep) 0%, transparent 60%),
-    radial-gradient(circle, var(--accent-soft) 0%, transparent 45%);
-  background-repeat: no-repeat;
-  background-size: 60% 60%, 70% 70%, 80% 80%, 50% 50%;
-  background-position: 10% 20%, 90% 10%, 50% 90%, 20% 80%;
-  filter: blur(60px);
-  animation: meshDrift 13s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes meshDrift {
-  0%   { background-position: 10% 20%, 90% 10%, 50% 90%, 20% 80%; }
-  25%  { background-position: 30% 45%, 65% 35%, 25% 70%, 45% 55%; }
-  50%  { background-position: 15% 65%, 80% 55%, 60% 35%, 10% 25%; }
-  75%  { background-position: 45% 15%, 55% 80%, 20% 15%, 60% 70%; }
-  100% { background-position: 10% 20%, 90% 10%, 50% 90%, 20% 80%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .final-cta::before { animation: none; }
 }
 
 .final-cta__title {

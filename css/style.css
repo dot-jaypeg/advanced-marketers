@@ -156,7 +156,7 @@ button {
    grain (basicagency.com-style); multiplying against black sections stays
    at 0, so this naturally never shows over the site's dark blocks. */
 .grain-overlay--static {
-  opacity: 0.22;
+  opacity: 0.5;
   mix-blend-mode: multiply;
   animation: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.35' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

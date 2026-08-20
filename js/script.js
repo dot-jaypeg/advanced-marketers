@@ -394,8 +394,8 @@
     // Local radius (px) and strength (noise-space units) of the cursor's
     // warp — the field itself never moves; only the part of it near the
     // cursor gets pushed, and it settles back once the cursor is far away.
-    const RADIUS = 320;
-    const STRENGTH = 1.1;
+    const RADIUS = 360;
+    const STRENGTH = 0.32;
 
     const traceContours = (ctx, w, h, cx, cy, colorFor) => {
       const cols = Math.ceil(w / CELL) + 1;
@@ -479,7 +479,7 @@
       }, { passive: true });
     }
 
-    const CURSOR_LERP = 0.08;
+    const CURSOR_LERP = 0.045;
 
     topoCanvases.forEach((canvas) => {
       const variant = canvas.dataset.topo;

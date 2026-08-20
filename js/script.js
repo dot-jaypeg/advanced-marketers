@@ -337,7 +337,7 @@
       const dot = document.createElement('button');
       dot.className = 'cs-carousel__dot';
       dot.setAttribute('aria-label', `Go to client ${i + 1}`);
-      dot.addEventListener('click', () => { csGoTo(i); csStopAutoplay(); });
+      dot.addEventListener('click', () => csGoTo(i));
       csDotsWrap.appendChild(dot);
     });
     const csDots = Array.from(csDotsWrap.children);
@@ -359,10 +359,6 @@
 
     csPrev.addEventListener('click', () => { csGoTo(csCurrent - 1); csStopAutoplay(); });
     csNext.addEventListener('click', () => { csGoTo(csCurrent + 1); csStopAutoplay(); });
-
-    ['pointerdown', 'wheel', 'touchstart'].forEach((evt) => {
-      csTrack.addEventListener(evt, csStopAutoplay, { passive: true, once: true });
-    });
 
     const csSlideObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

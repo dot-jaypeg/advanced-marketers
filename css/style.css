@@ -152,6 +152,17 @@ button {
   .grain-overlay { animation: none; }
 }
 
+/* Multiply against near-white bodycopy sections adds a fine matte paper
+   grain (basicagency.com-style); multiplying against black sections stays
+   at 0, so this naturally never shows over the site's dark blocks. */
+.grain-overlay--static {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  animation: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
 /* ---------------------------- custom cursor ---------------------------- */
 
 .cursor-dot, .cursor-ring {
@@ -725,6 +736,9 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-weight: 300;
   line-height: 1.4;
 }
+
+.lead-copy__brand { color: var(--black); }
+.lead-copy__highlight { color: var(--accent); }
 
 .about__stats {
   display: grid;

@@ -387,8 +387,8 @@
       noise2(x * 4.7 - 5, y * 4.7 + 19) * 0.1
     );
 
-    const CELL = 16;
-    const SCALE = 0.012;
+    const CELL = 20;
+    const SCALE = 0.005;
     const LEVELS = [0.32, 0.42, 0.52, 0.62, 0.72];
 
     const traceContours = (ctx, w, h, t, colorFor) => {
@@ -457,8 +457,8 @@
       let t = Math.random() * 1000;
 
       const colorFor = variant === 'dark'
-        ? (idx, total) => `rgba(116, 117, 236, ${0.5 - idx * (0.32 / total)})`
-        : (idx, total) => `rgba(10, 10, 10, ${0.22 - idx * (0.14 / total)})`;
+        ? (idx, total) => `rgba(116, 117, 236, ${0.22 - idx * (0.14 / total)})`
+        : (idx, total) => `rgba(10, 10, 10, ${0.1 - idx * (0.06 / total)})`;
 
       const draw = () => traceContours(ctx, w, h, t, colorFor);
 

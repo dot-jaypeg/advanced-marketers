@@ -391,14 +391,35 @@
     const SCALE = 0.005;
     const LEVELS = [0.32, 0.42, 0.52, 0.62, 0.72];
 
-    const traceContours = (ctx, w, h, ox, oy, colorFor) => {
+    // Local radius (px) and strength (noise-space units) of the cursor's
+    // warp — the field itself never moves; only the part of it near the
+    // cursor gets pushed, and it settles back once the cursor is far away.
+    const RADIUS = 260;
+    const STRENGTH = 2.6;
+
+    const traceContours = (ctx, w, h, cx, cy, colorFor) => {
       const cols = Math.ceil(w / CELL) + 1;
       const rows = Math.ceil(h / CELL) + 1;
       const grid = new Float32Array(cols * rows);
 
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {
-          grid[j * cols + i] = field(i * CELL * SCALE + ox, j * CELL * SCALE + oy);
+          const px = i * CELL;
+          const py = j * CELL;
+          let sx = px * SCALE;
+          let sy = py * SCALE;
+
+          const dx = px - cx;
+          const dy = py - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < RADIUS && dist > 0.001) {
+            const falloff = 1 - dist / RADIUS;
+            const push = falloff * falloff * STRENGTH;
+            sx += (dx / dist) * push;
+            sy += (dy / dist) * push;
+          }
+
+          grid[j * cols + i] = field(sx, sy);
         }
       }
       const at = (i, j) => grid[j * cols + i];
@@ -446,19 +467,18 @@
       });
     };
 
-    // Cursor position, normalized to roughly -1..1 from the viewport centre,
-    // is what drives the drift below — no autonomous animation at all.
-    let cursorNX = 0;
-    let cursorNY = 0;
+    // Raw viewport cursor position — starts far off-canvas so nothing
+    // warps until the user actually moves the mouse near a canvas.
+    let clientX = -99999;
+    let clientY = -99999;
     if (hasHover) {
       window.addEventListener('mousemove', (e) => {
-        cursorNX = (e.clientX / window.innerWidth) * 2 - 1;
-        cursorNY = (e.clientY / window.innerHeight) * 2 - 1;
+        clientX = e.clientX;
+        clientY = e.clientY;
       }, { passive: true });
     }
 
-    const DRIFT = 2.2;
-    const LERP = 0.045;
+    const CURSOR_LERP = 0.15;
 
     topoCanvases.forEach((canvas) => {
       const variant = canvas.dataset.topo;
@@ -468,14 +488,14 @@
       let h = 0;
       let running = false;
       let raf = null;
-      let ox = 0;
-      let oy = 0;
+      let cx = -99999;
+      let cy = -99999;
 
       const colorFor = variant === 'dark'
         ? (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`
         : (idx, total) => `rgba(10, 10, 10, ${0.05 - idx * (0.03 / total)})`;
 
-      const draw = () => traceContours(ctx, w, h, ox, oy, colorFor);
+      const draw = () => traceContours(ctx, w, h, cx, cy, colorFor);
 
       const resize = () => {
         const rect = canvas.parentElement.getBoundingClientRect();
@@ -490,8 +510,11 @@
       };
 
       const tick = () => {
-        ox += (cursorNX * DRIFT - ox) * LERP;
-        oy += (cursorNY * DRIFT - oy) * LERP;
+        const rect = canvas.getBoundingClientRect();
+        const targetX = clientX - rect.left;
+        const targetY = clientY - rect.top;
+        cx += (targetX - cx) * CURSOR_LERP;
+        cy += (targetY - cy) * CURSOR_LERP;
         draw();
         if (running) raf = requestAnimationFrame(tick);
       };

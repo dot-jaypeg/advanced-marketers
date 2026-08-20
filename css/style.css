@@ -106,7 +106,7 @@ body[data-theme="dark"] .page-bg { background-color: var(--black); }
 .static-overlay {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 800;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.7s var(--ease);
@@ -115,7 +115,7 @@ body[data-theme="dark"] .page-bg { background-color: var(--black); }
   background-repeat: repeat;
   animation: staticFlicker 0.5s steps(6) infinite;
 }
-body[data-theme="light"] .static-overlay { opacity: 0.05; }
+body[data-theme="light"] .static-overlay { opacity: 0.12; }
 
 @keyframes staticFlicker {
   from { background-position: 0 0; }
@@ -1487,8 +1487,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: -0.04em;
 }
 
-.final-cta .btn--primary { background: var(--black); border-color: var(--black); }
-.final-cta .btn--primary:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+.final-cta .btn--primary { background: var(--white); border-color: var(--white); color: var(--black); }
+.final-cta .btn--primary:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
 /* ---------------------------------- footer ------------------------------------ */
 

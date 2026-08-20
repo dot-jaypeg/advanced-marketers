@@ -200,7 +200,7 @@
   const navLinks = document.querySelectorAll('[data-nav-link]');
   const sections = document.querySelectorAll('main section[id]');
 
-  const darkSections = document.querySelectorAll('.hero, .industries, .site-footer');
+  const darkSections = document.querySelectorAll('.hero, .industries, .packages, .site-footer');
 
   const onScroll = () => {
     const y = window.scrollY;
@@ -311,16 +311,6 @@
     });
   }, { threshold: 0.6 });
   counters.forEach((el) => counterObserver.observe(el));
-
-  /* ------------------------- flip-card tap fallback --------------------------- */
-  /* Touch devices have no real :hover, and :focus-visible is typically suppressed
-     for touch-initiated focus, so the flip would otherwise be unreachable. */
-
-  if (!hasHover) {
-    document.querySelectorAll('.flip-card').forEach((card) => {
-      card.addEventListener('click', () => card.classList.toggle('is-flipped'));
-    });
-  }
 
   /* --------------------------- industry hover-cards -------------------------- */
 

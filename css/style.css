@@ -695,7 +695,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   grid-template-columns: 1.2fr 1fr;
   gap: clamp(40px, 6vw, 100px);
   align-items: start;
-  border-top: 1px solid var(--line);
   padding-top: 48px;
 }
 
@@ -758,7 +757,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(24px, 4vw, 60px);
-  border-bottom: 1px solid var(--line);
   padding: clamp(28px, 4.5vw, 48px) 0;
 }
 
@@ -1000,11 +998,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .cs-grid {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--line);
+  gap: clamp(48px, 6vw, 80px);
 }
 
 .cs-tile {
-  border-bottom: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   transition: background 0.4s var(--ease);
@@ -1195,15 +1192,12 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 /* ------------------------------- departments -------------------------------- */
 
-.dept-list { border-top: 1px solid var(--line); }
-
 .dept-row {
   display: grid;
   grid-template-columns: 80px 1fr 2fr;
   align-items: center;
   gap: 32px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 40px 0;
   transition: background 0.35s var(--ease), padding 0.35s var(--ease);
 }
 
@@ -1340,12 +1334,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-card__list li.is-inherited { color: rgba(250,250,250,0.5); }
 
 .package-addons {
-  margin-top: 48px;
+  margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  border-top: 1px solid var(--line-invert);
-  padding-top: 40px;
 }
 
 .package-addon__name {
@@ -1515,7 +1507,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--line-invert);
   padding-bottom: 40px;
   margin-bottom: 40px;
 }
@@ -1548,7 +1539,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-  border-top: 1px solid var(--line-invert);
   padding-top: 24px;
   font-family: var(--font-label);
   font-size: 11px;

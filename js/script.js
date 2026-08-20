@@ -457,8 +457,8 @@
       let t = Math.random() * 1000;
 
       const colorFor = variant === 'dark'
-        ? (idx, total) => `rgba(116, 117, 236, ${0.22 - idx * (0.14 / total)})`
-        : (idx, total) => `rgba(10, 10, 10, ${0.1 - idx * (0.06 / total)})`;
+        ? (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`
+        : (idx, total) => `rgba(10, 10, 10, ${0.05 - idx * (0.03 / total)})`;
 
       const draw = () => traceContours(ctx, w, h, t, colorFor);
 

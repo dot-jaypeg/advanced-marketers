@@ -119,6 +119,18 @@ button {
   letter-spacing: 0.08em;
 }
 
+/* ------------------------------ topo contours ------------------------------ */
+/* Canvas-drawn, animated topographic contour lines — `section` is already
+   `position: relative`, so this just needs to sit behind that section's
+   content at inset:0. */
+
+.topo-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* ---------------------------- custom cursor ---------------------------- */
 
 .cursor-dot, .cursor-ring {

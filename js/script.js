@@ -353,4 +353,151 @@
   }, { threshold: 0.35 });
   lazyVideos.forEach((v) => videoObserver.observe(v));
 
+  /* ------------------------------ topo contours ------------------------------ */
+  /* Animated topographic contour-line backgrounds. A small value-noise field is
+     sampled on a grid and traced with marching squares at several thresholds,
+     producing flowing elevation-map lines rather than a static texture. */
+
+  const topoCanvases = document.querySelectorAll('[data-topo]');
+
+  if (topoCanvases.length) {
+    const hash2 = (x, y) => {
+      const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+      return s - Math.floor(s);
+    };
+    const smooth = (t) => t * t * (3 - 2 * t);
+    const noise2 = (x, y) => {
+      const x0 = Math.floor(x);
+      const y0 = Math.floor(y);
+      const xf = x - x0;
+      const yf = y - y0;
+      const v00 = hash2(x0, y0);
+      const v10 = hash2(x0 + 1, y0);
+      const v01 = hash2(x0, y0 + 1);
+      const v11 = hash2(x0 + 1, y0 + 1);
+      const tx = smooth(xf);
+      const ty = smooth(yf);
+      const a = v00 + (v10 - v00) * tx;
+      const b = v01 + (v11 - v01) * tx;
+      return a + (b - a) * ty;
+    };
+    const field = (x, y) => (
+      noise2(x, y) * 0.6 +
+      noise2(x * 2.13 + 11, y * 2.13 + 7) * 0.3 +
+      noise2(x * 4.7 - 5, y * 4.7 + 19) * 0.1
+    );
+
+    const CELL = 16;
+    const SCALE = 0.012;
+    const LEVELS = [0.32, 0.42, 0.52, 0.62, 0.72];
+
+    const traceContours = (ctx, w, h, t, colorFor) => {
+      const cols = Math.ceil(w / CELL) + 1;
+      const rows = Math.ceil(h / CELL) + 1;
+      const grid = new Float32Array(cols * rows);
+
+      for (let j = 0; j < rows; j++) {
+        for (let i = 0; i < cols; i++) {
+          grid[j * cols + i] = field(i * CELL * SCALE, j * CELL * SCALE + t);
+        }
+      }
+      const at = (i, j) => grid[j * cols + i];
+      const lerp = (a, b, level) => (level - a) / (b - a);
+      const seg = (a, b) => { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); };
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.lineWidth = 1;
+
+      LEVELS.forEach((level, idx) => {
+        ctx.beginPath();
+        ctx.strokeStyle = colorFor(idx, LEVELS.length);
+
+        for (let j = 0; j < rows - 1; j++) {
+          for (let i = 0; i < cols - 1; i++) {
+            const x0 = i * CELL;
+            const y0 = j * CELL;
+            const tl = at(i, j);
+            const tr = at(i + 1, j);
+            const br = at(i + 1, j + 1);
+            const bl = at(i, j + 1);
+            const caseIdx = (tl > level ? 8 : 0) | (tr > level ? 4 : 0) |
+                             (br > level ? 2 : 0) | (bl > level ? 1 : 0);
+            if (caseIdx === 0 || caseIdx === 15) continue;
+
+            const top = [x0 + lerp(tl, tr, level) * CELL, y0];
+            const right = [x0 + CELL, y0 + lerp(tr, br, level) * CELL];
+            const bottom = [x0 + lerp(bl, br, level) * CELL, y0 + CELL];
+            const left = [x0, y0 + lerp(tl, bl, level) * CELL];
+
+            switch (caseIdx) {
+              case 1: case 14: seg(left, bottom); break;
+              case 2: case 13: seg(bottom, right); break;
+              case 3: case 12: seg(left, right); break;
+              case 4: case 11: seg(top, right); break;
+              case 6: case 9: seg(top, bottom); break;
+              case 7: case 8: seg(top, left); break;
+              case 5: seg(top, right); seg(left, bottom); break;
+              case 10: seg(top, left); seg(bottom, right); break;
+              default: break;
+            }
+          }
+        }
+        ctx.stroke();
+      });
+    };
+
+    topoCanvases.forEach((canvas) => {
+      const variant = canvas.dataset.topo;
+      const ctx = canvas.getContext('2d');
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let w = 0;
+      let h = 0;
+      let running = false;
+      let raf = null;
+      let t = Math.random() * 1000;
+
+      const colorFor = variant === 'dark'
+        ? (idx, total) => `rgba(116, 117, 236, ${0.5 - idx * (0.32 / total)})`
+        : (idx, total) => `rgba(10, 10, 10, ${0.22 - idx * (0.14 / total)})`;
+
+      const draw = () => traceContours(ctx, w, h, t, colorFor);
+
+      const resize = () => {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        w = rect.width;
+        h = rect.height;
+        canvas.width = Math.max(1, Math.round(w * dpr));
+        canvas.height = Math.max(1, Math.round(h * dpr));
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        draw();
+      };
+
+      const tick = () => {
+        t += 0.0012;
+        draw();
+        if (running) raf = requestAnimationFrame(tick);
+      };
+
+      const start = () => {
+        if (prefersReducedMotion) { draw(); return; }
+        if (running) return;
+        running = true;
+        raf = requestAnimationFrame(tick);
+      };
+      const stop = () => {
+        running = false;
+        if (raf) cancelAnimationFrame(raf);
+      };
+
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
+      }, { threshold: 0.05 }).observe(canvas.parentElement);
+
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+    });
+  }
+
 })();

@@ -10,7 +10,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/AM_BrandKit_2026/AM%20LOGOS/favicon-180.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-theme="dark">
+
+<div class="page-bg" aria-hidden="true"></div>
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
@@ -23,7 +25,6 @@
 </div>
 
 <div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 <div class="cursor-label" id="cursorLabel"></div>
 
 <div class="progress-rail"><div class="progress-rail__fill" id="scrollFill"></div></div>
@@ -66,7 +67,7 @@
 <main>
 
   <!-- ============ HERO ============ -->
-  <section id="home" class="hero">
+  <section id="home" class="hero" data-theme="dark">
     <video class="hero__video" id="heroVideo" autoplay muted loop playsinline
       poster="assets/AM_BrandKit_2026/AM_BrutalistStock/AM_Brutalist-2.jpg">
       <source src="assets/am-content/PLUMBERS.mp4" type="video/mp4">
@@ -94,7 +95,7 @@
   </section>
 
   <!-- ============ TRUST STRIP ============ -->
-  <div class="trust-strip">
+  <div class="trust-strip" data-theme="light">
     <div class="partner-badges" data-reveal>
       <div class="partner-badge-item">
         <p class="partner-badge-item__mark">Google</p>
@@ -112,7 +113,7 @@
   </div>
 
   <!-- ============ ABOUT ============ -->
-  <section id="about" class="about">
+  <section id="about" class="about" data-theme="light">
     <canvas class="topo-canvas" data-topo="light" aria-hidden="true"></canvas>
     <div class="section-head" data-num="01">
       <p class="section-num" data-reveal>01 / THE AGENCY</p>
@@ -153,7 +154,7 @@
   </section>
 
   <!-- ============ INDUSTRY FOCUS ============ -->
-  <section id="local-services" class="industries">
+  <section id="local-services" class="industries" data-theme="dark">
     <canvas class="topo-canvas" data-topo="dark" aria-hidden="true"></canvas>
     <div class="section-head" data-num="02">
       <p class="section-num" data-reveal>02 / LOCAL SERVICES</p>
@@ -258,7 +259,7 @@
   </section>
 
   <!-- ============ WHAT MAKES US DIFFERENT ============ -->
-  <section id="different" class="different">
+  <section id="different" class="different" data-theme="light">
     <canvas class="topo-canvas" data-topo="light" aria-hidden="true"></canvas>
     <div class="section-head" data-num="03">
       <p class="section-num" data-reveal>03 / WHAT MAKES US DIFFERENT</p>
@@ -306,7 +307,7 @@
   </section>
 
   <!-- ============ CASE STUDIES ============ -->
-  <section id="case-studies" class="case-studies">
+  <section id="case-studies" class="case-studies" data-theme="light">
     <canvas class="topo-canvas" data-topo="light" aria-hidden="true"></canvas>
     <div class="section-head" data-num="04">
       <p class="section-num" data-reveal>04 / CASE STUDIES</p>
@@ -478,7 +479,7 @@
   </section>
 
   <!-- ============ DEPARTMENTS ============ -->
-  <section id="departments" class="departments">
+  <section id="departments" class="departments" data-theme="light">
     <canvas class="topo-canvas" data-topo="light" aria-hidden="true"></canvas>
     <div class="section-head" data-num="06">
       <p class="section-num" data-reveal>06 / DEPARTMENTS</p>
@@ -522,7 +523,7 @@
   </section>
 
   <!-- ============ PACKAGES ============ -->
-  <section id="packages" class="packages">
+  <section id="packages" class="packages" data-theme="dark">
     <div class="section-head" data-num="07">
       <p class="section-num" data-reveal>07 / PACKAGES</p>
       <h2 class="section-title" data-reveal>PICK YOUR<br>ENGINE SIZE.</h2>
@@ -581,7 +582,7 @@
   </section>
 
   <!-- ============ REVIEWS ============ -->
-  <section id="reviews" class="reviews">
+  <section id="reviews" class="reviews" data-theme="light">
     <canvas class="topo-canvas" data-topo="light" aria-hidden="true"></canvas>
     <div class="section-head">
       <p class="section-num" data-reveal>WHAT CONTRACTORS SAY</p>
@@ -626,7 +627,7 @@
   </section>
 
   <!-- ============ FINAL CTA ============ -->
-  <section id="contact" class="final-cta">
+  <section id="contact" class="final-cta" data-theme="dark">
     <h2 class="final-cta__title" data-reveal>LET'S TALK<br>REVENUE.</h2>
     <!-- TODO: point to the dedicated contact page once it exists -->
     <a href="#" class="btn btn--primary btn--xl" data-reveal data-cursor="hover">WORK WITH US &#8594;</a>
@@ -634,7 +635,7 @@
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" data-theme="dark">
   <div class="site-footer__top">
     <img src="assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-white.png" alt="Advanced Marketers" class="site-footer__logo">
     <a href="#contact" class="btn btn--footer" data-cursor="hover">CONTACT US &#8594;</a>

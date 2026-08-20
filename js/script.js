@@ -70,32 +70,21 @@
   /* ---------------------------- custom cursor ---------------------------- */
 
   const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
   const label = document.getElementById('cursorLabel');
 
   if (hasHover) {
-    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
     window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-      if (label) label.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(${label.classList.contains('is-active') ? 1 : 0.6})`;
+      const x = e.clientX;
+      const y = e.clientY;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      if (label) label.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${label.classList.contains('is-active') ? 1 : 0.6})`;
     });
-
-    const followRing = () => {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(followRing);
-    };
-    requestAnimationFrame(followRing);
 
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('[data-cursor="hover"]')) ring.classList.add('is-hover');
+      if (e.target.closest('[data-cursor="hover"]')) dot.classList.add('is-hover');
     });
     document.addEventListener('mouseout', (e) => {
-      if (e.target.closest('[data-cursor="hover"]')) ring.classList.remove('is-hover');
+      if (e.target.closest('[data-cursor="hover"]')) dot.classList.remove('is-hover');
     });
 
     /* cursor label morph over case-study media */
@@ -105,30 +94,13 @@
           label.textContent = el.getAttribute('data-cursor-text');
           label.classList.add('is-active');
           dot.classList.add('is-hidden');
-          ring.classList.add('is-hidden');
         });
         el.addEventListener('mouseleave', () => {
           label.classList.remove('is-active');
           dot.classList.remove('is-hidden');
-          ring.classList.remove('is-hidden');
         });
       });
     }
-
-    /* magnetic buttons */
-    document.querySelectorAll('.btn').forEach((btn) => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const relX = e.clientX - (rect.left + rect.width / 2);
-        const relY = e.clientY - (rect.top + rect.height / 2);
-        btn.style.transition = 'transform 0.15s ease-out';
-        btn.style.transform = `translate(${relX * 0.25}px, ${relY * 0.35}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        btn.style.transform = 'translate(0, 0)';
-      });
-    });
   }
 
   /* ---------------------------- smooth scroll ------------------------------ */
@@ -200,19 +172,22 @@
   const navLinks = document.querySelectorAll('[data-nav-link]');
   const sections = document.querySelectorAll('main section[id]');
 
-  const darkSections = document.querySelectorAll('.hero, .industries, .packages, .site-footer');
+  /* Every dark/light block on the page (hero, trust strip, each section,
+     footer) carries data-theme. Whichever one is centered in the viewport
+     sets body[data-theme], which the shared page background and the header
+     both key off of — one source of truth instead of separate scroll math
+     for each. */
+  const themeBlocks = document.querySelectorAll('[data-theme]');
+  const themeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) document.body.dataset.theme = entry.target.dataset.theme;
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  themeBlocks.forEach((el) => themeObserver.observe(el));
 
   const onScroll = () => {
     const y = window.scrollY;
     header.classList.toggle('is-scrolled', y > 40);
-
-    const navMid = header.offsetHeight / 2;
-    let overDark = false;
-    darkSections.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top <= navMid && rect.bottom >= navMid) overDark = true;
-    });
-    header.classList.toggle('is-over-dark', overDark);
 
     const max = document.documentElement.scrollHeight - window.innerHeight;
     scrollFill.style.width = max > 0 ? `${(y / max) * 100}%` : '0%';

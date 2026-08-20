@@ -473,8 +473,11 @@
 
     const CURSOR_LERP = 0.045;
 
+    // One fixed, viewport-covering canvas now (CSS fades it in/out with
+    // body[data-theme]) rather than one per section, so sizing follows the
+    // viewport and the loop just runs continuously instead of being gated
+    // by any single section's visibility.
     topoCanvases.forEach((canvas) => {
-      const variant = canvas.dataset.topo;
       const ctx = canvas.getContext('2d');
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       let w = 0;
@@ -485,16 +488,13 @@
       let cy = -99999;
       let time = Math.random() * 1000;
 
-      const colorFor = variant === 'dark'
-        ? (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`
-        : (idx, total) => `rgba(10, 10, 10, ${0.05 - idx * (0.03 / total)})`;
+      const colorFor = (idx, total) => `rgba(116, 117, 236, ${0.12 - idx * (0.07 / total)})`;
 
       const draw = () => traceContours(ctx, w, h, time, cx, cy, colorFor);
 
       const resize = () => {
-        const rect = canvas.parentElement.getBoundingClientRect();
-        w = rect.width;
-        h = rect.height;
+        w = window.innerWidth;
+        h = window.innerHeight;
         canvas.width = Math.max(1, Math.round(w * dpr));
         canvas.height = Math.max(1, Math.round(h * dpr));
         canvas.style.width = `${w}px`;
@@ -505,11 +505,8 @@
 
       const tick = () => {
         time += 0.0006;
-        const rect = canvas.getBoundingClientRect();
-        const targetX = clientX - rect.left;
-        const targetY = clientY - rect.top;
-        cx += (targetX - cx) * CURSOR_LERP;
-        cy += (targetY - cy) * CURSOR_LERP;
+        cx += (clientX - cx) * CURSOR_LERP;
+        cy += (clientY - cy) * CURSOR_LERP;
         draw();
         if (running) raf = requestAnimationFrame(tick);
       };
@@ -525,12 +522,13 @@
         if (raf) cancelAnimationFrame(raf);
       };
 
-      new IntersectionObserver((entries) => {
-        entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
-      }, { threshold: 0.05 }).observe(canvas.parentElement);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop(); else start();
+      });
 
       window.addEventListener('resize', resize, { passive: true });
       resize();
+      start();
     });
   }
 

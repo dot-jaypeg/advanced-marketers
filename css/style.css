@@ -134,16 +134,20 @@ button {
 }
 
 /* ------------------------------ topo contours ------------------------------ */
-/* Canvas-drawn, animated topographic contour lines — `section` is already
-   `position: relative`, so this just needs to sit behind that section's
-   content at inset:0. */
-
+/* Canvas-drawn, animated topographic contour lines. One fixed, viewport-sized
+   layer sits just above the shared page background and fades in/out with it
+   — visible only while body[data-theme="dark"], so the lines crossfade in
+   lockstep with the black background rather than living inside any one
+   section. */
 .topo-canvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
 }
+body[data-theme="dark"] .topo-canvas { opacity: 1; }
 
 /* ---------------------------- custom cursor ---------------------------- */
 

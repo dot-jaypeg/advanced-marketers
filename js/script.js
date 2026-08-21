@@ -380,10 +380,13 @@
   /* ---------------------------- testimonial marquees ---------------------------- */
   /* Each source's track is duplicated once (0 -> -50% loops seamlessly) and
      scrolls continuously via CSS animation, paused on hover by CSS alone.
-     A single rAF loop per track continuously scores every card by how close
-     its center is to the marquee's center and scales/shadows it up — no
-     discrete "current card" index, just a live function of position, so it
-     stays correct no matter where the animation is mid-loop. */
+     A single rAF loop per track just asks "which one card (if any) is
+     currently sitting in the center zone" and toggles .is-focused on that
+     one — every other card stays at its plain resting size. Binary, not a
+     continuous per-card scale, so it reads as one clear focal card instead
+     of a wave of slightly-different sizes. */
+
+  const FOCUS_ZONE = 70;
 
   document.querySelectorAll('.testimonial-track').forEach((track) => {
     const marquee = track.closest('.testimonial-marquee');
@@ -397,24 +400,20 @@
 
     if (track.dataset.speed) track.style.setProperty('--marquee-duration', `${track.dataset.speed}s`);
 
-    const focusCards = () => {
+    const focusCenterCard = () => {
       const marqueeRect = marquee.getBoundingClientRect();
       const centerX = marqueeRect.left + marqueeRect.width / 2;
       Array.from(track.children).forEach((card) => {
         const rect = card.getBoundingClientRect();
         const cardCenter = rect.left + rect.width / 2;
-        const maxDistance = marqueeRect.width / 2 + rect.width / 2;
-        const proximity = Math.max(0, 1 - Math.abs(cardCenter - centerX) / maxDistance);
-        card.style.transform = `scale(${(0.9 + proximity * 0.15).toFixed(3)})`;
-        card.style.boxShadow = `0 ${8 + proximity * 22}px ${20 + proximity * 30}px rgba(10,10,10,${(0.05 + proximity * 0.16).toFixed(3)})`;
-        card.style.zIndex = String(Math.round(proximity * 10));
+        card.classList.toggle('is-focused', Math.abs(cardCenter - centerX) < FOCUS_ZONE);
       });
     };
 
     if (prefersReducedMotion) {
-      focusCards();
+      focusCenterCard();
     } else {
-      const tick = () => { focusCards(); requestAnimationFrame(tick); };
+      const tick = () => { focusCenterCard(); requestAnimationFrame(tick); };
       requestAnimationFrame(tick);
     }
   });

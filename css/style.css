@@ -1580,10 +1580,17 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    each card by how close its center is to the marquee's center and scales
    it up (bigger shadow too) accordingly, so whichever card is passing
    through the middle reads as "focused" without any discrete step logic. */
+/* Fixed, generous height (rather than padding) so the focused card's 1.15x
+   scale plus its intensified shadow always has room to breathe within the
+   overflow:hidden box — nothing bleeds past the container's own edges, so
+   nothing gets clipped despite the horizontal clip being necessary (the
+   duplicated track is 2x width and would otherwise widen the whole page). */
 .testimonial-marquee {
   position: relative;
+  height: 380px;
+  display: flex;
+  align-items: center;
   overflow: hidden;
-  padding: 44px 0;
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
   mask-image: linear-gradient(90deg, transparent 0%, black 6%, black 94%, transparent 100%);
 }
@@ -1621,10 +1628,19 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 28px;
-  box-shadow: 0 8px 20px rgba(10,10,10,0.05);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  box-shadow: 0 8px 20px rgba(10,10,10,0.08);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
   will-change: transform;
   overflow: hidden;
+}
+
+/* Binary state, not a continuous per-card scale: JS toggles this on
+   whichever single card's center is currently within the marquee's
+   center zone. Every other card just sits at the resting size above. */
+.testimonial-card.is-focused {
+  transform: scale(1.15);
+  box-shadow: 0 24px 48px rgba(10,10,10,0.22);
+  z-index: 2;
 }
 .testimonial-card::before {
   content: '\201C';

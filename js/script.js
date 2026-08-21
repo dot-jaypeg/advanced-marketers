@@ -479,7 +479,7 @@
       noise2(x * 4.7 - 5, y * 4.7 + 19) * 0.1
     );
 
-    const CELL = 20;
+    const CELL = 26;
     const SCALE = 0.005;
     const LEVELS = [0.32, 0.42, 0.52, 0.62, 0.72];
 
@@ -579,11 +579,12 @@
     // by any single section's visibility.
     topoCanvases.forEach((canvas) => {
       const ctx = canvas.getContext('2d');
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       let w = 0;
       let h = 0;
       let running = false;
       let raf = null;
+      let frame = 0;
       let cx = -99999;
       let cy = -99999;
       let time = Math.random() * 1000;
@@ -604,10 +605,17 @@
       };
 
       const tick = () => {
-        time += 0.0006;
-        cx += (clientX - cx) * CURSOR_LERP;
-        cy += (clientY - cy) * CURSOR_LERP;
-        draw();
+        frame++;
+        // Half framerate (still smooth for this slow ambient effect) and
+        // skip the expensive grid/contour recompute entirely while a light
+        // section has it faded to opacity:0 — no point redrawing an
+        // invisible canvas every frame while scrolled past it.
+        if (frame % 2 === 0 && document.body.dataset.theme === 'dark') {
+          time += 0.0012;
+          cx += (clientX - cx) * CURSOR_LERP;
+          cy += (clientY - cy) * CURSOR_LERP;
+          draw();
+        }
         if (running) raf = requestAnimationFrame(tick);
       };
 

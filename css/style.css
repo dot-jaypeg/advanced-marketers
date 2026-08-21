@@ -1389,11 +1389,11 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   left: 28px;
   background: var(--accent-gradient);
   font-family: var(--font-label);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 6px 14px;
 }
 
 .package-card__name {
@@ -1401,31 +1401,39 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.02em;
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  margin-bottom: 8px;
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  margin-bottom: 10px;
 }
 
 .package-card__tagline {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 300;
-  color: rgba(250,250,250,0.55);
-  margin-bottom: 24px;
+  line-height: 1.4;
+  color: rgba(250,250,250,0.62);
+  margin-bottom: 20px;
 }
 
-.package-card__list { display: grid; gap: 12px; flex: 1; }
+/* Was display:grid, which under CSS Grid's default align-content:normal
+   (behaves as stretch) let the implicit rows expand to fill whatever
+   height the flex:1 parent gave it — since .package-grid stretches every
+   card to match the tallest one, Accelerator/Empire's short 3-item lists
+   were stretching into huge gaps between items instead of just leaving
+   space at the end. Flexbox doesn't have that failure mode: items keep
+   their natural size and any extra height just sits below the list. */
+.package-card__list { display: flex; flex-direction: column; gap: 14px; flex: 1; }
 .package-card__list li {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
   color: rgba(250,250,250,0.85);
-  padding-left: 26px;
+  padding-left: 28px;
   position: relative;
 }
 .package-card__list li::before {
   content: '';
   position: absolute;
-  left: 0; top: 5px;
-  width: 16px; height: 12px;
+  left: 0; top: 6px;
+  width: 17px; height: 13px;
   background: var(--accent-soft);
   -webkit-mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
   -webkit-mask-repeat: no-repeat;
@@ -1439,70 +1447,70 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-card__list li.is-inherited { color: rgba(250,250,250,0.5); }
 
 .package-card__note {
-  margin-top: 20px;
+  margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid var(--line-invert);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
   font-style: italic;
   line-height: 1.5;
-  color: rgba(250,250,250,0.65);
+  color: rgba(250,250,250,0.68);
 }
 
-.package-addons { margin-top: 64px; }
+.package-addons { margin-top: 72px; }
 
 .package-addons__label {
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .package-addons__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 
 .package-card__incentive {
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--accent-soft);
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .package-addon__name {
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-soft);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .package-addon__desc {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
   color: rgba(250,250,250,0.72);
 }
 
-.package-proof { margin-top: 64px; }
+.package-proof { margin-top: 72px; }
 
 .package-proof__label {
   font-family: var(--font-label);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .package-proof__grid {
@@ -1521,22 +1529,23 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  line-height: 1.2;
   color: var(--white);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .package-proof__copy {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
-  line-height: 1.55;
+  line-height: 1.5;
   color: rgba(250,250,250,0.75);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .package-proof__meta {
   font-family: var(--font-label);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;

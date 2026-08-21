@@ -377,37 +377,46 @@
     csUpdateDots();
   }
 
-  /* ----------------------------- review carousels ------------------------------ */
-  /* Each review source (Google, Clutch) gets its own independent vertical
-     auto-rotate — no drag/arrows, just a timer that pauses while the
-     visitor's mouse is over that particular list so they can finish
-     reading before it moves on. */
+  /* ---------------------------- testimonial marquees ---------------------------- */
+  /* Each source's track is duplicated once (0 -> -50% loops seamlessly) and
+     scrolls continuously via CSS animation, paused on hover by CSS alone.
+     A single rAF loop per track continuously scores every card by how close
+     its center is to the marquee's center and scales/shadows it up — no
+     discrete "current card" index, just a live function of position, so it
+     stays correct no matter where the animation is mid-loop. */
 
-  document.querySelectorAll('.review-list').forEach((list) => {
-    const track = list.querySelector('.review-track');
-    if (!track) return;
-    const cards = Array.from(track.children);
-    if (cards.length < 2) return;
+  document.querySelectorAll('.testimonial-track').forEach((track) => {
+    const marquee = track.closest('.testimonial-marquee');
+    if (!marquee) return;
 
-    let index = 0;
-    let timer = null;
+    Array.from(track.children).forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
 
-    const show = (i) => {
-      index = (i + cards.length) % cards.length;
-      track.style.transform = `translateY(-${index * 100}%)`;
+    if (track.dataset.speed) track.style.setProperty('--marquee-duration', `${track.dataset.speed}s`);
+
+    const focusCards = () => {
+      const marqueeRect = marquee.getBoundingClientRect();
+      const centerX = marqueeRect.left + marqueeRect.width / 2;
+      Array.from(track.children).forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const maxDistance = marqueeRect.width / 2 + rect.width / 2;
+        const proximity = Math.max(0, 1 - Math.abs(cardCenter - centerX) / maxDistance);
+        card.style.transform = `scale(${(0.9 + proximity * 0.15).toFixed(3)})`;
+        card.style.boxShadow = `0 ${8 + proximity * 22}px ${20 + proximity * 30}px rgba(10,10,10,${(0.05 + proximity * 0.16).toFixed(3)})`;
+        card.style.zIndex = String(Math.round(proximity * 10));
+      });
     };
 
-    const start = () => {
-      if (prefersReducedMotion || timer) return;
-      timer = setInterval(() => show(index + 1), 5500);
-    };
-    const stop = () => {
-      if (timer) { clearInterval(timer); timer = null; }
-    };
-
-    list.addEventListener('mouseenter', stop);
-    list.addEventListener('mouseleave', start);
-    start();
+    if (prefersReducedMotion) {
+      focusCards();
+    } else {
+      const tick = () => { focusCards(); requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    }
   });
 
   /* --------------------------------- mobile menu ------------------------------ */

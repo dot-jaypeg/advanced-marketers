@@ -1587,7 +1587,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    duplicated track is 2x width and would otherwise widen the whole page). */
 .testimonial-marquee {
   position: relative;
-  height: 380px;
+  height: 460px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -1639,7 +1639,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    center zone. Every other card just sits at the resting size above. */
 .testimonial-card.is-focused {
   transform: scale(1.15);
-  box-shadow: 0 24px 48px rgba(10,10,10,0.22);
+  box-shadow: 0 16px 36px rgba(10,10,10,0.2);
   z-index: 2;
 }
 .testimonial-card::before {

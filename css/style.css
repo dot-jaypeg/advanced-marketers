@@ -1054,12 +1054,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 }
 .cs-tile--feature .cs-tile__media { flex: 1; aspect-ratio: auto; height: 100%; }
 
-.cs-tile__video {
+.cs-tile__video,
+.cs-tile__image {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.8s var(--ease);
 }
-.cs-tile:hover .cs-tile__video { transform: scale(1.045); }
+.cs-tile:hover .cs-tile__video,
+.cs-tile:hover .cs-tile__image { transform: scale(1.045); }
 
 /* portrait/square source clips (Rosewood, NUVE) letterbox instead of cropping */
 .cs-tile__video--fit { object-fit: contain; }

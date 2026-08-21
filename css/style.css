@@ -1304,7 +1304,9 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   left: 0; right: 0; bottom: 0;
   z-index: 2;
   max-width: 640px;
-  padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 48px);
+  max-height: 100%;
+  overflow-y: auto;
+  padding: clamp(20px, 3vw, 36px) clamp(24px, 4vw, 48px);
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.4s var(--ease) 0.1s, transform 0.4s var(--ease) 0.1s;
@@ -1321,10 +1323,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-weight: 900;
   text-transform: uppercase;
   color: var(--white);
-  font-size: clamp(1.3rem, 2.6vw, 2rem);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 .dept-item__eyebrow {
@@ -1334,7 +1336,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   display: flex;
   align-items: center;
 }
@@ -1579,7 +1581,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
-  height: clamp(280px, 32vw, 360px);
+  height: clamp(300px, 32vw, 380px);
 }
 
 .review-track {
@@ -1596,6 +1598,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: auto;
 }
 .review-card::before {
   content: '';

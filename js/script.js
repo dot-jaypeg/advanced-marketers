@@ -377,6 +377,39 @@
     csUpdateDots();
   }
 
+  /* ----------------------------- review carousels ------------------------------ */
+  /* Each review source (Google, Clutch) gets its own independent vertical
+     auto-rotate — no drag/arrows, just a timer that pauses while the
+     visitor's mouse is over that particular list so they can finish
+     reading before it moves on. */
+
+  document.querySelectorAll('.review-list').forEach((list) => {
+    const track = list.querySelector('.review-track');
+    if (!track) return;
+    const cards = Array.from(track.children);
+    if (cards.length < 2) return;
+
+    let index = 0;
+    let timer = null;
+
+    const show = (i) => {
+      index = (i + cards.length) % cards.length;
+      track.style.transform = `translateY(-${index * 100}%)`;
+    };
+
+    const start = () => {
+      if (prefersReducedMotion || timer) return;
+      timer = setInterval(() => show(index + 1), 5500);
+    };
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+
+    list.addEventListener('mouseenter', stop);
+    list.addEventListener('mouseleave', start);
+    start();
+  });
+
   /* --------------------------------- mobile menu ------------------------------ */
 
   burger.addEventListener('click', () => {

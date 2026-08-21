@@ -1268,12 +1268,12 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .dept-item__collapsed {
   position: absolute;
-  inset: 0;
+  top: 0; left: 0; right: 0;
   z-index: 2;
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 0 clamp(24px, 4vw, 48px);
+  padding: clamp(24px, 4vw, 40px) clamp(24px, 4vw, 48px);
   opacity: 1;
   transition: opacity 0.3s var(--ease);
 }
@@ -1285,6 +1285,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-family: var(--font-label);
   font-size: 13px;
   font-weight: 700;
+  line-height: 1;
   color: var(--accent-soft);
 }
 
@@ -1294,6 +1295,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   text-transform: uppercase;
   color: var(--white);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  line-height: 1;
   letter-spacing: -0.03em;
 }
 
@@ -1302,7 +1304,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   left: 0; right: 0; bottom: 0;
   z-index: 2;
   max-width: 640px;
-  padding: clamp(28px, 4vw, 48px);
+  padding: clamp(28px, 4vw, 40px) clamp(24px, 4vw, 48px);
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.4s var(--ease) 0.1s, transform 0.4s var(--ease) 0.1s;
@@ -1319,13 +1321,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   text-transform: uppercase;
   color: var(--accent-soft);
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 .dept-item__eyebrow::before {
   content: '';
-  display: inline-block;
+  flex: none;
   width: 16px; height: 12px;
   margin-right: 8px;
-  vertical-align: middle;
   background: var(--accent-soft);
   -webkit-mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
   -webkit-mask-repeat: no-repeat;
@@ -1555,9 +1558,31 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: rgba(10,10,10,0.5);
 }
 
-.review-list { display: grid; gap: 2px; border: 1px solid var(--line); }
+/* Fixed-height viewport with a vertically-stacked track sliding by full
+   card heights — JS advances it on a timer, same idea as the horizontal
+   case-studies carousel but rotated 90 degrees and auto-only (no drag). */
+.review-list {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  height: clamp(280px, 32vw, 360px);
+}
 
-.review-card { border-bottom: 1px solid var(--line); padding: 24px; }
+.review-track {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.6s var(--ease);
+}
+
+.review-card {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .review-card::before {
   content: '';
   display: block;
@@ -1573,7 +1598,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   mask-position: left center;
   mask-size: contain;
 }
-.review-list .review-card:last-child { border-bottom: none; }
 
 .review-card__quote {
   font-size: 14px;

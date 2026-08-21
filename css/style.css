@@ -1602,7 +1602,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   animation: testimonialScroll var(--marquee-duration, 30s) linear infinite;
 }
 .testimonial-track[data-reverse="true"] { animation-name: testimonialScrollReverse; }
-.testimonial-marquee:hover .testimonial-track { animation-play-state: paused; }
+/* Only a card itself should pause the scroll — not the surrounding
+   container padding/gaps, which is what :hover on .testimonial-marquee
+   was matching before. */
+.testimonial-track:has(.testimonial-card:hover) { animation-play-state: paused; }
 
 @keyframes testimonialScroll {
   from { transform: translateX(0); }

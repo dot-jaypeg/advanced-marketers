@@ -1088,6 +1088,22 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .cs-tile--feature .cs-tile__body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
 .cs-tile__kicker { font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.cs-tile__kicker::before {
+  content: '';
+  display: inline-block;
+  width: 14px; height: 10px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: var(--accent);
+  -webkit-mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 
 .cs-tile__title {
   font-family: var(--font-display);
@@ -1314,6 +1330,22 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: var(--accent-soft);
   margin-bottom: 10px;
 }
+.dept-item__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 12px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: var(--accent-soft);
+  -webkit-mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 
 .dept-item__desc {
   font-size: 15px;
@@ -1444,7 +1476,9 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   text-transform: uppercase;
   letter-spacing: -0.01em;
   font-size: 1.4rem;
+  transition: color 0.3s var(--ease);
 }
+.review-source__name:hover { color: var(--accent); }
 .review-source__rating {
   font-family: var(--font-label);
   font-size: 12px;
@@ -1456,6 +1490,21 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .review-list { display: grid; gap: 2px; border: 1px solid var(--line); }
 
 .review-card { border-bottom: 1px solid var(--line); padding: 24px; }
+.review-card::before {
+  content: '';
+  display: block;
+  width: 28px; height: 20px;
+  margin-bottom: 12px;
+  background: var(--accent);
+  -webkit-mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  -webkit-mask-size: contain;
+  mask-image: url('../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-black.png');
+  mask-repeat: no-repeat;
+  mask-position: left center;
+  mask-size: contain;
+}
 .review-list .review-card:last-child { border-bottom: none; }
 
 .review-card__quote {

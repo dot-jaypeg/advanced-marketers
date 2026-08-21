@@ -248,12 +248,12 @@
       span.style.transitionDelay = `${i * 0.06}s`;
     });
   };
-  document.querySelectorAll('.section-title, .local-impact__headline').forEach(splitWords);
+  document.querySelectorAll('.section-title').forEach(splitWords);
 
   /* Toggles both ways (not a one-shot reveal-then-unobserve) so the same
      slide/fade plays scrolling down into a section AND scrolling back up
      into it from below. */
-  const revealTargets = document.querySelectorAll('[data-reveal], .section-num, .section-title, .section-sub, .local-impact__headline');
+  const revealTargets = document.querySelectorAll('[data-reveal], .section-num, .section-title, .section-sub');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       entry.target.classList.toggle('is-visible', entry.isIntersecting);

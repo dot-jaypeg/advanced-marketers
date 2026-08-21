@@ -1313,6 +1313,20 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .dept-item:focus-visible .dept-item__expanded,
 .dept-item.is-open .dept-item__expanded { opacity: 1; transform: translateY(0); }
 
+/* The collapsed name fades to opacity:0 on hover/open so it doesn't
+   overlap the description — this repeats it inside the expanded panel
+   itself so the row's identity never disappears mid-hover. */
+.dept-item__expanded-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: clamp(1.3rem, 2.6vw, 2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
 .dept-item__eyebrow {
   font-family: var(--font-label);
   font-size: 11px;

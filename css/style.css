@@ -479,8 +479,10 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 28px;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: calc(var(--nav-h) + 24px) 20px 40px;
+  overflow-y: auto;
   transform: translateY(-100%);
   transition: transform 0.5s var(--ease);
 }
@@ -538,6 +540,10 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   align-items: flex-start;
   gap: 40px;
 }
+
+/* Homepage-only variant: no kicker/CTA, just the headline, centered. */
+.hero--centered .hero__grid { align-items: center; text-align: center; }
+.hero--centered .hero__main { align-items: center; }
 
 .kicker {
   font-size: 14px;

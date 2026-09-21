@@ -15,7 +15,9 @@
   files the live site actually references (fonts, logos, hero video, a
   couple of case-study photos/videos) are force-added individually with
   `git add -f "path"` and ARE tracked and pushed, since this site deploys
-  via GitHub Pages and needs those files physically present in the repo.
+  via Railway (watching `main` on `dot-jaypeg/advanced-marketers`, live at
+  https://advanced-marketers-production.up.railway.app/) and needs those
+  files physically present in the repo.
 - When adding a NEW referenced asset: `git add -f "assets/path/to/file"`
   explicitly (plain `git add .` won't pick it up, by design).
 - Two videos referenced by the Case Studies section exceed GitHub's 100MB

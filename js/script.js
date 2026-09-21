@@ -289,14 +289,27 @@
 
   /* --------------------------- industry hover-cards -------------------------- */
 
-  /* Click/keyboard toggle is only for devices without real :hover — on
-     hover-capable devices, CSS :hover/:focus-visible already expands and
-     (critically) auto-collapses on mouseout, so wiring the same click
-     handler up there too just leaves a card stuck open after a click,
-     with no hover-out to undo it. */
   const industryCards = document.querySelectorAll('.industry-card');
-  if (!hasHover) {
-    industryCards.forEach((card) => {
+  industryCards.forEach((card) => {
+    const href = card.dataset.href;
+    if (href) {
+      /* Cards with a dedicated deep-dive page (Plumbing/HVAC/Roofing): hover
+         already previews the body copy via CSS, so a click is free to mean
+         "go there" — on every device, not just touch. */
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // let an inner link handle its own click
+        window.location.href = href;
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = href; }
+      });
+    } else if (!hasHover) {
+      /* No dedicated page (e.g. Restoration) — click/keyboard toggle is only
+         for devices without real :hover, since CSS :hover/:focus-visible
+         already expands and (critically) auto-collapses on mouseout there;
+         wiring the same click handler up on hover-capable devices too would
+         just leave a card stuck open after a click, with no hover-out to
+         undo it. */
       card.addEventListener('click', () => {
         const isOpen = card.classList.contains('is-open');
         industryCards.forEach((c) => { c.classList.remove('is-open'); c.setAttribute('aria-expanded', 'false'); });
@@ -305,8 +318,8 @@
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
       });
-    });
-  }
+    }
+  });
 
   /* --------------------------- department accordion --------------------------- */
   /* Hover/focus already expands a row via CSS; this click handler just gives

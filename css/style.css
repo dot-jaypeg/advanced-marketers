@@ -1884,3 +1884,137 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   .site-footer__top { flex-direction: column; align-items: flex-start; gap: 24px; }
   .differentiators { grid-template-columns: 1fr; }
 }
+
+/* ============================================================================
+   INDUSTRY PAGE TEMPLATE (/industries/*) — shared by Plumbing, HVAC, Roofing
+   ============================================================================ */
+
+/* ------------------------------ breadcrumbs ------------------------------- */
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(250,250,250,0.5);
+  margin-bottom: 20px;
+}
+.breadcrumbs a { color: rgba(250,250,250,0.85); }
+.breadcrumbs a:hover { color: var(--accent-soft); }
+.breadcrumbs__current { color: rgba(250,250,250,0.5); }
+
+/* --------------------------- industries nav dropdown ----------------------- */
+
+.primary-nav__item { position: relative; display: flex; align-items: center; }
+
+.primary-nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -6px);
+  padding-top: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.primary-nav__item:hover .primary-nav__dropdown,
+.primary-nav__item:focus-within .primary-nav__dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.primary-nav__dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 32px rgba(10,10,10,0.16);
+}
+.primary-nav__dropdown-inner a {
+  padding: 13px 18px;
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.primary-nav__dropdown-inner a:hover,
+.primary-nav__dropdown-inner a[aria-current] { background: var(--off-white); color: var(--accent); }
+
+.mobile-menu__label {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(250,250,250,0.4);
+  margin-top: 4px;
+}
+.mobile-menu a.mobile-menu__sub { font-size: 22px; padding: 2px 20px; }
+.mobile-menu a[aria-current] { color: var(--accent-soft); }
+
+/* --------------------------------- FAQ ------------------------------------- */
+
+.faq-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); max-width: 820px; }
+
+.faq-item { border-bottom: 1px solid var(--line); }
+
+.faq-item__q {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 4px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-item__q::marker { content: ''; }
+
+.faq-item__icon { flex: none; width: 22px; height: 22px; position: relative; }
+.faq-item__icon::before,
+.faq-item__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--black);
+  transition: transform 0.3s var(--ease);
+}
+.faq-item__icon::before { width: 14px; height: 2px; transform: translate(-50%, -50%); }
+.faq-item__icon::after { width: 2px; height: 14px; transform: translate(-50%, -50%); }
+.faq-item[open] .faq-item__icon::after { transform: translate(-50%, -50%) rotate(90deg) scaleX(0); }
+
+.faq-item__a {
+  padding: 0 4px 26px;
+  max-width: 640px;
+  color: rgba(10,10,10,0.68);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ------------------------------ industry hero ------------------------------ */
+
+.industry-hero__eyebrow { margin-bottom: 22px; }
+
+.industry-hero__sub {
+  max-width: 620px;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(250,250,250,0.8);
+}
+
+@media (max-width: 1024px) {
+  .primary-nav__dropdown { display: none; }
+}

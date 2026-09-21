@@ -289,17 +289,24 @@
 
   /* --------------------------- industry hover-cards -------------------------- */
 
+  /* Click/keyboard toggle is only for devices without real :hover — on
+     hover-capable devices, CSS :hover/:focus-visible already expands and
+     (critically) auto-collapses on mouseout, so wiring the same click
+     handler up there too just leaves a card stuck open after a click,
+     with no hover-out to undo it. */
   const industryCards = document.querySelectorAll('.industry-card');
-  industryCards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const isOpen = card.classList.contains('is-open');
-      industryCards.forEach((c) => { c.classList.remove('is-open'); c.setAttribute('aria-expanded', 'false'); });
-      if (!isOpen) { card.classList.add('is-open'); card.setAttribute('aria-expanded', 'true'); }
+  if (!hasHover) {
+    industryCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const isOpen = card.classList.contains('is-open');
+        industryCards.forEach((c) => { c.classList.remove('is-open'); c.setAttribute('aria-expanded', 'false'); });
+        if (!isOpen) { card.classList.add('is-open'); card.setAttribute('aria-expanded', 'true'); }
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
     });
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
-    });
-  });
+  }
 
   /* --------------------------- department accordion --------------------------- */
   /* Hover/focus already expands a row via CSS; this click handler just gives
@@ -307,16 +314,18 @@
      one row open at a time. */
 
   const deptItems = document.querySelectorAll('.dept-item');
-  deptItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
-      deptItems.forEach((d) => { d.classList.remove('is-open'); d.setAttribute('aria-expanded', 'false'); });
-      if (!isOpen) { item.classList.add('is-open'); item.setAttribute('aria-expanded', 'true'); }
+  if (!hasHover) {
+    deptItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        deptItems.forEach((d) => { d.classList.remove('is-open'); d.setAttribute('aria-expanded', 'false'); });
+        if (!isOpen) { item.classList.add('is-open'); item.setAttribute('aria-expanded', 'true'); }
+      });
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+      });
     });
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
-    });
-  });
+  }
 
   /* -------------------------- case studies carousel --------------------------- */
   /* Auto-rotates through clients on a timer; any manual interaction (arrow,

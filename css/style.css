@@ -1735,6 +1735,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .final-cta {
   position: relative;
   overflow: hidden;
+  background: var(--black);
   color: var(--white);
   text-align: center;
   display: flex;
@@ -1765,6 +1766,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .site-footer {
   position: relative;
   overflow: hidden;
+  background: var(--black);
   color: var(--white);
   padding: clamp(50px, 8vw, 90px) var(--edge) 32px;
 }

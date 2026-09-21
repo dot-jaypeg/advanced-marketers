@@ -375,6 +375,18 @@
     }
 
     csUpdateDots();
+
+    /* Deep link from a nav dropdown (e.g. "#lincoln-plumbing") lands on that
+       client's slide instead of whichever one happens to be first/active. */
+    if (location.hash) {
+      const targetIdx = csSlides.findIndex((slide) => slide.id === location.hash.slice(1));
+      if (targetIdx !== -1) {
+        csStopAutoplay();
+        csCurrent = targetIdx;
+        csSlides[targetIdx].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'start' });
+        csUpdateDots();
+      }
+    }
   }
 
   /* ---------------------------- testimonial marquees ---------------------------- */

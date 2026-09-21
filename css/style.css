@@ -723,6 +723,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .lead-copy__brand { color: var(--black); }
 .lead-copy__highlight { color: var(--accent); }
 
+.about__cta { display: inline-block; margin-top: 32px; }
+
 .about__stats {
   display: grid;
   gap: 28px;

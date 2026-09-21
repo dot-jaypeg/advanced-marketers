@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Services — Advanced Marketers</title>
+<meta name="description" content="Growth systems built by industry — plumbing, HVAC, roofing, and restoration. Google Premier Partner. 500+ brands scaled since 2016.">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/AM_BrandKit_2026/AM%20LOGOS/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/AM_BrandKit_2026/AM%20LOGOS/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/AM_BrandKit_2026/AM%20LOGOS/favicon-180.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-theme="dark">
+
+<div class="page-bg" aria-hidden="true"></div>
+<canvas class="topo-canvas" id="topoCanvas" data-topo="dark" aria-hidden="true"></canvas>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-label" id="cursorLabel"></div>
+
+<div class="progress-rail"><div class="progress-rail__fill" id="scrollFill"></div></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__inner">
+    <a href="../index.html" class="brand" data-cursor="hover">
+      <img src="../assets/AM_BrandKit_2026/AM%20LOGOS/wordmark-black.png" alt="Advanced Marketers">
+    </a>
+
+    <nav class="primary-nav" id="primaryNav">
+      <a href="../index.html#home" class="primary-nav__link" data-cursor="hover">HOME</a>
+      <div class="primary-nav__item">
+        <a href="../industries/plumbing/index.html" class="primary-nav__link" data-cursor="hover">INDUSTRIES</a>
+        <div class="primary-nav__dropdown">
+          <div class="primary-nav__dropdown-inner">
+            <a href="../industries/plumbing/index.html" data-cursor="hover">Plumbing</a>
+            <a href="../industries/hvac/index.html" data-cursor="hover">HVAC</a>
+            <a href="../industries/roofing/index.html" data-cursor="hover">Roofing</a>
+          </div>
+        </div>
+      </div>
+      <a href="../local-services/index.html" class="primary-nav__link is-active" data-cursor="hover">LOCAL SERVICES</a>
+      <a href="../specialties/index.html" class="primary-nav__link" data-cursor="hover">SPECIALTIES</a>
+      <a href="../case-studies/index.html" class="primary-nav__link" data-cursor="hover">CASE STUDIES</a>
+      <a href="../about/index.html" class="primary-nav__link" data-cursor="hover">ABOUT</a>
+      <a href="../contact/index.html" class="primary-nav__link" data-cursor="hover">CONTACT</a>
+    </nav>
+
+    <a href="../contact/index.html" class="btn btn--nav" data-cursor="hover">START A PROJECT</a>
+
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" data-cursor="hover">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html#home">HOME</a>
+  <p class="mobile-menu__label">INDUSTRIES</p>
+  <a href="../industries/plumbing/index.html" class="mobile-menu__sub">Plumbing</a>
+  <a href="../industries/hvac/index.html" class="mobile-menu__sub">HVAC</a>
+  <a href="../industries/roofing/index.html" class="mobile-menu__sub">Roofing</a>
+  <a href="../local-services/index.html" aria-current="page">LOCAL SERVICES</a>
+  <a href="../specialties/index.html">SPECIALTIES</a>
+  <a href="../case-studies/index.html">CASE STUDIES</a>
+  <a href="../about/index.html">ABOUT</a>
+  <a href="../contact/index.html">CONTACT</a>
+</div>
+
+<div class="scroll-wrapper" id="scrollWrapper">
+<main>
+
+  <!-- ============ LOCAL SERVICES / INDUSTRY FOCUS ============ -->
+  <section id="local-services" class="industries subpage-intro" data-theme="dark">
+    <nav class="breadcrumbs breadcrumbs--invert" aria-label="Breadcrumb">
+      <a href="../index.html" data-cursor="hover">Home</a>
+      <span aria-hidden="true">/</span>
+      <span class="breadcrumbs__current" aria-current="page">Local Services</span>
+    </nav>
+
+    <div class="section-head" data-num="01">
+      <p class="section-num" data-reveal>01 / LOCAL SERVICES</p>
+      <h1 class="section-title" data-reveal>WE'RE GROWTH<br>EXPERTS.</h1>
+    </div>
+
+    <div class="local-impact">
+      <p class="local-impact__eyebrow" data-reveal>NUMBERS DON'T LIE.</p>
+
+      <div class="impact-stats">
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__num">$</span><span class="stat-card__num" data-count="456">0</span><span class="stat-card__unit">M+</span>
+          <span class="stat-card__label">Avg. $4M generated per contractor, across 114 plumbing clients</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__num">$</span><span class="stat-card__num" data-count="500">0</span><span class="stat-card__unit">M+</span>
+          <span class="stat-card__label">Annual revenue influenced, nationwide</span>
+        </div>
+        <div class="stat-card" data-reveal>
+          <span class="stat-card__num" data-count="40">0</span><span class="stat-card__unit">+</span>
+          <span class="stat-card__label">Contractors scaled from $30K to $250K+/mo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="industry-rail" id="industryRail">
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">01</div>
+        <h3 class="industry-card__title">PLUMBING</h3>
+        <div class="industry-card__body">
+          <p>
+            Emergency calls don't wait for a marketing plan. We build always-on Local
+            Services Ads, Google Ads, and landing pages engineered around flat&#8209;rate
+            service specials — so every dispatcher-ready lead comes in already primed
+            on authoritative, transparent pricing.
+          </p>
+          <ul class="industry-card__list">
+            <li>Local Services Ads &amp; Google Guarantee setup</li>
+            <li>Flat&#8209;rate service special funnels</li>
+            <li>Call tracking tied straight to booked jobs</li>
+          </ul>
+          <p class="industry-card__cta"><a href="../industries/plumbing/index.html" data-cursor="hover">See the Plumbing deep dive &#8594;</a></p>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">02</div>
+        <h3 class="industry-card__title">HVAC</h3>
+        <div class="industry-card__body">
+          <p>
+            Seasonal demand means the campaign has to scale before the heat wave hits,
+            not after. We pace budget to weather and demand signals, and build offer
+            pages around flat&#8209;rate service specials and maintenance plans that read
+            as authoritative pricing — never as a discount.
+          </p>
+          <ul class="industry-card__list">
+            <li>Demand-paced Google &amp; Meta media buying</li>
+            <li>Maintenance-plan &amp; tune-up funnels</li>
+            <li>Review &amp; reputation systems that compound</li>
+          </ul>
+          <p class="industry-card__cta"><a href="../industries/hvac/index.html" data-cursor="hover">See the HVAC deep dive &#8594;</a></p>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">03</div>
+        <h3 class="industry-card__title">ROOFING</h3>
+        <div class="industry-card__body">
+          <p>
+            Roofing is a high-ticket, high-trust sale. Our creative leans brutalist and
+            proof-driven — drone footage, before/after grids, and inspection-first offers —
+            paired with flat&#8209;rate service specials that close bigger jobs without
+            racing to the bottom on price.
+          </p>
+          <ul class="industry-card__list">
+            <li>Drone &amp; on-site content production</li>
+            <li>Insurance-claim &amp; inspection funnels</li>
+            <li>High-ticket lead qualification systems</li>
+          </ul>
+          <p class="industry-card__cta"><a href="../industries/roofing/index.html" data-cursor="hover">See the Roofing deep dive &#8594;</a></p>
+        </div>
+      </article>
+
+      <article class="industry-card" data-cursor="hover" tabindex="0" aria-expanded="false">
+        <div class="industry-card__index">04</div>
+        <h3 class="industry-card__title">RESTORATION</h3>
+        <div class="industry-card__body">
+          <p>
+            Restoration is won or lost in the first hour after the call comes in. We build
+            emergency-ready campaigns and insurance-friendly intake flows around
+            flat&#8209;rate service specials, so water and fire damage leads convert before
+            the homeowner calls a competitor.
+          </p>
+          <ul class="industry-card__list">
+            <li>24/7 emergency-response ad coverage</li>
+            <li>Insurance-claim &amp; intake-friendly funnels</li>
+            <li>Flat&#8209;rate service special offers</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section id="contact" class="final-cta" data-theme="dark">
+    <h2 class="final-cta__title" data-reveal>LET'S GROW<br>YOUR TRADE.</h2>
+    <a href="../contact/index.html" class="btn btn--primary btn--xl" data-reveal data-cursor="hover">GET A GROWTH PLAN &#8594;</a>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-theme="dark">
+  <div class="site-footer__top">
+    <img src="../assets/AM_BrandKit_2026/AM%20LOGOS/icon-mark-white.png" alt="Advanced Marketers" class="site-footer__logo">
+    <a href="../contact/index.html" class="btn btn--footer" data-cursor="hover">CONTACT US &#8594;</a>
+  </div>
+
+  <div class="site-footer__grid">
+    <div class="site-footer__col">
+      <p class="site-footer__label">LOCATIONS</p>
+      <p class="site-footer__address"><strong>Orange, CA</strong><br>135 S Lemon St Ste D<br>Orange, CA 92865</p>
+      <p class="site-footer__address"><strong>Mexico</strong><br>Av. Acueducto 4851&#8211;Piso 2<br>Real Acueducto, 45116<br>Zapopan, Jal., Mexico</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">CONTACT</p>
+      <p><a href="tel:+16502500405" data-cursor="hover">(650) 250&#8209;0405</a></p>
+      <p><a href="mailto:support@advancedmarketers.co" data-cursor="hover">support@advancedmarketers.co</a></p>
+      <p>8AM&#8211;4PM Pacific, M&#8211;F</p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">INDUSTRIES</p>
+      <p><a href="../industries/plumbing/index.html" data-cursor="hover">Plumbing</a></p>
+      <p><a href="../industries/hvac/index.html" data-cursor="hover">HVAC</a></p>
+      <p><a href="../industries/roofing/index.html" data-cursor="hover">Roofing</a></p>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label">SITE</p>
+      <p><a href="../specialties/index.html" data-cursor="hover">Specialties</a></p>
+      <p><a href="../case-studies/index.html" data-cursor="hover">Case Studies</a></p>
+      <p><a href="../about/index.html" data-cursor="hover">About</a></p>
+      <p><a href="../index.html#packages" data-cursor="hover">Packages</a></p>
+      <p><a href="../partners.html" data-cursor="hover">Partners</a></p>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>&copy; 2026 ADVANCED MARKETERS. REVENUE FIRST. ALWAYS.</p>
+    <p>GOOGLE PREMIER PARTNER — TOP 3% NATIONWIDE</p>
+  </div>
+</footer>
+</div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

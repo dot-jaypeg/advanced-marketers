@@ -28,7 +28,17 @@
 
     <nav class="primary-nav" id="primaryNav">
       <a href="../index.html#home" class="primary-nav__link" data-cursor="hover">HOME</a>
-      <a href="../local-services/index.html" class="primary-nav__link" data-cursor="hover">LOCAL SERVICES</a>
+      <div class="primary-nav__item">
+        <a href="../local-services/index.html" class="primary-nav__link" data-cursor="hover">LOCAL SERVICES</a>
+        <div class="primary-nav__dropdown">
+          <div class="primary-nav__dropdown-inner">
+            <a href="../industries/plumbing/index.html" data-cursor="hover">Plumbing</a>
+            <a href="../industries/hvac/index.html" data-cursor="hover">HVAC</a>
+            <a href="../industries/roofing/index.html" data-cursor="hover">Roofing</a>
+            <a href="../local-services/index.html#restoration" data-cursor="hover">Restoration</a>
+          </div>
+        </div>
+      </div>
       <a href="../specialties/index.html" class="primary-nav__link is-active" data-cursor="hover">SPECIALTIES</a>
       <a href="../case-studies/index.html" class="primary-nav__link" data-cursor="hover">CASE STUDIES</a>
       <a href="../about/index.html" class="primary-nav__link" data-cursor="hover">ABOUT</a>
@@ -45,7 +55,11 @@
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="../index.html#home">HOME</a>
-  <a href="../local-services/index.html">LOCAL SERVICES</a>
+  <p class="mobile-menu__label">LOCAL SERVICES</p>
+  <a href="../industries/plumbing/index.html" class="mobile-menu__sub">Plumbing</a>
+  <a href="../industries/hvac/index.html" class="mobile-menu__sub">HVAC</a>
+  <a href="../industries/roofing/index.html" class="mobile-menu__sub">Roofing</a>
+  <a href="../local-services/index.html#restoration" class="mobile-menu__sub">Restoration</a>
   <a href="../specialties/index.html" aria-current="page">SPECIALTIES</a>
   <a href="../case-studies/index.html">CASE STUDIES</a>
   <a href="../about/index.html">ABOUT</a>

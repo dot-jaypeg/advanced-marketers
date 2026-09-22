@@ -3,44 +3,14 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('../assets/fonts/Neue%20Haas%20Grotesk/NeueHaasDisplayLight.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('../assets/fonts/Neue%20Haas%20Grotesk/NeueHaasDisplayRoman.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('../assets/fonts/Neue%20Haas%20Grotesk/NeueHaasDisplayMediu.ttf') format('truetype');
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('../assets/fonts/Neue%20Haas%20Grotesk/NeueHaasDisplayBold.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Neue Haas Grotesk';
-  src: url('../assets/fonts/Neue%20Haas%20Grotesk/NeueHaasDisplayBlack.ttf') format('truetype');
-  font-weight: 900; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Suisse Intl';
-  src: url('../assets/fonts/SuisseIntl/SuisseIntl-Light.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Suisse Intl';
-  src: url('../assets/fonts/SuisseIntl/SuisseIntl-Regular.ttf') format('truetype');
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Suisse Intl';
-  src: url('../assets/fonts/SuisseIntl/SuisseIntl-Bold.ttf') format('truetype');
-  font-weight: 700; font-style: normal; font-display: swap;
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  font-weight: 100 900; font-style: italic; font-display: swap;
 }
 
 :root {
@@ -54,9 +24,9 @@
   --line: rgba(10,10,10,0.14);
   --line-invert: rgba(250,250,250,0.18);
 
-  --font-display: 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-body: 'Neue Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-label: 'Suisse Intl', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-label: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
   --edge: clamp(20px, 5vw, 64px);
   --nav-h: 84px;
@@ -184,7 +154,7 @@ body[data-theme="dark"] .topo-canvas { opacity: 1; }
   background: var(--accent);
   color: var(--white);
   font-family: var(--font-label);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -229,7 +199,7 @@ body[data-theme="dark"] .topo-canvas { opacity: 1; }
 
 .loader__meter {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 500;
   color: var(--white);
   font-size: clamp(2rem, 6vw, 3.4rem);
   letter-spacing: -0.03em;
@@ -388,7 +358,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
 
 .primary-nav__link {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   padding: 6px 0;
   position: relative;
   color: inherit;
@@ -411,7 +381,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
 .btn {
   display: inline-block;
   font-family: var(--font-label);
-  font-weight: 700;
+  font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -492,7 +462,8 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   padding: 10px 20px;
   font-family: var(--font-display);
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
@@ -547,7 +518,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
 
 .kicker {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--off-white);
   opacity: 0;
@@ -557,11 +528,10 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
 
 .hero__headline {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 500;
   font-size: clamp(3rem, min(13vw, 14vh), 10rem);
   line-height: 0.92;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .hero__line-wrap { display: block; overflow: hidden; }
@@ -592,7 +562,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   align-items: center;
   gap: 10px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--off-white);
 }
 
@@ -638,7 +608,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   top: -0.5em;
   left: -0.04em;
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 500;
   font-size: clamp(6rem, 18vw, 15rem);
   line-height: 1;
   color: currentColor;
@@ -650,7 +620,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .section-num {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--accent);
   margin-bottom: 18px;
   opacity: 0;
@@ -660,11 +630,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .section-title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 500;
   font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 0.98;
-  letter-spacing: -0.03em;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 .section-title .word { display: inline-block; overflow: hidden; vertical-align: top; }
@@ -747,15 +716,15 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .stat-card__num {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 600;
   font-size: clamp(2.4rem, 5vw, 3.4rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .stat-card__unit {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 600;
   font-size: 1.4rem;
   color: var(--accent);
 }
@@ -763,7 +732,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .stat-card__label {
   grid-column: 1 / -1;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   color: rgba(10,10,10,0.55);
 }
 
@@ -789,14 +758,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .partner-badge-item__mark {
   font-family: var(--font-display);
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
 }
 
 .partner-badge-item__caption {
   font-family: var(--font-label);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 12px;
@@ -819,7 +788,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .local-impact__eyebrow {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   color: var(--accent-soft);
   margin-bottom: 28px;
@@ -915,16 +884,15 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-card__index {
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--accent-soft);
 }
 
 .industry-card__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-top: 90px;
   writing-mode: horizontal-tb;
 }
@@ -974,7 +942,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   margin-top: 22px;
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -992,7 +960,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .service-list__kicker {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   color: rgba(250,250,250,0.4);
   margin-bottom: 8px;
@@ -1031,23 +999,22 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-rail--list .industry-card__index {
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   color: rgba(250,250,250,0.4);
 }
 
 .industry-rail--list .industry-card__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-top: 0;
 }
 
 .industry-card__tag {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--accent-soft);
   white-space: nowrap;
@@ -1055,12 +1022,11 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .industry-card__desc {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.01em;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.005em;
   line-height: 1.5;
   color: rgba(250,250,250,0.72);
-  text-transform: uppercase;
 }
 
 .industry-card__arrow {
@@ -1123,8 +1089,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .differentiator__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   letter-spacing: -0.01em;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   margin-bottom: 12px;
@@ -1257,7 +1222,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .cs-tile__body { padding: clamp(32px, 4vw, 56px); flex: 1; }
 .cs-tile--feature .cs-tile__body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
-.cs-tile__kicker { font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+.cs-tile__kicker { font-size: 11px; font-weight: 500; color: var(--accent); margin-bottom: 10px; }
 .cs-tile__kicker::before {
   content: '';
   display: inline-block;
@@ -1277,10 +1242,9 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .cs-tile__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   font-size: clamp(1.4rem, 2.4vw, 2.1rem);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-bottom: 14px;
 }
 
@@ -1290,7 +1254,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   display: inline-block;
   margin-top: 20px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   color: rgba(10,10,10,0.45);
 }
 
@@ -1351,7 +1315,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .quote-card figcaption {
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--accent);
 }
@@ -1378,7 +1342,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .leader-spotlight__eyebrow {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1387,9 +1351,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .leader-spotlight__name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   margin-bottom: 16px;
 }
@@ -1407,7 +1370,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   text-align: center;
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -1464,19 +1427,18 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .dept-item__index {
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   color: var(--accent-soft);
 }
 
 .dept-item__name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--white);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .dept-item__expanded {
@@ -1500,19 +1462,18 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    itself so the row's identity never disappears mid-hover. */
 .dept-item__expanded-name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   color: var(--white);
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   margin-bottom: 8px;
 }
 
 .dept-item__eyebrow {
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
@@ -1570,7 +1531,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   background: var(--accent-gradient);
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 6px 14px;
@@ -1578,9 +1539,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .package-card__name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   font-size: clamp(1.7rem, 2.8vw, 2.3rem);
   margin-bottom: 10px;
 }
@@ -1642,7 +1602,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-addons__label {
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
@@ -1658,7 +1618,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-card__incentive {
   font-family: var(--font-label);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.03em;
   color: var(--accent-soft);
   margin-bottom: 26px;
@@ -1667,7 +1627,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-addon__name {
   font-family: var(--font-label);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--accent-soft);
@@ -1686,7 +1646,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-proof__label {
   font-family: var(--font-label);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-soft);
@@ -1706,8 +1666,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .package-proof__stat {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   letter-spacing: -0.01em;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   line-height: 1.2;
@@ -1726,7 +1685,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .package-proof__meta {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent-soft);
@@ -1755,8 +1714,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .review-source__icon svg { width: 100%; height: 100%; }
 .review-source__name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   letter-spacing: -0.01em;
   font-size: 1.4rem;
   transition: color 0.3s var(--ease);
@@ -1765,7 +1723,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .review-source__rating {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.04em;
   color: rgba(10,10,10,0.5);
 }
@@ -1864,7 +1822,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: var(--white);
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 16px;
 }
 
@@ -1884,7 +1842,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   z-index: 1;
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.45);
@@ -1911,11 +1869,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .final-cta__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 500;
   font-size: clamp(3rem, 9vw, 6.5rem);
-  line-height: 0.96;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .final-cta .btn--primary { background: var(--white); border-color: var(--white); color: var(--black); }
@@ -1973,7 +1930,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .site-footer__label {
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   color: var(--accent-soft);
   margin-bottom: 14px;
@@ -2075,7 +2032,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   gap: 8px;
   font-family: var(--font-label);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.5);
@@ -2110,8 +2067,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 }
 .office-card__name {
   font-family: var(--font-display);
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: 600;
   letter-spacing: -0.01em;
   font-size: clamp(1.3rem, 2vw, 1.8rem);
   margin-bottom: 14px;
@@ -2129,7 +2085,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .social-links a {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--black);
@@ -2169,7 +2125,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   padding: 13px 18px;
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--black);
@@ -2180,7 +2136,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .mobile-menu__label {
   font-family: var(--font-label);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.1em;
   color: rgba(250,250,250,0.4);
   margin-top: 4px;
@@ -2203,7 +2159,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   gap: 24px;
   padding: 26px 4px;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 500;
   font-size: clamp(1.05rem, 1.8vw, 1.3rem);
 }
 .faq-item__q::-webkit-details-marker { display: none; }

@@ -857,14 +857,49 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   border-bottom: 1px solid var(--line-invert);
   padding: 40px 32px;
   overflow: hidden;
-  transition: flex 0.5s var(--ease), background 0.5s var(--ease);
+  transition: flex 0.5s var(--ease);
+}
+
+.industry-card__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.6s var(--ease);
+}
+.industry-card:hover .industry-card__media,
+.industry-card:focus-visible .industry-card__media,
+.industry-card.is-open .industry-card__media { transform: scale(1.06); }
+
+/* Scrim over the photo — darkest at the bottom, where index/title/body
+   sit, so text stays legible against whatever the photo is doing there. */
+.industry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.35) 45%, rgba(10,10,10,0.92) 100%);
+  transition: background 0.5s var(--ease);
+}
+.industry-card:hover::before,
+.industry-card:focus-visible::before,
+.industry-card.is-open::before {
+  background: linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0.9) 100%);
+}
+
+.industry-card__index,
+.industry-card__title,
+.industry-card__body {
+  position: relative;
+  z-index: 2;
 }
 
 .industry-card:hover,
 .industry-card:focus-visible,
 .industry-card.is-open {
   flex: 2.4;
-  background: linear-gradient(135deg, rgba(39,27,109,0.22), rgba(116,117,236,0.12)), var(--black);
   outline: none;
 }
 

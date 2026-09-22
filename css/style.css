@@ -2069,26 +2069,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    top padding to clear the fixed header, same trick as #partners-intro. */
 .subpage-intro { padding-top: calc(var(--nav-h) + 64px); }
 
-.subpage-hero {
-  position: relative;
-  overflow: hidden;
-  margin: calc(-1 * (var(--nav-h) + 64px)) calc(-1 * var(--edge)) 0;
-  padding: calc(var(--nav-h) + 64px) var(--edge) clamp(24px, 3vw, 40px);
+.local-services-video {
+  margin: clamp(40px, 6vw, 72px) 0;
 }
-.subpage-hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;
+.local-services-video video {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-.subpage-hero__scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(10,10,10,0.82);
-  z-index: 1;
-}
-.subpage-hero__content { position: relative; z-index: 2; }
 
 /* ------------------------------- offices grid ------------------------------ */
 

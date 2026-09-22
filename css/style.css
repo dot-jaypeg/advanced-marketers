@@ -202,23 +202,14 @@ body[data-theme="dark"] .topo-canvas { opacity: 1; }
    a determinate loading indicator. */
 .loader__badge {
   display: inline-flex;
-  align-items: flex-start;
-  gap: 2px;
-  padding: 15px 28px;
+  align-items: center;
+  padding: 18px 32px;
   border: 1px solid rgba(250,250,250,0.4);
   border-radius: 999px;
   animation: loaderPulse 1.8s ease-in-out infinite;
 }
 
-.loader__badge-name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  color: var(--white);
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
-  letter-spacing: -0.01em;
-}
-
-.loader__badge-mark { font-size: 0.55em; margin-top: 0.1em; color: rgba(250,250,250,0.6); }
+.loader__badge-mark { height: clamp(16px, 2.4vw, 22px); width: auto; }
 
 @keyframes loaderPulse {
   0%, 100% { opacity: 0.5; }

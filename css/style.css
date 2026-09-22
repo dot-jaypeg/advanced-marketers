@@ -2038,33 +2038,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    Case Studies, About, and Contact
    ============================================================================ */
 
-/* ------------------------------ breadcrumbs ------------------------------- */
-/* Default is light-safe (dark text) since most subpages open on a light
-   section; .breadcrumbs--invert flips it for a dark opening section (e.g.
-   the Industries pages' hero). */
-
-.breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-label);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(10,10,10,0.5);
-  margin-bottom: 20px;
-}
-.breadcrumbs a { color: rgba(10,10,10,0.8); }
-.breadcrumbs a:hover { color: var(--accent); }
-.breadcrumbs__current { color: rgba(10,10,10,0.5); }
-
-.breadcrumbs--invert { color: rgba(250,250,250,0.5); }
-.breadcrumbs--invert a { color: rgba(250,250,250,0.85); }
-.breadcrumbs--invert a:hover { color: var(--accent-soft); }
-.breadcrumbs--invert .breadcrumbs__current { color: rgba(250,250,250,0.5); }
-
 /* First section of a subpage that has no full-height hero — just enough
    top padding to clear the fixed header, same trick as #partners-intro. */
 .subpage-intro { padding-top: calc(var(--nav-h) + 64px); }

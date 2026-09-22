@@ -360,7 +360,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   gap: 24px;
 }
 
-.brand img { height: 52px; width: auto; }
+.brand img { height: 28px; width: auto; }
 
 .primary-nav {
   display: flex;

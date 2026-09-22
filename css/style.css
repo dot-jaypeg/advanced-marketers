@@ -41,12 +41,18 @@ body {
   background: var(--white);
   color: var(--black);
   font-family: var(--font-body);
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: -0.01em;
   line-height: 1.15;
   overflow-x: hidden;
   cursor: none;
 }
+
+/* Regular weight is reserved for emphasis inside a paragraph — everything
+   else on the site runs on the lighter 300 weight (see body, above), so
+   <strong>/<b> get an explicit 400 rather than the browser's default
+   bolder-than-anything-around-it bold. */
+strong, b { font-weight: 400; }
 
 /* Single shared backdrop behind every section. Sections themselves carry no
    solid background (aside from the video-backed hero), so as the centered
@@ -528,7 +534,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
    of .hero__headline's default — and its line-wraps need to sit inline
    with a space between them instead of stacking as blocks. */
 .hero--centered .hero__headline {
-  font-size: clamp(1.7rem, 6vw, 5.5rem);
+  font-size: clamp(1.9rem, 7.2vw, 6.6rem);
   white-space: nowrap;
 }
 .hero--centered .hero__line-wrap { display: inline-block; }
@@ -1040,7 +1046,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .industry-card__desc {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   letter-spacing: -0.005em;
   line-height: 1.5;
@@ -1308,7 +1314,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .quote-card blockquote {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.45;
   color: rgba(10,10,10,0.8);
   flex: 1;

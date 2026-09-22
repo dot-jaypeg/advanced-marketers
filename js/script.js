@@ -125,8 +125,20 @@
 
     window.addEventListener('scroll', () => { target = window.scrollY; }, { passive: true });
 
+    // A fast flick on a page this long (native scroll jumps by hundreds of
+    // px between wheel events) used to leave the lerped visual position
+    // trailing over 1000px behind the real scroll position for a third of a
+    // second — reads as laggy/glitchy scrolling rather than smooth. Snappier
+    // lerp (0.09 -> 0.22) closes that gap much faster, and clamping the max
+    // distance current is allowed to trail target means even an aggressive
+    // flick can't create a multi-viewport visual gap in the first place.
+    const MAX_LAG_PX = () => window.innerHeight * 0.5;
+
     const raf = () => {
-      current += (target - current) * 0.09;
+      const diff = target - current;
+      const maxLag = MAX_LAG_PX();
+      if (Math.abs(diff) > maxLag) current = target - Math.sign(diff) * maxLag;
+      current += (target - current) * 0.22;
       if (Math.abs(target - current) < 0.05) current = target;
       scrollWrapper.style.transform = `translate3d(0, ${-current}px, 0)`;
       requestAnimationFrame(raf);

@@ -426,13 +426,34 @@
     const marquee = track.closest('.testimonial-marquee');
     if (!marquee) return;
 
+    const originalCards = Array.from(track.children);
+    const baseSpeed = parseFloat(track.dataset.speed) || 30;
+
+    /* The 0 -> -50% loop only reads as seamless if each half is at least as
+       wide as the marquee itself — otherwise (a short list like Google's 4
+       reviews sitting in a wide container) both halves are on screen at
+       once and the loop point is a visible jump, not a Clutch-style
+       continuous scroll. Repeat the original set until one half clears the
+       marquee's width, then double it as before; duration scales with the
+       repeat count so the actual scroll speed (px/s) stays what --speed
+       was authored for, instead of suddenly moving repeats-times faster. */
+    let repeats = 1;
+    while (track.scrollWidth < marquee.clientWidth && repeats < 6) {
+      originalCards.forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+      repeats++;
+    }
+
     Array.from(track.children).forEach((card) => {
       const clone = card.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       track.appendChild(clone);
     });
 
-    if (track.dataset.speed) track.style.setProperty('--marquee-duration', `${track.dataset.speed}s`);
+    track.style.setProperty('--marquee-duration', `${baseSpeed * repeats}s`);
 
     const focusCenterCard = () => {
       const marqueeRect = marquee.getBoundingClientRect();

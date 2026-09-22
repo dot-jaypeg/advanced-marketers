@@ -403,6 +403,16 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   transform: scale(1.06);
 }
 
+/* On dark-theme pages the default black-on-black pill (.btn's resting
+   state) disappears against the black page/header background — everywhere
+   except .btn--primary (its own accent gradient) and .btn--footer (already
+   built dark-safe), give it .btn--footer's outline treatment instead. */
+body[data-theme="dark"] .btn:not(.btn--primary):not(.btn--footer) {
+  background: transparent;
+  border-color: var(--white);
+  color: var(--white);
+}
+
 .btn--nav { white-space: nowrap; }
 
 .btn--primary {

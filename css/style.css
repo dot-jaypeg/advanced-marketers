@@ -661,6 +661,22 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: -0.02em;
 }
 
+/* Local Services hero: a much bigger, more dominant headline (modeled on
+   agustinburgos.com/services) with a lighter, smaller secondary line —
+   scoped to this one h1 so it doesn't affect every .section-title. */
+.section-head--hero { margin-bottom: clamp(64px, 9vw, 120px); }
+.section-title--hero {
+  font-size: clamp(3.6rem, 12vw, 8.4rem);
+  line-height: 1.02;
+}
+.section-title__secondary {
+  display: inline-block;
+  margin-top: 0.12em;
+  font-size: 0.5em;
+  font-weight: 300;
+  color: var(--accent-soft);
+}
+
 .section-title .word { display: inline-block; overflow: hidden; vertical-align: top; }
 .section-title .word > span {
   display: inline-block;

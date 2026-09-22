@@ -855,6 +855,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   margin-top: 40px;
   text-align: center;
 }
+/* Local Services page only — the homepage's identical .service-list__cta
+   keeps its smaller "Learn More" so it doesn't duplicate the "Work With
+   Us" primary CTA already further down that page. */
+.service-list__cta--big .btn {
+  padding: 34px 64px;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+}
 
 .industry-card {
   position: relative;

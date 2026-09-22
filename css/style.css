@@ -1008,7 +1008,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: rgba(250,250,250,0.4);
+  color: rgba(10,10,10,0.4);
   margin-bottom: 8px;
 }
 
@@ -1026,18 +1026,18 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   column-gap: clamp(16px, 3vw, 32px);
   padding: clamp(24px, 3.4vw, 34px) 4px;
   border: none;
-  border-top: 1px solid var(--line-invert);
+  border-top: 1px solid var(--line);
   background: transparent;
   overflow: visible;
   transition: background 0.4s var(--ease);
 }
-.industry-rail--list .industry-card:last-child { border-bottom: 1px solid var(--line-invert); }
+.industry-rail--list .industry-card:last-child { border-bottom: 1px solid var(--line); }
 
 .industry-rail--list .industry-card:hover,
 .industry-rail--list .industry-card:focus-visible,
 .industry-rail--list .industry-card.is-open {
   flex: none;
-  background: rgba(250,250,250,0.03);
+  background: rgba(10,10,10,0.03);
 }
 
 .industry-rail--list .industry-card::after { content: none; }
@@ -1046,7 +1046,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-family: var(--font-label);
   font-size: 13px;
   font-weight: 500;
-  color: rgba(250,250,250,0.4);
+  color: rgba(10,10,10,0.4);
 }
 
 .industry-rail--list .industry-card__title {
@@ -1055,6 +1055,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   letter-spacing: -0.01em;
   margin-top: 0;
+  color: var(--black);
 }
 
 .industry-card__tag {
@@ -1062,7 +1063,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--accent-soft);
+  color: var(--accent);
   white-space: nowrap;
 }
 
@@ -1072,7 +1073,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: 14px;
   letter-spacing: -0.005em;
   line-height: 1.5;
-  color: rgba(250,250,250,0.72);
+  color: rgba(10,10,10,0.72);
 }
 
 @media (max-width: 860px) {

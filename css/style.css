@@ -981,6 +981,114 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-card__cta a { color: var(--accent-soft); }
 .industry-card__cta a:hover { color: var(--white); }
 
+/* --------------------- local services: row-list layout ---------------------
+   Structural reference: agustinburgos.com/services (thin-divider list rows,
+   index/name/tag/description columns, no card boxes). Typographic reference:
+   the old advancedmarketers.co/local-services page (condensed black display
+   headline per row + "INDUSTRY 01 /" incrementing-slash eyebrow + a short
+   bold all-caps tagline). Reuses the .industry-card markup/JS (data-href
+   nav, Restoration's hover/click toggle) so nothing in script.js changes —
+   the --list modifier just re-lays the same elements out as a row. */
+.service-list__kicker {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(250,250,250,0.4);
+  margin-bottom: 8px;
+}
+
+.industry-rail--list {
+  display: block;
+  border: none;
+  min-height: 0;
+}
+
+.industry-rail--list .industry-card {
+  flex: none;
+  display: grid;
+  grid-template-columns: 48px minmax(180px,1.1fr) 150px minmax(220px,1fr) 28px;
+  align-items: center;
+  column-gap: clamp(16px, 3vw, 32px);
+  padding: clamp(24px, 3.4vw, 34px) 4px;
+  border: none;
+  border-top: 1px solid var(--line-invert);
+  background: transparent;
+  overflow: visible;
+  transition: background 0.4s var(--ease);
+}
+.industry-rail--list .industry-card:last-child { border-bottom: 1px solid var(--line-invert); }
+
+.industry-rail--list .industry-card:hover,
+.industry-rail--list .industry-card:focus-visible,
+.industry-rail--list .industry-card.is-open {
+  flex: none;
+  background: rgba(250,250,250,0.03);
+}
+
+.industry-rail--list .industry-card::after { content: none; }
+
+.industry-rail--list .industry-card__index {
+  font-family: var(--font-label);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(250,250,250,0.4);
+}
+
+.industry-rail--list .industry-card__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  letter-spacing: -0.02em;
+  margin-top: 0;
+}
+
+.industry-card__tag {
+  font-family: var(--font-label);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-soft);
+  white-space: nowrap;
+}
+
+.industry-card__desc {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: rgba(250,250,250,0.72);
+  text-transform: uppercase;
+}
+
+.industry-card__arrow {
+  font-size: 20px;
+  color: rgba(250,250,250,0.3);
+  justify-self: end;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.industry-rail--list .industry-card:not([data-href]) .industry-card__arrow { visibility: hidden; }
+.industry-rail--list .industry-card:hover .industry-card__arrow,
+.industry-rail--list .industry-card:focus-visible .industry-card__arrow { color: var(--accent-soft); transform: translateX(6px); }
+
+@media (max-width: 860px) {
+  .industry-rail--list .industry-card {
+    grid-template-columns: 32px 1fr;
+    grid-template-areas:
+      "index title"
+      "tag   tag"
+      "desc  desc";
+    row-gap: 10px;
+  }
+  .industry-rail--list .industry-card__index { grid-area: index; }
+  .industry-rail--list .industry-card__title { grid-area: title; }
+  .industry-card__tag { grid-area: tag; }
+  .industry-card__desc { grid-area: desc; }
+  .industry-card__arrow { display: none; }
+}
+
 /* --------------------------- what makes us different ------------------------- */
 
 .differentiators {

@@ -873,13 +873,33 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-card:focus-visible .industry-card__media,
 .industry-card.is-open .industry-card__media { transform: scale(1.06); }
 
+/* Multiply tint — darkens the photo proportionally (keeps its contrast/
+   detail, unlike a flat opacity fade which just washes it toward the
+   card's plain black background) and pulls it toward the brand's dark
+   purple, so it reads as a moody backdrop rather than a loud stock photo
+   competing with the title. Collapsed cards stay toned down; hovering
+   (or being the open one) lifts the tint so the photo reads more clearly. */
+.industry-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--accent-deep);
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  transition: opacity 0.5s var(--ease);
+}
+.industry-card:hover::after,
+.industry-card:focus-visible::after,
+.industry-card.is-open::after { opacity: 0.35; }
+
 /* Scrim over the photo — darkest at the bottom, where index/title/body
    sit, so text stays legible against whatever the photo is doing there. */
 .industry-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   background: linear-gradient(180deg, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.35) 45%, rgba(10,10,10,0.92) 100%);
   transition: background 0.5s var(--ease);
 }
@@ -893,7 +913,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-card__title,
 .industry-card__body {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .industry-card:hover,

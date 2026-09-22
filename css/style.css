@@ -833,6 +833,11 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   min-height: 460px;
 }
 
+.service-list__cta {
+  margin-top: 40px;
+  text-align: center;
+}
+
 .industry-card {
   position: relative;
   flex: 1;
@@ -990,7 +995,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .industry-rail--list .industry-card {
   flex: none;
   display: grid;
-  grid-template-columns: 48px minmax(180px,1.1fr) 150px minmax(220px,1fr) 28px;
+  grid-template-columns: 48px minmax(180px,1.1fr) 150px minmax(220px,1fr);
   align-items: center;
   column-gap: clamp(16px, 3vw, 32px);
   padding: clamp(24px, 3.4vw, 34px) 4px;
@@ -1044,16 +1049,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: rgba(250,250,250,0.72);
 }
 
-.industry-card__arrow {
-  font-size: 20px;
-  color: rgba(250,250,250,0.3);
-  justify-self: end;
-  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.industry-rail--list .industry-card:not([data-href]) .industry-card__arrow { visibility: hidden; }
-.industry-rail--list .industry-card:hover .industry-card__arrow,
-.industry-rail--list .industry-card:focus-visible .industry-card__arrow { color: var(--accent-soft); transform: translateX(6px); }
-
 @media (max-width: 860px) {
   .industry-rail--list .industry-card {
     grid-template-columns: 32px 1fr;
@@ -1067,7 +1062,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   .industry-rail--list .industry-card__title { grid-area: title; }
   .industry-card__tag { grid-area: tag; }
   .industry-card__desc { grid-area: desc; }
-  .industry-card__arrow { display: none; }
 }
 
 /* --------------------------- what makes us different ------------------------- */

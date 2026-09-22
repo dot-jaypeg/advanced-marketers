@@ -7,11 +7,6 @@
   src: url('../assets/fonts/inter/Inter-VariableFont_opsz,wght.ttf') format('truetype-variations');
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/inter/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
-  font-weight: 100 900; font-style: italic; font-display: swap;
-}
 
 :root {
   --black: #0a0a0a;
@@ -195,26 +190,38 @@ body[data-theme="dark"] .topo-canvas { opacity: 1; }
   gap: 28px;
 }
 
-.loader__mark { width: min(60vw, 560px); height: auto; opacity: 0.95; }
+/* Minimal centered pill badge — modeled on agustinburgos.com's splash
+   screen (just the wordmark in a rounded-outline pill on black, no
+   percentage counter or progress bar), with a slow pulse standing in for
+   a determinate loading indicator. */
+.loader__badge {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 15px 28px;
+  border: 1px solid rgba(250,250,250,0.4);
+  border-radius: 999px;
+  animation: loaderPulse 1.8s ease-in-out infinite;
+}
 
-.loader__meter {
+.loader__badge-name {
   font-family: var(--font-display);
   font-weight: 500;
   color: var(--white);
-  font-size: clamp(2rem, 6vw, 3.4rem);
-  letter-spacing: -0.03em;
-  display: flex;
-  align-items: flex-start;
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  letter-spacing: -0.01em;
 }
-.loader__pct-sign { font-size: 0.5em; margin-top: 0.35em; margin-left: 2px; color: var(--accent-soft); }
 
-.loader__bar {
-  width: min(240px, 60vw);
-  height: 2px;
-  background: rgba(250,250,250,0.15);
-  overflow: hidden;
+.loader__badge-mark { font-size: 0.55em; margin-top: 0.1em; color: rgba(250,250,250,0.6); }
+
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
-.loader__bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-soft)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .loader__badge { animation: none; }
+}
 
 /* ------------------------------ glow-on-hover ---------------------------- */
 /* --angle is driven continuously from JS (see script.js) rather than a CSS
@@ -516,6 +523,17 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
 .hero--centered .hero__grid { align-items: center; text-align: center; }
 .hero--centered .hero__main { align-items: center; }
 
+/* Homepage headline reads as one line (rather than the per-word stacked
+   lines used elsewhere), so it needs a smaller, nowrap-safe size instead
+   of .hero__headline's default — and its line-wraps need to sit inline
+   with a space between them instead of stacking as blocks. */
+.hero--centered .hero__headline {
+  font-size: clamp(1.7rem, 6vw, 5.5rem);
+  white-space: nowrap;
+}
+.hero--centered .hero__line-wrap { display: inline-block; }
+.hero--centered .hero__line-wrap:not(:last-child) { margin-right: 0.28em; }
+
 .kicker {
   font-size: 14px;
   font-weight: 500;
@@ -530,7 +548,7 @@ body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1);
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(3rem, min(13vw, 14vh), 10rem);
-  line-height: 0.92;
+  line-height: 1.25;
   letter-spacing: -0.03em;
 }
 
@@ -632,7 +650,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-family: var(--font-display);
   font-weight: 500;
   font-size: clamp(2.4rem, 6vw, 4.6rem);
-  line-height: 1.02;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
@@ -716,7 +734,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .stat-card__num {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(2.4rem, 5vw, 3.4rem);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -724,7 +742,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .stat-card__unit {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.4rem;
   color: var(--accent);
 }
@@ -758,7 +776,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .partner-badge-item__mark {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
 }
@@ -890,7 +908,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .industry-card__title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   letter-spacing: -0.01em;
   margin-top: 90px;
@@ -1005,7 +1023,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .industry-rail--list .industry-card__title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   letter-spacing: -0.01em;
   margin-top: 0;
@@ -1089,7 +1107,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .differentiator__title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   margin-bottom: 12px;
@@ -1242,7 +1260,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .cs-tile__title {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.4rem, 2.4vw, 2.1rem);
   letter-spacing: -0.01em;
   margin-bottom: 14px;
@@ -1292,7 +1310,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: 13px;
   font-weight: 400;
   line-height: 1.45;
-  font-style: italic;
+  color: rgba(10,10,10,0.8);
   flex: 1;
 }
 
@@ -1351,7 +1369,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .leader-spotlight__name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   margin-bottom: 16px;
@@ -1434,7 +1452,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .dept-item__name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--white);
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1;
@@ -1462,7 +1480,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
    itself so the row's identity never disappears mid-hover. */
 .dept-item__expanded-name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--white);
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   line-height: 1;
@@ -1539,7 +1557,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .package-card__name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.7rem, 2.8vw, 2.3rem);
   margin-bottom: 10px;
@@ -1592,7 +1610,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   border-top: 1px solid var(--line-invert);
   font-size: 15px;
   font-weight: 300;
-  font-style: italic;
   line-height: 1.5;
   color: rgba(250,250,250,0.68);
 }
@@ -1666,7 +1683,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .package-proof__stat {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   line-height: 1.2;
@@ -1714,7 +1731,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .review-source__icon svg { width: 100%; height: 100%; }
 .review-source__name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: 1.4rem;
   transition: color 0.3s var(--ease);
@@ -2067,7 +2084,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 }
 .office-card__name {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   font-size: clamp(1.3rem, 2vw, 1.8rem);
   margin-bottom: 14px;

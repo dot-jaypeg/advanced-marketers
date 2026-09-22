@@ -8,34 +8,17 @@
   const hero = document.querySelector('.hero');
 
   /* --------------------------------- loader --------------------------------- */
-  /* The brand kit's logo intro (Intro_Final2NoAudio.mov) is ProRes 422, which no
-     browser can play — so this uses a numeric counter with the static PNG mark
-     instead, in the same spirit as a video intro. */
 
   const loader = document.getElementById('loader');
-  const loaderPct = document.getElementById('loaderPct');
-  const loaderBarFill = document.getElementById('loaderBarFill');
 
   const revealHero = () => {
     if (hero) hero.classList.add('is-loaded');
   };
 
-  if (loader && loaderPct && loaderBarFill) {
+  if (loader) {
     document.body.style.overflow = 'hidden';
 
-    const countDuration = prefersReducedMotion ? 300 : 1700;
-    const countStart = performance.now();
-
-    const tickCount = (now) => {
-      const progress = Math.min((now - countStart) / countDuration, 1);
-      const pct = Math.round(progress * 100);
-      loaderPct.textContent = String(pct);
-      loaderBarFill.style.width = `${pct}%`;
-      if (progress < 1) requestAnimationFrame(tickCount);
-    };
-    requestAnimationFrame(tickCount);
-
-    const minWait = new Promise((resolve) => setTimeout(resolve, countDuration));
+    const minWait = new Promise((resolve) => setTimeout(resolve, prefersReducedMotion ? 300 : 1100));
     const readyWait = new Promise((resolve) => {
       if (document.readyState === 'complete') resolve();
       else window.addEventListener('load', resolve, { once: true });

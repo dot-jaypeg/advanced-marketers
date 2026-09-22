@@ -327,6 +327,14 @@ body[data-theme="dark"] .site-header.is-scrolled {
 }
 body[data-theme="dark"] .site-header.is-scrolled .brand img { filter: invert(1); }
 
+/* .site-header's unscrolled default (white text, inverted-to-white logo)
+   assumes a dark hero sits behind it — true on dark-theme pages, but on
+   light-theme subpages (About, Specialties, Case Studies, Partners) the
+   intro section is a light background, so white-on-white made the nav
+   links, burger icon, and logo invisible before the first scroll. */
+body[data-theme="light"] .site-header:not(.is-scrolled) { color: var(--black); }
+body[data-theme="light"] .site-header:not(.is-scrolled) .brand img { filter: none; }
+
 .brand {
   display: inline-flex;
   align-items: center;

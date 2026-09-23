@@ -1436,6 +1436,13 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .dept-item__media { position: absolute; inset: 0; }
 .dept-item__media .img-placeholder { position: absolute; inset: 0; height: 100%; }
+.dept-item__media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .dept-item::after {
   content: '';

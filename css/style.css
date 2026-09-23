@@ -1145,11 +1145,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .differentiator__logo-spacer { height: 34px; margin-bottom: 24px; }
 
-.differentiator__title--bebas {
-  font-family: 'Bebas Neue', var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+.differentiator__logo--square {
+  height: 64px;
+  max-width: 64px;
+  margin-bottom: 12px;
 }
 
 .differentiator__title {
@@ -1158,6 +1157,13 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: -0.01em;
   font-size: clamp(1.1rem, 1.6vw, 1.4rem);
   margin-bottom: 12px;
+}
+
+.differentiator__title.differentiator__title--bebas {
+  font-family: 'Bebas Neue', var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
 }
 
 .differentiator__desc {

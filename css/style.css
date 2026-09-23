@@ -8,6 +8,12 @@
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
 
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebas-neue/BebasNeue-Regular.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
 :root {
   --black: #0a0a0a;
   --white: #fafafa;
@@ -1125,6 +1131,25 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   mask-repeat: no-repeat;
   mask-position: left center;
   mask-size: contain;
+}
+
+.differentiator__logo {
+  display: block;
+  height: 34px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  object-position: left center;
+  margin-bottom: 24px;
+}
+
+.differentiator__logo-spacer { height: 34px; margin-bottom: 24px; }
+
+.differentiator__title--bebas {
+  font-family: 'Bebas Neue', var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
 }
 
 .differentiator__title {

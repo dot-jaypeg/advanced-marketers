@@ -172,6 +172,10 @@ body[data-theme="dark"] .topo-canvas { opacity: 1; }
 }
 
 /* --------------------------------- loader --------------------------------- */
+/* Doubles as the page-transition overlay: every page mounts this on load
+   (entry) and script.js re-shows it right before an internal link navigates
+   away (exit), so moving between pages reads as one continuous fade instead
+   of a hard cut. */
 
 .loader {
   position: fixed;

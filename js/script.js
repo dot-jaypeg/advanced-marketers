@@ -29,10 +29,37 @@
       loader.classList.add('is-hidden');
       document.body.style.overflow = '';
       revealHero();
-      setTimeout(() => loader.remove(), 900);
     });
   } else {
     revealHero();
+  }
+
+  /* ------------------------------ page transitions --------------------------- */
+  /* Reuses the splash-screen loader as an exit overlay: clicking any internal
+     link fades the same black badge back in before the browser navigates, so
+     moving between pages reads as one continuous transition rather than a
+     hard cut. */
+
+  if (loader) {
+    const isInternalLink = (link) => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+      if (link.target === '_blank' || link.hasAttribute('download')) return false;
+      if (link.hostname && link.hostname !== window.location.hostname) return false;
+      return true;
+    };
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      if (!isInternalLink(link)) return;
+      link.addEventListener('click', (e) => {
+        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        const dest = link.href;
+        e.preventDefault();
+        loader.classList.remove('is-hidden');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { window.location.href = dest; }, prefersReducedMotion ? 0 : 550);
+      });
+    });
   }
 
   /* ------------------------------ glow rotation ----------------------------- */

@@ -405,8 +405,6 @@ body[data-theme="light"] .site-header:not(.is-scrolled) .brand img { filter: non
 
 .site-header__inner {
   height: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
   padding: 0 var(--edge);
   display: flex;
   align-items: center;

@@ -1151,6 +1151,12 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   margin-bottom: 8px;
 }
 
+.differentiator__logo--raw {
+  height: 64px;
+  max-width: 200px;
+  margin-bottom: 16px;
+}
+
 .differentiator__title {
   font-family: var(--font-display);
   font-weight: 350;
@@ -1164,6 +1170,12 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-weight: 400;
   letter-spacing: 0.04em;
   font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+}
+
+.differentiator__title.differentiator__title--logo {
+  font-size: clamp(2.6rem, 4.2vw, 3.4rem);
+  line-height: 1;
+  margin-bottom: 20px;
 }
 
 .differentiator__desc {

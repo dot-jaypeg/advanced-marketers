@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../assets/AM_BrandKit_2026/AM%20LOGOS/favicon-180.png">
 <link rel="stylesheet" href="../css/style.css">
 </head>
-<body data-theme="light">
+<body data-theme="light" data-no-smooth-scroll>
 
 <div class="page-bg" aria-hidden="true"></div>
 <canvas class="topo-canvas" id="topoCanvas" data-topo="dark" aria-hidden="true"></canvas>
@@ -83,84 +83,125 @@
 
   <!-- ============ CASE STUDIES ============ -->
   <section id="case-studies" class="case-studies subpage-intro" data-theme="light">
-    <div class="section-head">
+    <div class="section-head section-head--split">
       <h1 class="section-title" data-reveal>Proof.<br>Not Promises.</h1>
+      <p class="section-sub" data-reveal>
+        Real client work, not stock case studies. Five brands, five
+        different starting points, one shared result &#8212; a marketing
+        engine that turned strangers into booked jobs.
+      </p>
     </div>
 
-    <div class="cs-carousel" data-reveal>
-      <div class="cs-carousel__track" id="csTrack">
+    <div class="sp-layout">
+      <nav class="sp-sidebar" aria-label="Jump to a case study">
+        <p class="sp-sidebar__label">All Case Studies</p>
+        <a href="#lincoln-plumbing" class="sp-sidebar__link" data-sp-link data-cursor="hover">Lincoln Plumbing</a>
+        <a href="#major-league-plumbing" class="sp-sidebar__link" data-sp-link data-cursor="hover">Major League Plumbing</a>
+        <a href="#pro-integrity" class="sp-sidebar__link" data-sp-link data-cursor="hover">Pro Integrity Plumbing</a>
+        <a href="#speedee" class="sp-sidebar__link" data-sp-link data-cursor="hover">Speedee Drains</a>
+        <a href="#nuve" class="sp-sidebar__link" data-sp-link data-cursor="hover">Nuve</a>
+      </nav>
 
-        <article class="cs-tile cs-tile--feature" id="lincoln-plumbing">
-          <div class="cs-tile__media">
-            <video class="cs-tile__video" muted loop playsinline preload="none" aria-label="Lincoln Plumbing landing page walkthrough">
+      <div class="sp-stack">
+      <article class="sp-row" id="lincoln-plumbing" data-sp-section data-reveal>
+        <div class="sp-row__top">
+          <span class="sp-row__index">01</span>
+          <p class="sp-row__eyebrow">Empire Package</p>
+        </div>
+        <h2 class="sp-row__name">Lincoln Plumbing</h2>
+        <div class="sp-row__body">
+          <p class="sp-row__desc">
+            A full brand and digital rebuild &#8212; new identity, new site,
+            new landing pages &#8212; built to make Lincoln the plumber
+            everyone in their market already knows before they need one.
+          </p>
+          <div class="sp-row__media">
+            <video autoplay muted loop playsinline>
               <source src="../assets/client-work/case-study-tiles/lincoln-plumbing.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="cs-tile__body">
-            <p class="cs-tile__kicker">Empire Package</p>
-            <h3 class="cs-tile__title">Lincoln Plumbing</h3>
-            <span class="cs-tile__tag">Become the brand everyone in your market knows.</span>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="cs-tile cs-tile--feature" id="major-league-plumbing">
-          <div class="cs-tile__media">
-            <video class="cs-tile__video" muted loop playsinline preload="none" aria-label="Major League Plumbing creative reel">
+      <article class="sp-row" id="major-league-plumbing" data-sp-section data-reveal>
+        <div class="sp-row__top">
+          <span class="sp-row__index">02</span>
+          <p class="sp-row__eyebrow">Empire Package</p>
+        </div>
+        <h2 class="sp-row__name">Major League Plumbing</h2>
+        <div class="sp-row__body">
+          <p class="sp-row__desc">
+            A creative-led brand transformation that gave Major League a
+            presence as sharp as the crews on their trucks &#8212;
+            positioned to become the brand everyone in their market knows.
+          </p>
+          <div class="sp-row__media">
+            <video autoplay muted loop playsinline>
               <source src="../assets/client-work/case-study-tiles/major-league-plumbing.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="cs-tile__body">
-            <p class="cs-tile__kicker">Empire Package</p>
-            <h3 class="cs-tile__title">Major League Plumbing</h3>
-            <span class="cs-tile__tag">Become the brand everyone in your market knows.</span>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="cs-tile cs-tile--feature" id="pro-integrity">
-          <div class="cs-tile__media">
-            <video class="cs-tile__video" muted loop playsinline preload="none" aria-label="Pro Integrity Plumbing team interview">
+      <article class="sp-row" id="pro-integrity" data-sp-section data-reveal>
+        <div class="sp-row__top">
+          <span class="sp-row__index">03</span>
+          <p class="sp-row__eyebrow">Empire Package</p>
+        </div>
+        <h2 class="sp-row__name">Pro Integrity Plumbing</h2>
+        <div class="sp-row__body">
+          <p class="sp-row__desc">
+            A team-forward brand story built around the people doing the
+            work &#8212; turning a name on a truck into a brand customers
+            actually trust and remember.
+          </p>
+          <div class="sp-row__media">
+            <video autoplay muted loop playsinline>
               <source src="../assets/client-work/case-study-tiles/pro-integrity.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="cs-tile__body">
-            <p class="cs-tile__kicker">Empire Package</p>
-            <h3 class="cs-tile__title">Pro Integrity Plumbing</h3>
-            <span class="cs-tile__tag">Become the brand everyone in your market knows.</span>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="cs-tile cs-tile--feature" id="speedee">
-          <div class="cs-tile__media">
-            <video class="cs-tile__video" muted loop playsinline preload="none" aria-label="Speedee Drains compilation reel">
+      <article class="sp-row" id="speedee" data-sp-section data-reveal>
+        <div class="sp-row__top">
+          <span class="sp-row__index">04</span>
+          <p class="sp-row__eyebrow">Empire Package</p>
+        </div>
+        <h2 class="sp-row__name">Speedee Drains</h2>
+        <div class="sp-row__body">
+          <p class="sp-row__desc">
+            A drain-cleaning specialist scaled fast on a focused offer and
+            a brand built to dominate one category instead of spreading
+            thin across every service.
+          </p>
+          <div class="sp-row__media">
+            <video autoplay muted loop playsinline>
               <source src="../assets/client-work/case-study-tiles/speedee.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="cs-tile__body">
-            <p class="cs-tile__kicker">Empire Package</p>
-            <h3 class="cs-tile__title">Speedee Drains</h3>
-            <span class="cs-tile__tag">Become the brand everyone in your market knows.</span>
-          </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="cs-tile cs-tile--feature" id="nuve">
-          <div class="cs-tile__media">
-            <video class="cs-tile__video" muted loop playsinline preload="none" aria-label="Nuve product video">
+      <article class="sp-row" id="nuve" data-sp-section data-reveal>
+        <div class="sp-row__top">
+          <span class="sp-row__index">05</span>
+          <p class="sp-row__eyebrow">Empire Package</p>
+        </div>
+        <h2 class="sp-row__name">Nuve</h2>
+        <div class="sp-row__body">
+          <p class="sp-row__desc">
+            A product launch built from the ground up &#8212; brand,
+            creative, and paid media working together to take Nuve from a
+            new name to a name people actually know.
+          </p>
+          <div class="sp-row__media">
+            <video autoplay muted loop playsinline>
               <source src="../assets/client-work/case-study-tiles/nuve.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="cs-tile__body">
-            <p class="cs-tile__kicker">Empire Package</p>
-            <h3 class="cs-tile__title">Nuve</h3>
-            <span class="cs-tile__tag">Become the brand everyone in your market knows.</span>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="cs-carousel__controls">
-        <button class="cs-carousel__arrow" id="csPrev" aria-label="Previous client" data-cursor="hover">&#8592;</button>
-        <div class="cs-carousel__dots" id="csDots"></div>
-        <button class="cs-carousel__arrow" id="csNext" aria-label="Next client" data-cursor="hover">&#8594;</button>
+        </div>
+      </article>
       </div>
     </div>
 
@@ -289,5 +330,6 @@
 </div>
 
 <script src="../js/script.js"></script>
+<script src="../js/specialties-scroll.js"></script>
 </body>
 </html>

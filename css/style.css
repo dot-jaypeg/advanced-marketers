@@ -709,9 +709,27 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 /* Page-name word (e.g. "SPECIALTIES") instead of a numeral — same treatment,
    much smaller scale since it's a whole word/phrase, not two digits. */
 .section-head--word::before {
-  top: -0.36em;
-  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  top: -0.3em;
+  font-size: clamp(1.8rem, 4.6vw, 4.2rem);
   letter-spacing: -0.01em;
+}
+
+/* Title on the left, intro copy on the right — spans the full content
+   width (not the 900px reading-width cap below) so both edges line up
+   with the fixed header's logo/nav bounds above it. */
+.section-head--split {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 64px);
+  max-width: none;
+}
+.section-head--split .section-title { flex: none; }
+.section-head--split .section-sub {
+  flex: none;
+  width: min(360px, 100%);
+  margin-top: 0.4em;
 }
 
 .section-num {

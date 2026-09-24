@@ -1146,9 +1146,9 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .differentiator__logo-spacer { height: 34px; margin-bottom: 24px; }
 
 .differentiator__logo--square {
-  height: 64px;
-  max-width: 64px;
-  margin-bottom: 12px;
+  height: 100px;
+  max-width: 100px;
+  margin-bottom: 8px;
 }
 
 .differentiator__title {

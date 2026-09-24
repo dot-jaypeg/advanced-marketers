@@ -1852,6 +1852,99 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: rgba(10,10,10,0.65);
 }
 
+/* ------------------------ specialties pinned scroll (JS-driven) ---------------------- */
+/* Purely additive on top of the .sp-row markup/layout above: js/specialties-scroll.js
+   wraps each row in a JS-created .sp-pin-stage (never edited into the HTML source) and
+   toggles these classes as the user scrolls. Nothing here changes existing spacing,
+   type, or color rules — it only adds opacity/transform states and a progress readout. */
+
+.sp-pin-stage { position: relative; }
+
+body.sp-scroll-active .sp-row {
+  position: sticky;
+  top: var(--nav-h);
+  opacity: 1;
+}
+body.sp-scroll-active .sp-row.is-dimmed { opacity: 0.4; }
+body.sp-scroll-active .sp-row,
+body.sp-scroll-active .sp-row.is-dimmed {
+  transition: opacity 0.5s var(--ease);
+}
+
+/* Stagger targets — existing row-content selectors only, label -> heading -> body -> media */
+body.sp-scroll-active .sp-row__top,
+body.sp-scroll-active .sp-row__name,
+body.sp-scroll-active .sp-row__desc,
+body.sp-scroll-active .sp-row__list,
+body.sp-scroll-active .sp-row__media {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+body.sp-scroll-active .sp-row.is-active .sp-row__top { opacity: 1; transform: none; transition-delay: 0ms; }
+body.sp-scroll-active .sp-row.is-active .sp-row__name { opacity: 1; transform: none; transition-delay: 60ms; }
+body.sp-scroll-active .sp-row.is-active .sp-row__desc { opacity: 1; transform: none; transition-delay: 120ms; }
+body.sp-scroll-active .sp-row.is-active .sp-row__desc ~ .sp-row__desc { transition-delay: 150ms; }
+body.sp-scroll-active .sp-row.is-active .sp-row__list { opacity: 1; transform: none; transition-delay: 120ms; }
+body.sp-scroll-active .sp-row.is-active .sp-row__media { opacity: 1; transform: none; transition-delay: 180ms; }
+
+.sp-scroll-progress {
+  position: fixed;
+  right: clamp(20px, 3vw, 40px);
+  bottom: 28px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.sp-scroll-progress.is-visible { opacity: 1; }
+.sp-scroll-progress__track { position: relative; width: 64px; height: 2px; background: var(--line); }
+.sp-scroll-progress__fill {
+  position: absolute; left: 0; top: 0; height: 100%;
+  background: var(--accent);
+  transition: width 0.4s var(--ease);
+}
+
+/* Mobile fallback: no pinning, just a simple one-time fade+rise per row */
+body.sp-scroll-mobile .sp-row {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body.sp-scroll-active .sp-row,
+  body.sp-scroll-active .sp-row.is-dimmed,
+  body.sp-scroll-active .sp-row__top,
+  body.sp-scroll-active .sp-row__name,
+  body.sp-scroll-active .sp-row__desc,
+  body.sp-scroll-active .sp-row__list,
+  body.sp-scroll-active .sp-row__media,
+  body.sp-scroll-mobile .sp-row {
+    transition: opacity 0.01s linear !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.sp-scroll-active .sp-row { position: static !important; opacity: 1 !important; }
+  body.sp-scroll-active .sp-row__top,
+  body.sp-scroll-active .sp-row__name,
+  body.sp-scroll-active .sp-row__desc,
+  body.sp-scroll-active .sp-row__list,
+  body.sp-scroll-active .sp-row__media { opacity: 1 !important; transform: none !important; }
+  .sp-scroll-progress { display: none; }
+}
+
 /* ---------------------------------- packages ---------------------------------- */
 
 .packages { color: var(--white); }

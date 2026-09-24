@@ -76,22 +76,27 @@
   /* -------------------------------- stack mode (desktop) -------------------------------- */
 
   function navH() {
+    // The header shrinks from 84px to 76px once scrolled (.site-header.is-scrolled),
+    // and by the time the user has reached this stack it's always in that
+    // shorter state — reading its live height (rather than the --nav-h custom
+    // property, which stays 84px) keeps the sticky header flush against it
+    // instead of leaving an ~8px gap a lower card could show through.
+    const header = document.getElementById('siteHeader');
+    if (header) return header.offsetHeight;
     const v = getComputedStyle(document.documentElement).getPropertyValue('--nav-h');
     return parseFloat(v) || 0;
   }
 
-  function computeTops() {
-    const vh = window.innerHeight;
+  // Nested sticky "header" (label + name) so it stays pinned to the top of
+  // the viewport for the card's whole time on screen, even while a taller
+  // card's body/media is still scrolling past underneath it. Reapplied every
+  // tick (cheap: one offsetHeight read + a couple of style writes per row)
+  // rather than only on resize, since the real header height changes once
+  // early in the page's own scroll (84px -> 76px) independent of anything
+  // this file controls.
+  function applyHeaderOffsets() {
     const nav = navH();
-    rows.forEach((row, i) => {
-      const h = row.offsetHeight;
-      const top = h > vh ? -(h - vh) : 0;
-      row.style.top = top + 'px';
-      row.style.zIndex = String(i + 1);
-
-      // Nested sticky "header" (label + name) so it stays pinned to the top
-      // of the viewport for the card's whole time on screen, even while a
-      // taller card's body/media is still scrolling past underneath it.
+    rows.forEach((row) => {
       const topEl = row.querySelector('.sp-row__top');
       const nameEl = row.querySelector('.sp-row__name');
       if (topEl) {
@@ -103,6 +108,17 @@
     });
   }
 
+  function computeTops() {
+    const vh = window.innerHeight;
+    rows.forEach((row, i) => {
+      const h = row.offsetHeight;
+      const top = h > vh ? -(h - vh) : 0;
+      row.style.top = top + 'px';
+      row.style.zIndex = String(i + 1);
+    });
+    applyHeaderOffsets();
+  }
+
   function clamp01(n) { return Math.max(0, Math.min(1, n)); }
 
   function tick() {
@@ -110,6 +126,8 @@
     const vh = window.innerHeight;
     const reduced = prefersReducedMotion();
     let activeIndex = 0;
+
+    applyHeaderOffsets();
 
     rows.forEach((row, i) => {
       const top = parseFloat(row.style.top) || 0;

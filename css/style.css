@@ -1550,8 +1550,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.spotlight__partners-link a { border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
-.spotlight__partners-link a:hover { color: var(--accent); }
+.spotlight__partners-link a:not(.btn) { border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
+.spotlight__partners-link a:not(.btn):hover { color: var(--accent); }
 
 /* --------------------------------- leader grid -------------------------------- */
 /* Case Studies' Industry Leaders section: a 4-column portrait grid (Basic
@@ -1562,7 +1562,7 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .leader-grid {
   margin-top: 56px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(20px, 3vw, 32px);
 }
 
@@ -1612,14 +1612,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
-}
-
-.leader-grid__quote {
-  margin-top: 12px;
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.5;
-  color: rgba(10,10,10,0.65);
 }
 
 /* ------------------------------- departments -------------------------------- */

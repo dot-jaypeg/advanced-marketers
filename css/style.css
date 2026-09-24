@@ -1553,6 +1553,75 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .spotlight__partners-link a { border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
 .spotlight__partners-link a:hover { color: var(--accent); }
 
+/* --------------------------------- leader grid -------------------------------- */
+/* Case Studies' Industry Leaders section: a 4-column portrait grid (Basic
+   Agency's team-page orientation) instead of the homepage's single feature
+   + quote-rail — same photos, same tint treatment as quote-card/leader-spotlight
+   above for visual consistency. */
+
+.leader-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.leader-grid__item { margin: 0; }
+
+.leader-grid__photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #eee;
+}
+.leader-grid__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(40%) contrast(1.08) brightness(0.98);
+  transition: transform 0.6s var(--ease);
+}
+.leader-grid__item:hover .leader-grid__photo img { transform: scale(1.045); }
+.leader-grid__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.leader-grid__name {
+  margin-top: 18px;
+  font-family: var(--font-label);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.leader-grid__item:hover .leader-grid__name { border-color: currentColor; color: var(--accent); }
+
+.leader-grid__title {
+  margin-top: 4px;
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.leader-grid__quote {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(10,10,10,0.65);
+}
+
 /* ------------------------------- departments -------------------------------- */
 
 /* Vertical hover accordion: five rows share a fixed-height column, and the
@@ -2401,6 +2470,7 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
   .differentiators { grid-template-columns: repeat(2, 1fr); }
   .leader-spotlight { grid-template-columns: 1fr; }
   .leader-spotlight__photo { max-width: 200px; }
+  .leader-grid { grid-template-columns: repeat(2, 1fr); }
   .package-grid { grid-template-columns: 1fr; }
   .package-addons__grid { grid-template-columns: 1fr; }
   .package-proof__grid { grid-template-columns: 1fr; }
@@ -2449,6 +2519,7 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
   .testimonial-card { flex: 0 0 240px; }
   .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
   .quote-rail { grid-template-columns: 1fr; }
+  .leader-grid { grid-template-columns: 1fr; }
   .site-footer__top { flex-direction: column; align-items: flex-start; gap: 24px; }
   .differentiators { grid-template-columns: 1fr; }
   .sp-row__list { grid-template-columns: 1fr; }

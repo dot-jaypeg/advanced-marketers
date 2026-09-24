@@ -1812,9 +1812,8 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .sp-row__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px 40px;
-  max-width: 760px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 32px;
 }
 .sp-row__list-item {
   padding-top: 16px;

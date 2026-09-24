@@ -227,6 +227,26 @@
   }, { rootMargin: '-45% 0px -45% 0px' });
   sections.forEach((s) => navObserver.observe(s));
 
+  /* --------------------------- specialties sidebar -------------------------- */
+  /* Scrollspy for the sticky category rail on the specialties page — same
+     idea as navObserver above, just watching the .sp-row sections and a
+     tighter top margin so a row is "active" as soon as it reaches the
+     upper part of the viewport, not only once it's centered. */
+
+  const spLinks = document.querySelectorAll('[data-sp-link]');
+  const spSections = document.querySelectorAll('[data-sp-section]');
+  if (spLinks.length && spSections.length) {
+    const spObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        spLinks.forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+        });
+      });
+    }, { rootMargin: '-15% 0px -70% 0px' });
+    spSections.forEach((s) => spObserver.observe(s));
+  }
+
   /* ------------------------------ hero parallax ----------------------------- */
 
   if (hero && !prefersReducedMotion) {

@@ -722,6 +722,15 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   margin-top: 0.4em;
 }
 
+/* Centered mission-statement treatment — About page's hero headline. */
+.section-head--center {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 0;
+}
+
 .section-num {
   font-size: 12px;
   font-weight: 500;
@@ -838,6 +847,28 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   font-size: 11px;
   font-weight: 500;
   color: rgba(10,10,10,0.55);
+}
+
+/* ------------------------------ about page ------------------------------ */
+/* About page's intro paragraph and metrics grid — standalone sections
+   (inspired by wearebou.com/about's headline -> intro -> stats stack)
+   rather than the paired copy+stats layout the homepage's about section
+   still uses. */
+
+.about-intro__copy {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.about-metrics__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 28px);
 }
 
 .trust-strip {
@@ -2461,6 +2492,7 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
   .leader-spotlight { grid-template-columns: 1fr; }
   .leader-spotlight__photo { max-width: 200px; }
   .leader-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-metrics__grid { grid-template-columns: repeat(2, 1fr); }
   .package-grid { grid-template-columns: 1fr; }
   .package-addons__grid { grid-template-columns: 1fr; }
   .package-proof__grid { grid-template-columns: 1fr; }
@@ -2510,6 +2542,7 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
   .site-footer__grid { grid-template-columns: repeat(2, 1fr); }
   .quote-rail { grid-template-columns: 1fr; }
   .leader-grid { grid-template-columns: 1fr; }
+  .about-metrics__grid { grid-template-columns: 1fr; }
   .site-footer__top { flex-direction: column; align-items: flex-start; gap: 24px; }
   .differentiators { grid-template-columns: 1fr; }
   .sp-row__list { grid-template-columns: 1fr; }

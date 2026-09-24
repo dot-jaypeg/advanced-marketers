@@ -3,7 +3,13 @@
 
   const hasHover = window.matchMedia('(hover: hover)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const smoothScrollEnabled = hasHover && !prefersReducedMotion;
+  // The lerped transform-scroll below moves #scrollWrapper via `transform`
+  // instead of native scrolling, which breaks `position: sticky` for any
+  // descendant (nothing inside it ever actually scrolls, so sticky has
+  // nothing to react to). Pages with a sticky element opt out via this
+  // attribute and fall back to native (CSS-smooth) scrolling instead.
+  const smoothScrollDisabled = document.body.hasAttribute('data-no-smooth-scroll');
+  const smoothScrollEnabled = hasHover && !prefersReducedMotion && !smoothScrollDisabled;
 
   const hero = document.querySelector('.hero');
 

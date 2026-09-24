@@ -661,6 +661,14 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   white-space: nowrap;
 }
 
+/* Page-name word (e.g. "SPECIALTIES") instead of a numeral — same treatment,
+   much smaller scale since it's a whole word/phrase, not two digits. */
+.section-head--word::before {
+  top: -0.36em;
+  font-size: clamp(2.6rem, 7vw, 6.5rem);
+  letter-spacing: -0.01em;
+}
+
 .section-num {
   font-size: 12px;
   font-weight: 500;

@@ -75,13 +75,31 @@
 
   /* -------------------------------- stack mode (desktop) -------------------------------- */
 
+  function navH() {
+    const v = getComputedStyle(document.documentElement).getPropertyValue('--nav-h');
+    return parseFloat(v) || 0;
+  }
+
   function computeTops() {
     const vh = window.innerHeight;
+    const nav = navH();
     rows.forEach((row, i) => {
       const h = row.offsetHeight;
       const top = h > vh ? -(h - vh) : 0;
       row.style.top = top + 'px';
       row.style.zIndex = String(i + 1);
+
+      // Nested sticky "header" (label + name) so it stays pinned to the top
+      // of the viewport for the card's whole time on screen, even while a
+      // taller card's body/media is still scrolling past underneath it.
+      const topEl = row.querySelector('.sp-row__top');
+      const nameEl = row.querySelector('.sp-row__name');
+      if (topEl) {
+        topEl.style.top = nav + 'px';
+        if (nameEl) nameEl.style.top = (nav + topEl.offsetHeight) + 'px';
+      } else if (nameEl) {
+        nameEl.style.top = nav + 'px';
+      }
     });
   }
 
@@ -153,6 +171,10 @@
       row.style.zIndex = '';
       row.style.transform = '';
       row.style.filter = '';
+      const topEl = row.querySelector('.sp-row__top');
+      const nameEl = row.querySelector('.sp-row__name');
+      if (topEl) topEl.style.top = '';
+      if (nameEl) nameEl.style.top = '';
     });
   }
 

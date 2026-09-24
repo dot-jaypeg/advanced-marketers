@@ -1844,41 +1844,21 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: rgba(10,10,10,0.65);
 }
 
-/* ------------------------ specialties pinned scroll (JS-driven) ---------------------- */
-/* Purely additive on top of the .sp-row markup/layout above: js/specialties-scroll.js
-   wraps each row in a JS-created .sp-pin-stage (never edited into the HTML source) and
-   toggles these classes as the user scrolls. Nothing here changes existing spacing,
-   type, or color rules — it only adds opacity/transform states and a progress readout. */
-
-.sp-pin-stage { position: relative; }
+/* ------------------------ specialties stacked-card scroll (JS-driven) ---------------------- */
+/* Purely additive on top of the .sp-row markup/layout above — no wrapper
+   elements, no markup changes. js/specialties-scroll.js sets each row's own
+   `top` (0, or a negative offset for rows taller than the viewport so they
+   finish scrolling past before they lock) and z-index inline, then reads
+   scroll position every frame to scale/darken whichever row is in the
+   process of being covered by the next one sliding over it. The rows never
+   fade — position: sticky + an opaque background (an existing color token,
+   not a new one) is what makes the overlap read as a physical stack. */
 
 body.sp-scroll-active .sp-row {
   position: sticky;
-  top: var(--nav-h);
-  opacity: 1;
+  background: var(--white);
+  transform-origin: center top;
 }
-body.sp-scroll-active .sp-row.is-dimmed { opacity: 0.4; }
-body.sp-scroll-active .sp-row,
-body.sp-scroll-active .sp-row.is-dimmed {
-  transition: opacity 0.5s var(--ease);
-}
-
-/* Stagger targets — existing row-content selectors only, label -> heading -> body -> media */
-body.sp-scroll-active .sp-row__top,
-body.sp-scroll-active .sp-row__name,
-body.sp-scroll-active .sp-row__desc,
-body.sp-scroll-active .sp-row__list,
-body.sp-scroll-active .sp-row__media {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-}
-body.sp-scroll-active .sp-row.is-active .sp-row__top { opacity: 1; transform: none; transition-delay: 0ms; }
-body.sp-scroll-active .sp-row.is-active .sp-row__name { opacity: 1; transform: none; transition-delay: 60ms; }
-body.sp-scroll-active .sp-row.is-active .sp-row__desc { opacity: 1; transform: none; transition-delay: 120ms; }
-body.sp-scroll-active .sp-row.is-active .sp-row__desc ~ .sp-row__desc { transition-delay: 150ms; }
-body.sp-scroll-active .sp-row.is-active .sp-row__list { opacity: 1; transform: none; transition-delay: 120ms; }
-body.sp-scroll-active .sp-row.is-active .sp-row__media { opacity: 1; transform: none; transition-delay: 180ms; }
 
 .sp-scroll-progress {
   position: fixed;
@@ -1914,26 +1894,19 @@ body.sp-scroll-mobile .sp-row {
 body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  body.sp-scroll-active .sp-row,
-  body.sp-scroll-active .sp-row.is-dimmed,
-  body.sp-scroll-active .sp-row__top,
-  body.sp-scroll-active .sp-row__name,
-  body.sp-scroll-active .sp-row__desc,
-  body.sp-scroll-active .sp-row__list,
-  body.sp-scroll-active .sp-row__media,
-  body.sp-scroll-mobile .sp-row {
-    transition: opacity 0.01s linear !important;
-    transform: none !important;
-  }
+  /* Keep the sticky stacking itself (it's driven directly by the user's own
+     scroll, not an autonomous animation) but drop the scale/darken flourish. */
+  body.sp-scroll-active .sp-row { transform: none !important; filter: none !important; }
+  body.sp-scroll-mobile .sp-row { transition: opacity 0.01s linear !important; transform: none !important; }
 }
 
 @media (max-width: 767px) {
-  body.sp-scroll-active .sp-row { position: static !important; opacity: 1 !important; }
-  body.sp-scroll-active .sp-row__top,
-  body.sp-scroll-active .sp-row__name,
-  body.sp-scroll-active .sp-row__desc,
-  body.sp-scroll-active .sp-row__list,
-  body.sp-scroll-active .sp-row__media { opacity: 1 !important; transform: none !important; }
+  body.sp-scroll-active .sp-row {
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
+    filter: none !important;
+  }
   .sp-scroll-progress { display: none; }
 }
 

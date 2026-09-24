@@ -1,22 +1,26 @@
 /* ============================================================================
-   Specialties pinned-scroll interaction — purely additive on top of the
-   existing .sp-row markup/CSS. This file never edits the page's HTML source;
-   it only wraps the six .sp-row sections in JS-created stage elements at
-   runtime and toggles state classes (body.sp-scroll-active / .is-active /
-   .is-dimmed / .sp-scroll-mobile) that css/style.css already defines.
+   Specialties stacked-card scroll interaction — purely additive on top of
+   the existing .sp-row markup/CSS. No wrapper elements are inserted and no
+   HTML is edited; this only sets `top`/`z-index`/`transform`/`filter`
+   inline on the six existing .sp-row elements and toggles the small
+   progress-readout element it creates.
 
-   Behavior:
-   - >=768px: each .sp-row is pinned (position: sticky) inside a tall
-     JS-created wrapper so it "takes over" the viewport for a beat before the
-     next one arrives. An IntersectionObserver tracks which row is centered
-     and marks it .is-active (children stagger-reveal), while the previously
-     active row gets .is-dimmed (opacity ~0.4). A small "0X / 06" progress
-     readout updates alongside it.
-   - <768px: no pinning at all — rows just fade/rise into place once as the
-     user scrolls past them normally (.sp-scroll-mobile + .is-visible).
-   - prefers-reduced-motion: the pin/active tracking still runs, but
-     css/style.css switches every transition to an instant opacity-only
-     change (see the @media (prefers-reduced-motion: reduce) block there).
+   Mechanic (desktop, >=768px):
+   - Each .sp-row gets position: sticky (from CSS) with an inline `top` of
+     0, or a negative offset (row height - viewport height) for rows taller
+     than the viewport, so a tall row finishes scrolling past before it
+     locks instead of clipping itself early.
+   - Each row gets an increasing z-index, so as the next row's sticky point
+     is reached it slides up and physically covers the previous one, which
+     stays pinned underneath — no fade, the overlap itself is the effect.
+   - A scroll-driven (not timed) loop tracks how far the *next* row has
+     advanced over each row and scales it down toward 0.95 and darkens it
+     slightly in direct proportion — reset to normal the moment it's fully
+     covered or the user scrolls back up.
+
+   <768px or prefers-reduced-motion: no pinning at all (or, under reduced
+   motion only, the sticky stacking stays but the scale/darken is skipped —
+   see the CSS) — see initMobileMode() for the plain fade/rise fallback.
    ============================================================================ */
 
 (() => {
@@ -29,13 +33,16 @@
   if (!rows.length) return;
 
   const desktopQuery = window.matchMedia('(min-width: 768px)');
-  let mode = null; // 'pin' | 'mobile'
-  let rowObserver = null;
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  let mode = null; // 'stack' | 'mobile'
   let mobileObserver = null;
   let progressEl = null;
-  let resizeRaf = null;
+  let scrollHandler = null;
+  let resizeHandler = null;
+  let rafId = null;
 
-  const isDesktop = () => desktopQuery.matches;
+  const prefersReducedMotion = () => reducedMotionQuery.matches;
 
   /* ------------------------------ progress readout ------------------------------ */
 
@@ -56,92 +63,97 @@
     if (progressEl) { progressEl.remove(); progressEl = null; }
   }
 
-  function updateProgress(activeIndex) {
+  function updateProgress(index, visible) {
     if (!progressEl) return;
-    progressEl.classList.add('is-visible');
+    progressEl.classList.toggle('is-visible', visible);
+    if (!visible) return;
     const current = progressEl.querySelector('.sp-scroll-progress__current');
     const fill = progressEl.querySelector('.sp-scroll-progress__fill');
-    if (current) current.textContent = String(activeIndex + 1).padStart(2, '0');
-    if (fill) fill.style.width = (((activeIndex + 1) / rows.length) * 100) + '%';
+    if (current) current.textContent = String(index + 1).padStart(2, '0');
+    if (fill) fill.style.width = (((index + 1) / rows.length) * 100) + '%';
   }
 
-  /* -------------------------------- pin mode (desktop) -------------------------------- */
+  /* -------------------------------- stack mode (desktop) -------------------------------- */
 
-  function wrapForPin(row) {
-    if (row.parentElement && row.parentElement.classList.contains('sp-pin-stage')) return row.parentElement;
-    const stage = document.createElement('div');
-    stage.className = 'sp-pin-stage';
-    row.parentNode.insertBefore(stage, row);
-    stage.appendChild(row);
-    return stage;
-  }
-
-  function unwrapFromPin(row) {
-    const stage = row.parentElement;
-    if (stage && stage.classList.contains('sp-pin-stage')) {
-      stage.parentNode.insertBefore(row, stage);
-      stage.remove();
-    }
-  }
-
-  function setStageHeights() {
+  function computeTops() {
     const vh = window.innerHeight;
-    rows.forEach((row) => {
-      const stage = row.parentElement;
-      if (!stage || !stage.classList.contains('sp-pin-stage')) return;
-      // One full viewport of "pin dwell" on top of however tall the row's own
-      // content is — keeps the takeover feel even when a row (video + list)
-      // is naturally taller than the screen.
-      stage.style.height = (row.offsetHeight + vh) + 'px';
+    rows.forEach((row, i) => {
+      const h = row.offsetHeight;
+      const top = h > vh ? -(h - vh) : 0;
+      row.style.top = top + 'px';
+      row.style.zIndex = String(i + 1);
     });
   }
 
-  let activeIndex = -1;
+  function clamp01(n) { return Math.max(0, Math.min(1, n)); }
 
-  function setActive(index) {
-    if (index === activeIndex) return;
-    if (activeIndex >= 0 && rows[activeIndex]) {
-      rows[activeIndex].classList.remove('is-active');
-      rows[activeIndex].classList.add('is-dimmed');
+  function tick() {
+    rafId = null;
+    const vh = window.innerHeight;
+    const reduced = prefersReducedMotion();
+    let activeIndex = 0;
+
+    rows.forEach((row, i) => {
+      const top = parseFloat(row.style.top) || 0;
+      if (row.getBoundingClientRect().top <= top + 1) activeIndex = i;
+    });
+
+    for (let i = 0; i < rows.length; i++) {
+      const next = rows[i + 1];
+      let progress = 0;
+      if (next) {
+        const nextTop = parseFloat(next.style.top) || 0;
+        const range = Math.max(1, vh - nextTop);
+        const nextRectTop = next.getBoundingClientRect().top;
+        progress = clamp01((vh - nextRectTop) / range);
+      }
+      if (reduced) {
+        rows[i].style.transform = '';
+        rows[i].style.filter = '';
+      } else {
+        rows[i].style.transform = progress > 0 ? `scale(${(1 - 0.05 * progress).toFixed(4)})` : '';
+        rows[i].style.filter = progress > 0 ? `brightness(${(1 - 0.15 * progress).toFixed(4)})` : '';
+      }
     }
-    if (index >= 0 && rows[index]) {
-      rows[index].classList.add('is-active');
-      rows[index].classList.remove('is-dimmed');
-      updateProgress(index);
-    }
-    activeIndex = index;
+
+    const firstTop = parseFloat(rows[0].style.top) || 0;
+    const lastRect = rows[rows.length - 1].getBoundingClientRect();
+    const withinStack = rows[0].getBoundingClientRect().top <= firstTop + 1 && lastRect.bottom > 0;
+    updateProgress(activeIndex, withinStack);
   }
 
-  function initPinMode() {
-    mode = 'pin';
+  function requestTick() {
+    if (rafId === null) rafId = requestAnimationFrame(tick);
+  }
+
+  function initStackMode() {
+    mode = 'stack';
     document.body.classList.add('sp-scroll-active');
-    rows.forEach(wrapForPin);
-    setStageHeights();
+    computeTops();
     buildProgress();
+    tick();
 
-    // First row starts active immediately — nothing to scroll to reach it.
-    setActive(0);
-
-    rowObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const idx = rows.indexOf(entry.target);
-        if (idx !== -1) setActive(idx);
-      });
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    rows.forEach((row) => rowObserver.observe(row));
+    scrollHandler = requestTick;
+    resizeHandler = () => { computeTops(); requestTick(); };
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('resize', resizeHandler, { passive: true });
+    window.addEventListener('load', resizeHandler);
   }
 
-  function teardownPinMode() {
-    if (rowObserver) { rowObserver.disconnect(); rowObserver = null; }
+  function teardownStackMode() {
+    if (scrollHandler) window.removeEventListener('scroll', scrollHandler);
+    if (resizeHandler) { window.removeEventListener('resize', resizeHandler); window.removeEventListener('load', resizeHandler); }
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+    scrollHandler = null;
+    resizeHandler = null;
     removeProgress();
     document.body.classList.remove('sp-scroll-active');
     rows.forEach((row) => {
-      row.classList.remove('is-active', 'is-dimmed');
-      row.removeAttribute('style');
-      unwrapFromPin(row);
+      row.style.top = '';
+      row.style.zIndex = '';
+      row.style.transform = '';
+      row.style.filter = '';
     });
-    activeIndex = -1;
   }
 
   /* -------------------------------- mobile fallback -------------------------------- */
@@ -168,32 +180,16 @@
   /* ---------------------------------- mode switching ---------------------------------- */
 
   function teardown() {
-    if (mode === 'pin') teardownPinMode();
+    if (mode === 'stack') teardownStackMode();
     if (mode === 'mobile') teardownMobileMode();
     mode = null;
   }
 
   function init() {
-    if (isDesktop()) initPinMode();
+    if (desktopQuery.matches) initStackMode();
     else initMobileMode();
   }
 
   init();
-
-  desktopQuery.addEventListener('change', () => {
-    teardown();
-    init();
-  });
-
-  window.addEventListener('resize', () => {
-    if (mode !== 'pin') return;
-    if (resizeRaf) cancelAnimationFrame(resizeRaf);
-    resizeRaf = requestAnimationFrame(setStageHeights);
-  }, { passive: true });
-
-  // Video/poster loads and web-font swaps can change row height after the
-  // first measurement — recheck once shortly after load.
-  window.addEventListener('load', () => {
-    if (mode === 'pin') setStageHeights();
-  });
+  desktopQuery.addEventListener('change', () => { teardown(); init(); });
 })();

@@ -1276,7 +1276,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 /* -------------------------- partners page (subpage) --------------------------- */
 
-#partners-intro { padding-top: calc(var(--nav-h) + 64px); }
 
 .trust-strip__eyebrow { margin: 0 0 24px; }
 
@@ -2546,6 +2545,14 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
   .site-footer__top { flex-direction: column; align-items: flex-start; gap: 24px; }
   .differentiators { grid-template-columns: 1fr; }
   .sp-row__list { grid-template-columns: 1fr; }
+
+  /* .hero--centered's headline is deliberately forced onto one line via
+     white-space:nowrap, but its font-size clamp bottoms out at 1.9rem —
+     on phones narrower than ~480px that floor no longer scales down with
+     the viewport, so "Revenue First. Always." silently overflows/clips
+     since .hero has overflow:hidden. Letting it wrap here keeps the
+     one-line treatment everywhere it actually fits. */
+  .hero--centered .hero__headline { white-space: normal; }
 }
 
 /* ============================================================================
@@ -2554,7 +2561,7 @@ body.sp-scroll-mobile .sp-row.is-visible { opacity: 1; transform: none; }
    ============================================================================ */
 
 /* First section of a subpage that has no full-height hero — just enough
-   top padding to clear the fixed header, same trick as #partners-intro. */
+   top padding to clear the fixed header. */
 .subpage-intro { padding-top: calc(var(--nav-h) + 64px); }
 
 .client-reels {

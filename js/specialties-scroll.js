@@ -32,6 +32,8 @@
   const rows = Array.from(stack.querySelectorAll('.sp-row[data-sp-section]'));
   if (!rows.length) return;
 
+  const sidebar = document.querySelector('.sp-sidebar');
+
   const desktopQuery = window.matchMedia('(min-width: 768px)');
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -96,6 +98,7 @@
   // this file controls.
   function applyHeaderOffsets() {
     const nav = navH();
+    if (sidebar) sidebar.style.top = (nav + 40) + 'px';
     rows.forEach((row) => {
       const topEl = row.querySelector('.sp-row__top');
       const nameEl = row.querySelector('.sp-row__name');
@@ -184,6 +187,7 @@
     resizeHandler = null;
     removeProgress();
     document.body.classList.remove('sp-scroll-active');
+    if (sidebar) sidebar.style.top = '';
     rows.forEach((row) => {
       row.style.top = '';
       row.style.zIndex = '';

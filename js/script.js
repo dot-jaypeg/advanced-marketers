@@ -416,9 +416,21 @@
       csDots.forEach((d, i) => d.classList.toggle('is-active', i === csCurrent));
     }
 
+    /* Scrolls only the horizontal track itself rather than calling
+       scrollIntoView on the slide — scrollIntoView's block:'nearest' still
+       drags the whole page's vertical scroll along with it whenever a
+       slide is taller than the viewport (true on mobile, where the tiles
+       stack vertically), which was auto-scrolling the page down to the
+       carousel every time it rotated. */
+    function csScrollToSlide(behavior) {
+      const target = csSlides[csCurrent];
+      const left = target.getBoundingClientRect().left - csTrack.getBoundingClientRect().left + csTrack.scrollLeft;
+      csTrack.scrollTo({ left, behavior });
+    }
+
     function csGoTo(i) {
       csCurrent = (i + csSlides.length) % csSlides.length;
-      csSlides[csCurrent].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      csScrollToSlide('smooth');
       csUpdateDots();
     }
 
@@ -453,7 +465,7 @@
       if (targetIdx !== -1) {
         csStopAutoplay();
         csCurrent = targetIdx;
-        csSlides[targetIdx].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'start' });
+        csScrollToSlide('auto');
         csUpdateDots();
       }
     }

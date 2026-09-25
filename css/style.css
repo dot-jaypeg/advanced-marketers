@@ -127,6 +127,14 @@ body[data-theme="dark"] .page-bg { background-color: var(--black); }
   will-change: transform;
 }
 
+/* Chrome/Safari render a native pointer/hand cursor over <a>/<button>
+   regardless of the inherited `cursor` value (it's not a simple CSS
+   inheritance case), which was showing the OS pointer on top of the
+   custom dot on every link and button. Forcing inherit here routes them
+   through the same body rule (none on desktop, auto once :hover isn't
+   available) instead of the browser's own default. */
+a, button { cursor: inherit; }
+
 @media (hover: none) {
   body { cursor: auto; }
 }
@@ -143,7 +151,6 @@ button {
   font-family: inherit;
   background: none;
   border: none;
-  cursor: pointer;
   color: inherit;
 }
 
@@ -1404,7 +1411,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   color: var(--black);
   font-size: 16px;
   line-height: 1;
-  cursor: pointer;
   transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .cs-carousel__arrow:hover { background: var(--black); color: var(--white); transform: scale(1.08); }
@@ -1417,7 +1423,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
   border: none;
   padding: 0;
   background: var(--line);
-  cursor: pointer;
   transition: background 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .cs-carousel__dot.is-active { background: var(--accent); transform: scale(1.35); }
@@ -1733,7 +1738,6 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 .dept-item {
   flex: 1;
   overflow: hidden;
-  cursor: pointer;
   transition: flex 0.65s cubic-bezier(0.5, 0, 0.1, 1);
 }
 .dept-item:hover, .dept-item:focus-visible, .dept-item.is-open { flex: 5; }

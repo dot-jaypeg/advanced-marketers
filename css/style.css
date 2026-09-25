@@ -1413,13 +1413,10 @@ section { position: relative; padding: clamp(70px, 10vw, 140px) var(--edge); }
 
 .cs-carousel__dot {
   width: 8px; height: 8px;
-  box-sizing: content-box;
-  padding: 6px;
-  margin: -6px;
   border-radius: 999px;
   border: none;
+  padding: 0;
   background: var(--line);
-  background-clip: content-box;
   cursor: pointer;
   transition: background 0.3s var(--ease), transform 0.3s var(--ease);
 }

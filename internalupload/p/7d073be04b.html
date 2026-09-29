@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piggies Air Conditioning — Performance Review | Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --border:#2B2B35; --text:#EDEDF2; --muted:#8A8A99;
+    --accent:#7D7BF7; --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+    --accent-soft:rgba(125,123,247,.12); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:980px;margin:0 auto;padding:34px 24px 50px}
+  .kicker{font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);font-weight:700}
+  header.hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:22px}
+  .hero h1{font-size:27px;font-weight:760;margin-top:8px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  .hero .brand{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.7}
+  .hero .brand b{display:block;color:var(--text);font-size:14px;letter-spacing:3px;font-weight:760}
+  .hero .brand b i{color:var(--accent);font-style:normal}
+  .badge{display:inline-block;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:3px 14px;font-size:12px;color:#c9c8fb;margin-top:10px}
+
+  /* THE MONEY funnel */
+  .funnel{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin:8px 0 6px}
+  .step{flex:1 1 190px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px 20px;text-align:center}
+  .step .num{font-size:34px;font-weight:800;letter-spacing:-.5px}
+  .step .lbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);font-weight:700;margin-top:8px}
+  .step.spend .num{color:var(--text)}
+  .step.leads .num{color:var(--accent)}
+  .step.quoted{border-color:var(--accent);background:var(--accent-soft)}
+  .step.quoted .num{color:var(--accent);font-size:40px}
+  .step.sold .num{color:var(--good)}
+  .farrow{align-self:center;color:var(--accent);font-size:26px;font-weight:800}
+  .oneliner{font-size:15.5px;color:#cfcfda;margin:16px 2px 4px;text-align:center}
+  .oneliner b{color:var(--text)}
+
+  .alertline{margin-top:14px;background:rgba(228,96,79,.08);border:1px solid var(--bad);border-radius:10px;padding:14px 18px;font-size:15px;color:#cfcfda;text-align:center}
+  .alertline b{color:var(--bad);font-size:17px}
+  .alertline .sub{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+  .ministats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .ministat{flex:1 1 150px;background:#131318;border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center}
+  .ministat b{display:block;font-size:18px;color:var(--text)}
+  .ministat span{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
+
+  section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;margin-top:18px;scroll-margin-top:20px}
+  h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:4px}
+  .h2sub{font-size:18px;font-weight:720;margin-bottom:14px}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--accent);font-weight:700}
+  td{padding:12px 10px;border-bottom:1px solid var(--border);vertical-align:middle;color:#cfcfda}
+  td b{color:var(--text)}
+  .money{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .money b{font-size:15px}
+  .q{color:var(--accent)} .s{color:var(--good)} .m{color:var(--bad)} .n{color:var(--muted)}
+  .tag{display:inline-block;background:rgba(125,123,247,.1);border:1px solid var(--border);border-radius:6px;padding:1px 9px;font-size:11.5px;color:#b9b8f5;white-space:nowrap}
+  tr.total td{border-top:2px solid var(--accent);border-bottom:none;padding-top:14px}
+  tr.total .money b{font-size:19px}
+
+  .recs{counter-reset:rec;display:flex;flex-direction:column;gap:12px}
+  .rec{display:flex;gap:14px;font-size:15px;color:#cfcfda;align-items:flex-start}
+  .rec::before{counter-increment:rec;content:counter(rec);flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:#0D0D12;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rec b{color:var(--text)}
+
+  details{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);margin-top:14px;overflow:hidden}
+  details summary{cursor:pointer;padding:16px 22px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::after{content:"+";font-size:18px;color:var(--accent)}
+  details[open] summary::after{content:"–"}
+  details summary:hover{color:var(--text)}
+  details .inner{padding:4px 24px 22px;border-top:1px solid var(--border)}
+  details .inner p{font-size:14px;color:#cfcfda;margin:10px 0}
+  details .inner p b{color:var(--text)}
+  .bars{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+  .bar-row{display:grid;grid-template-columns:180px 1fr 60px;gap:12px;align-items:center;font-size:13.5px;color:#cfcfda}
+  .bar-track{background:#0f0f15;border:1px solid var(--border);border-radius:6px;height:24px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;color:#0D0D12;font-size:11.5px;font-weight:750;padding-left:9px;white-space:nowrap}
+  .fineprint{font-size:12.5px;color:var(--muted);margin-top:12px}
+  .platgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+  .platcard{background:#131318;border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .platcard .phead{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:10px}
+  .platcard .phead .pname{font-size:14px;font-weight:760;letter-spacing:1px;color:var(--text);text-transform:uppercase}
+  .platcard .phead .pspend{font-size:20px;font-weight:760;color:var(--accent)}
+  .prow{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:13.5px;color:#cfcfda;border-bottom:1px dashed #22222c}
+  .prow span:last-child{color:var(--text);font-weight:650;text-align:right;font-variant-numeric:tabular-nums}
+  .prow .up{color:var(--warn)} .prow .goodv{color:var(--good)}
+  .pnote{margin-top:12px;padding:10px 13px;border-left:3px solid var(--accent);background:rgba(125,123,247,.07);border-radius:0 8px 8px 0;font-size:12.5px;color:#c9c8fb;line-height:1.5}
+  .pnote.warn{border-left-color:var(--warn);background:rgba(217,164,65,.07);color:#e8d5ac}
+  .pnote.good{border-left-color:var(--good);background:rgba(63,207,149,.07);color:#bfe9d6}
+  .xrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;background:#131318;border:1px solid var(--border);border-radius:9px;margin-bottom:8px;font-size:13.5px;color:#cfcfda}
+  .xrow b{color:var(--text)}
+  .xrow .xtag{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:2px 10px}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--muted);line-height:1.9}
+  footer .fbrand{letter-spacing:3px;font-weight:760;color:var(--text);font-size:12.5px}
+  footer .fbrand i{color:var(--accent);font-style:normal}
+  @media print{body{background:#0D0D12!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} section{break-inside:avoid} details{display:block} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="kicker">Growth System · Client Performance Review</div>
+      <h1>Piggies Air Conditioning — <span>What Your Ads Produced</span></h1>
+      <div class="sub">Every number verified against call recordings, transcripts &amp; your CRM</div>
+      <span class="badge">June 14 – July 13, 2026 · ads live 8 weeks</span>
+    </div>
+    <div class="brand">
+      <b>ADVANCED <i>MARKETERS</i></b>
+      Orange County, CA<br>Prepared July 14, 2026
+    </div>
+  </header>
+
+  <!-- THE MONEY -->
+  <div class="funnel">
+    <div class="step spend"><div class="num">$2,749</div><div class="lbl">Ad spend (30 days)</div></div>
+    <div class="farrow">→</div>
+    <div class="step leads"><div class="num">30</div><div class="lbl">Leads</div></div>
+    <div class="farrow">→</div>
+    <div class="step quoted"><div class="num">$139,000</div><div class="lbl">Quoted &amp; open</div></div>
+    <div class="farrow">→</div>
+    <div class="step sold"><div class="num">$1,356</div><div class="lbl">Sold so far</div></div>
+  </div>
+  <p class="oneliner">The ads are filling the pipeline. <b>$139k in quotes is waiting on follow-up</b> — that's the gap between the second and last number.</p>
+  <div class="ministats">
+    <div class="ministat"><b>$91.65</b><span>Cost per lead</span></div>
+    <div class="ministat"><b>$305</b><span>Cost per qualified lead</span></div>
+    <div class="ministat"><b>77%</b><span>Ad calls answered</span></div>
+    <div class="ministat"><b>$15k–$53k</b><span>Typical quote size</span></div>
+  </div>
+  <div class="alertline">
+    The 8 missed calls ≈ <b>$27,000 in quote value left on the table</b>
+    <span class="sub">Modeled from this account's own numbers: answered calls turn into quotes ~15% of the time × $23k average quote × 8 missed callers. Not tracked — missed calls leave nothing to verify — the real figure could be higher or lower.</span>
+  </div>
+
+  <!-- LEAD LEDGER -->
+  <section id="leads">
+    <h2>The Leads, One By One</h2>
+    <div class="h2sub">Where every dollar sits</div>
+    <table>
+      <thead><tr><th>Lead</th><th>Source</th><th class="money">Quoted</th><th class="money">Sold</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>4 quoted jobs</b> — Jun 17–25<br><span style="color:var(--muted);font-size:12px">incl. 3-room-zone mini-split, AC replacement, thermostat visit, mini-split freon — names in your CRM</span></td>
+          <td><span class="tag">Google</span></td>
+          <td class="money"><b class="q">$92,000</b></td>
+          <td class="money">—</td>
+          <td class="q"><b>Awaiting follow-up</b></td>
+        </tr>
+        <tr>
+          <td><b>Quoted job</b> — week of Jul 6</td>
+          <td><span class="tag">Meta</span></td>
+          <td class="money"><b class="q">$32,000</b></td>
+          <td class="money">—</td>
+          <td class="q"><b>Awaiting follow-up</b></td>
+        </tr>
+        <tr>
+          <td><b>Quoted job</b> — week of Jul 6</td>
+          <td><span class="tag">Meta</span></td>
+          <td class="money"><b class="q">$15,000</b></td>
+          <td class="money">—</td>
+          <td class="q"><b>Awaiting follow-up</b></td>
+        </tr>
+        <tr>
+          <td><b>4 sold jobs</b> — since Jun 18<br><span style="color:var(--muted);font-size:12px">small repairs, incl. one $49.99</span></td>
+          <td><span class="tag">Google/Meta</span></td>
+          <td class="money">—</td>
+          <td class="money"><b class="s">$1,356</b></td>
+          <td class="s"><b>Closed ✓</b></td>
+        </tr>
+        <tr>
+          <td><b>Jae Ko</b> — Glendale · (323) 527-6692</td>
+          <td><span class="tag">Google</span></td>
+          <td class="money">tune-up, ~$249+</td>
+          <td class="money">—</td>
+          <td>17-min call Jul 1 · <b>confirm booking</b></td>
+        </tr>
+        <tr>
+          <td><b>Birch Construction</b> — commercial new-build install · (310) 758-3211</td>
+          <td><span class="tag">RFP · hot lead</span></td>
+          <td class="money m"><b>bid pending 1 month</b></td>
+          <td class="money">—</td>
+          <td class="m"><b>Waiting on duct pricing — chase &amp; send</b></td>
+        </tr>
+        <tr>
+          <td><b>Garcia</b> — mini-split · (909) 973-5682</td>
+          <td><span class="tag">Google</span></td>
+          <td class="money">estimate Jul 2</td>
+          <td class="money">—</td>
+          <td>Verify estimate went out</td>
+        </tr>
+        <tr>
+          <td><b>4 callers never reached</b><br><span style="color:var(--muted);font-size:12px">(909) 908-6386 · (909) 709-2856 · (714) 330-8173 · (203) 724-7693</span></td>
+          <td><span class="tag">Ads/inbound</span></td>
+          <td class="money n">unrealized</td>
+          <td class="money">—</td>
+          <td class="m"><b>Call back</b></td>
+        </tr>
+        <tr>
+          <td><b>Hayden Rossman</b> — repair follow-up · (909) 241-5360</td>
+          <td><span class="tag">Existing customer</span></td>
+          <td class="money">—</td>
+          <td class="money">—</td>
+          <td class="m"><b>Call today</b> — repair failed, 4 unanswered calls</td>
+        </tr>
+        <tr class="total">
+          <td><b>TOTAL</b></td>
+          <td></td>
+          <td class="money"><b class="q">$139,000</b></td>
+          <td class="money"><b class="s">$1,356</b></td>
+          <td><b>on $2,749 spend</b></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="fineprint">Spam, wrong numbers, and non-fit callers are excluded and listed in the appendix — lead counts reflect real prospects only, verified by listening to the calls.</p>
+  </section>
+
+  <!-- NEXT MOVES -->
+  <section id="next">
+    <h2>The Plan</h2>
+    <div class="h2sub">Three moves to turn quotes into revenue</div>
+    <div class="recs">
+      <div class="rec"><div><b>Close the $139k.</b> A structured follow-up cadence on the 6 open quotes — we'll help run it. Big-ticket buyers shop and wait; the quotes aren't dead, they're unworked.</div></div>
+      <div class="rec"><div><b>Rescue the missed money.</b> Call back the 4 unreached callers, send the Birch Construction bid, and call Hayden Rossman today before it becomes a bad review.</div></div>
+      <div class="rec"><div><b>Feed the machine.</b> Restore Meta to early-June budget (~$100/day — it's producing leads at ~$67 each) and let us wire call results back into Google &amp; Meta so both platforms hunt for more of your $30k+ buyers.</div></div>
+    </div>
+  </section>
+
+  <!-- APPENDIX -->
+  <details>
+    <summary>Appendix · Platform detail (Google &amp; Meta)</summary>
+    <div class="inner">
+      <div class="platgrid">
+        <div class="platcard">
+          <div class="phead"><span class="pname">Google Ads</span><span class="pspend">$1,809</span></div>
+          <div class="prow"><span>Impressions</span><span>5,801</span></div>
+          <div class="prow"><span>Clicks</span><span>140</span></div>
+          <div class="prow"><span>Cost per click</span><span class="up">$12.92 <small style="color:var(--muted)">(was $5.37)</small></span></div>
+          <div class="prow"><span>Conversions reported</span><span>8</span></div>
+          <div class="prow"><span>Phone calls tracked</span><span class="goodv">35</span></div>
+          <div class="prow"><span>Quoted from this channel</span><span class="goodv">$92,000</span></div>
+          <div class="pnote"><b>Why CPC went up — on purpose:</b> after the Huntington Park lead, targeting was narrowed to the top 5–25% household income bracket at Ruben's request. Wealthier clicks cost more — and the $92k in quotes came from exactly this audience.</div>
+          <div class="pnote warn"><b>Reporting gap:</b> Google's own dashboard shows only 7 call conversions, but the phone rang 35 times. Short and missed calls never appear as "conversions."</div>
+        </div>
+        <div class="platcard">
+          <div class="phead"><span class="pname">Meta Ads</span><span class="pspend">$940</span></div>
+          <div class="prow"><span>Lead calls</span><span class="goodv">12</span></div>
+          <div class="prow"><span>Lead forms</span><span>2</span></div>
+          <div class="prow"><span>Real cost per lead</span><span class="goodv">~$67</span></div>
+          <div class="prow"><span>Booked estimates</span><span>2</span></div>
+          <div class="prow"><span>Quoted from this channel</span><span class="goodv">$47,000</span></div>
+          <div class="prow"><span>Leads Ads Manager shows</span><span class="up">only 2</span></div>
+          <div class="pnote"><b>Why Ads Manager looks empty:</b> Meta's pixel can't see phone calls — the CRM has the other 12 leads. Feeding call results back into Meta (offline events) lets it hunt for more of these buyers.</div>
+          <div class="pnote warn"><b>Budget was cut mid-June:</b> ~$107/day → $17–52/day, right as it was producing. Restoring it is the fastest lead-volume lever.</div>
+        </div>
+      </div>
+      <p class="fineprint">Ad groups driving calls: AC Installation and AC Repair carry volume; AC Maintenance produced the 17-minute qualified calls. Campaign: AM_DS_Air Conditioner_Form+Calls.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Appendix · Answer rate &amp; call handling</summary>
+    <div class="inner">
+      <div class="bars">
+        <div class="bar-row"><span>Ad calls answered</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:var(--good)">27 calls</div></div><span><b>77%</b></span></div>
+        <div class="bar-row"><span>Ad calls missed</span><div class="bar-track"><div class="bar-fill" style="width:23%;background:var(--bad)">8 calls</div></div><span><b>23%</b></span></div>
+      </div>
+      <div class="pnote good" style="margin-top:14px"><b>77% answered is genuinely strong</b> — Eric, Jeanine, Patricia and Arthur are doing their job. Every answered caller gets a real conversation, and those conversations are where the $139k in quotes came from.</div>
+      <div class="pnote warn"><b>The 8 misses cluster around 8–9 AM.</b> One caller on Jun 20 rang 4 times in 35 seconds and gave up. At the numbers above, those 8 calls ≈ $27,000 in modeled quote value. Covering the first morning hour closes most of the gap.</div>
+      <div class="pnote"><b>Misses also make the ads dumber:</b> Google learns from call outcomes. Long connected calls teach it who your buyer is; unanswered calls teach it those searchers are wrong — and it quietly moves budget away from them.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Appendix · Filtered out — how we keep your numbers honest</summary>
+    <div class="inner">
+      <div class="pnote good" style="margin-top:14px"><b>We listen to every call before it counts as a lead.</b> Most agencies report every ring as a "lead" to pad their numbers. These seven were removed from your counts — which means the CPL and quote figures on this page are real prospects only.</div>
+      <div style="margin-top:12px">
+        <div class="xrow"><span><b>(310) 978-8577</b> — insurance robocaller, called twice</span><span class="xtag">SPAM</span></div>
+        <div class="xrow"><span><b>(626) 506-1529</b> — wanted spare parts &amp; owner-supplied install; services you don't offer</span><span class="xtag">NOT A FIT</span></div>
+        <div class="xrow"><span><b>(209) 263-7430</b> — wrong number, 7 seconds</span><span class="xtag">WRONG #</span></div>
+        <div class="xrow"><span><b>(949) 214-9751</b> — misdial meant for a different AC company; her booking was caught &amp; cancelled</span><span class="xtag">MISDIAL</span></div>
+        <div class="xrow"><span><b>3 hang-ups</b> — calls under 8 seconds, no conversation</span><span class="xtag">NO CONTACT</span></div>
+        <div class="xrow"><span><b>Meta, May 15</b> — pixel glitch reported 345 fake "leads" in one day on $89 of spend</span><span class="xtag">GLITCH</span></div>
+      </div>
+    </div>
+  </details>
+
+  <footer>
+    <span class="fbrand">ADVANCED <i>MARKETERS</i></span><br>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; support@advancedmarketers.co<br>
+    Sources: Google Ads (653-550-0805) &amp; Meta Ads (act_1513942253501297) via Supermetrics · GoHighLevel CRM, call recordings &amp; transcripts · Pipeline values from account-team CRM review, July 2026
+  </footer>
+</div>
+</body>
+</html>

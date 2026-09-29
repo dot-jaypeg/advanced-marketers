@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brianna — Screening Process Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap');
+
+  :root{
+    --ink:#14161a;
+    --mute:#6b7280;
+    --line:#d7dae0;
+    --go:#16a34a;
+    --stop:#dc2626;
+    --wait:#d97706;
+    --blue:#1d4ed8;
+    --paper:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Archivo',system-ui,sans-serif;
+    background:#eef0f4;
+    color:var(--ink);
+    padding:32px 16px 60px;
+  }
+  .sheet{
+    max-width:860px;margin:0 auto;background:var(--paper);
+    padding:44px 48px 52px;border-radius:6px;
+    box-shadow:0 2px 24px rgba(0,0,0,.10);
+  }
+  .head{border-bottom:3px solid var(--ink);padding-bottom:16px;margin-bottom:32px}
+  .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  h1{font-size:31px;font-weight:800;letter-spacing:-.02em;margin-top:6px;line-height:1.1}
+  .sub{font-size:14px;color:var(--mute);margin-top:8px}
+
+  .step{display:flex;gap:18px;margin-bottom:6px}
+  .rail{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:44px}
+  .num{
+    width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;flex-shrink:0;
+  }
+  .pipe{width:3px;flex:1;background:var(--line);min-height:22px}
+  .body{padding-bottom:26px;flex:1;padding-top:9px}
+  h2{font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .when{font-size:12px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
+  p{font-size:15px;line-height:1.55;color:#3a3f47;margin-top:5px}
+
+  .fork{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+  .card{
+    flex:1;min-width:210px;border:2px solid var(--line);border-radius:6px;padding:13px 15px;background:#fbfcfd;
+  }
+  .card.go{border-color:var(--go);background:#f2fbf5}
+  .card.stop{border-color:var(--stop);background:#fef4f4}
+  .card.wait{border-color:var(--wait);background:#fffaf1}
+  .tag{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;display:block}
+  .go .tag{color:var(--go)} .stop .tag{color:var(--stop)} .wait .tag{color:var(--wait)}
+  .card p{font-size:13.5px;line-height:1.5;margin:0;color:#3a3f47}
+
+  .rules{background:var(--ink);color:#fff;border-radius:6px;padding:24px 28px;margin:34px 0 6px}
+  .rules h3{font-size:15px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+  .rulegrid{display:flex;gap:26px;flex-wrap:wrap}
+  .rulecol{flex:1;min-width:220px}
+  .rulecol h4{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#9aa3af;margin-bottom:9px;font-weight:700}
+  .rulecol ul{list-style:none}
+  .rulecol li{font-size:14px;line-height:1.7;padding-left:17px;position:relative}
+  .rulecol li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%}
+  .yes li:before{background:var(--go)}
+  .no li:before{background:var(--stop)}
+
+  .score{margin-top:32px;border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+  .score h3{background:var(--ink);color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;font-weight:800}
+  table{width:100%;border-collapse:collapse}
+  td{padding:11px 18px;font-size:14.5px;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:none}
+  td.n{font-weight:800;width:108px;font-size:16px}
+  .g{color:var(--go)} .w{color:var(--wait)} .r{color:var(--stop)}
+
+  .foot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute);text-align:center}
+
+  @media print{
+    body{background:#fff;padding:0}
+    .sheet{box-shadow:none;padding:20px;max-width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="head">
+    <div class="kicker">Advanced Marketers &middot; Recruiting</div>
+    <h1>How Screening Works</h1>
+    <div class="sub">Brianna &middot; Start at the top and work down. When in doubt, ask.</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="step">
+    <div class="rail"><div class="num">1</div><div class="pipe"></div></div>
+    <div class="body">
+      <div class="when">Every morning</div>
+      <h2>Check Indeed</h2>
+      <p>Open new applications. Read each resume against the two rules in the black box below. <strong>Add everyone you move forward to the Candidate Tracker.</strong></p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="step">
+    <div class="rail"><div class="num">2</div><div class="pipe"></div></div>
+    <div class="body">
+      <h2>Do they pass the two rules?</h2>
+      <div class="fork">
+        <div class="card go">
+          <span class="tag">Yes &rarr; go</span>
+          <p>Message them on Indeed with the booking link. Message&nbsp;#1.</p>
+        </div>
+        <div class="card stop">
+          <span class="tag">No &rarr; stop</span>
+          <p>Send the decline message. Message&nbsp;#5. Takes 20 seconds. Always send it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="step">
+    <div class="rail"><div class="num">3</div><div class="pipe"></div></div>
+    <div class="body">
+      <div class="when">15 minutes</div>
+      <h2>Run the call</h2>
+      <p>Open the script. Make your copy. Read it top to bottom and type notes as you go. Do not wing it.</p><p><strong>Never promise them an interview.</strong> Tell them you are doing more calls and they will get an email if it is a fit.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="step">
+    <div class="rail"><div class="num">4</div><div class="pipe"></div></div>
+    <div class="body">
+      <div class="when">Within 5 minutes of hanging up</div>
+      <h2>Score them out of 25</h2>
+      <p>Five things, one to five each. Use the table at the bottom. Score it while it is fresh.</p>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="step">
+    <div class="rail"><div class="num">5</div><div class="pipe"></div></div>
+    <div class="body">
+      <h2>What the score tells you to do</h2>
+      <div class="fork">
+        <div class="card go">
+          <span class="tag">20 &ndash; 25 &nbsp;Send it</span>
+          <p>Email them the assessment. Message&nbsp;#2. Same day.</p>
+        </div>
+        <div class="card wait">
+          <span class="tag">15 &ndash; 19 &nbsp;Ask</span>
+          <p>Post your notes in Slack. Ask the manager if you should send the assessment.</p>
+        </div>
+        <div class="card stop">
+          <span class="tag">Under 15 &nbsp;Pass</span>
+          <p>Send the decline. Message&nbsp;#5.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="step">
+    <div class="rail"><div class="num">6</div><div class="pipe"></div></div>
+    <div class="body">
+      <div class="when">They get 48 hours</div>
+      <h2>Wait for the assessment</h2>
+      <p>Remind them once at 24 hours. That is the only chase you do.</p>
+      <div class="fork">
+        <div class="card go">
+          <span class="tag">Came back in time</span>
+          <p>Post it in Slack for the manager, same day.</p>
+        </div>
+        <div class="card stop">
+          <span class="tag">Missed 48 hours</span>
+          <p>They are out. Send the decline. Do not extend it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="step">
+    <div class="rail"><div class="num">7</div><div class="pipe"></div></div>
+    <div class="body">
+      <div class="when">Manager has 24 hours</div>
+      <h2>Manager reviews the assessment</h2>
+      <div class="fork">
+        <div class="card go">
+          <span class="tag">Approved, or no reply</span>
+          <p>Send the booking link. Message&nbsp;#3. No reply in 24 hours means send it anyway.</p>
+        </div>
+        <div class="card stop">
+          <span class="tag">Manager says no</span>
+          <p>Send the decline. Message&nbsp;#5.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="step">
+    <div class="rail"><div class="num">8</div></div>
+    <div class="body">
+      <div class="when">Day before the Zoom</div>
+      <h2>Send the reminder</h2>
+      <p>Message&nbsp;#4. Then you are done. The manager takes it from here.</p>
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div class="rules">
+    <h3>The Two Rules</h3>
+    <div class="rulegrid">
+      <div class="rulecol yes">
+        <h4>Move them forward</h4>
+        <ul>
+          <li><strong>4+ years</strong> doing this exact job</li>
+          <li><strong>Stayed 2+ years</strong> somewhere at least once</li>
+        </ul>
+      </div>
+      <div class="rulecol no">
+        <h4>Stop right there</h4>
+        <ul>
+          <li>Under 3 years experience</li>
+          <li>New job every single year</li>
+          <li>Trashed an old boss on the call</li>
+          <li>Could not give you a real number</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE -->
+  <div class="score">
+    <h3>Score sheet &middot; 1 to 5 each &middot; 25 total</h3>
+    <table>
+      <tr><td class="n">1</td><td>Experience &mdash; enough years, right kind of work</td></tr>
+      <tr><td class="n">2</td><td>Job history &mdash; did they stay put anywhere</td></tr>
+      <tr><td class="n">3</td><td>Real answers &mdash; gave you actual numbers, fast</td></tr>
+      <tr><td class="n">4</td><td>Talking &mdash; clear and easy to follow</td></tr>
+      <tr><td class="n">5</td><td>Wants it &mdash; asked questions, knows who we are</td></tr>
+    </table>
+  </div>
+
+  <div class="foot">
+    Update the STAGE column in the tracker every time someone moves. &nbsp;&middot;&nbsp; Not sure about someone? Score them 15&ndash;19 and ask. Nobody gets in trouble for asking.
+  </div>
+
+</div>
+</body>
+</html>

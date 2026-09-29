@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go-Live Audit — Advanced Marketers · Wed Jul 16, 2026</title>
+<style>
+:root {
+  color-scheme: light;
+  --surface-1: #fcfcfb;
+  --page: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --baseline: #c3c2b7;
+  --border: rgba(11,11,11,0.10);
+  --series-1: #2a78d6;          /* blue — magnitude bars */
+  --series-1-soft: #9ec5f4;
+  --status-good: #0ca30c;
+  --status-good-text: #006300;
+  --status-warning: #fab219;
+  --status-serious: #ec835a;
+  --status-critical: #d03b3b;
+  --chip-good-bg: rgba(12,163,12,0.10);
+  --chip-warn-bg: rgba(250,178,25,0.14);
+  --chip-serious-bg: rgba(236,131,90,0.14);
+  --chip-crit-bg: rgba(208,59,59,0.10);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --baseline: #383835;
+    --border: rgba(255,255,255,0.10);
+    --series-1: #3987e5;
+    --series-1-soft: #1c5cab;
+    --status-good-text: #0ca30c;
+    --chip-good-bg: rgba(12,163,12,0.16);
+    --chip-warn-bg: rgba(250,178,25,0.16);
+    --chip-serious-bg: rgba(236,131,90,0.16);
+    --chip-crit-bg: rgba(208,59,59,0.18);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --page: #0d0d0d;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --grid: #2c2c2a;
+  --baseline: #383835;
+  --border: rgba(255,255,255,0.10);
+  --series-1: #3987e5;
+  --series-1-soft: #1c5cab;
+  --status-good-text: #0ca30c;
+  --chip-good-bg: rgba(12,163,12,0.16);
+  --chip-warn-bg: rgba(250,178,25,0.16);
+  --chip-serious-bg: rgba(236,131,90,0.16);
+  --chip-crit-bg: rgba(208,59,59,0.18);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 56px; }
+
+header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+header.page h1 { font-size: 20px; font-weight: 700; margin: 0; }
+.sub { color: var(--text-secondary); font-size: 13px; margin: 0 0 20px; }
+.theme-btn {
+  background: var(--surface-1); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+}
+.theme-btn:hover { color: var(--text-primary); }
+
+/* ---- stat tiles ---- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.tile {
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px 12px;
+}
+.tile .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+.tile .value { font-size: 30px; font-weight: 700; line-height: 1.05; }
+.tile .note { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+.tile .note .ok { color: var(--status-good-text); font-weight: 600; }
+.tile .note .bad { color: var(--status-critical); font-weight: 600; }
+
+/* ---- cards & sections ---- */
+section.card {
+  background: var(--surface-1); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px 16px; margin-bottom: 18px;
+}
+section.card h2 { font-size: 15px; font-weight: 700; margin: 0 0 2px; }
+section.card .desc { font-size: 12.5px; color: var(--text-muted); margin: 0 0 12px; }
+
+/* ---- tables ---- */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  text-align: left; font-size: 11.5px; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding: 6px 10px 6px 0; border-bottom: 1px solid var(--baseline);
+}
+td { padding: 8px 10px 8px 0; border-bottom: 1px solid var(--grid); vertical-align: top; color: var(--text-primary); }
+tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td .who { font-weight: 600; }
+td .why { color: var(--text-secondary); }
+td .ref { color: var(--text-muted); font-size: 12px; }
+
+/* ---- status chips: icon + label, never color alone ---- */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 600; border-radius: 999px;
+  padding: 2px 9px; white-space: nowrap;
+}
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.chip.crit { background: var(--chip-crit-bg); color: var(--text-primary); }
+.chip.crit .dot { background: var(--status-critical); }
+.chip.serious { background: var(--chip-serious-bg); color: var(--text-primary); }
+.chip.serious .dot { background: var(--status-serious); }
+.chip.warn { background: var(--chip-warn-bg); color: var(--text-primary); }
+.chip.warn .dot { background: var(--status-warning); }
+.chip.good { background: var(--chip-good-bg); color: var(--text-primary); }
+.chip.good .dot { background: var(--status-good); }
+
+/* ---- horizontal bars ---- */
+.barlist { display: grid; grid-template-columns: 170px 1fr 64px; gap: 6px 10px; align-items: center; }
+.barlist .bl-name { font-size: 13px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barlist .bl-track { position: relative; height: 14px; }
+.barlist .bl-bar {
+  position: absolute; left: 0; top: 2px; height: 10px;
+  background: var(--series-1); border-radius: 0 4px 4px 0;
+  min-width: 3px;
+}
+.barlist .bl-val { font-size: 12.5px; color: var(--text-secondary); font-variant-numeric: tabular-nums; text-align: right; }
+.bl-target {
+  position: absolute; top: -3px; bottom: -3px; width: 0;
+  border-left: 2px dashed var(--status-critical); opacity: .75;
+}
+.axis-note { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+.axis-note .tmark { color: var(--status-critical); font-weight: 600; }
+
+/* payment spend bars reuse barlist; serious color for money-burning rows */
+.bl-bar.money { background: var(--status-serious); }
+.bl-bar.late { background: var(--status-critical); }
+
+/* ---- live list ---- */
+.live-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.live-item {
+  border: 1px solid var(--grid); border-radius: 10px; padding: 9px 12px;
+  display: flex; align-items: center; gap: 8px; font-size: 13px;
+}
+.live-item .when { margin-left: auto; color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+.check { color: var(--status-good-text); font-weight: 700; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 780px) { .two-col { grid-template-columns: 1fr; } }
+.subhead { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-secondary); margin: 0 0 8px; }
+
+/* tooltip */
+#tip {
+  position: fixed; pointer-events: none; z-index: 10; display: none;
+  background: var(--text-primary); color: var(--page);
+  font-size: 12px; padding: 6px 9px; border-radius: 7px; max-width: 280px;
+}
+[data-tip] { cursor: default; }
+
+footer { color: var(--text-muted); font-size: 12px; margin-top: 8px; }
+footer a { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="page">
+  <h1>Go-Live Audit — Advanced Marketers</h1>
+  <button class="theme-btn" id="themeToggle" type="button">Toggle dark mode</button>
+</header>
+<p class="sub">Wednesday, July 16, 2026 · Heartbeats refreshed 7/15 8:53 PM (Meta) &amp; 7/15–16 (Google) · Board: Go-Live Pipeline (last 90 days) · Corrections applied 7/16 per Chris: Saucedo $3.5k, Ram Dumpster cancelled, ColdRiite added</p>
+
+<!-- ================= STAT TILES ================= -->
+<div class="tiles">
+  <div class="tile">
+    <div class="label">Marketing past 14-day target</div>
+    <div class="value">0</div>
+    <div class="note"><span class="ok">✓ On pace</span> · 4 accounts in flight</div>
+  </div>
+  <div class="tile">
+    <div class="label">Went live this week</div>
+    <div class="value">4</div>
+    <div class="note">LV, Roof City, Cortex, Reel</div>
+  </div>
+  <div class="tile">
+    <div class="label">Live &amp; spending (all clients)</div>
+    <div class="value">99</div>
+    <div class="note">$19,109 spend yesterday</div>
+  </div>
+  <div class="tile">
+    <div class="label">Payment-state ad accounts</div>
+    <div class="value">9</div>
+    <div class="note"><span class="bad">▲ 5 still spending</span> while unsettled</div>
+  </div>
+  <div class="tile">
+    <div class="label">New deals (last 4 days)</div>
+    <div class="value">1</div>
+    <div class="note">Emberline — signed ✓, carded ✓</div>
+  </div>
+</div>
+
+<!-- ================= ACTION NEEDED ================= -->
+<section class="card">
+  <h2>🚨 Action needed today</h2>
+  <p class="desc">Highest-priority items from the cross-check of ClickUp, Slack, and spend data.</p>
+  <table>
+    <thead><tr><th style="width:110px">Severity</th><th style="width:200px">Account</th><th>Issue</th><th>Next step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="chip crit"><span class="dot"></span>Critical</span></td>
+        <td><span class="who">Contreras Welding</span><br><span class="ref">card: PAUSED</span></td>
+        <td class="why">Board says PAUSED but Meta spent <b>$43.92 yesterday</b> — client money burning while "paused". Client also asked 7/15 to split monthly fee (half now / half 7/31).</td>
+        <td>Turn ads off or unpause the card; approve/deny fee split (retention form submitted, tagged for Chris).</td>
+      </tr>
+      <tr>
+        <td><span class="chip crit"><span class="dot"></span>Critical</span></td>
+        <td><span class="who">LV Heating &amp; Cooling</span><br><span class="ref">live 7/14</span></td>
+        <td class="why">Meta account <b>UNSETTLED</b> yet spent <b>$307.88</b> yesterday; Google live 7/14 but $0 spend since.</td>
+        <td>Fix Meta billing today; verify Google campaigns are serving.</td>
+      </tr>
+      <tr>
+        <td><span class="chip crit"><span class="dot"></span>Critical</span></td>
+        <td><span class="who">Sierra Trimlight</span><br><span class="ref">86bawp7fy · Mak</span></td>
+        <td class="why">Cancel intent + card declining; Meta unsettled.</td>
+        <td>Save attempt / collect before next billing cycle.</td>
+      </tr>
+      <tr>
+        <td><span class="chip serious"><span class="dot"></span>Serious</span></td>
+        <td><span class="who">Reel Electric · Leo's Landscaping</span></td>
+        <td class="why">Both Meta accounts UNSETTLED and still spending ($57.43 · $23.35 /day).</td>
+        <td>Collect or pause; don't let balances grow.</td>
+      </tr>
+      <tr>
+        <td><span class="chip serious"><span class="dot"></span>Serious</span></td>
+        <td><span class="who">[CLIENT] access blockers 3+ days</span></td>
+        <td class="why">Meta BM access (86baw60em) · Jennifer's GAds link — re-sent 7/14, still pending (86baw60h8) · domain/WordPress invites (86baw60hh).</td>
+        <td>Playbook: get a Zoom call scheduled within 24h for each.</td>
+      </tr>
+      <tr>
+        <td><span class="chip crit"><span class="dot"></span>Critical</span></td>
+        <td><span class="who">Ram Dumpster</span><br><span class="ref">cancelled</span></td>
+        <td class="why">Client cancelled, but Google campaigns are still <b>enabled</b> ($0 spend now — will burn if billing clears).</td>
+        <td>Turn ads off. Card moved to Cancel Request 7/16.</td>
+      </tr>
+      <tr>
+        <td><span class="chip crit"><span class="dot"></span>Critical</span></td>
+        <td><span class="who">ColdRiite Walk-Ins</span><br><span class="ref">oldest open build</span></td>
+        <td class="why">Website sold ~7/7/2025 — <b>~374 days</b> — still unfinished; "awaiting client feedback" since 5/22.</td>
+        <td>Finish ASAP (Chris 7/16); verify sell date on the agreement. Card added to board.</td>
+      </tr>
+      <tr>
+        <td><span class="chip warn"><span class="dot"></span>Watch</span></td>
+        <td><span class="who">Saucedo Plumbing</span><br><span class="ref">$3.5k declined 7/11</span></td>
+        <td class="why">Client OK'd a retry 7/14 after notifying their bank.</td>
+        <td>Confirm the $3,500 charge landed.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= MISMATCHES + PAYMENT ================= -->
+<section class="card">
+  <h2>📊 Heartbeat mismatches — board vs spend data</h2>
+  <p class="desc">A client counts as LIVE if at least one platform is active &amp; spending. These don't line up.</p>
+  <table>
+    <thead><tr><th style="width:200px">Account</th><th style="width:160px">Board says</th><th>Data says</th><th>Do</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="who">Apex Landscape</span></td>
+        <td>LIVE (Day 9)</td>
+        <td class="why">No active campaigns or spend on either platform.</td>
+        <td>Verify launch or fix card status.</td>
+      </tr>
+      <tr>
+        <td><span class="who">Drain Force Plumbing</span></td>
+        <td>LIVE (Day 33)</td>
+        <td class="why">No ad account visible in either heartbeat.</td>
+        <td>Verify launch; label the ad account.</td>
+      </tr>
+      <tr>
+        <td><span class="who">Roof City Pros</span></td>
+        <td>Google LIVE 7/14</td>
+        <td class="why">Still $0 spend since launch.</td>
+        <td>Verify ads are serving.</td>
+      </tr>
+      <tr>
+        <td><span class="who">Shelby Plumbing</span></td>
+        <td>Meta ads LIVE</td>
+        <td class="why">No matching row in Meta heartbeat (unnamed numeric accounts).</td>
+        <td>Label the ad-account row.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>💳 Payment</h2>
+  <p class="desc">From Meta account states in the heartbeat. Ex-clients excluded.</p>
+  <div class="two-col">
+    <div>
+      <p class="subhead">Spending while unsettled — urgent ($ / day)</p>
+      <div class="barlist" id="payBars">
+        <div class="bl-name">LV Heating &amp; Cooling</div>
+        <div class="bl-track" data-tip="UNSETTLED · spent $307.88 yesterday · went live on Google 7/14"><div class="bl-bar money" style="width:100%"></div></div>
+        <div class="bl-val">$307.88</div>
+        <div class="bl-name">Haro HVAC</div>
+        <div class="bl-track" data-tip="IN GRACE PERIOD · spent $67.49 · card went through 7/14 — confirm grace clears"><div class="bl-bar money" style="width:22%"></div></div>
+        <div class="bl-val">$67.49</div>
+        <div class="bl-name">Reel Electric</div>
+        <div class="bl-track" data-tip="UNSETTLED · spent $57.43 · card marked live 7/13"><div class="bl-bar money" style="width:19%"></div></div>
+        <div class="bl-val">$57.43</div>
+        <div class="bl-name">Contreras Welding</div>
+        <div class="bl-track" data-tip="Card says PAUSED · Meta campaign still ACTIVE, spent $43.92"><div class="bl-bar money" style="width:14%"></div></div>
+        <div class="bl-val">$43.92</div>
+        <div class="bl-name">Leo's Landscaping</div>
+        <div class="bl-track" data-tip="UNSETTLED · spent $23.35"><div class="bl-bar money" style="width:8%"></div></div>
+        <div class="bl-val">$23.35</div>
+      </div>
+      <p class="axis-note">Bar length = Meta spend yesterday. Haro's card cleared 7/14 — confirm the account exits grace.</p>
+    </div>
+    <div>
+      <p class="subhead">Unsettled but dark ($0 spend)</p>
+      <table>
+        <tbody>
+          <tr><td><span class="who">One Nation Energy</span></td><td class="why">UNSETTLED, 1 campaign, no spend</td></tr>
+          <tr><td><span class="who">Palm Valley Insurance</span></td><td class="why">Meta UNSETTLED · Google still spending (legacy)</td></tr>
+          <tr><td><span class="who">Jq Glasswork</span></td><td class="why">Meta UNSETTLED · Google legacy $52/day</td></tr>
+          <tr><td><span class="who">Sierra Trimlight</span></td><td class="why">UNSETTLED + cancel intent (see actions)</td></tr>
+        </tbody>
+      </table>
+      <p class="subhead" style="margin-top:14px">Resolved / retry in motion</p>
+      <table>
+        <tbody>
+          <tr><td><span class="who">Haro HVAC</span></td><td class="why">Card went through 7/14 ✓</td></tr>
+          <tr><td><span class="who">Saucedo</span></td><td class="why">$3.5k retry authorized 7/14 — confirm it landed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PIPELINE AGING ================= -->
+<section class="card">
+  <h2>⏰ Pipeline aging</h2>
+  <p class="desc">Marketing accounts are on the 14-day go-live clock. Website / promo builds have no ads clock — tracked for stalls only.</p>
+  <div class="two-col">
+    <div>
+      <p class="subhead">Marketing — days since channel created <span class="tmark">· dashed line = day-14 target</span></p>
+      <div class="barlist">
+        <div class="bl-name">Smithco Construction</div>
+        <div class="bl-track" data-tip="Day 11 · Pre-live check · Blocker: client CC auth for Meta + $500/$500 budget confirm (subtask 86baym05j)"><div class="bl-bar" style="width:39%"></div><div class="bl-target" style="left:50%"></div></div>
+        <div class="bl-val">11 d</div>
+        <div class="bl-name">At Your Service H&amp;C</div>
+        <div class="bl-track" data-tip="Day 11 · Ads intentionally held; creatives from client due today"><div class="bl-bar" style="width:39%"></div><div class="bl-target" style="left:50%"></div></div>
+        <div class="bl-val">11 d</div>
+        <div class="bl-name">Roberts Garage Doors</div>
+        <div class="bl-track" data-tip="Day 10 · Waiting: Jennifer to accept GAds link (re-sent 7/14); no domain exists yet"><div class="bl-bar" style="width:36%"></div><div class="bl-target" style="left:50%"></div></div>
+        <div class="bl-val">10 d</div>
+        <div class="bl-name">Emberline Showers</div>
+        <div class="bl-track" data-tip="Day 2 · Signed 7/14, full marketing package · strat call 7/16 10am"><div class="bl-bar" style="width:7%"></div><div class="bl-target" style="left:50%"></div></div>
+        <div class="bl-val">2 d</div>
+      </div>
+      <p class="axis-note">Scale 0–28 days · <span class="tmark">target: live by day 14</span> · 0 accounts over target</p>
+    </div>
+    <div>
+      <p class="subhead">Website / promo builds — no ads clock · ColdRiite flagged ASAP</p>
+      <div class="barlist">
+        <div class="bl-name">ColdRiite Walk-Ins</div>
+        <div class="bl-track" data-tip="Day ~374 · sold ~7/7/2025 — OLDEST open build · 'awaiting client feedback' since 5/22 · Chris 7/16: finish ASAP (card 86bayrxye)"><div class="bl-bar late" style="width:100%"></div></div>
+        <div class="bl-val">374 d</div>
+        <div class="bl-name">MM Cellar Systems</div>
+        <div class="bl-track" data-tip="Day 88 · WEB+VIDEO package"><div class="bl-bar" style="width:24%"></div></div>
+        <div class="bl-val">88 d</div>
+        <div class="bl-name">Verterra Outdoor</div>
+        <div class="bl-track" data-tip="Day 80 · FREE 6-month promo winner"><div class="bl-bar" style="width:21%"></div></div>
+        <div class="bl-val">80 d</div>
+        <div class="bl-name">Best in the West AC</div>
+        <div class="bl-track" data-tip="Day 71 · client-paused · WEB package"><div class="bl-bar" style="width:19%"></div></div>
+        <div class="bl-val">71 d</div>
+        <div class="bl-name">Cal Pro Plumbing</div>
+        <div class="bl-track" data-tip="Day 43 · pre-live check"><div class="bl-bar" style="width:11.5%"></div></div>
+        <div class="bl-val">43 d</div>
+        <div class="bl-name">World Famous Plumbing</div>
+        <div class="bl-track" data-tip="Day 42 · 7/7 revision list outstanding"><div class="bl-bar" style="width:11%"></div></div>
+        <div class="bl-val">42 d</div>
+        <div class="bl-name">Hernandez</div>
+        <div class="bl-track" data-tip="Day 35 · client unreachable ~1 month"><div class="bl-bar" style="width:9.4%"></div></div>
+        <div class="bl-val">35 d</div>
+        <div class="bl-name">My Contractor Stack</div>
+        <div class="bl-track" data-tip="Day 35 · waiting on client assets · note: Meta ad account DISABLED"><div class="bl-bar" style="width:9.4%"></div></div>
+        <div class="bl-val">35 d</div>
+        <div class="bl-name">Clog Monkey</div>
+        <div class="bl-track" data-tip="Day 32 · client silent"><div class="bl-bar" style="width:8.6%"></div></div>
+        <div class="bl-val">32 d</div>
+        <div class="bl-name">Ground Up Plumbing</div>
+        <div class="bl-track" data-tip="Day 25 · build starting"><div class="bl-bar" style="width:6.7%"></div></div>
+        <div class="bl-val">25 d</div>
+        <div class="bl-name">Premium Plumbing</div>
+        <div class="bl-track" data-tip="Day 5 · SEO/website · on track"><div class="bl-bar" style="width:1.5%"></div></div>
+        <div class="bl-val">5 d</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WINS + NEW ================= -->
+<section class="card">
+  <h2>✅ Went live &amp; new deals</h2>
+  <div class="live-grid">
+    <div class="live-item"><span class="check">✓</span> LV Heating — Google <span class="when">7/14</span></div>
+    <div class="live-item"><span class="check">✓</span> Roof City Pros — Google <span class="when">7/14</span></div>
+    <div class="live-item"><span class="check">✓</span> Cortex Plastering — Meta <span class="when">7/14</span></div>
+    <div class="live-item"><span class="check">✓</span> Reel Electric — Google + Meta <span class="when">7/13</span></div>
+    <div class="live-item"><span class="check">✓</span> His Hands Plumbing <span class="when">7/10</span></div>
+    <div class="live-item"><span class="check">✓</span> 5blox — Meta spending ~$164/day <span class="when">live</span></div>
+  </div>
+  <p style="margin:14px 0 0; font-size:13.5px;">
+    <span class="chip good"><span class="dot"></span>New deal</span>&nbsp;
+    <b>Emberline Shower Enclosures</b> — agreement signed, full marketing package ($2.5k/mo → $3.5k/mo), card in <b>Onboarding</b> with [MKTG] marker, strat call 7/16 10am. <span class="why">No unstatused deals found in the last 4 days.</span>
+  </p>
+</section>
+
+<footer>
+  Generated by the daily go-live audit · sources: ClickUp Go-Live Pipeline (901417990784), Google Ads &amp; Meta heartbeat sheets, internal Slack channels ·
+  <a href="https://app.clickup.com/10552018/v/b/li/901417990784">open the board</a>
+</footer>
+
+</div>
+<div id="tip" role="tooltip"></div>
+<script>
+// theme toggle — viewer choice wins over OS setting
+var btn = document.getElementById('themeToggle');
+btn.addEventListener('click', function () {
+  var root = document.documentElement;
+  var dark = root.getAttribute('data-theme') === 'dark' ||
+    (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  root.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+
+// lightweight hover tooltips for bar tracks
+var tip = document.getElementById('tip');
+document.querySelectorAll('[data-tip]').forEach(function (el) {
+  el.addEventListener('mousemove', function (e) {
+    tip.textContent = el.getAttribute('data-tip');
+    tip.style.display = 'block';
+    var x = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8);
+    var y = Math.min(e.clientY + 14, window.innerHeight - tip.offsetHeight - 8);
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  });
+  el.addEventListener('mouseleave', function () { tip.style.display = 'none'; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced Marketers | Weekly Ads &amp; Revenue Report | Aug 1-7, 2026</title>
+<style>
+  :root{
+    --bg:#0D0D12;
+    --panel:#16161D;
+    --border:#2B2B35;
+    --text:#EDEDF2;
+    --muted:#8A8A99;
+    --accent:#7D7BF7;
+    --good:#3FCF95;
+    --bad:#E4604F;
+    --warn:#D9A441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:15px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 80px;}
+
+  /* ---------- STICKY NAV ---------- */
+  .navbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(13,13,18,0.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .navbar-inner{
+    max-width:1180px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  .wordmark{
+    font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--text);white-space:nowrap;
+  }
+  .navbtns{display:flex;gap:8px;flex-wrap:wrap;}
+  .navbtn{
+    font:inherit;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;
+    background:transparent;color:var(--muted);
+    border:1px solid var(--border);
+    cursor:pointer;transition:all .15s ease;
+  }
+  .navbtn:hover{color:var(--text);border-color:var(--accent);}
+  .navbtn.active{background:var(--accent);color:#0D0D12;border-color:var(--accent);}
+
+  /* ---------- HEADER ---------- */
+  header.masthead{padding:52px 0 34px;border-bottom:1px solid var(--border);margin-bottom:34px;}
+  .kicker{
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 14px;
+  }
+  h1{font-size:40px;line-height:1.15;margin:0 0 14px;font-weight:700;letter-spacing:-.02em;}
+  h1 .hl{color:var(--accent);}
+  .subhead{color:var(--muted);font-size:15px;margin:0;}
+
+  .section-kicker{
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 10px;
+  }
+  h2{font-size:24px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em;}
+  .section-note{color:var(--muted);font-size:14px;margin:0 0 20px;}
+  section{margin-bottom:52px;}
+
+  /* ---------- KPI CARDS ---------- */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:14px;margin-bottom:52px;}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px 18px;}
+  .kpi .label{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .kpi .value{font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.1;}
+  .kpi .meta{font-size:12px;color:var(--muted);margin-top:7px;}
+  .kpi.accent{border-color:var(--accent);}
+
+  /* ---------- TABLES ---------- */
+  .tablewrap{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px;}
+  th{
+    text-align:left;padding:13px 16px;
+    font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  td{padding:13px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:rgba(125,123,247,0.06);}
+  tr.totalrow{background:rgba(125,123,247,0.10);font-weight:700;}
+  tr.totalrow:hover{background:rgba(125,123,247,0.14);}
+  td.num,th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .good{color:var(--good);}
+  .bad{color:var(--bad);}
+  .warn{color:var(--warn);}
+  .dim{color:var(--muted);}
+  .sm{font-size:12px;}
+
+  /* ---------- HIGHLIGHT / CAVEAT ---------- */
+  .highlight{
+    background:var(--panel);border:1px solid var(--accent);border-radius:12px;
+    padding:22px 24px;margin:22px 0;
+  }
+  .highlight h3{margin:0 0 12px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);}
+  .highlight ul{margin:0;padding-left:20px;}
+  .highlight li{margin-bottom:8px;}
+  .caveat{
+    background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--warn);
+    border-radius:0 10px 10px 0;padding:16px 20px;margin:18px 0;font-size:14px;color:var(--muted);
+  }
+  .caveat strong{color:var(--warn);display:block;margin-bottom:6px;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;}
+  .action{
+    background:var(--panel);border:1px solid var(--bad);border-radius:12px;
+    padding:20px 24px;margin:22px 0;
+  }
+  .action h3{margin:0 0 10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--bad);}
+  .action p{margin:0 0 8px;font-size:14px;}
+  .action a{color:var(--accent);word-break:break-all;}
+
+  /* ---------- PILLS ---------- */
+  .pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .pill{
+    background:var(--panel);border:1px solid var(--border);border-radius:999px;
+    padding:9px 17px;font-size:13px;
+  }
+  .pill b{color:var(--accent);}
+  .pill.ok{border-color:var(--good);}
+  .pill.ok b{color:var(--good);}
+  .pill.warnp{border-color:var(--warn);}
+  .pill.warnp b{color:var(--warn);}
+
+  footer{
+    border-top:1px solid var(--border);margin-top:60px;padding-top:26px;
+    color:var(--muted);font-size:12.5px;text-align:center;line-height:1.9;
+  }
+  footer .fk{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+  @media(max-width:640px){h1{font-size:29px;} .wrap{padding:0 18px 60px;} .navbar-inner{padding:12px 18px;}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="wordmark">Advanced Marketers</div>
+    <div class="navbtns">
+      <button class="navbtn active" data-view="all">All</button>
+      <button class="navbtn" data-view="channels">Channels</button>
+      <button class="navbtn" data-view="google">Google</button>
+      <button class="navbtn" data-view="calls">Calls</button>
+      <button class="navbtn" data-view="meta">Meta</button>
+      <button class="navbtn" data-view="ads">Sales by Ad</button>
+      <button class="navbtn" data-view="pipeline">Pipeline</button>
+      <button class="navbtn" data-view="attribution">Attribution</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">Advanced Marketers &middot; Growth System</p>
+  <h1>Weekly Ads &amp; <span class="hl">Revenue Report</span></h1>
+  <p class="subhead">August 1 &ndash; August 7, 2026 &middot; America/Los_Angeles &middot; Generated August 8, 2026</p>
+</header>
+
+<!-- KPI CARDS: always visible -->
+<div class="kpis">
+  <div class="kpi accent">
+    <div class="label">Total Spend</div>
+    <div class="value">$5,938</div>
+    <div class="meta">Google + Meta only</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Leads</div>
+    <div class="value">86</div>
+    <div class="meta">77 CRM + 9 Google calls</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Blended CPL</div>
+    <div class="value">$82.47</div>
+    <div class="meta">72 paid leads</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Blended CPQL</div>
+    <div class="value">$94.25</div>
+    <div class="meta">63 paid qualified</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Diagnosis Sales</div>
+    <div class="value">1</div>
+    <div class="meta">$500 collected</div>
+  </div>
+  <div class="kpi accent">
+    <div class="label">Revenue Collected</div>
+    <div class="value">$18,000</div>
+    <div class="meta">9 succeeded payments</div>
+  </div>
+</div>
+
+<div class="caveat">
+  <strong>Week-over-week</strong>
+  No prior AM-Weekly-Ads-Report file was present in the outputs folder at run time, so week-over-week deltas could not be calculated. This report becomes the baseline for next week's comparison.
+</div>
+
+<!-- ============ CHANNELS ============ -->
+<section id="channels">
+  <p class="section-kicker">Section 01</p>
+  <h2>Channel Performance</h2>
+  <p class="section-note">Leads are GoHighLevel opportunities created in the window on ADV - Master Pipeline, attributed by the confirmed priority rules. Google leads are answered Google Ads click-to-call events, which sit outside the CRM opportunity count.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Channel</th>
+        <th class="num">Spend</th>
+        <th class="num">Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">Qualified</th>
+        <th class="num">CPQL</th>
+        <th class="num">Sales</th>
+        <th class="num">Cash Collected</th>
+        <th class="num">Cash ROAS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Meta Ads</b></td>
+        <td class="num">$2,175.44</td>
+        <td class="num">63</td>
+        <td class="num good">$34.53</td>
+        <td class="num">56</td>
+        <td class="num good">$38.85</td>
+        <td class="num">2</td>
+        <td class="num">$2,999.99</td>
+        <td class="num good">1.38x</td>
+      </tr>
+      <tr>
+        <td><b>Google Ads</b></td>
+        <td class="num">$3,762.57</td>
+        <td class="num">9</td>
+        <td class="num bad">$418.06</td>
+        <td class="num">7</td>
+        <td class="num bad">$537.51</td>
+        <td class="num">0</td>
+        <td class="num">$0.00</td>
+        <td class="num bad">0.00x</td>
+      </tr>
+      <tr>
+        <td><b>ChatGPT Ads</b></td>
+        <td class="num dim">no data</td>
+        <td class="num dim">no data</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num dim">no data</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">0</td>
+        <td class="num">$0.00</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+      <tr>
+        <td><b>Affiliate</b></td>
+        <td class="num dim">$0.00</td>
+        <td class="num">1</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">1</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">1</td>
+        <td class="num">$0.00</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+      <tr>
+        <td><b>Organic / Other</b></td>
+        <td class="num dim">$0.00</td>
+        <td class="num">13</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">9</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">2</td>
+        <td class="num">$4,500.00</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+      <tr class="totalrow">
+        <td>Blended (paid only)</td>
+        <td class="num">$5,938.01</td>
+        <td class="num">72</td>
+        <td class="num">$82.47</td>
+        <td class="num">63</td>
+        <td class="num">$94.25</td>
+        <td class="num">2</td>
+        <td class="num">$2,999.99</td>
+        <td class="num bad">0.51x</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="highlight">
+    <h3>What the channel table says</h3>
+    <ul>
+      <li><b>Meta is carrying the week.</b> It produced 63 of 72 paid leads at a $34.53 CPL and both paid-channel sales, on 37 percent of total spend.</li>
+      <li><b>Google is spending like a lead channel and behaving like a brand channel.</b> $3,762.57 produced 9 answered calls, no form leads, and no attributable revenue. Cost per answered call is $418.06.</li>
+      <li><b>The Scorpion competitor campaign is the single biggest leak.</b> $2,239.68 spent, 788 impressions, 21 clicks, zero conversions, zero calls. That is 38 percent of all paid spend this week returning nothing measurable.</li>
+      <li><b>Blended cash ROAS of 0.51x is not the whole picture.</b> Using LTV of monthly retainer divided by 0.15, the one retainer-sized Meta sale (Raul Chavez, $2,500/mo) is worth roughly $16,667, putting Meta LTV ROAS near 7.89x.</li>
+    </ul>
+  </div>
+
+  <div class="caveat">
+    <strong>How blended figures are built</strong>
+    Blended CPL and CPQL divide total known paid spend by paid leads only (63 Meta + 9 Google answered calls). Affiliate and organic leads carry no media spend and are excluded from the denominators so the cost metrics stay honest. Blended cash ROAS counts only cash collected from opportunities created in this window and attributed to a paid channel.
+  </div>
+
+  <div class="action">
+    <h3>Action needed &mdash; ChatGPT Ads unavailable</h3>
+    <p>The ChatGPT Ads pull (ds_id CGPTA, account adacct_6a1759f36cac819290286bd563a9f0db) failed with: "Data source ChatGPT Ads (CGPTA) is not available in your license 1816146 on team Team advancedmarketers."</p>
+    <p>No ChatGPT Ads spend, impressions, clicks, or creative rows are included anywhere in this report. Resolve the license at <a href="https://hub.supermetrics.com/subscriptions/1816146">https://hub.supermetrics.com/subscriptions/1816146</a>. Note that no lead in this window carried the "growth-diagnostic" tag either, so the ChatGPT attributed lead count would have been zero regardless.</p>
+  </div>
+</section>
+
+<!-- ============ GOOGLE ============ -->
+<section id="google">
+  <p class="section-kicker">Section 02</p>
+  <h2>Google Ads Campaign Detail</h2>
+  <p class="section-note">Account 8960669250. Conversions and conversion value are as reported by Google Ads and are not the same as CRM-confirmed revenue.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th class="num">Impr.</th>
+        <th class="num">Clicks</th>
+        <th class="num">CTR</th>
+        <th class="num">Spend</th>
+        <th class="num">CPC</th>
+        <th class="num">Conv.</th>
+        <th class="num">Cost / Conv.</th>
+        <th class="num">Conv. Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>AM-CP-AI-SEARCH | 2</b><br><span class="sm dim">ID 23886893174</span></td>
+        <td class="num">2,582</td>
+        <td class="num">91</td>
+        <td class="num">3.52%</td>
+        <td class="num">$1,522.89</td>
+        <td class="num">$16.74</td>
+        <td class="num">9</td>
+        <td class="num">$169.21</td>
+        <td class="num">$3,900.00</td>
+      </tr>
+      <tr>
+        <td><b>AM - SEARCH - COMPETITOR - SCORPION | 2</b><br><span class="sm dim">ID 23886892796</span></td>
+        <td class="num">788</td>
+        <td class="num">21</td>
+        <td class="num">2.66%</td>
+        <td class="num">$2,239.68</td>
+        <td class="num bad">$106.65</td>
+        <td class="num bad">0</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num bad">$0.00</td>
+      </tr>
+      <tr class="totalrow">
+        <td>Total</td>
+        <td class="num">3,370</td>
+        <td class="num">112</td>
+        <td class="num">3.32%</td>
+        <td class="num">$3,762.57</td>
+        <td class="num">$33.59</td>
+        <td class="num">9</td>
+        <td class="num">$418.06</td>
+        <td class="num">$3,900.00</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="highlight">
+    <h3>Google read</h3>
+    <ul>
+      <li><b>Kill or cap the Scorpion competitor campaign.</b> $106.65 per click with zero conversions across seven days. At this burn rate it costs roughly $9,600 a month for no measurable pipeline.</li>
+      <li><b>AM-CP-AI-SEARCH is the only Google asset earning its place.</b> It generated all 9 answered calls and all 9 platform conversions at $169.21 each.</li>
+      <li><b>Google reports $3,900 in conversion value; the CRM confirms $0 attributable to Google this week.</b> That gap is the call-attribution blind spot described in the Calls section, not necessarily lost revenue.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CALLS ============ -->
+<section id="calls">
+  <p class="section-kicker">Section 03</p>
+  <h2>Google Ads Call Report</h2>
+  <p class="section-note">All 9 calls in the window were mobile click-to-call on AM-CP-AI-SEARCH | 2 and all were answered. Qualified at 60 seconds or more, per the Advanced Marketers standard.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th class="num">Hour</th>
+        <th>Campaign</th>
+        <th>Status</th>
+        <th class="num">Duration</th>
+        <th>Qualified</th>
+        <th class="num">Area Code</th>
+        <th>GHL Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Aug 3</td><td class="num">09:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">39s</td><td class="bad">No</td><td class="num">626</td><td class="dim">No candidate</td></tr>
+      <tr><td>Aug 3</td><td class="num">09:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">3m 01s</td><td class="good">Yes</td><td class="num">626</td><td class="dim">No candidate</td></tr>
+      <tr><td>Aug 3</td><td class="num">11:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">2m 10s</td><td class="good">Yes</td><td class="num">707</td><td class="dim">No candidate</td></tr>
+      <tr><td>Aug 4</td><td class="num">13:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">5m 31s</td><td class="good">Yes</td><td class="num">323</td><td class="dim">No candidate</td></tr>
+      <tr><td>Aug 4</td><td class="num">15:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">11m 02s</td><td class="good">Yes</td><td class="num">951</td><td class="dim">No candidate</td></tr>
+      <tr><td>Aug 5</td><td class="num">10:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">33s</td><td class="bad">No</td><td class="num">323</td><td class="warn">Ambiguous (2)</td></tr>
+      <tr><td>Aug 6</td><td class="num">09:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">2m 30s</td><td class="good">Yes</td><td class="num">949</td><td class="warn">Ambiguous (2)</td></tr>
+      <tr><td>Aug 6</td><td class="num">13:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">1m 26s</td><td class="good">Yes</td><td class="num">760</td><td class="warn">Ambiguous (2)</td></tr>
+      <tr><td>Aug 6</td><td class="num">15:00</td><td>AM-CP-AI-SEARCH | 2</td><td class="good">Received</td><td class="num">1m 20s</td><td class="good">Yes</td><td class="num">951</td><td class="warn">Ambiguous (2)</td></tr>
+      <tr class="totalrow">
+        <td>9 calls</td><td class="num">&mdash;</td><td>&mdash;</td><td>9 received, 0 missed</td>
+        <td class="num">28m 12s</td><td>7 qualified</td><td class="num">&mdash;</td><td>0 confirmed</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Why no call is confirmed to a CRM contact</strong>
+    Google hides caller numbers on campaign-level call assets, so calls can only be matched by area code and timing. The Aug 5 and Aug 6 calls have two plausible CRM candidates each (Catalino Reyes and Eric Orduna on Aug 5; Patrick and Transportation Service on Aug 6), all of which are tagged "gbp ads - costa mesa" rather than a Google Ads click ID. Because more than one candidate exists for each and the tags point to Google Business Profile rather than paid search, every match is labelled ambiguous and none is claimed. The Aug 3 and Aug 4 calls have no non-Meta inbound-call contact created on those dates at all.
+  </div>
+
+  <div class="highlight">
+    <h3>Lost-revenue risk</h3>
+    <ul>
+      <li><b>Zero missed calls this week.</b> All 9 calls were answered, so there is no direct missed-call revenue leak in the Google data.</li>
+      <li><b>The real leak is downstream of the call, not at pickup.</b> Seven qualified conversations totalling roughly 27 minutes of talk time produced no traceable CRM opportunity and no revenue. Either the calls are not being logged into GoHighLevel, or they are being logged without a Google identifier.</li>
+      <li><b>Fix the identifier, not the answer rate.</b> Adding a dedicated call-tracking number per Google campaign, or a gclid-stamped call record, would convert this blind spot into attributable pipeline and would very likely change the Google CPL of $418.06.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ META ============ -->
+<section id="meta">
+  <p class="section-kicker">Section 04</p>
+  <h2>Meta Ad Set &amp; Ad Detail</h2>
+  <p class="section-note">Account act_383628763095207. All spend this week ran through a single ad set, LAL 1% Followers (ISH), inside the campaign AM - MH | Influencer Campaign (IF) | ABO | 5/22/26.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Ad Set / Ad</th>
+        <th class="num">Spend</th>
+        <th class="num">Impr.</th>
+        <th class="num">Link Clicks</th>
+        <th class="num">CTR</th>
+        <th class="num">Platform Leads</th>
+        <th class="num">CRM Leads</th>
+        <th class="num">CRM CPL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Ad 1 | Video 8 (Ish) | Learn More CTA</b><br><span class="sm dim">LAL 1% Followers (ISH) &middot; ad 120243771946330476</span></td>
+        <td class="num">$1,117.29</td>
+        <td class="num">38,770</td>
+        <td class="num">389</td>
+        <td class="num">1.00%</td>
+        <td class="num">17</td>
+        <td class="num">19</td>
+        <td class="num">$58.80</td>
+      </tr>
+      <tr>
+        <td><b>Video 9 Testimonial (Lincoln) Subbed | Learn More CTA - Copy</b><br><span class="sm dim">LAL 1% Followers (ISH) &middot; ad 120246869316910476</span></td>
+        <td class="num">$1,044.95</td>
+        <td class="num">39,893</td>
+        <td class="num">781</td>
+        <td class="num good">1.96%</td>
+        <td class="num">49</td>
+        <td class="num">43</td>
+        <td class="num good">$24.30</td>
+      </tr>
+      <tr>
+        <td><b>Video 9 Testimonial (Lincoln) | Learn More CTA - Copy 2</b><br><span class="sm dim">LAL 1% Followers (ISH) &middot; ad 120246869711430476</span></td>
+        <td class="num">$13.20</td>
+        <td class="num">382</td>
+        <td class="num">6</td>
+        <td class="num">1.57%</td>
+        <td class="num">0</td>
+        <td class="num">0</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+      <tr class="totalrow">
+        <td>Total &mdash; LAL 1% Followers (ISH)</td>
+        <td class="num">$2,175.44</td>
+        <td class="num">79,045</td>
+        <td class="num">1,176</td>
+        <td class="num">1.49%</td>
+        <td class="num">66</td>
+        <td class="num">63</td>
+        <td class="num">$34.53</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Two data notes on this table</strong>
+    First, Supermetrics resolved the requested Meta field campaign_name to adset_name, so campaign naming in this report comes from the GoHighLevel UTM records (utmCampaign) rather than from the ad platform. Second, "Platform Leads" is Meta's on-Facebook lead count (66) and "CRM Leads" is opportunities actually created in GoHighLevel and attributed to Meta (63). The 3-lead gap is expected de-duplication and timing drift, not a missing-lead alarm. One additional Meta-attributed lead (Damaryz) carried a click ID with no ad-level UTMs and is counted in the channel total but not against any individual ad, which is why the ad rows sum to 62 rather than 63.
+  </div>
+</section>
+
+<!-- ============ SALES BY AD ============ -->
+<section id="ads">
+  <p class="section-kicker">Section 05</p>
+  <h2>Creative Attribution &mdash; Every Sale, Traced</h2>
+  <p class="section-note">Each sale in the window mapped back to campaign, ad set, and individual ad using the opportunity attribution record, with utmAdId matched against the Meta ad-level query.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Sale</th>
+        <th class="num">Booked</th>
+        <th class="num">Cash Collected</th>
+        <th>Channel</th>
+        <th>Campaign</th>
+        <th>Ad Set</th>
+        <th>Ad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Raul Chavez</b><br><span class="sm dim">Closed Won &middot; Aug 1</span></td>
+        <td class="num">$2,500</td>
+        <td class="num good">$2,500.00</td>
+        <td>Meta</td>
+        <td class="sm">AM - MH | Influencer Campaign (IF) | ABO | 5/22/26</td>
+        <td class="sm">LAL 1% Followers (ISH)</td>
+        <td class="sm">Ad 1 | Video 8 (Ish) | Learn More CTA<br><span class="dim">ad 120243771946330476</span></td>
+      </tr>
+      <tr>
+        <td><b>Joe A. Guerrero</b><br><span class="sm dim">Closed Won &middot; Aug 4</span></td>
+        <td class="num">$499</td>
+        <td class="num good">$499.99</td>
+        <td>Meta</td>
+        <td class="sm">AM - MH | Influencer Campaign (IF) | ABO | 5/22/26</td>
+        <td class="sm">LAL 1% Followers (ISH)</td>
+        <td class="sm">Ad 1 | Video 8 (Ish) | Learn More CTA<br><span class="dim">ad 120243771946330476</span></td>
+      </tr>
+      <tr>
+        <td><b>Carter Plumbing Solutions, LLC</b><br><span class="sm dim">Closed Won &middot; Aug 7</span></td>
+        <td class="num">$5,000</td>
+        <td class="num warn">$0.00</td>
+        <td>Affiliate</td>
+        <td class="sm dim">Partner: London Capri Plumbing</td>
+        <td class="sm dim">Not applicable</td>
+        <td class="sm dim">Not applicable</td>
+      </tr>
+      <tr>
+        <td><b>Vanessa Garcia</b><br><span class="sm dim">Closed Won &middot; Aug 5</span></td>
+        <td class="num">$4,000</td>
+        <td class="num good">$4,000.00</td>
+        <td>Organic / Other</td>
+        <td class="sm dim">Direct traffic, contact-us form</td>
+        <td class="sm dim">Not applicable</td>
+        <td class="sm dim">Not applicable</td>
+      </tr>
+      <tr>
+        <td><b>Eric Orduna</b><br><span class="sm dim">Closed - Digital Diagnosis &middot; Aug 5</span></td>
+        <td class="num">$500</td>
+        <td class="num good">$500.00</td>
+        <td>Organic / Other</td>
+        <td class="sm warn">Inbound call, channel unconfirmed</td>
+        <td class="sm dim">Not applicable</td>
+        <td class="sm dim">Not applicable</td>
+      </tr>
+      <tr class="totalrow">
+        <td>5 sales</td>
+        <td class="num">$12,499</td>
+        <td class="num">$7,499.99</td>
+        <td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:34px 0 12px;">Ad-Level Spend vs Results</h3>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Ad</th>
+        <th class="num">Spend</th>
+        <th class="num">CRM Leads</th>
+        <th class="num">CPL</th>
+        <th class="num">Sales</th>
+        <th class="num">Cash</th>
+        <th class="num">Cash ROAS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Ad 1 | Video 8 (Ish) | Learn More CTA</b></td>
+        <td class="num">$1,117.29</td>
+        <td class="num">19</td>
+        <td class="num">$58.80</td>
+        <td class="num good">2</td>
+        <td class="num good">$2,999.99</td>
+        <td class="num good">2.69x</td>
+      </tr>
+      <tr>
+        <td><b>Video 9 Testimonial (Lincoln) Subbed | Learn More CTA - Copy</b></td>
+        <td class="num">$1,044.95</td>
+        <td class="num good">43</td>
+        <td class="num good">$24.30</td>
+        <td class="num bad">0</td>
+        <td class="num bad">$0.00</td>
+        <td class="num bad">0.00x</td>
+      </tr>
+      <tr>
+        <td><b>Video 9 Testimonial (Lincoln) | Learn More CTA - Copy 2</b></td>
+        <td class="num">$13.20</td>
+        <td class="num">0</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">0</td>
+        <td class="num">$0.00</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+      <tr>
+        <td class="dim">Meta, click ID only, no ad-level UTMs</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">1</td>
+        <td class="num dim">&mdash;</td>
+        <td class="num">0</td>
+        <td class="num">$0.00</td>
+        <td class="num dim">&mdash;</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="highlight">
+    <h3>The most important finding this week</h3>
+    <ul>
+      <li><b>Volume and revenue are coming from two different creatives.</b> Video 9 Testimonial (Lincoln) Subbed produced 43 of 63 Meta leads at a $24.30 CPL and closed nothing. Ad 1 | Video 8 (Ish) produced 19 leads at more than double the CPL, $58.80, and closed both sales for $2,999.99.</li>
+      <li><b>Judging these ads on CPL would lead to the wrong decision.</b> On CPL alone Video 9 looks like the clear winner and Ad 1 looks expensive. On cash, Ad 1 returned 2.69x and Video 9 returned nothing.</li>
+      <li><b>Recommended test:</b> hold Ad 1 | Video 8 (Ish) budget or increase it, and give Video 9 one more week before judging it. Forty-three leads with zero closes could be a genuine quality problem or simply a sales-cycle lag, and one week of data cannot separate those two.</li>
+      <li><b>Video 9 Testimonial (Lincoln) | Learn More CTA - Copy 2 is effectively not running</b> at $13.20 and 382 impressions. Either fund it properly or turn it off so it stops fragmenting the ad set.</li>
+    </ul>
+  </div>
+
+  <div class="caveat">
+    <strong>What cannot be traced to a creative</strong>
+    Google call sales cannot be tied to a creative, because the calls run on campaign-level call assets rather than ad-level tracking. This week that is a non-issue since Google produced no attributable sales, but it would matter the moment it does. The Carter Plumbing affiliate sale and the Vanessa Garcia organic sale have no paid creative by definition. The Eric Orduna diagnosis purchase came from an inbound call with no ad identifier, so its true channel is unconfirmed and it is reported under Organic / Other rather than assigned to a paid channel.
+  </div>
+</section>
+
+<!-- ============ PIPELINE ============ -->
+<section id="pipeline">
+  <p class="section-kicker">Section 06</p>
+  <h2>Pipeline &amp; Revenue</h2>
+  <p class="section-note">ADV - Master Pipeline, 77 opportunities created August 1 to 7. The RAW - HOUSTON pipeline returned zero opportunities in this window, so no Houston diagnosis sales are included.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th>Stage</th><th class="num">Opportunities</th><th class="num">Share</th><th>Counts as Qualified</th><th class="num">Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>New Lead</td><td class="num">1</td><td class="num">1.3%</td><td class="bad">No</td><td class="num">$0</td></tr>
+      <tr><td>Booked Call</td><td class="num">11</td><td class="num">14.3%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>No-Show</td><td class="num">6</td><td class="num">7.8%</td><td class="bad">No</td><td class="num">$0</td></tr>
+      <tr><td>Contacted / Working</td><td class="num">12</td><td class="num">15.6%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>Confident</td><td class="num">0</td><td class="num">0.0%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>Proposal Sent</td><td class="num">2</td><td class="num">2.6%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>TOUCH 1</td><td class="num">35</td><td class="num">45.5%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>TOUCH 2</td><td class="num">1</td><td class="num">1.3%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>TOUCH 3</td><td class="num">0</td><td class="num">0.0%</td><td class="good">Yes</td><td class="num">$0</td></tr>
+      <tr><td>Closed - Digital Diagnosis</td><td class="num">1</td><td class="num">1.3%</td><td class="good">Yes</td><td class="num">$500</td></tr>
+      <tr><td>Closed Won</td><td class="num">4</td><td class="num">5.2%</td><td class="good">Yes</td><td class="num">$11,999</td></tr>
+      <tr><td>Close Lost</td><td class="num">4</td><td class="num">5.2%</td><td class="bad">No</td><td class="num">$0</td></tr>
+      <tr class="totalrow"><td>Total</td><td class="num">77</td><td class="num">100%</td><td>66 qualified</td><td class="num">$12,499</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="highlight">
+    <h3>Sales by channel</h3>
+    <ul>
+      <li><b>Meta &mdash; 2 sales, $2,999 booked, $2,999.99 collected.</b> Raul Chavez $2,500 and Joe A. Guerrero $499, both from Ad 1 | Video 8 (Ish).</li>
+      <li><b>Affiliate &mdash; 1 sale, $5,000 booked, $0 collected in window.</b> Carter Plumbing Solutions, LLC, referred by partner London Capri Plumbing. This is the largest single deal of the week and no cash has landed yet, so it should be chased.</li>
+      <li><b>Organic / Other &mdash; 2 sales, $4,500 booked, $4,500 collected.</b> Vanessa Garcia $4,000 from the contact-us form, and the Eric Orduna $500 digital diagnosis from an inbound call.</li>
+      <li><b>Google &mdash; 0 sales.</b> Despite $3,762.57 in spend and 7 qualified conversations.</li>
+    </ul>
+  </div>
+
+  <p class="section-kicker" style="margin-top:36px;">Cash Collected</p>
+  <h2 style="font-size:19px;">Every Succeeded Payment, August 1 to 7</h2>
+  <div class="tablewrap">
+  <table>
+    <thead>
+      <tr><th>Date</th><th>Contact</th><th class="num">Amount</th><th>Status</th><th>Tied to a window opportunity</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Aug 7</td><td>Vanessa Garcia</td><td class="num">$1,100.00</td><td class="good">Succeeded</td><td>Yes &mdash; Closed Won, Organic</td></tr>
+      <tr><td>Aug 7</td><td>Vanessa Garcia</td><td class="num">$2,900.00</td><td class="good">Succeeded</td><td>Yes &mdash; Closed Won, Organic</td></tr>
+      <tr><td>Aug 5</td><td>Jacob Quintero, JQ Glassworks</td><td class="num">$1,000.00</td><td class="good">Succeeded</td><td class="dim">No &mdash; existing or prior-period client</td></tr>
+      <tr><td>Aug 5</td><td>Joe A. Guerrero</td><td class="num">$499.99</td><td class="good">Succeeded</td><td>Yes &mdash; Closed Won, Meta</td></tr>
+      <tr><td>Aug 5</td><td>Enrique Lopez</td><td class="num">$2,000.00</td><td class="good">Succeeded</td><td class="dim">No &mdash; existing or prior-period client</td></tr>
+      <tr><td>Aug 5</td><td>Eric Orduna</td><td class="num">$500.00</td><td class="good">Succeeded</td><td>Yes &mdash; Digital Diagnosis, channel unconfirmed</td></tr>
+      <tr><td>Aug 3</td><td>Anthony Formichelli</td><td class="num">$2,500.00</td><td class="good">Succeeded</td><td class="dim">No &mdash; existing or prior-period client</td></tr>
+      <tr><td>Aug 3</td><td>Alejandro Ortiz</td><td class="num">$5,000.00</td><td class="good">Succeeded</td><td class="dim">No &mdash; existing or prior-period client</td></tr>
+      <tr><td>Aug 3</td><td>Raul Chavez</td><td class="num">$2,500.00</td><td class="good">Succeeded</td><td>Yes &mdash; Closed Won, Meta</td></tr>
+      <tr class="totalrow"><td>9 payments</td><td>&mdash;</td><td class="num">$17,999.99</td><td>All succeeded</td><td>$7,499.99 tied to window</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Excluded from revenue</strong>
+    Two failed charges are excluded from every revenue figure in this report: Vanessa Garcia $4,000 on Aug 7 and Alejandro Ortiz $5,000 on Aug 3. Both appear to be retries that later succeeded at different amounts, so counting them would double-count. No test transactions from Chris Paniagua appeared in this window. The $10,500 from Jacob Quintero, Enrique Lopez, Anthony Formichelli, and Alejandro Ortiz is real collected cash but is not tied to any opportunity created in this window, so it is excluded from all channel ROAS calculations.
+  </div>
+
+  <div class="highlight">
+    <h3>LTV view</h3>
+    <ul>
+      <li>Using the Advanced Marketers LTV model, monthly retainer divided by 0.15 at 15 percent monthly churn, the Raul Chavez $2,500 per month retainer is worth approximately <b>$16,667</b> in lifetime value.</li>
+      <li>Counting that plus the Joe A. Guerrero $499 as a one-time purchase, Meta produced roughly <b>$17,166 in LTV against $2,175.44 in spend, or 7.89x LTV ROAS</b>.</li>
+      <li>Google produced <b>0.00x on both cash and LTV</b> this week.</li>
+      <li><b>Assumption flagged:</b> Joe A. Guerrero at $499 and Eric Orduna at $500 are treated as one-time purchases rather than monthly retainers, and Vanessa Garcia at $4,000 is reported at cash value only because her billing cadence is not established in the data pulled. If any of these are recurring, LTV ROAS is materially understated.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ ATTRIBUTION ============ -->
+<section id="attribution">
+  <p class="section-kicker">Section 07</p>
+  <h2>Attribution Coverage</h2>
+  <p class="section-note">How much of this week's pipeline can actually be traced back to a source, and how confident each trace is.</p>
+
+  <div class="pills">
+    <div class="pill ok"><b>81.8%</b> of opportunities attributed to a paid channel (63 of 77)</div>
+    <div class="pill ok"><b>98.4%</b> of Meta leads carry ad-level UTMs (62 of 63)</div>
+    <div class="pill ok"><b>100%</b> of paid-channel sales traced to a specific ad (2 of 2)</div>
+    <div class="pill warnp"><b>0 of 9</b> Google calls confirmed to a CRM contact</div>
+    <div class="pill warnp"><b>1</b> Meta lead with click ID but no ad-level UTMs</div>
+    <div class="pill warnp"><b>1</b> sale with unconfirmed channel (Eric Orduna, $500)</div>
+    <div class="pill"><b>0</b> leads tagged growth-diagnostic (ChatGPT Ads)</div>
+    <div class="pill"><b>0</b> Google form leads (no gclid or cq_src=google_ads found)</div>
+  </div>
+
+  <h3 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:34px 0 12px;">Lead-Quality Verification</h3>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Contact</th><th>Verdict</th><th>Evidence from the actual conversation</th></tr></thead>
+    <tbody>
+      <tr><td>Gerald</td><td class="good">Genuine</td><td class="sm">Instagram DM asking to schedule a call about process and results. Inbound call Aug 7, 7m 26s.</td></tr>
+      <tr><td>juan</td><td class="good">Genuine</td><td class="sm">Booked Discovery Call. Inbound IVR call Aug 7, 9m 55s.</td></tr>
+      <tr><td>Luis Cornell</td><td class="good">Genuine</td><td class="sm">Booked Discovery Call. Outbound call 17m 27s.</td></tr>
+      <tr><td>Nancy Blackwell</td><td class="good">Genuine</td><td class="sm">Moved to Booked Call, appointment created. Inbound IVR call 5m 49s.</td></tr>
+      <tr><td>Patrick</td><td class="good">Genuine</td><td class="sm">Inbound call Aug 6, 12m 22s, plus SMS follow-up on case studies. LASIK clinic.</td></tr>
+      <tr><td>Eric Orduna</td><td class="good">Genuine</td><td class="sm">Reached Closed - Digital Diagnosis. Outbound call 49m.</td></tr>
+      <tr><td>Uriel Garcia</td><td class="warn">Unclear</td><td class="sm">No inbound messages. Automated outbound sequence plus two short calls, 26s and 42s.</td></tr>
+      <tr><td>Ray Vazquez</td><td class="good">Genuine</td><td class="sm">Inbound SMS "Can we do tomorrow 4:30", rescheduled Discovery Call, then no-showed.</td></tr>
+      <tr><td>Jose Cisneros</td><td class="good">Genuine</td><td class="sm">Outbound call completed 3m 04s. No booking yet.</td></tr>
+      <tr><td>Sultan Mukhtar</td><td class="warn">Unclear</td><td class="sm">Inbound call 6s only. No inbound texts, no booking.</td></tr>
+      <tr><td>Argel Torres</td><td class="warn">Unclear</td><td class="sm">Outbound calls 5s and 3s only. Outscape Construction. No booking.</td></tr>
+      <tr><td>Michael Carlo</td><td class="warn">Unclear</td><td class="sm">Outbound calls 44s and 50s. Innovative Air Solutions. No inbound reply.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="caveat">
+    <strong>Verification scope, stated plainly</strong>
+    12 of 77 opportunities were verified by reading the actual GoHighLevel conversation threads: the 6 non-Meta inbound-call contacts most likely to match a Google call, and 6 Meta leads sampled from TOUCH 1. Zero were reclassified as spam, solicitors, or wrong-service, so no lead counts in this report were adjusted downward. Four were marked unclear because the thread shows only very short outbound calls with no inbound reply, which is thin evidence either way rather than evidence of a bad lead. The remaining 65 opportunities were classified by stage and tag data only and were not individually read.
+  </div>
+
+  <div class="highlight">
+    <h3>Priorities for next week</h3>
+    <ul>
+      <li><b>Decide on AM - SEARCH - COMPETITOR - SCORPION.</b> $2,239.68 spent, zero conversions, zero calls, $106.65 per click. This is the clearest single action in the report.</li>
+      <li><b>Close the Google call-attribution gap.</b> Seven qualified calls and no traceable pipeline means the true Google CPL of $418.06 is unknowable rather than simply bad. Campaign-level call tracking numbers would settle it.</li>
+      <li><b>Protect Ad 1 | Video 8 (Ish).</b> It is the only creative that produced cash. Do not cut it for having a higher CPL than Video 9.</li>
+      <li><b>Chase the Carter Plumbing $5,000.</b> Largest deal booked this week, no cash collected yet.</li>
+      <li><b>Restore the ChatGPT Ads license</b> so the growth-diagnostic funnel can be measured rather than assumed.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="fk">Advanced Marketers &middot; Growth System</div>
+  135 S Lemon St Ste D, Orange, CA 92856 | (650) 250-0405 | support@advancedmarketers.co<br>
+  Report window August 1 to August 7, 2026, America/Los_Angeles. Sources: Supermetrics (Google Ads 8960669250, Meta act_383628763095207) and GoHighLevel (Advanced Marketers, abicfvSRunSz4oHmp5lQ). Every figure is pulled from those systems; no value in this report is estimated or filled in.
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var buttons = document.querySelectorAll('.navbtn');
+  var sections = document.querySelectorAll('section[id]');
+
+  function show(view) {
+    sections.forEach(function (s) {
+      s.style.display = (view === 'all' || s.id === view) ? '' : 'none';
+    });
+    buttons.forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-view') === view);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      show(b.getAttribute('data-view'));
+    });
+  });
+
+  show('all');
+})();
+</script>
+
+</body>
+</html>

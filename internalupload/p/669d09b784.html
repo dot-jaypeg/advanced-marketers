@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Rungs to Three-Sixty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  :root{
+    --ground:#0C0E12;--panel:#141820;--panel-2:#1B202A;
+    --line:#2A313E;--line-soft:#212734;
+    --ink:#F2F5FA;--ink-dim:#97A1B3;
+    --blue:#3b82f6;--blue-light:#A7C4F5;--on-blue:#07090C;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding-inline:20px;padding-block:40px 72px}
+  h1,h2,h3{font-family:Anton,"Arial Narrow",Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;margin:0;text-wrap:balance;line-height:1.02}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-light);font-weight:500}
+  .num{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  header{border-bottom:2px solid var(--blue);padding-bottom:26px;margin-bottom:30px}
+  header h1{font-size:clamp(36px,8.2vw,66px);margin-top:10px}
+  header .sub{color:var(--ink-dim);font-size:15px;margin-top:12px;max-width:58ch}
+
+  .score{background:var(--panel);border:1px solid var(--line);padding:26px 24px}
+  .score-top{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+  .score-figure{font-family:Anton,sans-serif;font-size:clamp(40px,10vw,62px);line-height:.95;color:var(--blue-light)}
+  .goals{text-align:right}
+  .goals .g1{font-family:Anton,sans-serif;font-size:clamp(17px,3.6vw,21px);color:var(--ink-dim);line-height:1.15}
+  .goals .g2{font-family:Anton,sans-serif;font-size:clamp(22px,4.8vw,28px);color:var(--ink);line-height:1.15;margin-top:2px}
+  .bar{position:relative;height:24px;background:var(--panel-2);border:1px solid var(--line);margin-top:22px;overflow:hidden}
+  .bar-fill{position:absolute;inset:0 auto 0 0;width:45.7%;background:var(--blue)}
+  .bar-tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--blue-light);left:91.7%}
+  .bar-marks{display:flex;justify-content:space-between;margin-top:9px;font-size:12px;color:var(--ink-dim)}
+  .score-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;font-size:14px;color:var(--ink-dim)}
+  .score-legend b{color:var(--ink);font-weight:500}
+
+  .clock{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 40px}
+  .chip{background:var(--blue);color:var(--on-blue);font-weight:700;font-size:14px;padding:9px 16px}
+  .chip.ghost{background:transparent;color:var(--blue-light);border:1px solid var(--line);font-weight:500}
+
+  h2.sect{font-size:clamp(24px,5vw,32px);margin-bottom:6px}
+  .sect-note{color:var(--ink-dim);font-size:15px;margin:0 0 22px;max-width:64ch}
+  .sect-note strong{color:var(--ink);font-weight:500}
+
+  /* headline math */
+  .headline{background:var(--blue);color:var(--on-blue);padding:26px 24px;margin-bottom:34px}
+  .headline h2{color:var(--on-blue);font-size:clamp(20px,4.4vw,26px)}
+  .hl-lines{margin-top:16px;display:grid;gap:9px}
+  .hl{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:15px;font-weight:500;border-bottom:1px solid rgba(7,9,12,.22);padding-bottom:8px}
+  .hl:last-child{border-bottom:none;padding-bottom:0}
+  .hl .v{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .hl.sum{font-family:Anton,sans-serif;text-transform:uppercase;font-size:19px;padding-top:6px}
+  .hl.sum .v{font-family:Anton,sans-serif;font-size:22px}
+  .headline .foot{margin:16px 0 0;font-size:15px;font-weight:500;max-width:56ch}
+
+  /* Action block */
+  .action{border:2px solid var(--blue);background:var(--panel);padding:24px;margin-bottom:34px}
+  .action h2{font-size:clamp(21px,4.6vw,27px)}
+  .action .lead{margin:10px 0 0;color:var(--ink-dim);font-size:15px;max-width:64ch}
+  .action .lead strong{color:var(--ink);font-weight:500}
+  .sublist{margin-top:20px}
+  .sublist h3{font-size:15px;color:var(--blue-light);padding-bottom:7px;border-bottom:1px solid var(--blue)}
+  .rowlist{margin-top:2px}
+  .row{display:flex;align-items:baseline;gap:12px;padding:7px 0;border-bottom:1px solid var(--line-soft);font-size:14.5px}
+  .row .d{font-family:"JetBrains Mono",monospace;color:var(--ink-dim);font-size:12.5px;min-width:36px;flex:none}
+  .row .nm{flex:1 1 auto;min-width:0}
+  .row .amt{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;color:var(--blue-light);white-space:nowrap;flex:none}
+  .row .flag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line);padding:1px 6px;flex:none}
+  .row.total{border-bottom:none;padding-top:11px}
+  .row.total .nm{font-family:Anton,sans-serif;text-transform:uppercase;font-size:17px}
+  .row.total .amt{color:var(--ink);font-size:17px}
+  .owner{margin-top:20px;padding:14px 16px;background:var(--panel-2);border-left:4px solid var(--blue);font-size:15px}
+  .owner b{color:var(--blue-light);font-weight:500}
+
+  /* rungs */
+  .rung{border:1px solid var(--line);border-left:4px solid var(--blue);background:var(--panel);padding:22px 24px;margin-bottom:12px}
+  .rung-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;justify-content:space-between}
+  .rung-title{font-family:Anton,sans-serif;font-size:21px;text-transform:uppercase}
+  .rung-value{font-family:Anton,sans-serif;font-size:28px;color:var(--blue-light);line-height:1}
+  .rung-step{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);display:block;margin-bottom:8px}
+  .rung p{margin:11px 0 0;color:var(--ink-dim);font-size:15px;max-width:66ch}
+  .rung p strong{color:var(--ink);font-weight:500}
+  .running{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;align-items:baseline}
+  .running .lbl{color:var(--ink-dim)}
+  .running .val{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500}
+
+  .week{margin-top:20px}
+  .week-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;padding-bottom:8px;border-bottom:1px solid var(--blue)}
+  .week-head h3{font-size:16px;color:var(--blue-light)}
+  .week-head .wtot{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;font-size:15px;font-weight:500}
+  .week-head .wcount{color:var(--ink-dim);font-size:13px}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .cmp{border:1px solid var(--line);background:var(--panel-2);padding:16px 18px}
+  .cmp .lab{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim)}
+  .cmp .fig{font-family:Anton,sans-serif;font-size:clamp(26px,6vw,36px);line-height:1;margin-top:8px}
+  .cmp .sub{font-size:13px;color:var(--ink-dim);margin-top:6px}
+  .cmp.win{border-color:var(--blue);background:var(--panel)}
+  .cmp.win .fig{color:var(--blue-light)}
+
+  .dispatch{border:1px solid var(--blue);background:var(--panel);padding:26px 24px}
+  .dispatch h3{font-size:clamp(20px,4.6vw,26px)}
+  .dispatch p{margin:12px 0 0;color:var(--ink-dim);font-size:15px;max-width:66ch}
+  .dispatch p strong{color:var(--ink);font-weight:500}
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:20px}
+  .dcell{border-top:2px solid var(--blue);padding-top:10px}
+  .dcell .k{font-family:Anton,sans-serif;font-size:24px;color:var(--blue-light);line-height:1}
+  .dcell .v{font-size:13px;color:var(--ink-dim);margin-top:5px}
+
+  .scen{margin-top:22px;border:1px solid var(--blue);background:var(--panel-2);padding:20px 22px}
+  .scen-head{font-family:Anton,sans-serif;text-transform:uppercase;font-size:17px;color:var(--blue-light)}
+  .scen-rows{margin-top:14px;display:grid;gap:9px}
+  .scen-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .scen-row:last-child{border-bottom:none;padding-bottom:0}
+  .scen-row b{color:var(--ink);font-weight:500}
+  .scen-row .v{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums;color:var(--blue-light);white-space:nowrap}
+  .scen-row.big{font-family:Anton,sans-serif;text-transform:uppercase;font-size:19px;padding-top:4px}
+  .scen-row.big .v{font-family:Anton,sans-serif;font-size:24px;color:var(--ink)}
+  .scen p{margin:14px 0 0;font-size:14.5px;color:var(--ink-dim)}
+  .scen p b{color:var(--ink);font-weight:500}
+
+  .rules{display:grid;gap:10px;margin-top:6px}
+  .rule{display:flex;gap:14px;align-items:baseline;border:1px solid var(--line);background:var(--panel-2);padding:15px 18px}
+  .rule .n{font-family:Anton,sans-serif;font-size:20px;color:var(--blue-light);flex:none;min-width:26px}
+  .rule .t{font-size:15px}
+  .rule .t b{color:var(--ink);font-weight:500}
+  .rule .t span{color:var(--ink-dim)}
+
+  .finish{background:var(--blue);color:var(--on-blue);padding:34px 26px;margin-top:34px;text-align:center}
+  .finish h2{font-size:clamp(21px,4.6vw,28px);color:var(--on-blue)}
+  .finish .big{font-family:Anton,sans-serif;font-size:clamp(54px,15vw,104px);line-height:.92;margin:8px 0 0}
+  .finish p{margin:18px auto 0;font-size:16px;font-weight:500;max-width:52ch}
+  .finish .kicker{font-family:Anton,sans-serif;text-transform:uppercase;font-size:clamp(17px,3.6vw,22px);margin-top:20px}
+
+  footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-dim);font-size:13px}
+  footer b{color:var(--blue-light);font-weight:500}
+
+  @media (max-width:560px){
+    .rung-head{flex-direction:column}
+    .score-top{flex-direction:column;align-items:flex-start}
+    .goals{text-align:left}
+    .compare{grid-template-columns:1fr}
+    .row .flag{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">Team Brief &middot; Tuesday 16 September 2026</span>
+    <h1>Four rungs to three&#8209;sixty</h1>
+    <p class="sub">Half the month gone, half the revenue already earned. Here is every dollar still in play and exactly who has to move it.</p>
+  </header>
+
+  <section class="score">
+    <div class="score-top">
+      <div>
+        <span class="eyebrow">Booked so far</span>
+        <div class="score-figure">$164,688</div>
+      </div>
+      <div class="goals">
+        <div class="g1">Goal&nbsp;$330,000</div>
+        <div class="g2">Going for&nbsp;$360,000</div>
+      </div>
+    </div>
+    <div class="bar" role="img" aria-label="164,688 booked of a 360,000 target, with the 330,000 goal marked near the right">
+      <div class="bar-fill"></div>
+      <div class="bar-tick"></div>
+    </div>
+    <div class="bar-marks"><span class="num">Day 16 of 30</span><span class="num">$330K mark &rarr;</span></div>
+    <div class="score-legend">
+      <span>Client billing <b class="num">$147,695</b></span>
+      <span>Dispatch tickets <b class="num">$16,993</b></span>
+      <span>Accounts charged <b class="num">43</b></span>
+      <span>New clients <b class="num">5</b></span>
+    </div>
+  </section>
+
+  <div class="clock">
+    <span class="chip">14 days left</span>
+    <span class="chip ghost">Dispatch No. 01 &mdash; Sept 25</span>
+    <span class="chip ghost">Sponsors sold: 0</span>
+  </div>
+
+  <section class="headline">
+    <span class="eyebrow" style="color:var(--on-blue);opacity:.72">Sit with this for a second</span>
+    <h2>September closes at $339,219 before sales books a single new client</h2>
+    <div class="hl-lines">
+      <div class="hl"><span>Booked today</span><span class="v">$164,688</span></div>
+      <div class="hl"><span>Already on the books, waiting to bill</span><span class="v">+ $126,163</span></div>
+      <div class="hl"><span>Rebills we have not collected</span><span class="v">+ $36,368</span></div>
+      <div class="hl"><span>Nations Instant Insurance returning</span><span class="v">+ $12,000</span></div>
+      <div class="hl sum"><span>Without one new sale</span><span class="v">$339,219</span></div>
+    </div>
+    <p class="foot">That is $9,219 past goal on work we have already done. Everything sales closes from here is what takes us to $360,000.</p>
+  </section>
+
+  <!-- ACTION -->
+  <section class="action">
+    <h2>The rebills need an owner today</h2>
+    <p class="lead"><strong>12 accounts. $36,368.</strong> Every dollar of this is work we already delivered and never collected. One person owns this list by end of day and works it top to bottom, biggest and oldest first.</p>
+
+    <div class="sublist">
+      <h3>Not billed since last month &mdash; $28,392</h3>
+      <div class="rowlist">
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Caliber K9 Training</span><span class="amt">$7,219</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">JQ Glassworks</span><span class="amt">$4,806</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">LV Heating &amp; Cooling</span><span class="amt">$4,292</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Roof City Inc</span><span class="amt">$3,750</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Absolute Best Service Plumbing</span><span class="amt">$3,624</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">One Nation Energy</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Javiers Landscape</span><span class="flag">3 months</span><span class="amt">$2,201</span></div>
+      </div>
+    </div>
+
+    <div class="sublist">
+      <h3>Slipped this month &mdash; billing day already passed &mdash; $8,976</h3>
+      <div class="rowlist">
+        <div class="row"><span class="d">4th</span><span class="nm">Lopez Brothers Drywall</span><span class="amt">$3,760</span></div>
+        <div class="row"><span class="d">15th</span><span class="nm">Next Era Heating &amp; Air</span><span class="amt">$3,718</span></div>
+        <div class="row"><span class="d">1st</span><span class="nm">On Stage Cuts and Styles</span><span class="amt">$800</span></div>
+        <div class="row"><span class="d">4th</span><span class="nm">Aspen</span><span class="amt">$499</span></div>
+        <div class="row"><span class="d">11th</span><span class="nm">Build By JM LLC</span><span class="amt">$199</span></div>
+        <div class="row total"><span class="nm">Total to chase</span><span class="amt">$36,368</span></div>
+      </div>
+    </div>
+
+    <div class="owner"><b>Owner:</b> unassigned. That changes today. Every one of these gets a call, a card on file, and a number in the sheet before the 30th.</div>
+  </section>
+
+  <!-- LADDER -->
+  <h2 class="sect">The ladder</h2>
+  <p class="sect-note">Four rungs, each shorter than the one below it. Rung 1 is the whole game &mdash; it is money we have already earned and only have to collect.</p>
+
+  <article class="rung">
+    <span class="rung-step">Rung 1 &middot; Already ours</span>
+    <div class="rung-head"><span class="rung-title">Bill the book clean</span><span class="rung-value">$126,163</span></div>
+    <p><strong>49 accounts</strong> have a September charge still ahead of them. Not one needs selling. Every one needs the card to run on the day it is meant to run, and a person confirming that it did.</p>
+
+    <div class="week">
+      <div class="week-head"><h3>Today &mdash; Tuesday the 16th</h3><span><span class="wcount">3 accounts &middot;</span> <span class="wtot">$8,685</span></span></div>
+      <div class="rowlist">
+        <div class="row"><span class="d">16th</span><span class="nm">Mad Differential</span><span class="amt">$4,507</span></div>
+        <div class="row"><span class="d">16th</span><span class="nm">Moreno Building &amp; Development</span><span class="amt">$3,679</span></div>
+        <div class="row"><span class="d">16th</span><span class="nm">Ground Up Plumbing 24-7</span><span class="amt">$499</span></div>
+      </div>
+      <p style="margin-top:10px;color:var(--ink-dim);font-size:14px">A further <span class="num" style="color:var(--blue-light)">$7,607</span> is already recorded against today &mdash; Heavy Duty Metal Buildings, Green Ladder Roofing, Forbes Landscape.</p>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><h3>Week of the 17th &ndash; 23rd</h3><span><span class="wcount">20 accounts &middot;</span> <span class="wtot">$54,305</span></span></div>
+      <div class="rowlist">
+        <div class="row"><span class="d">17th</span><span class="nm">Total Door Service</span><span class="amt">$4,135</span></div>
+        <div class="row"><span class="d">17th</span><span class="nm">Contreras Welding Shop</span><span class="flag">booked</span><span class="amt">$2,956</span></div>
+        <div class="row"><span class="d">17th</span><span class="nm">GG&amp;N Plumbing Solutions</span><span class="flag">booked</span><span class="amt">$2,576</span></div>
+        <div class="row"><span class="d">17th</span><span class="nm">Sky View Maintenance</span><span class="flag">booked</span><span class="amt">$2,546</span></div>
+        <div class="row"><span class="d">17th</span><span class="nm">Next Level Sheet Metal</span><span class="amt">$598</span></div>
+        <div class="row"><span class="d">18th</span><span class="nm">Alejandro&rsquo;s Remodeling</span><span class="amt">$5,000</span></div>
+        <div class="row"><span class="d">18th</span><span class="nm">Major League Plumbing &mdash; SEO</span><span class="amt">$1,500</span></div>
+        <div class="row"><span class="d">18th</span><span class="nm">MOVEHAUS</span><span class="amt">$1,250</span></div>
+        <div class="row"><span class="d">19th</span><span class="nm">Pro Integrity Plumbing</span><span class="amt">$4,446</span></div>
+        <div class="row"><span class="d">19th</span><span class="nm">Precision Drywall &amp; Paint</span><span class="amt">$3,650</span></div>
+        <div class="row"><span class="d">19th</span><span class="nm">J&amp;C Concrete Restoration</span><span class="amt">$3,280</span></div>
+        <div class="row"><span class="d">19th</span><span class="nm">Bay Area Roofing Master</span><span class="flag">booked</span><span class="amt">$3,276</span></div>
+        <div class="row"><span class="d">19th</span><span class="nm">Bella Banana Pet Spa</span><span class="amt">$2,138</span></div>
+        <div class="row"><span class="d">20th</span><span class="nm">Rising Green Inc</span><span class="amt">$3,622</span></div>
+        <div class="row"><span class="d">21st</span><span class="nm">Roofing Pro</span><span class="amt">$4,003</span></div>
+        <div class="row"><span class="d">21st</span><span class="nm">Paver Rescue &mdash; Tampa</span><span class="amt">$99</span></div>
+        <div class="row"><span class="d">22nd</span><span class="nm">Shelby Plumbing</span><span class="amt">$3,649</span></div>
+        <div class="row"><span class="d">22nd</span><span class="nm">Leo&rsquo;s Landscaping</span><span class="amt">$2,580</span></div>
+        <div class="row"><span class="d">22nd</span><span class="nm">OC Professional Rain Gutters</span><span class="amt">$99</span></div>
+        <div class="row"><span class="d">23rd</span><span class="nm">Quickfix Home Solutions</span><span class="amt">$2,902</span></div>
+        <div class="row total"><span class="nm">Week at stake</span><span class="amt">$54,305</span></div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><h3>Week of the 24th &ndash; 30th</h3><span><span class="wcount">20 accounts &middot;</span> <span class="wtot">$49,774</span></span></div>
+      <div class="rowlist">
+        <div class="row"><span class="d">24th</span><span class="nm">Forbes Fencing CO</span><span class="amt">$1,500</span></div>
+        <div class="row"><span class="d">25th</span><span class="nm">Magic Snake Pro</span><span class="amt">$5,318</span></div>
+        <div class="row"><span class="d">25th</span><span class="nm">Down The Line Plumbing</span><span class="amt">$4,214</span></div>
+        <div class="row"><span class="d">26th</span><span class="nm">TopLevel Plumbing Services</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">26th</span><span class="nm">Green Lawn Care</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">27th</span><span class="nm">Forbes Fencing CO</span><span class="amt">$6,300</span></div>
+        <div class="row"><span class="d">27th</span><span class="nm">MG&rsquo;s Air Conditioning &amp; Heating</span><span class="amt">$4,000</span></div>
+        <div class="row"><span class="d">27th</span><span class="nm">East Valley Feed &amp; Tack</span><span class="amt">$2,953</span></div>
+        <div class="row"><span class="d">27th</span><span class="nm">Unleashed Electric</span><span class="amt">$499</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Sunset Walls</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Viper Rooter &amp; Plumbing</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Contreras Welding Shop</span><span class="amt">$1,592</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Jc Concrete Restoration</span><span class="amt">$1,500</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Clog Monkey Corp</span><span class="amt">$499</span></div>
+        <div class="row"><span class="d">28th</span><span class="nm">Lorenzo&rsquo;s Painting Services</span><span class="amt">$199</span></div>
+        <div class="row"><span class="d">29th</span><span class="nm">Bella Banana Pet Spa</span><span class="amt">$1,500</span></div>
+        <div class="row"><span class="d">30th</span><span class="nm">O Painting</span><span class="amt">$3,500</span></div>
+        <div class="row"><span class="d">30th</span><span class="nm">Inland Renovation &amp; Construction</span><span class="amt">$2,700</span></div>
+        <div class="row"><span class="d">30th</span><span class="nm">Verde Home Design</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">30th</span><span class="nm">JQGlassworks Inc</span><span class="flag">booked</span><span class="amt">$1,000</span></div>
+        <div class="row total"><span class="nm">Week at stake</span><span class="amt">$49,774</span></div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><h3>No billing date set &mdash; fix today</h3><span><span class="wcount">6 accounts &middot;</span> <span class="wtot">$13,399</span></span></div>
+      <div class="rowlist">
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Primal Windows</span><span class="amt">$3,803</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Sky Clean Air</span><span class="amt">$3,750</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Emberline Shower Enclosures</span><span class="amt">$2,648</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">New Generation Construction</span><span class="amt">$2,500</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">WESTERN LINQ</span><span class="amt">$399</span></div>
+        <div class="row"><span class="d">&mdash;</span><span class="nm">Van&rsquo;s Carpet and Flooring</span><span class="amt">$299</span></div>
+        <div class="row total"><span class="nm">Needs a date</span><span class="amt">$13,399</span></div>
+      </div>
+      <p style="margin-top:10px;color:var(--ink-dim);font-size:14px">Live accounts with a blank day-of-month. Nobody knows when to charge them, so nobody does.</p>
+    </div>
+
+    <div class="running"><span class="lbl">Running total</span><span class="val">$290,851</span></div>
+  </article>
+
+  <article class="rung">
+    <span class="rung-step">Rung 2 &middot; Twelve calls</span>
+    <div class="rung-head"><span class="rung-title">Collect the rebills</span><span class="rung-value">$36,368</span></div>
+    <p>The list above. Work already delivered, money never collected. Oldest first &mdash; a card that failed on the 1st is two weeks colder than one that failed on the 15th.</p>
+    <div class="running"><span class="lbl">Running total</span><span class="val">$327,219</span></div>
+  </article>
+
+  <article class="rung">
+    <span class="rung-step">Rung 3 &middot; Already won</span>
+    <div class="rung-head"><span class="rung-title">Nations comes back</span><span class="rung-value">$12,000</span></div>
+    <p><strong>Nations Instant Insurance is returning at around $12,000 a month.</strong> It billed between $8,000 and $17,800 a month through last winter &mdash; one of the largest accounts on the book, and it is coming home. Get the start date and the card on file this week so it lands inside September, not October.</p>
+    <div class="running"><span class="lbl">Running total</span><span class="val">$339,219</span><span class="lbl">Past goal by</span><span class="val">$9,219</span></div>
+  </article>
+
+  <article class="rung">
+    <span class="rung-step">Rung 4 &middot; Sales</span>
+    <div class="rung-head"><span class="rung-title">Take it to three&#8209;sixty</span><span class="rung-value">$20,781</span></div>
+    <p>Goal is covered without you. <strong>$360,000 is not.</strong> That last stretch is yours. Ad spend is up this month and the leads are coming &mdash; go get them.</p>
+
+    <div class="scen">
+      <div class="scen-head">What $35K from sales does</div>
+      <div class="scen-rows">
+        <div class="scen-row"><span>Without a single new sale</span><span class="v">$339,219</span></div>
+        <div class="scen-row"><span>Sales closes <b>$35,000</b></span><span class="v">+ $35,000</span></div>
+        <div class="scen-row big"><span>September finishes at</span><span class="v">$374,219</span></div>
+      </div>
+      <p>That is <b>$14,219 past $360,000</b> and $44,219 past goal. One headline sponsor plus a handful of signings gets us there.</p>
+    </div>
+
+    <div class="running"><span class="lbl">Running total</span><span class="val">$374,219</span><span class="lbl">Past $360K by</span><span class="val">$14,219</span></div>
+  </article>
+
+  <!-- DISPATCH -->
+  <h2 class="sect" style="margin-top:42px">Dispatch is the whole thing</h2>
+  <p class="sect-note">Nine days out. The highest-leverage nine days on the calendar, and it pays three different ways at once.</p>
+
+  <div class="dispatch">
+    <h3>One room. Three revenue lines.</h3>
+    <p><strong>Ben Jordan, Ellen Rohr, Jeff Cronin and Ismael Valdez</strong> on the stage at 135 S Lemon, Orange &mdash; in front of a room of contractors who are exactly who we sell to. Tickets are revenue. Sponsorship is revenue. The room itself is the pipeline that decides October and November.</p>
+    <div class="dgrid">
+      <div class="dcell"><div class="k">$16,993</div><div class="v">Tickets sold, still selling to the door</div></div>
+      <div class="dcell"><div class="k">$15,000</div><div class="v">Top sponsor tier &mdash; zero sold</div></div>
+      <div class="dcell"><div class="k">Sept 25</div><div class="v">Nine days to fill the room</div></div>
+    </div>
+    <p style="margin-top:20px">A single headline sponsor covers three quarters of Rung 4 on its own. Nobody has asked yet. That is the highest-value unmade phone call in this company right now.</p>
+  </div>
+
+  <!-- RULES -->
+  <h2 class="sect" style="margin-top:42px">Everything flows perfectly from here</h2>
+  <p class="sect-note">Half the month&rsquo;s revenue is already earned. From here it is not about working harder &mdash; it is about not dropping anything.</p>
+  <div class="rules">
+    <div class="rule"><span class="n">1</span><span class="t"><b>Every card runs on its day.</b> <span>Not the week after. The day it is scheduled.</span></span></div>
+    <div class="rule"><span class="n">2</span><span class="t"><b>Every decline gets chased the same day.</b> <span>A decline caught on day one collects. A decline found on the 30th does not.</span></span></div>
+    <div class="rule"><span class="n">3</span><span class="t"><b>Never type words in the amount column.</b> <span>&ldquo;Prepaid&rdquo;, &ldquo;free&rdquo;, &ldquo;goes to 3500&rdquo; &mdash; text drops out of every total we report. Put the note anywhere else.</span></span></div>
+    <div class="rule"><span class="n">4</span><span class="t"><b>Apply the increases we already agreed.</b> <span>Inland Renovation is billing $2,616 against $3,500. Capri Plumbing is agreed at $3,500 and billing nothing. That is $4,384 a month, every month.</span></span></div>
+    <div class="rule"><span class="n">5</span><span class="t"><b>Nothing slides into October.</b> <span>A charge that moves to the 1st is a charge this month does not get.</span></span></div>
+  </div>
+
+  <!-- FINISH -->
+  <section class="finish">
+    <span class="eyebrow" style="color:var(--on-blue);opacity:.72">Bill clean &middot; chase the rebills &middot; Nations home &middot; sales finishes it</span>
+    <h2>The number</h2>
+    <div class="big">$360,000</div>
+    <p>Goal is already covered by work we have done. Three-sixty is the floor once sales moves &mdash; $35K from sales lands us at <b>$374,219</b>.</p>
+    <div class="kicker">14 days. Let&rsquo;s go.</div>
+  </section>
+
+  <footer>
+    Source: <b>Copy of billing</b> &middot; read 16 September 2026, day 16 of 30. Ticket revenue tracked separately from the billing sheet. One-time charges and cancelled accounts excluded throughout. Nations is the expected return rate, not yet billed. Questions on any figure &mdash; ask Chris.
+  </footer>
+
+</div>
+</body>
+</html>

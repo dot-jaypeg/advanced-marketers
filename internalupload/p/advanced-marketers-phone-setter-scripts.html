@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setter Call Script — Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1C1C25; --border:#2B2B35;
+    --txt:#EDEDF2; --muted:#8A8A99; --purple:#7D7BF7; --good:#3FCF95; --warn:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 80px}
+  header{position:sticky;top:0;background:rgba(13,13,18,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:10}
+  .hin{max-width:880px;margin:0 auto;padding:14px 28px;display:flex;justify-content:space-between;align-items:baseline}
+  .wordmark{font-weight:700;letter-spacing:.28em;font-size:15px}
+  .wordmark span{display:block;font-weight:400;font-size:9px;letter-spacing:.5em;color:var(--muted);margin-top:2px}
+  .htag{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  .cover{padding:70px 0 40px}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--purple);text-transform:uppercase;margin-bottom:14px}
+  .cover h1{font-size:46px;line-height:1.08;font-weight:700}
+  .cover h1 em{font-style:normal;color:var(--purple)}
+  .cover p.sub{color:var(--muted);font-size:16px;margin-top:14px}
+  h2{font-size:23px;margin:52px 0 14px}
+  h2 .num{color:var(--purple)}
+  h3{font-size:15px;color:var(--purple);margin:24px 0 8px}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+  ul.b{list-style:none;margin:0 0 14px}
+  ul.b li{padding-left:20px;position:relative;margin:6px 0}
+  ul.b li::before{content:"•";color:var(--purple);position:absolute;left:4px}
+  .script{background:var(--panel);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:16px 20px;font-style:italic;margin:10px 0 18px}
+  .script b{font-style:normal}
+  .script .dir{color:var(--muted);font-style:normal;font-size:13px}
+  table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:13.5px}
+  th{background:var(--panel2);color:var(--purple);text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;text-align:left}
+  th,td{border:1px solid var(--border);padding:9px 12px;vertical-align:top}
+  tbody tr:nth-child(odd){background:var(--panel)}
+  tbody tr:nth-child(even){background:var(--panel2)}
+  .trade{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin:22px 0}
+  .trade h2{margin:0 0 4px;font-size:21px}
+  .trade .tagline{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .callout{background:var(--panel);border:1px solid var(--warn);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--purple);color:var(--purple);border-radius:20px;padding:3px 12px;margin-bottom:10px}
+  nav.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:10px}
+  nav.toc ol{columns:2;column-gap:36px;padding-left:20px;font-size:13.5px}
+  nav.toc li{margin:4px 0}
+  nav.toc a{text-decoration:none;color:var(--txt)}
+  nav.toc a:hover{color:var(--purple)}
+  footer{border-top:1px solid var(--border);margin-top:70px;padding-top:18px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media print{
+    body{background:#fff;color:#111}
+    header{position:static;background:#fff}
+    :root{--panel:#f4f4f8;--panel2:#ebebf2;--border:#ccc;--txt:#111;--muted:#555}
+  }
+  @media (max-width:640px){.cover h1{font-size:32px} nav.toc ol{columns:1}}
+</style>
+</head>
+<body>
+<header><div class="hin">
+  <div class="wordmark">ADVANCED<span>M A R K E T E R S</span></div>
+  <div class="htag">Setter Call Script</div>
+</div></header>
+
+<div class="wrap">
+
+<section class="cover">
+  <div class="kicker">Revenue First, Always</div>
+  <h1>Setter Call Script<br><em>All Trades</em></h1>
+  <p class="sub">One call flow. Five trade modules: Plumbing • Roofing • HVAC • Flooring • Junk Removal</p>
+  <p class="sub" style="font-size:13px">Companion to the Phone Setter SOP v1.1 — same framework: Opening → Discovery → Recap → Book → Objections</p>
+</section>
+
+<nav class="toc">
+  <div class="kicker">Contents</div>
+  <ol>
+    <li><a href="#flow">The Universal Call Flow</a></li>
+    <li><a href="#plumbing">Trade Module: Plumbing</a></li>
+    <li><a href="#roofing">Trade Module: Roofing</a></li>
+    <li><a href="#hvac">Trade Module: HVAC</a></li>
+    <li><a href="#flooring">Trade Module: Flooring</a></li>
+    <li><a href="#junk">Trade Module: Junk Removal</a></li>
+    <li><a href="#objections">Universal Objection Handling</a></li>
+    <li><a href="#cheat">One-Glance Cheat Sheet</a></li>
+  </ol>
+</nav>
+
+<h2 id="flow"><span class="num">1.</span> The Universal Call Flow</h2>
+<p>Every call, every trade, same skeleton. Only the discovery questions change — pull those from the trade module. <b>Mindset:</b> you are not the show — they are. Don't pitch. Ask smart questions, stay curious, validate everything on the lead form, and avoid jargon.</p>
+
+<h3>Step 1 — Opening (inbound)</h3>
+<div class="script">
+  "Thanks for calling [Client Company], this is [Name] — how can I help you today?"<br><br>
+  <span class="dir">(Let them talk. Do NOT interrupt — collect the problem, urgency, and their exact words.)</span><br><br>
+  "Got it — sorry you're dealing with that. Let me ask you a couple quick questions so we can get the right person out to you, is that okay?" <span class="dir">(Get a clear yes.)</span>
+</div>
+
+<h3>Step 1B — Opening (outbound to a lead that didn't answer)</h3>
+<div class="script">
+  "Hi, is this [First Name]? This is [Name] with [Client Company] — you reached out to us on Facebook about [service]. <b>Is it okay if I ask you a couple quick questions</b> so we can get this handled for you?"<br><br>
+  <span class="dir">(Never ask "is now a good time?" — ask permission to ask questions instead. On a yes, go straight into discovery.)</span><br><br>
+  <span class="dir">(If "how did you get my number?")</span> "You filled out a quick form on our ad — you were asking about [service]. Is that still something you need handled?"
+</div>
+
+<h3>Step 2 — Universal discovery (every trade)</h3>
+<ul class="b">
+  <li><b>Problem:</b> "Walk me through what's going on — what are you seeing?"</li>
+  <li><b>Urgency:</b> "How long has this been going on? Is it getting worse?"</li>
+  <li><b>Property:</b> "House or business? Do you own the property?"</li>
+  <li><b>Location:</b> "What area are you in?" (confirm service area BEFORE booking)</li>
+  <li><b>History:</b> "Has anyone else looked at it? What did they say?" (surfaces price shopping)</li>
+  <li><b>Decision:</b> "If we can take care of it, are you good to move forward, or does anyone else weigh in?"</li>
+</ul>
+<p class="muted">Then add 3–4 questions from the trade module below. While they talk: log job type, urgency, estimated value (client's average ticket), and their exact words.</p>
+
+<h3>Step 3 — Recap + book (the goal close)</h3>
+<div class="script">
+  "Just to recap — you've got [their problem, their words], it's been going on [time], and you want it handled [urgency]. Right?" <span class="dir">(Wait for the yes.)</span><br><br>
+  "Perfect. We can have [a tech / an estimator / a crew] out [day/time] or [alternate day/time] — which works better for you?"<br><br>
+  <span class="dir">(Always alternate-choice. Always book while on the phone.)</span><br><br>
+  "You're all set for [day/time]. You'll get a text confirmation right now and a reminder the day before. [Tech] will call on the way. Anything else I can help with?"
+</div>
+
+<h3>Step 4 — Wrap</h3>
+<ul class="b">
+  <li>Notes, opportunity value, stage move, confirmation text — 2 minutes max.</li>
+  <li>Notify the tech/company of the booking and get dispatch confirmation.</li>
+</ul>
+
+<!-- ================= PLUMBING ================= -->
+<div class="trade" id="plumbing">
+  <span class="pill">Trade Module</span>
+  <h2>Plumbing</h2>
+  <p class="tagline">Urgency-driven. Water damage fear is real — use it honestly. Emergencies book same-day.</p>
+  <h3>Trade discovery</h3>
+  <ul class="b">
+    <li>"Is water actively leaking right now? Have you been able to shut it off?" <span class="muted">(Yes to active leak = emergency, book same-day, escalate to owner if no slot)</span></li>
+    <li>"Where is it — kitchen, bathroom, water heater, main line, outside?"</li>
+    <li>"How old is the home / the water heater?" <span class="muted">(10+ yr water heater = likely replacement, bigger ticket)</span></li>
+    <li>"Any other slow drains or issues around the house while we're at it?" <span class="muted">(bundles work, raises ticket)</span></li>
+  </ul>
+  <h3>Urgency triggers → same-day booking</h3>
+  <p>Active leak, no hot water, sewage backup, burst pipe, no water at all. Script: <i>"That's the kind of thing that gets worse and more expensive by the hour — let me get someone out today. Morning or afternoon?"</i></p>
+  <h3>Trade-specific objection</h3>
+  <p><b>"Can't you just tell me the price over the phone?"</b> → "For [drain clearing / standard jobs] I can give you the starting range: [$X]. For anything beyond that, honest answer — anyone quoting a leak sight-unseen is guessing. The visit is [free / $X per client policy], and you get a real number. [Day] or [day]?"</p>
+</div>
+
+<!-- ================= ROOFING ================= -->
+<div class="trade" id="roofing">
+  <span class="pill">Trade Module</span>
+  <h2>Roofing</h2>
+  <p class="tagline">Big ticket, longer cycle. Two lead types: LEAK (urgent) and REPLACEMENT/INSPECTION (considered). Insurance changes everything — flag it.</p>
+  <h3>Trade discovery</h3>
+  <ul class="b">
+    <li>"Are you seeing a leak inside, or is this more about the age/condition of the roof?" <span class="muted">(splits urgent vs. considered)</span></li>
+    <li>"How old is the roof, and do you know what it's made of — shingle, tile, flat?"</li>
+    <li>"Was there any recent storm or wind damage?" <span class="muted">(YES → possible insurance claim — note it, big deal for the client)</span></li>
+    <li>"Have you filed or thought about filing an insurance claim?"</li>
+    <li>"Single story or two story? Roughly how big is the home?"</li>
+  </ul>
+  <h3>Booking language</h3>
+  <p>Sell the <b>inspection</b>, not the roof: <i>"Let's get you a free roof inspection — [inspector] gets on the roof, takes photos, and shows you exactly what's going on. If it's storm damage, insurance may cover more than you'd think, and we'll document everything they need. [Day] or [day]?"</i></p>
+  <h3>Trade-specific objection</h3>
+  <p><b>"I'm getting three bids."</b> → "Smart — a roof's a big investment. Most folks tell us our inspection report is the most detailed of the three, photos included. Get us out there and use our report to compare the others. When's good?"</p>
+</div>
+
+<!-- ================= HVAC ================= -->
+<div class="trade" id="hvac">
+  <span class="pill">Trade Module</span>
+  <h2>HVAC</h2>
+  <p class="tagline">Comfort emergency in summer/winter, considered purchase in between. System age is the money question.</p>
+  <h3>Trade discovery</h3>
+  <ul class="b">
+    <li>"Is the system not working at all, or working but not keeping up?" <span class="muted">(dead system in a heat wave = emergency, book same-day)</span></li>
+    <li>"How old is the unit?" <span class="muted">(12–15+ years = likely replacement conversation, much bigger ticket — note it)</span></li>
+    <li>"When was it last serviced?"</li>
+    <li>"Anyone in the home especially affected — kids, elderly, pets?" <span class="muted">(real urgency, prioritize)</span></li>
+    <li>"Have your energy bills been creeping up?" <span class="muted">(efficiency angle for replacements)</span></li>
+  </ul>
+  <h3>Booking language</h3>
+  <p>Repair lead: <i>"Let's get a tech out to diagnose it — [free / $X diagnostic, credited toward the repair]. Today at [time] or tomorrow at [time]?"</i> Aging system: <i>"At that age it's worth having [Company] look at whether a repair or an upgrade makes more sense — they'll give you both numbers, and there are financing options. When works?"</i></p>
+  <h3>Trade-specific objection</h3>
+  <p><b>"A new system is too expensive."</b> → "Totally understand — nobody budgets for it. That's why [Client Company] offers financing that usually lands around [$X/month], and a new unit cuts the energy bill too. Worth seeing the actual numbers before deciding? The visit costs you nothing."</p>
+</div>
+
+<!-- ================= FLOORING ================= -->
+<div class="trade" id="flooring">
+  <span class="pill">Trade Module</span>
+  <h2>Flooring</h2>
+  <p class="tagline">Project-based, zero emergency. The enemy is procrastination — your job is to make the in-home measure feel easy and free of commitment.</p>
+  <h3>Trade discovery</h3>
+  <ul class="b">
+    <li>"Which rooms are you thinking about, and roughly how much space?" <span class="muted">(rooms × ~sq ft = ticket size)</span></li>
+    <li>"What are you leaning toward — LVP, hardwood, tile, carpet? Or still deciding?"</li>
+    <li>"What's on the floor now, and are you replacing it because of damage, wear, or just time for a change?"</li>
+    <li>"Is there a date you're working toward — holidays, guests, selling the home?" <span class="muted">(deadline = real urgency, use it)</span></li>
+    <li>"Have you gotten samples or quotes anywhere yet?"</li>
+  </ul>
+  <h3>Booking language</h3>
+  <p>Sell the measure + samples: <i>"Easiest next step is a free in-home measure — [estimator] brings samples so you see them in your own light, measures everything, and you get an exact price, not a guess. No obligation. [Day] or [day]?"</i></p>
+  <h3>Trade-specific objection</h3>
+  <p><b>"We're not ready yet / just pricing."</b> → "Perfect time, actually — the measure is free and the quote is good for [X days]. You'll know your real number, so when you ARE ready there's no scramble. Want me to set it up while it costs nothing?"</p>
+</div>
+
+<!-- ================= JUNK REMOVAL ================= -->
+<div class="trade" id="junk">
+  <span class="pill">Trade Module</span>
+  <h2>Junk Removal</h2>
+  <p class="tagline">Fast, transactional, price-first callers. Speed IS the product — book the soonest slot, keep calls short (3–5 min).</p>
+  <h3>Trade discovery</h3>
+  <ul class="b">
+    <li>"What are we hauling — furniture, appliances, yard waste, a cleanout?"</li>
+    <li>"Roughly how much? Like a couch and a few boxes, half a garage, a whole house?" <span class="muted">(volume = price — get them to compare to something visual)</span></li>
+    <li>"Is everything in one spot, or spread out? Any stairs?"</li>
+    <li>"Anything heavy or unusual — pianos, hot tubs, concrete?"</li>
+    <li>"How soon do you want it gone?" <span class="muted">(usually the answer is NOW — book the soonest window)</span></li>
+  </ul>
+  <h3>Booking language</h3>
+  <p><i>"Based on what you described, you're likely in the [$X–$Y] range — [Company] confirms the exact price on-site before touching anything, and if you're not good with the number, they leave, no charge. We've got a crew in your area [today/tomorrow] — [window] or [window]?"</i></p>
+  <p class="muted">Photo option: "Text me a photo of the pile and I'll get you a tighter estimate in a few minutes." (Great for hesitant callers — and gets their number active in SMS.)</p>
+  <h3>Trade-specific objection</h3>
+  <p><b>"Just give me a price." </b> → "It's priced by how much space it takes in the truck — that pile you described is probably [$X–$Y]. Crew confirms on-site before starting, walk away free if it's not right. Want the [window] slot before it's gone?"</p>
+</div>
+
+<h2 id="objections"><span class="num">7.</span> Universal Objection Handling</h2>
+<p>Framework for every objection, any trade: <b>Probe → Acknowledge → Refocus → Close.</b> Never argue. Never talk past the sale.</p>
+<table>
+  <thead><tr><th style="width:26%">Objection</th><th>Handle</th></tr></thead>
+  <tbody>
+    <tr><td>"How much is it?"</td><td>Probe: "Fair question — depends on [factors]. That's why the [estimate / inspection / measure / diagnostic] exists: [free / $X — client policy], and you get a real number instead of a phone guess. [Day] or [day]?"</td></tr>
+    <tr><td>"That's too expensive"</td><td>"Help me understand — when you say too expensive, what are you comparing it to?" Acknowledge. Refocus on value: licensed, warrantied, done-right-once. "Is that difference worth risking a redo?"</td></tr>
+    <tr><td>"I need to talk to my spouse"</td><td>"Of course. What questions do you think they'll have? … Let's pencil [day] — if it doesn't work after you talk, one text and we move it."</td></tr>
+    <tr><td>"I already called someone else"</td><td>"Smart to compare. The [visit] is [free / $X credited], so a second opinion costs you nothing — and folks are usually glad they got one. Want me to set it up?"</td></tr>
+    <tr><td>"Just looking / not ready"</td><td>Probe for the real situation, acknowledge, offer the no-pressure next step (free visit / photo estimate / quote that locks pricing), ask for agreement.</td></tr>
+    <tr><td>"How did you get my number?"</td><td>"You filled out a quick form on our [Facebook/Google] ad about [service]. Is that still something you need handled?"</td></tr>
+  </tbody>
+</table>
+<div class="callout">
+  <b>Never quote "free" by default.</b> Estimate/inspection/diagnostic pricing varies by client — check the client profile first. If it's paid, lead with value: "$X, credited toward the job if you move forward."
+</div>
+
+<h2 id="cheat"><span class="num">8.</span> One-Glance Cheat Sheet</h2>
+<table>
+  <thead><tr><th>Trade</th><th>Emergency = book same-day</th><th>Money question</th><th>What you're selling</th><th>Call length</th></tr></thead>
+  <tbody>
+    <tr><td><b>Plumbing</b></td><td>Active leak, sewage, no water/hot water</td><td>"How old is the water heater?"</td><td>The tech visit</td><td>4–8 min</td></tr>
+    <tr><td><b>Roofing</b></td><td>Active interior leak</td><td>"Any storm damage? Insurance claim?"</td><td>The free inspection + photo report</td><td>5–8 min</td></tr>
+    <tr><td><b>HVAC</b></td><td>Dead system in extreme heat/cold, vulnerable people in home</td><td>"How old is the unit?"</td><td>The diagnostic / both-numbers visit</td><td>4–8 min</td></tr>
+    <tr><td><b>Flooring</b></td><td>None — create urgency from their deadline</td><td>"Which rooms, how much space?"</td><td>The free in-home measure + samples</td><td>5–8 min</td></tr>
+    <tr><td><b>Junk Removal</b></td><td>Everything — speed is the product</td><td>"How much, compared to a garage?"</td><td>The soonest truck window</td><td>3–5 min</td></tr>
+  </tbody>
+</table>
+<ul class="b">
+  <li><b>Every call:</b> get the yes to questions → discovery → recap in their words → alternate-choice book → confirm text → notes + value + stage in GHL.</li>
+  <li><b>Every no-answer:</b> text immediately; voicemail only on the last call of the day; rotate numbers per the SOP cadence.</li>
+  <li><b>Every booking:</b> confirm the tech/crew is dispatched. Every sold job: review request + referral call.</li>
+</ul>
+
+<footer>
+  <div>135 S Lemon St Ste D, Orange, CA 92856&nbsp;&nbsp;|&nbsp;&nbsp;(650) 250-0405&nbsp;&nbsp;|&nbsp;&nbsp;support@advancedmarketers.co</div>
+  <div>Advanced Marketers — Internal Use Only</div>
+</footer>
+
+</div>
+</body>
+</html>

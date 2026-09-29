@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Setter SOP &amp; Onboarding — Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1C1C25; --border:#2B2B35;
+    --txt:#EDEDF2; --muted:#8A8A99; --purple:#7D7BF7; --good:#3FCF95; --warn:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.55;font-size:15px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 80px}
+  a{color:var(--purple)}
+
+  /* header */
+  header{position:sticky;top:0;background:rgba(13,13,18,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);z-index:10}
+  .hin{max-width:880px;margin:0 auto;padding:14px 28px;display:flex;justify-content:space-between;align-items:baseline}
+  .wordmark{font-weight:700;letter-spacing:.28em;font-size:15px}
+  .wordmark span{display:block;font-weight:400;font-size:9px;letter-spacing:.5em;color:var(--muted);margin-top:2px}
+  .htag{font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+
+  /* cover */
+  .cover{padding:90px 0 60px}
+  .kicker{font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--purple);text-transform:uppercase;margin-bottom:14px}
+  .cover h1{font-size:52px;line-height:1.08;font-weight:700}
+  .cover h1 em{font-style:normal;color:var(--purple)}
+  .cover p.sub{color:var(--muted);font-size:17px;margin-top:14px}
+  .badge{display:inline-block;margin-top:28px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 20px}
+  .badge .bk{font-size:9px;font-weight:700;letter-spacing:.28em;color:var(--purple);text-transform:uppercase}
+  .badge .bv{font-weight:700;margin-top:4px}
+  .badge .bm{color:var(--muted);font-size:12.5px;margin-top:2px}
+
+  /* toc */
+  nav.toc{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:20px 24px;margin-bottom:10px}
+  nav.toc .kicker{margin-bottom:10px}
+  nav.toc ol{columns:2;column-gap:36px;padding-left:20px;font-size:13.5px}
+  nav.toc li{margin:4px 0}
+  nav.toc a{text-decoration:none;color:var(--txt)}
+  nav.toc a:hover{color:var(--purple)}
+
+  h2{font-size:24px;margin:52px 0 14px;padding-top:8px}
+  h2 .num{color:var(--purple)}
+  h3{font-size:15px;color:var(--purple);margin:26px 0 8px}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted);font-size:12.5px;margin:8px 0 0}
+  ul.b{list-style:none;margin:0 0 14px}
+  ul.b li{padding-left:20px;position:relative;margin:6px 0}
+  ul.b li::before{content:"•";color:var(--purple);position:absolute;left:4px}
+
+  .script{background:var(--panel);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:16px 20px;font-style:italic;margin:10px 0 18px;color:var(--txt)}
+  .script b{font-style:normal}
+  .script .dir{color:var(--muted);font-style:normal;font-size:13px}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:13.5px}
+  th{background:var(--panel2);color:var(--purple);text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;text-align:left}
+  th,td{border:1px solid var(--border);padding:9px 12px;vertical-align:top}
+  tbody tr:nth-child(odd){background:var(--panel)}
+  tbody tr:nth-child(even){background:var(--panel2)}
+
+  .callout{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .callout.warn{border-color:var(--warn)}
+
+  footer{border-top:1px solid var(--border);margin-top:70px;padding-top:18px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media print{
+    body{background:#fff;color:#111}
+    header{position:static;background:#fff}
+    :root{--panel:#f4f4f8;--panel2:#ebebf2;--border:#ccc;--txt:#111;--muted:#555}
+    .cover{padding:40px 0}
+  }
+  @media (max-width:640px){
+    .cover h1{font-size:36px}
+    nav.toc ol{columns:1}
+  }
+</style>
+</head>
+<body>
+<header><div class="hin">
+  <div class="wordmark">ADVANCED<span>M A R K E T E R S</span></div>
+  <div class="htag">Phone Setter SOP</div>
+</div></header>
+
+<div class="wrap">
+
+<section class="cover">
+  <div class="kicker">Revenue First, Always</div>
+  <h1>Phone Setter<br><em>SOP &amp; Onboarding</em></h1>
+  <p class="sub">Answering, outreach, follow-up &amp; pipeline management in GoHighLevel</p>
+  <div class="badge">
+    <div class="bk">Internal Use Only</div>
+    <div class="bv">Version 1.1 — July 2026</div>
+    <div class="bm">Owner: Operations &nbsp;•&nbsp; Applies to all phone setters</div>
+  </div>
+</section>
+
+<nav class="toc">
+  <div class="kicker">Contents</div>
+  <ol>
+    <li><a href="#s1">Role &amp; Mission</a></li>
+    <li><a href="#s2">Tools &amp; Access</a></li>
+    <li><a href="#s3">The Standard Pipeline</a></li>
+    <li><a href="#s4">Daily Operating Rhythm</a></li>
+    <li><a href="#s5">Core Workflows</a></li>
+    <li><a href="#s6">Scripts &amp; Templates</a></li>
+    <li><a href="#s7">Notes, Lead Value &amp; Data Hygiene</a></li>
+    <li><a href="#s8">Daily Activity Standards &amp; Limits</a></li>
+    <li><a href="#s9">Reporting &amp; Communication</a></li>
+    <li><a href="#s10">KPIs &amp; Scorecard</a></li>
+    <li><a href="#s11">30-Day Onboarding Plan</a></li>
+    <li><a href="#s12">Hard Rules</a></li>
+  </ol>
+</nav>
+
+<h2 id="s1"><span class="num">1.</span> Role &amp; Mission</h2>
+<p>The Phone Setter is the voice of our clients' businesses (primarily plumbing companies). You answer every inbound call, chase every lead that hasn't answered, and follow up until every opportunity is either booked, sold, or clearly dead. Your job is simple to describe and hard to do well: <b>turn leads into booked appointments and sales as fast as possible, and tell the team what the leads are telling you.</b></p>
+<h3>Your two customers</h3>
+<ul class="b">
+  <li><b>The client (business owner):</b> you keep their calendar full, their pipeline updated, and them informed daily.</li>
+  <li><b>The marketing team:</b> your notes and lead-quality flags are how we optimize campaigns quickly. You are our eyes and ears — if the leads are bad, we need to know the same day, not at month-end.</li>
+</ul>
+<h3>Success in this role means</h3>
+<ul class="b">
+  <li>Every lead is contacted fast — via <b>Call Connect, in under 3 minutes</b>. No exceptions during shift.</li>
+  <li>Every opportunity sits in the correct pipeline stage with notes and a dollar value.</li>
+  <li>Every sold job gets a review request <b>and a referral ask</b>. Every proposal gets relentless, polite follow-up.</li>
+  <li>The business owner knows their schedule every day. Marketing knows lead quality every day.</li>
+</ul>
+<p><b>Mindset (from the AM Sales Framework):</b> You are not the show — they are. Let the process do the work. Skip the fluff. Assume nothing on the lead form is 100% accurate — validate everything. Don't pitch; ask smart questions and stay curious. Avoid jargon: confuse the customer, lose the sale.</p>
+
+<h2 id="s2"><span class="num">2.</span> Tools &amp; Access</h2>
+<table>
+  <thead><tr><th style="width:24%">Tool</th><th>What you use it for</th></tr></thead>
+  <tbody>
+    <tr><td>GoHighLevel (GHL)</td><td>Your home base: Call Connect, SMS, email, pipeline, contact notes, calendars, tags. Every action you take lives here.</td></tr>
+    <tr><td>Client's own CRM (varies)</td><td>Some clients run their own CRM (ServiceTitan, Housecall Pro, Jobber, etc.). You must learn BOTH the client CRM and GHL, and keep them in sync per that client's playbook.</td></tr>
+    <tr><td>GHL Mobile App</td><td>Never miss an inbound call while away from the desk.</td></tr>
+    <tr><td>Slack</td><td>Morning/EOD owner updates, lead-quality flags to marketing, schedule changes, escalations, CRM friction reports.</td></tr>
+    <tr><td>Client Calendar</td><td>Booking estimates/appointments. If it's not on the calendar, it didn't happen.</td></tr>
+  </tbody>
+</table>
+<h3>CRM friction reports</h3>
+<p>Whenever GHL and a client's CRM fight each other — double entry, leads not syncing, statuses that don't map, anything that slows you down — <b>write it up and post it in Slack the same day.</b> Define the problem clearly: what you were doing, what broke, how long it cost you. We use these reports to optimize and automate the CRMs and make your life easier. Silent workarounds help no one.</p>
+<p class="muted">Day 1 checklist: GHL login + assigned client sub-accounts, Call Connect verified, client CRM logins where applicable, phone numbers assigned (primary + rotation), Slack channels joined, calendar access verified with a test booking.</p>
+
+<h2 id="s3"><span class="num">3.</span> The Standard Pipeline</h2>
+<p>Every client account uses this stage flow in GHL (mirror it into the client CRM where one exists). Move opportunities the moment status changes — the faster leads move through the pipeline, the better. An opportunity may never skip stages without a note explaining why.</p>
+<table>
+  <thead><tr><th style="width:20%">Stage</th><th style="width:30%">Definition</th><th>Your action / exit rule</th></tr></thead>
+  <tbody>
+    <tr><td>1. New Lead</td><td>Lead just came in (Meta, Google, LSA, inbound call).</td><td>Call Connect within 3 minutes. Set the opportunity value. Move to Contacted after first live conversation.</td></tr>
+    <tr><td>2. Contacted</td><td>Live conversation happened; not yet booked.</td><td>Qualify, book the appointment. If no answer, run the outreach cadence (Section 5).</td></tr>
+    <tr><td>3. Appointment Booked</td><td>Estimate/service visit is on the calendar.</td><td>Confirm the tech/company is dispatched (5.5). Confirm customer day before + morning of. No-show? Rebook same day and note it.</td></tr>
+    <tr><td>4. Proposal / Estimate Sent</td><td>Client gave a price or sent a proposal.</td><td>Follow-up cadence: day 1, 3, 5, 7, then weekly. Log every touch.</td></tr>
+    <tr><td>5. Sold / Won</td><td>Customer accepted; job scheduled or done.</td><td>Enter final job value. Within 24h of job completion: review request + happy-check referral call (5.6).</td></tr>
+    <tr><td>6. Review + Referral Requested</td><td>Review ask sent and referral call made.</td><td>One reminder 3 days later if no review. Log any referral names as new leads. Then close.</td></tr>
+    <tr><td>7. Lost / Nurture</td><td>Said no, unresponsive after full cadence, or bad fit.</td><td>Tag the reason (price / unresponsive / bad-fit / competitor / spam). This tag is gold for marketing.</td></tr>
+  </tbody>
+</table>
+<h3>Non-negotiables for every opportunity</h3>
+<ul class="b">
+  <li><b>Dollar value filled in.</b> Estimate it from the job type if unknown (client's average ticket). Update it when a real quote exists.</li>
+  <li><b>Notes after every touch.</b> Who you spoke to, what they need, objections, next step + date. The more notes, the better.</li>
+  <li><b>Lead source visible.</b> Never strip campaign/source tags — marketing needs them for attribution.</li>
+  <li><b>Next action scheduled.</b> No opportunity sits without a task or follow-up date on it.</li>
+</ul>
+
+<h2 id="s4"><span class="num">4.</span> Daily Operating Rhythm</h2>
+<table>
+  <thead><tr><th style="width:26%">When</th><th>What you do</th></tr></thead>
+  <tbody>
+    <tr><td>Shift start (first 30 min)</td><td>Check-in sweep: unread messages, texts, voicemails, missed calls — respond to ALL of them first. Then review GHL + client CRMs: new leads overnight, today's booked appointments, due follow-up tasks. Send the owner their Morning Schedule message (Section 9).</td></tr>
+    <tr><td>All day</td><td>Answer inbound calls live (goal: zero missed). Call Connect new leads within 3 minutes. Run outreach blocks between inbound calls.</td></tr>
+    <tr><td>Every check-in / between calls</td><td>Look for new messages and missed calls first — respond before starting new outbound work. An unanswered text is a cooling lead.</td></tr>
+    <tr><td>Outreach blocks (2–3 per day)</td><td>Work the cadence: fresh leads (&lt;24h) get their scheduled same-day attempts at different times of day; then proposal follow-ups, rebook no-shows, referral calls.</td></tr>
+    <tr><td>Last 45 min</td><td>Final message/missed-call sweep. Clean the pipeline: every touched opportunity has notes, value, stage, next task. Send EOD Slack updates (owner + marketing).</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s5"><span class="num">5.</span> Core Workflows</h2>
+<h3>5.1 Inbound calls (answer the phone!)</h3>
+<ul class="b">
+  <li>Answer within 3 rings, live, every time. A missed call is lost revenue — plumbing customers call the next company on the list.</li>
+  <li>Missed anyway? Call back within 3 minutes and send the missed-call text (Section 6) immediately.</li>
+  <li>During the call: create/update the contact in GHL, qualify with the discovery questions, and book while on the phone. Do not hang up to "check the calendar" — book live.</li>
+  <li>After the call: notes, value, stage move, confirmation text. 2 minutes max, then back to the queue.</li>
+</ul>
+<h3>5.2 Speed-to-lead: new Meta/form leads</h3>
+<ul class="b">
+  <li><b>Call Connect within 3 minutes</b> of the lead arriving. Contact rates fall off a cliff after that.</li>
+  <li>No answer on first call? Send First-Touch Text immediately. Save the voicemail for the LAST call of the day (see cadence below).</li>
+  <li><b>Leads under 24 hours old are priority one:</b> they get three touches that first day, spread across morning / midday / end of day.</li>
+</ul>
+<h3>5.3 No-answer outreach cadence (leads that haven't answered)</h3>
+<p>Every call attempt is paired with a text. Spread attempts across different times of day. Rotate to a different phone number when the schedule says so — a number they haven't ignored yet gets picked up. Leave a voicemail <b>only on the final call of each calling day</b>.</p>
+<table>
+  <thead><tr><th style="width:12%">Day</th><th style="width:10%">Calls</th><th>How to run it</th></tr></thead>
+  <tbody>
+    <tr><td>Day 1</td><td>3</td><td>Morning, midday, end of day — each call + text. Final call of the day: switch to a different phone number, and leave the voicemail after it.</td></tr>
+    <tr><td>Day 2</td><td>2</td><td>Two different times of day, call + text each. Voicemail only after the last call.</td></tr>
+    <tr><td>Day 3</td><td>1</td><td>One call + text at a time of day you haven't tried yet.</td></tr>
+    <tr><td>Day 5</td><td>2</td><td>Two calls + texts ("last check-in" tone). Rotate number on at least one.</td></tr>
+    <tr><td>Day 7</td><td>3</td><td>Three calls at different times, rotating numbers + breakup text. Voicemail after the final call. Still nothing → Lost/Nurture, tag "unresponsive".</td></tr>
+  </tbody>
+</table>
+<p class="muted">Total: 11 call attempts across 5 calling days. Never exceed 3 calls to one lead in a day. Never more than 1 unsolicited text thread-start per day per lead. Stop immediately on any opt-out ("STOP", "don't call") — tag DND in GHL.</p>
+<h3>5.4 Proposal / estimate follow-up</h3>
+<ul class="b">
+  <li>Cadence after a proposal is sent: Day 1 (did you get it / any questions), Day 3 (call), Day 5 (text value angle), Day 7 (call + decision ask), then weekly for 4 weeks.</li>
+  <li>Every follow-up must add something: answer a question, restate value, share a review or photo of similar jobs — never just "checking in" twice in a row.</li>
+  <li>After the full cadence with no decision → Lost/Nurture, tagged "went-dark-after-proposal", with a note on last known objection.</li>
+</ul>
+<h3>5.5 Booking appointments, calendar &amp; tech dispatch</h3>
+<ul class="b">
+  <li>Book directly on the client's calendar, respecting their service hours and travel zones. Use alternate-choice closes: "Tomorrow at 10 or Thursday at 2?"</li>
+  <li><b>Make sure the tech actually goes out.</b> When you book a job: (1) notify the tech/company that the appointment exists, (2) get confirmation they're aware and will be there, (3) re-verify the morning of. If they can't make it, reschedule the customer BEFORE the window is missed.</li>
+  <li>Confirmation text to the customer goes out immediately; reminder day before and morning of.</li>
+  <li>Any change (cancel, reschedule, emergency squeeze-in) → update calendar AND tell the owner in Slack right away. The owner should never be surprised by their own calendar — and a customer should never wait on a tech who was never coming.</li>
+</ul>
+<h3>5.6 After the sale: review + referral (every sold job)</h3>
+<ul class="b">
+  <li>Within 24 hours of job completion, send the review request text (Section 6) with the client's Google review link.</li>
+  <li><b>Referral call:</b> call the customer, check how everything went (this also catches problems before they become bad reviews), then ask for a referral — script in 6.8.</li>
+  <li>No review after 3 days? One friendly reminder. Log "review requested / review received / referral asked / referral received" on the contact. Any referral name goes in as a new lead, source-tagged "referral — [customer name]".</li>
+</ul>
+
+<h2 id="s6"><span class="num">6.</span> Scripts &amp; Templates (AM Sales Framework)</h2>
+<p>These follow the Advanced Marketers sales script structure — Opening &amp; agenda → Discovery → Recap &amp; solution → Close → Objection handling — adapted for homeowner calls for our plumbing clients. Replace [Client Company] with the client's business name. Say it naturally; don't read robotically.</p>
+
+<h3>6.1 Inbound call opening + agenda</h3>
+<div class="script">
+  "Thanks for calling [Client Company], this is [Name] — how can I help you today?"<br><br>
+  <span class="dir">(Let them explain. Do not interrupt — this is where you collect the problem, urgency, and their own words.)</span><br><br>
+  "Got it — sorry you're dealing with that. Let me ask you a couple quick questions so we can get the right tech out to you, is that okay?" <span class="dir">(Get a clear yes.)</span>
+</div>
+
+<h3>6.2 Discovery (uncover the story)</h3>
+<ul class="b">
+  <li><b>The problem:</b> "Walk me through what's going on — what are you seeing?"</li>
+  <li><b>Duration/urgency:</b> "How long has this been happening? Is it getting worse / is water actively leaking right now?"</li>
+  <li><b>Property:</b> "Is this a house or a business? Do you own the property?" (Renters may need landlord approval.)</li>
+  <li><b>Location:</b> "What's the address / what area are you in?" (Confirm service area before booking.)</li>
+  <li><b>History:</b> "Have you had anyone look at it yet? What did they say?" (Surfaces price shopping and competitor quotes.)</li>
+  <li><b>Decision:</b> "If our tech can fix it same-visit, are you good to move forward, or does anyone else weigh in?"</li>
+</ul>
+<p class="muted">While they talk, fill in: job type, urgency, estimated value (use client's average ticket for the job type), and their exact words — marketing uses this language in ads.</p>
+
+<h3>6.3 Recap + book (the close)</h3>
+<div class="script">
+  "Just to recap — you've got [their problem, their words], it's been going on [time], and you want it handled [urgency]. Right?" <span class="dir">(Wait for agreement — this is the goal close.)</span><br><br>
+  "Perfect. We can have a technician out [day/time window] or [alternate day/time] — which works better for you?"<br><br>
+  <span class="dir">After booking:</span> "You're all set for [day/time]. You'll get a text confirmation right now, and a reminder the day before. The tech will call when they're on the way. Anything else I can help with?"
+</div>
+
+<h3>6.4 Outbound call to an unanswered Meta lead</h3>
+<div class="script">
+  "Hi, is this [First Name]? This is [Name] with [Client Company] — you reached out to us on Facebook about [service, e.g., a water heater issue]. <b>Is it okay if I ask you a couple quick questions</b> so we can get this handled for you?" <span class="dir">(Get the yes, then go straight into Discovery 6.2 and book.)</span><br><br>
+  <span class="dir">(If "how did you get my number?")</span> "You filled out a quick form on our ad — totally quick process. You were asking about [service]. Is that still something you need handled?"
+</div>
+
+<h3>6.5 Voicemail (final call of the day only — under 20 seconds)</h3>
+<div class="script">
+  "Hi [First Name], this is [Name] with [Client Company] — you reached out about [service]. I've texted you so you have my number. Call or text back whenever's easy. Talk soon!"
+</div>
+
+<h3>6.6 Text templates</h3>
+<table>
+  <thead><tr><th style="width:24%">Scenario</th><th>Template</th></tr></thead>
+  <tbody>
+    <tr><td>First touch (no answer)</td><td>Hi [First Name], it's [Name] w/ [Client Company] — saw your request about [service]. Just tried calling. What's the best time to reach you today? Or reply here and I'll get you scheduled.</td></tr>
+    <tr><td>Missed inbound call</td><td>Hi, you just called [Client Company] — sorry we missed you! This is [Name]. How can we help? Reply here or I'll call you right back.</td></tr>
+    <tr><td>No-answer day 2</td><td>Hi [First Name] — still want us to take a look at that [issue]? We've got openings [day] and [day]. Which works better?</td></tr>
+    <tr><td>Breakup (day 7)</td><td>Hi [First Name], last note from me so I'm not blowing up your phone — if you still need help with [issue], we're here. One reply and I'll get you on the schedule. Either way, all the best!</td></tr>
+    <tr><td>Appointment confirmation</td><td>You're confirmed! [Client Company] will be out [day, date] between [window]. The tech will call en route. Need to change it? Just reply here.</td></tr>
+    <tr><td>Proposal follow-up</td><td>Hi [First Name], [Name] w/ [Client Company] — wanted to make sure you got the estimate for [job]. Happy to walk through it or adjust options. Any questions I can answer?</td></tr>
+    <tr><td>Review request (after job)</td><td>Hi [First Name]! Thanks for trusting [Client Company] with your [job]. If [Tech Name] did a great job, would you mind leaving a quick review? It takes 30 seconds and helps a ton: [Google Review Link]</td></tr>
+  </tbody>
+</table>
+
+<h3>6.7 Objection handling (probe → acknowledge → refocus → close)</h3>
+<table>
+  <thead><tr><th style="width:26%">Objection</th><th>How to handle it</th></tr></thead>
+  <tbody>
+    <tr><td>"How much is it?" (price shopping)</td><td>Probe: "Totally fair — so I don't guess wrong, it depends on [factors]. That's exactly why we do an estimate visit [free / for $X — use the client's policy]." Refocus on the visit: "Let's get eyes on it so you get a real number, not a phone guess — [day] or [day]?"</td></tr>
+    <tr><td>"That's too expensive"</td><td>Probe: "Help me understand — when you say too expensive, what are you comparing it to?" Acknowledge, then show value: licensed techs, warranty, done-right-once. Close: "Is that difference really worth risking a redo?"</td></tr>
+    <tr><td>"I need to talk to my spouse"</td><td>Acknowledge and align: "Of course." Then keep control: "What questions do you think they'll have? … Let's pencil [day] — if it doesn't work after you talk, one text and we move it."</td></tr>
+    <tr><td>"I already called someone else"</td><td>"Smart to compare. Most folks who get a second opinion from us are glad they did — the estimate visit is [free / $X, credited toward the job — per client policy], so you've lost nothing. Want me to set it up?"</td></tr>
+    <tr><td>Apathetic / cold ("just looking")</td><td>Probe for the real situation, acknowledge, tell them what you'd like to do and why (estimate visit, no pressure), and ask for agreement.</td></tr>
+  </tbody>
+</table>
+<p class="muted">Estimate pricing varies by client — check the client profile before quoting "free." If the client charges for estimate visits, lead with the value: "$X, and it's credited toward the job if you move forward."</p>
+
+<h3>6.8 Referral call (after every sold job)</h3>
+<div class="script">
+  "Hi [First Name], it's [Name] with [Client Company] — I'm not calling to sell you anything, I just wanted to make sure everything went great with [the job]. How'd [Tech Name] do?"<br><br>
+  <span class="dir">(Listen. If there's ANY problem — fix it first, escalate to the owner, and do NOT ask for the referral or review on this call.)</span><br><br>
+  <span class="dir">(If happy:)</span> "That's great to hear. Quick favor — most of our best customers come from folks like you. Is there a neighbor, friend, or family member dealing with any plumbing stuff we could help out? We'll take great care of anyone you send."<br><br>
+  <span class="dir">(If they give a name:)</span> "Perfect — want me to reach out to them directly, or would you rather pass along our number? Either way, we'll mention you sent them."
+</div>
+
+<h2 id="s7"><span class="num">7.</span> Notes, Lead Value &amp; Data Hygiene</h2>
+<p>If it isn't in GHL (and the client's CRM, where one exists), it didn't happen. Marketing decisions, owner schedules, and your own performance reviews all run off this data.</p>
+<table>
+  <thead><tr><th style="width:24%">Field</th><th>Standard</th></tr></thead>
+  <tbody>
+    <tr><td>Opportunity value</td><td>Always filled. Real quote if it exists; otherwise the client's average ticket for that job type. Update on change.</td></tr>
+    <tr><td>Notes</td><td>After every touch: who/what/objection/next step + date. Use the customer's own words for the problem.</td></tr>
+    <tr><td>Tags</td><td>Lead quality (good-lead / bad-lead + reason), DND/opt-out, lost reason, review-requested, referral-asked.</td></tr>
+    <tr><td>Lead quality flag</td><td>Mark every worked lead good or bad SAME DAY. Bad = wrong service, out of area, no intent, fake number, price-only shopper. This is what lets marketing kill bad campaigns fast.</td></tr>
+    <tr><td>CRM sync</td><td>Where a client runs their own CRM, mirror stage + notes per that client's playbook. Log any sync friction in Slack same day.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s8"><span class="num">8.</span> Daily Activity Standards &amp; Limits</h2>
+<p>These keep effort high, quality high, and phones compliant. Targets are per setter per full shift; adjust per client volume with manager approval.</p>
+<table>
+  <thead><tr><th style="width:24%">Metric</th><th style="width:34%">Target / Limit</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Inbound answer rate</td><td>95%+ answered live; 100% of missed calls returned within 3 min</td><td>Missed calls are lost jobs.</td></tr>
+    <tr><td>Speed to lead</td><td>Call Connect ≤ 3 minutes on new leads during shift</td><td>Contact rates collapse after the first minutes.</td></tr>
+    <tr><td>Fresh leads (&lt;24h)</td><td>3 touches on day one, spread across the day, number rotation on the last</td><td>Day-one persistence is where booked jobs come from.</td></tr>
+    <tr><td>Outbound dials</td><td>Target 60–80 dials/day; hard cap 100</td><td>Beyond ~100 dials, quality and notes fall apart.</td></tr>
+    <tr><td>Attempts per lead</td><td>Max 3 calls/day per lead; 11 call attempts total across the cadence</td><td>Persistent without harassing; protects the client's numbers from spam-flagging.</td></tr>
+    <tr><td>Talk time — inbound booking call</td><td>Target 4–8 min; soft cap 12 min</td><td>Long enough to qualify and book; escalate complex jobs to the owner instead of playing technician.</td></tr>
+    <tr><td>Talk time — outbound outreach</td><td>Target 3–6 min</td><td>Qualify, book, get off the phone.</td></tr>
+    <tr><td>Total talk time</td><td>Target 3–4 hrs/day; minimum 2 hrs</td><td>Main leading indicator of booked appointments.</td></tr>
+    <tr><td>Texts</td><td>Every call attempt is paired with a text; never more than 1 unsolicited thread-start/day per lead</td><td>Texts convert — but volume triggers carrier spam filters.</td></tr>
+    <tr><td>Voicemails</td><td>Only on the final call of each calling day</td><td>One good voicemail beats three ignored ones.</td></tr>
+    <tr><td>Calling hours</td><td>8:00 AM – 8:30 PM local time only; honor every opt-out instantly</td><td>Compliance (TCPA/DNC) and basic respect.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s9"><span class="num">9.</span> Reporting &amp; Communication (Slack)</h2>
+<h3>9.1 Morning schedule message → business owner (start of shift)</h3>
+<div class="script">
+  <b>Morning [Owner Name]!</b> Today's schedule:<br>
+  • 9:00 – [Customer, job type, address area, est. value]<br>
+  • 11:30 – […]<br>
+  • 2:00 – […]<br>
+  All techs confirmed for today's jobs: [yes / chasing X]. Changes since yesterday: [reschedules/cancels]. Anything you need moved, tell me by [time].
+</div>
+<h3>9.2 End-of-day update → business owner</h3>
+<div class="script">
+  <b>EOD [Client Company] — [Date]</b><br>
+  • Calls: [X] inbound ([X] answered live), [X] outbound<br>
+  • New leads: [X] — contacted [X] (all under 3 min: [Y/N]), booked [X]<br>
+  • Appointments booked for: [dates] — techs notified &amp; confirmed: [Y/N]<br>
+  • Proposals followed up: [X] — [status highlights]<br>
+  • Sold today: [jobs + $ values] • Reviews requested: [X] • Referral calls: [X] — referrals in: [names]<br>
+  • Tomorrow's schedule: [summary + any gaps to fill]<br>
+  • Needs your attention: [decisions, escalations, schedule changes]
+</div>
+<h3>9.3 Lead-quality flag → marketing (same day, every day)</h3>
+<div class="script">
+  <b>Lead quality — [Client Company] — [Date]</b><br>
+  • [Campaign/Ad name]: [X] leads — [X] good / [X] bad. Bad because: [reason pattern]<br>
+  • Best lead today: [what they said / job value] from [campaign]<br>
+  • Pattern I'm seeing: [e.g., "water heater ads pulling renters, not owners"]<br>
+  • Recommendation: [scale / fix / kill]
+</div>
+<div class="callout warn">
+  <b>Escalate immediately (don't wait for EOD):</b> angry customer, emergency job the owner can take now, 3+ bad leads in a row from one campaign, tech can't make a confirmed window, any threat of bad review, any CRM sync failure losing leads.
+</div>
+
+<h2 id="s10"><span class="num">10.</span> KPIs &amp; Scorecard</h2>
+<table>
+  <thead><tr><th style="width:34%">KPI</th><th style="width:38%">Target</th><th>Measured in</th></tr></thead>
+  <tbody>
+    <tr><td>Speed to lead (median)</td><td>≤ 3 min via Call Connect</td><td>GHL</td></tr>
+    <tr><td>Contact rate (new leads)</td><td>≥ 70% within 48h</td><td>GHL</td></tr>
+    <tr><td>Lead → appointment rate</td><td>≥ 40% of contacted</td><td>GHL pipeline</td></tr>
+    <tr><td>Show rate (customer AND tech)</td><td>≥ 80% (confirmations + dispatch checks working)</td><td>Calendar vs. outcomes</td></tr>
+    <tr><td>Proposal follow-up compliance</td><td>100% on cadence</td><td>Task audit</td></tr>
+    <tr><td>Review requests sent</td><td>100% of completed jobs within 24h</td><td>GHL tags</td></tr>
+    <tr><td>Referral calls made</td><td>100% of sold jobs within 24h of completion</td><td>GHL tags + call log</td></tr>
+    <tr><td>Pipeline hygiene</td><td>0 opportunities without value/notes/next step</td><td>Weekly audit</td></tr>
+    <tr><td>Lead quality flags</td><td>100% of worked leads flagged same day</td><td>Slack + GHL tags</td></tr>
+  </tbody>
+</table>
+<p class="muted">Weekly QA: manager reviews 5 random call recordings against the script framework (opening, discovery, recap-close, objection handling) and scores 1–5 on each. Scores below 3 trigger a coaching session.</p>
+
+<h2 id="s11"><span class="num">11.</span> 30-Day Onboarding Plan</h2>
+<table>
+  <thead><tr><th style="width:22%">Phase</th><th style="width:42%">Focus</th><th>You're done when…</th></tr></thead>
+  <tbody>
+    <tr><td>Days 1–3: Setup &amp; Study</td><td>Tool access (GHL + client CRMs), this SOP, client profiles (services, pricing, estimate-visit policy, service areas, avg tickets), listen to 10 recorded calls (good and bad).</td><td>You can explain each client's services, service area, estimate policy, and average ticket without looking.</td></tr>
+    <tr><td>Days 4–7: Shadow &amp; Drill</td><td>Live-listen to a senior setter. Role-play daily: inbound, Meta outreach, referral call, each objection in 6.7.</td><td>You pass a role-play where the manager throws all 5 objections at you.</td></tr>
+    <tr><td>Days 8–14: Supervised Live</td><td>Take inbound + outbound live with manager listening. Manager reviews every note, stage move, and dispatch confirmation at EOD.</td><td>3 consecutive days with clean pipeline hygiene and ≥2 booked appointments/day.</td></tr>
+    <tr><td>Days 15–21: Solo + Daily Review</td><td>Full workload. Daily 15-min call review with manager. Start owning Slack reporting.</td><td>EOD and lead-quality reports go out on time 5 days straight, unprompted.</td></tr>
+    <tr><td>Days 22–30: Full Ownership</td><td>Full KPIs live. Weekly QA scoring begins. You propose your first campaign optimization to marketing and file your first CRM friction report (if any).</td><td>Hit week-4 KPI targets; marketing confirms your lead-quality flags are actionable.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s12"><span class="num">12.</span> Hard Rules</h2>
+<ul class="b">
+  <li><b>Never</b> promise a price. Ranges the client approved only; otherwise "the tech will quote it on site."</li>
+  <li><b>Never</b> ignore an opt-out. "Stop," "don't call," "remove me" = DND tag immediately, forever.</li>
+  <li><b>Never</b> leave a worked lead without notes, a stage, and a next step.</li>
+  <li><b>Never</b> let the owner find out about a schedule change from the customer — and never let a customer wait on a tech nobody dispatched.</li>
+  <li><b>Never</b> quote "free estimate" without checking the client's estimate-visit policy.</li>
+  <li><b>Always</b> book while on the phone. "I'll call you back to schedule" is a lost job.</li>
+  <li><b>Always</b> clear messages and missed calls before starting new outbound work.</li>
+  <li><b>Always</b> flag lead quality the same day. A bad campaign running one extra week is real money wasted.</li>
+</ul>
+<p class="muted">Questions or improvement ideas for this SOP → post in #operations. This is a living document; it gets better when the people on the phones push back on it.</p>
+
+<footer>
+  <div>135 S Lemon St Ste D, Orange, CA 92856&nbsp;&nbsp;|&nbsp;&nbsp;(650) 250-0405&nbsp;&nbsp;|&nbsp;&nbsp;support@advancedmarketers.co</div>
+  <div>Advanced Marketers — Internal Use Only</div>
+</footer>
+
+</div>
+</body>
+</html>

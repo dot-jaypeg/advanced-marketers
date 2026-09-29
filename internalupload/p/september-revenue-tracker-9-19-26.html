@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revenue Tracker</title>
+<style>
+:root{color-scheme:light;
+--page:#f9f9f7;--surface-1:#fcfcfb;--text-primary:#0b0b0b;--text-secondary:#52514e;--muted:#898781;
+--grid:#e1e0d9;--baseline:#c3c2b7;--border:rgba(11,11,11,0.10);
+--series-1:#2a78d6;--series-1-soft:#cde2fb;
+--good:#0ca30c;--warning:#fab219;--serious:#ec835a;--critical:#d03b3b;--success-text:#006300;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+--page:#0d0d0d;--surface-1:#1a1a19;--text-primary:#fff;--text-secondary:#c3c2b7;--muted:#898781;
+--grid:#2c2c2a;--baseline:#383835;--border:rgba(255,255,255,0.10);
+--series-1:#3987e5;--series-1-soft:#184f95;--success-text:#0ca30c;}}
+:root[data-theme="dark"]{color-scheme:dark;
+--page:#0d0d0d;--surface-1:#1a1a19;--text-primary:#fff;--text-secondary:#c3c2b7;--muted:#898781;
+--grid:#2c2c2a;--baseline:#383835;--border:rgba(255,255,255,0.10);
+--series-1:#3987e5;--series-1-soft:#184f95;--success-text:#0ca30c;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--text-primary);
+font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px;line-height:1.5;}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 72px}
+header{margin-bottom:8px}
+h1{font-size:24px;margin:0 0 4px;letter-spacing:-0.01em}
+.sub{color:var(--text-secondary);font-size:14px;margin:0}
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px}
+h2{font-size:15px;margin:0 0 14px;letter-spacing:0.01em;color:var(--text-secondary);text-transform:uppercase;font-weight:600}
+.hero{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end}
+.heronum{font-size:56px;font-weight:650;letter-spacing:-0.03em;line-height:1}
+.herometa{color:var(--text-secondary);font-size:14px;padding-bottom:6px}
+.progress{margin-top:18px;height:14px;background:var(--grid);border-radius:7px;overflow:hidden;position:relative}
+.progress>i{display:block;height:100%;background:var(--series-1);border-radius:7px;width:58.5%}
+.plabels{display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-top:6px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--border);
+border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:20px}
+.tile{background:var(--surface-1);padding:16px 18px}
+.tile .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-weight:600}
+.tile .v{font-size:24px;font-weight:600;margin-top:4px;letter-spacing:-0.02em}
+.tile .n{font-size:12.5px;color:var(--text-secondary);margin-top:3px}
+.chart{width:100%;height:auto;display:block}
+.grid{stroke:var(--grid);stroke-width:1}
+.baseline{stroke:var(--baseline);stroke-width:1}
+.axis{fill:var(--muted);font-size:11.5px;font-family:inherit;font-variant-numeric:tabular-nums}
+.vlab{fill:var(--text-secondary);font-size:11.5px;font-family:inherit;font-weight:600}
+.goalline{stroke:var(--critical);stroke-width:2;stroke-dasharray:6 5}
+.goallab{fill:var(--critical);font-size:12px;font-family:inherit;font-weight:600}
+.bar .hit{cursor:default}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);margin-top:10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);
+font-weight:600;padding:0 10px 8px 0;border-bottom:1px solid var(--border)}
+td{padding:8px 10px 8px 0;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.detail{color:var(--text-secondary);font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+padding:3px 9px;border-radius:999px;white-space:nowrap;border:1px solid var(--border)}
+.pill .ico{font-weight:700}
+.pill.good{color:var(--success-text)} .pill.warning{color:var(--text-primary)}
+.pill.serious{color:var(--text-primary)} .pill.critical{color:var(--critical)}
+.pill.good .ico{color:var(--good)} .pill.warning .ico{color:var(--warning)}
+.pill.serious .ico{color:var(--serious)} .pill.critical .ico{color:var(--critical)}
+.pill.unverified .ico{color:var(--muted)}
+.flag{border-left:3px solid var(--warning);padding:14px 18px;background:var(--surface-1);
+border-radius:0 10px 10px 0;margin-top:20px;border-top:1px solid var(--border);
+border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.flag h3{margin:0 0 6px;font-size:14px}
+.flag p{margin:0 0 6px;font-size:13.5px;color:var(--text-secondary)}
+.flag.crit{border-left-color:var(--critical)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.cols{grid-template-columns:1fr} .heronum{font-size:42px}}
+details summary{cursor:pointer;color:var(--text-secondary);font-size:13.5px;padding:4px 0}
+footer{margin-top:32px;font-size:12.5px;color:var(--muted)}
+</style></head><body><div class="wrap">
+
+<header>
+<h1>Advanced Marketers &mdash; Revenue Tracker</h1>
+<p class="sub">September 2026 month-to-date &middot; as of Fri Sep 19, 2026 &middot; source: &ldquo;Copy of billing&rdquo;</p>
+</header>
+
+<div class="card">
+<h2>Month to date vs goal</h2>
+<div class="hero">
+<div><div class="heronum">$175,637</div></div>
+<div class="herometa">58.5% of the $300,000 goal &middot; 59 charges posted<br>
+$124,363 remaining with 11 days left</div>
+</div>
+<div class="progress"><i></i></div>
+<div class="plabels"><span>$0</span><span>$300,000</span></div>
+</div>
+
+<div class="tiles">
+<div class="tile"><div class="k">Days elapsed</div><div class="v">19 of 30</div><div class="n">11 days remaining</div></div>
+<div class="tile"><div class="k">Actual daily pace</div><div class="v">$9,244</div><div class="n">92% of the pace needed for $300,000</div></div>
+<div class="tile"><div class="k">Required daily pace</div><div class="v">$11,306</div><div class="n">to close the $124,363 gap</div></div>
+<div class="tile"><div class="k">Run-rate projection</div><div class="v">$277,322</div><div class="n">current pace held to Sep 30</div></div>
+</div>
+
+<div class="tiles">
+<div class="tile"><div class="k">Pipeline left to bill</div><div class="v">$119,380</div><div class="n">45 accounts, at last month&rsquo;s amounts</div></div>
+<div class="tile"><div class="k">Past due</div><div class="v">$41,259</div><div class="n">13 accounts, billing day already passed</div></div>
+<div class="tile"><div class="k">Still scheduled</div><div class="v">$64,722</div><div class="n">26 accounts, days 20&ndash;30</div></div>
+<div class="tile"><div class="k">No billing day set</div><div class="v">$13,399</div><div class="n">6 accounts, unscheduled</div></div>
+</div>
+
+<div class="card">
+<h2>If the pipeline lands</h2>
+<table><thead><tr><th>Scenario</th><th class="num">September total</th><th class="num">vs $300,000</th></tr></thead><tbody>
+<tr><td>Everything outstanding collects</td><td class="num">$295,017</td><td class="num">&minus;$4,983</td></tr>
+<tr><td>At the 10% decline rate you use</td><td class="num">$283,079</td><td class="num">&minus;$16,921</td></tr>
+<tr><td>Straight run-rate, no pipeline assumption</td><td class="num">$277,322</td><td class="num">&minus;$22,678</td></tr>
+</tbody></table>
+</div>
+
+<div class="card">
+<h2>Monthly revenue, 2026</h2>
+<svg viewBox="0 0 980 300" class="chart" role="img" aria-label="Monthly revenue Jan-Sep 2026 with 300k goal line">
+<defs><pattern id="partial" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<rect width="7" height="7" fill="var(--series-1-soft)"/><line x1="0" y1="0" x2="0" y2="7" stroke="var(--series-1)" stroke-width="2.5"/></pattern></defs>
+<line x1="56" y1="219.5" x2="964" y2="219.5" class="grid"/><text x="48" y="223.5" text-anchor="end" class="axis">50k</text><line x1="56" y1="183.0" x2="964" y2="183.0" class="grid"/><text x="48" y="187.0" text-anchor="end" class="axis">100k</text><line x1="56" y1="146.6" x2="964" y2="146.6" class="grid"/><text x="48" y="150.6" text-anchor="end" class="axis">150k</text><line x1="56" y1="110.1" x2="964" y2="110.1" class="grid"/><text x="48" y="114.1" text-anchor="end" class="axis">200k</text><line x1="56" y1="73.6" x2="964" y2="73.6" class="grid"/><text x="48" y="77.6" text-anchor="end" class="axis">250k</text><line x1="56" y1="37.1" x2="964" y2="37.1" class="grid"/><text x="48" y="41.1" text-anchor="end" class="axis">300k</text>
+<line x1="56" y1="37.1" x2="964" y2="37.1" class="goalline"/>
+<text x="964" y="29.1" text-anchor="end" class="goallab">$300K goal</text>
+<rect x="75.4" y="180.5" width="62.0" height="75.5" rx="4" fill="var(--series-1)"><title>Jan 2026: $103,473</title></rect><rect x="176.3" y="164.1" width="62.0" height="91.9" rx="4" fill="var(--series-1)"><title>Feb 2026: $125,957</title></rect><rect x="277.2" y="177.3" width="62.0" height="78.7" rx="4" fill="var(--series-1)"><title>Mar 2026: $107,916</title></rect><rect x="378.1" y="148.9" width="62.0" height="107.1" rx="4" fill="var(--series-1)"><title>Apr 2026: $146,862</title></rect><rect x="479.0" y="125.2" width="62.0" height="130.8" rx="4" fill="var(--series-1)"><title>May 2026: $179,290</title></rect><rect x="579.9" y="112.0" width="62.0" height="144.0" rx="4" fill="var(--series-1)"><title>Jun 2026: $197,359</title></rect><rect x="680.8" y="95.3" width="62.0" height="160.7" rx="4" fill="var(--series-1)"><title>Jul 2026: $220,319</title></rect><rect x="781.7" y="67.4" width="62.0" height="188.6" rx="4" fill="var(--series-1)"><title>Aug 2026: $258,469</title></rect><rect x="882.6" y="127.9" width="62.0" height="128.1" rx="4" fill="url(#partial)" stroke="var(--series-1)" stroke-width="1.5"><title>Sep 2026: $175,637  (in progress)</title></rect>
+<text x="106.4" y="173.5" text-anchor="middle" class="vlab">103k</text><text x="207.3" y="157.1" text-anchor="middle" class="vlab">126k</text><text x="308.2" y="170.3" text-anchor="middle" class="vlab">108k</text><text x="409.1" y="141.9" text-anchor="middle" class="vlab">147k</text><text x="510.0" y="118.2" text-anchor="middle" class="vlab">179k</text><text x="610.9" y="105.0" text-anchor="middle" class="vlab">197k</text><text x="711.8" y="88.3" text-anchor="middle" class="vlab">220k</text><text x="812.7" y="60.4" text-anchor="middle" class="vlab">258k</text><text x="913.6" y="120.9" text-anchor="middle" class="vlab">176k</text>
+<text x="106.4" y="274" text-anchor="middle" class="axis">Jan</text><text x="207.3" y="274" text-anchor="middle" class="axis">Feb</text><text x="308.2" y="274" text-anchor="middle" class="axis">Mar</text><text x="409.1" y="274" text-anchor="middle" class="axis">Apr</text><text x="510.0" y="274" text-anchor="middle" class="axis">May</text><text x="610.9" y="274" text-anchor="middle" class="axis">Jun</text><text x="711.8" y="274" text-anchor="middle" class="axis">Jul</text><text x="812.7" y="274" text-anchor="middle" class="axis">Aug</text><text x="913.6" y="274" text-anchor="middle" class="axis">Sep</text>
+<line x1="56" y1="256" x2="964" y2="256" class="baseline"/>
+</svg>
+<div class="legend">
+<span><i style="background:var(--series-1)"></i>Closed month</span>
+<span><i style="background:var(--series-1-soft);border:1.5px solid var(--series-1)"></i>September, still in progress (day 19 of 30)</span>
+<span><i style="background:var(--critical);height:3px;border-radius:2px;margin-bottom:3px"></i>$300K goal</span>
+</div>
+</div>
+
+<div class="flag crit">
+<h3>Open discrepancy: what did July close at?</h3>
+<p>Three different numbers are in play, and none of them agree:</p>
+<p><strong>$220,319.20</strong> &mdash; what the sheet&rsquo;s July column (AB) actually sums to today. Verified two ways: the gviz query and the Sheets status-bar sum over AB3:AB500 both return this exact figure.</p>
+<p><strong>$268,119</strong> &mdash; the figure you have stated July closed at. It does not appear anywhere in this sheet.</p>
+<p><strong>~$251,000&ndash;252,000</strong> &mdash; what this sheet&rsquo;s July column summed to when this tracker was last set up in August. The column has since dropped roughly $31K, which is its own thing worth explaining.</p>
+<p>Which source is authoritative? Until that is settled, every month-over-month comparison on this page is built on the sheet&rsquo;s own numbers.</p>
+</div>
+
+<div class="flag">
+<h3>The $300K goal is carried over from August</h3>
+<p>$300,000 was the goal you set for <em>August</em>. No September goal has been confirmed, so this dashboard carries $300K forward as the working target. August itself closed at $258,469 &mdash; $41,531 short of that goal. Tell me the September number and I&rsquo;ll use it.</p>
+</div>
+
+<div class="card">
+<h2>Blocked and problem accounts</h2>
+<table><thead><tr><th>Account</th><th class="num">Amount</th><th>Status</th><th>Detail (re-verified Sep 19)</th></tr></thead>
+<tbody><tr><td>At Your Service Heating & Air</td><td class="num">$2,500</td><td><span class="pill unverified"><span class="ico">?</span>Unverified</span></td><td class="detail">Not found in the rows gviz can read - row is in a collapsed group. Could not re-verify.</td></tr><tr><td>The Alliance 247</td><td class="num">$2,500</td><td><span class="pill good"><span class="ico">&#10003;</span>Resolved</span></td><td class="detail">RESOLVED - charged $2,500 on Sep 14 (also billed Jul and Aug).</td></tr><tr><td>One Nation Energy</td><td class="num">$2,500</td><td><span class="pill critical"><span class="ico">&#10007;</span>Blocked</span></td><td class="detail">Still $0. Two rows, both blank for Jul, Aug and Sep. Last revenue was $1,500 in an earlier month.</td></tr><tr><td>Apollo Home Solutions</td><td class="num">$2,000</td><td><span class="pill critical"><span class="ico">&#10007;</span>Blocked</span></td><td class="detail">Still $0 across Jul, Aug and Sep. Three months with no revenue.</td></tr><tr><td>Contreras Welding Shop</td><td class="num">$1,592</td><td><span class="pill warning"><span class="ico">!</span>Partial</span></td><td class="detail">Main row billed $2,956 on Sep 17. The day-28 biweekly row billed $1,592 in Aug but is blank for Sep - still pending.</td></tr><tr><td>Ground Up Plumbing 24-7 Inc</td><td class="num">$499</td><td><span class="pill serious"><span class="ico">!</span>Overdue</span></td><td class="detail">Billed $499 in Jul and Aug. Sep is blank and the day-16 billing date has passed - now overdue.</td></tr><tr><td>JQGlassworks Inc</td><td class="num">$3,500</td><td><span class="pill warning"><span class="ico">!</span>Partial</span></td><td class="detail">Partial: $1,000 posted against a $3,500 scheduled amount. Aug collected $2,832. July is blank.</td></tr></tbody></table>
+</div>
+
+<div class="cols">
+<div class="card">
+<h2>Past due &mdash; $41,259</h2>
+<table><thead><tr><th>Account</th><th class="num">Day</th><th class="num">Amount</th></tr></thead>
+<tbody><tr><td>on stage cuts and styles</td><td class="num">1</td><td class="num">$800</td></tr><tr><td>Lopez Brothers Drywall</td><td class="num">4</td><td class="num">$3,760</td></tr><tr><td>Aspen</td><td class="num">4</td><td class="num">$499</td></tr><tr><td>Signature Plumbing</td><td class="num">6</td><td class="num">$5,000</td></tr><tr><td>Build By JM LLC</td><td class="num">11</td><td class="num">$199</td></tr><tr><td>IQ Plumbing</td><td class="num">13</td><td class="num">$5,000</td></tr><tr><td>Next Era Heating & Air Conditioning</td><td class="num">15</td><td class="num">$3,718</td></tr><tr><td>Mad Differential</td><td class="num">16</td><td class="num">$4,507</td></tr><tr><td>Moreno building & Development LLC</td><td class="num">16</td><td class="num">$3,679</td></tr><tr><td>Ground Up Plumbing 24-7 Inc</td><td class="num">16</td><td class="num">$499</td></tr><tr><td>Next Level Sheet Metal</td><td class="num">17</td><td class="num">$598</td></tr><tr><td>Pro Sewer and Drains</td><td class="num">17</td><td class="num">$8,000</td></tr><tr><td>Alejandro's Remodeling LLC</td><td class="num">18</td><td class="num">$5,000</td></tr></tbody></table>
+</div>
+<div class="card">
+<h2>Still scheduled &mdash; $64,722</h2>
+<table><thead><tr><th>Account</th><th class="num">Day</th><th class="num">Amount</th></tr></thead>
+<tbody><tr><td>Inland Renovation & Construction</td><td class="num">20</td><td class="num">$2,616</td></tr><tr><td>Roofing Pro</td><td class="num">21</td><td class="num">$4,003</td></tr><tr><td>Paver Rescue LLC - Tampa</td><td class="num">21</td><td class="num">$99</td></tr><tr><td>OC Professional Rain Gutters</td><td class="num">22</td><td class="num">$99</td></tr><tr><td>Shelby Plumbing</td><td class="num">22</td><td class="num">$3,649</td></tr><tr><td>Leo's landscaping inc</td><td class="num">22</td><td class="num">$2,580</td></tr><tr><td>Quickfix Home Solutions Inc</td><td class="num">23</td><td class="num">$2,902</td></tr><tr><td>Forbes Fencing CO</td><td class="num">24</td><td class="num">$1,500</td></tr><tr><td>magic snake pro</td><td class="num">25</td><td class="num">$5,318</td></tr><tr><td>Down The Line Plumbing Inc</td><td class="num">25</td><td class="num">$4,214</td></tr><tr><td>TopLevel Plumbing Services</td><td class="num">26</td><td class="num">$2,500</td></tr><tr><td>Green lawn care</td><td class="num">26</td><td class="num">$2,500</td></tr><tr><td>Forbes Fencing CO</td><td class="num">27</td><td class="num">$6,300</td></tr><tr><td>East Valley Feed & Tack, Inc.</td><td class="num">27</td><td class="num">$2,953</td></tr><tr><td>Unleashed Electric</td><td class="num">27</td><td class="num">$499</td></tr><tr><td>MG's Air Conditioning & Heating</td><td class="num">27</td><td class="num">$4,000</td></tr><tr><td>Jc Concrete Restoration</td><td class="num">28</td><td class="num">$1,500</td></tr><tr><td>Clog Monkey Corp</td><td class="num">28</td><td class="num">$499</td></tr><tr><td>Contreras Welding Shop</td><td class="num">28</td><td class="num">$1,592</td></tr><tr><td>Lorenzo's Painting Services</td><td class="num">28</td><td class="num">$199</td></tr><tr><td>Sunset Walls</td><td class="num">28</td><td class="num">$2,500</td></tr><tr><td>Viper Rooter & Plumbing</td><td class="num">28</td><td class="num">$2,500</td></tr><tr><td>Bella banana Pet Spa</td><td class="num">29</td><td class="num">$1,500</td></tr><tr><td>Verde Home Design inc</td><td class="num">30</td><td class="num">$2,500</td></tr><tr><td>O Painting</td><td class="num">30</td><td class="num">$3,500</td></tr><tr><td>Inland Renovation & Construction</td><td class="num">30</td><td class="num">$2,700</td></tr></tbody></table>
+</div>
+</div>
+
+<div class="card">
+<h2>No billing day set &mdash; $13,399</h2>
+<table><thead><tr><th>Account</th><th class="num">Day</th><th class="num">Amount</th></tr></thead>
+<tbody><tr><td>Emberline Shower Enclosures</td><td class="num">&mdash;</td><td class="num">$2,648</td></tr><tr><td>Van's Carpet and Flooring</td><td class="num">&mdash;</td><td class="num">$299</td></tr><tr><td>WESTERN LINQ</td><td class="num">&mdash;</td><td class="num">$399</td></tr><tr><td>Primal Windows</td><td class="num">&mdash;</td><td class="num">$3,803</td></tr><tr><td>New Generation Construciton</td><td class="num">&mdash;</td><td class="num">$2,500</td></tr><tr><td>Sky Clean Air</td><td class="num">&mdash;</td><td class="num">$3,750</td></tr></tbody></table>
+</div>
+
+<div class="card">
+<h2>Charged in September &mdash; 59 accounts, $175,637</h2>
+<table><thead><tr><th>Account</th><th class="num">Day</th><th class="num">Amount</th></tr></thead>
+<tbody><tr><td>Speedee Plumbing</td><td class="num">13</td><td class="num">$6,852</td></tr><tr><td>Lincoln Plumbing & Rooter</td><td class="num">2</td><td class="num">$6,500</td></tr><tr><td>Cheetah Plumbing</td><td class="num">12</td><td class="num">$6,500</td></tr><tr><td>Bay Area Roofing Master Inc</td><td class="num">19</td><td class="num">$6,464</td></tr><tr><td>Central Roofing</td><td class="num">7</td><td class="num">$5,200</td></tr><tr><td>M&M Cellars</td><td class="num">14</td><td class="num">$5,000</td></tr><tr><td>The Reel Electric Company</td><td class="num">10</td><td class="num">$4,876</td></tr><tr><td>Pro Integrity Plumbing</td><td class="num">19</td><td class="num">$4,678</td></tr><tr><td>5 Blox</td><td class="num">11</td><td class="num">$4,457</td></tr><tr><td>All City Janitorial</td><td class="num">7</td><td class="num">$4,168</td></tr><tr><td>Vera Plumbing and Drain</td><td class="num">7</td><td class="num">$4,017</td></tr><tr><td>Discount Tree Service</td><td class="num">4</td><td class="num">$4,000</td></tr><tr><td>Ultimate HVAC</td><td class="num">7</td><td class="num">$4,000</td></tr><tr><td>Roof Solutions</td><td class="num">6</td><td class="num">$3,995</td></tr><tr><td>Forbes Fencing CO</td><td class="num">12</td><td class="num">$3,981</td></tr><tr><td>Rising Green Inc</td><td class="num">20</td><td class="num">$3,942</td></tr><tr><td>Pro Made Roofing</td><td class="num">3</td><td class="num">$3,754</td></tr><tr><td>Total Door Service</td><td class="num">17</td><td class="num">$3,742</td></tr><tr><td>HARO HVAC SERVICES</td><td class="num">9</td><td class="num">$3,702</td></tr><tr><td>Andy's pools Inc</td><td class="num">11</td><td class="num">$3,654</td></tr><tr><td>Saucedo plumbing</td><td class="num">13</td><td class="num">$3,653</td></tr><tr><td>Amaral's Construction Corp</td><td class="num">13</td><td class="num">$3,623</td></tr><tr><td>Pinpons junk removal</td><td class="num">1</td><td class="num">$3,500</td></tr><tr><td>Modern Builders</td><td class="num">18</td><td class="num">$3,500</td></tr><tr><td>Major League Plumbing</td><td class="num">2</td><td class="num">$3,441</td></tr><tr><td>Heavy Duty Metal Buildings</td><td class="num">16</td><td class="num">$3,384</td></tr><tr><td>J&C Concrete Restoration, Inc</td><td class="num">19</td><td class="num">$3,090</td></tr><tr><td>Contreras Welding Shop</td><td class="num">17</td><td class="num">$2,956</td></tr><tr><td>GG&N Plumbing Solutions Inc</td><td class="num">17</td><td class="num">$2,576</td></tr><tr><td>Sky view maintenance, inc</td><td class="num">17</td><td class="num">$2,546</td></tr><tr><td>OC Professional Rain Gutters</td><td class="num">9</td><td class="num">$2,544</td></tr><tr><td>Bracero Plumbing</td><td class="num">1</td><td class="num">$2,500</td></tr><tr><td>REC Elite Mechanical</td><td class="num">3</td><td class="num">$2,500</td></tr><tr><td>Custom Kitchens by Lopez</td><td class="num">5</td><td class="num">$2,500</td></tr><tr><td>Jlg Tree Service</td><td class="num">5</td><td class="num">$2,500</td></tr><tr><td>Premium Plumbing & DRAIN INC.</td><td class="num">6</td><td class="num">$2,500</td></tr><tr><td>JG Concrete LLC</td><td class="num">7</td><td class="num">$2,500</td></tr><tr><td>Jimmy Service Pros</td><td class="num">8</td><td class="num">$2,500</td></tr><tr><td>Desert Sky Mechanical, LLC</td><td class="num">10</td><td class="num">$2,500</td></tr><tr><td>Elite restoration by villegas</td><td class="num">11</td><td class="num">$2,500</td></tr><tr><td>The Alliance 247</td><td class="num">14</td><td class="num">$2,500</td></tr><tr><td>Green Ladder Roofing Company</td><td class="num">16</td><td class="num">$2,500</td></tr><tr><td>FR Tree Service</td><td class="num">17</td><td class="num">$2,500</td></tr><tr><td>Cortex Plastering</td><td class="num">11</td><td class="num">$2,341</td></tr><tr><td>Bella banana Pet Spa</td><td class="num">19</td><td class="num">$2,193</td></tr><tr><td>Oc Coastal Clean</td><td class="num">4</td><td class="num">$1,889</td></tr><tr><td>Forbes landscape services</td><td class="num">16</td><td class="num">$1,723</td></tr><tr><td>Heavy Duty Metal Buildings</td><td class="num">13</td><td class="num">$1,500</td></tr><tr><td>Major League Plumbing - SEO</td><td class="num">18</td><td class="num">$1,500</td></tr><tr><td>MOVEHAUS</td><td class="num">4</td><td class="num">$1,250</td></tr><tr><td>MOVEHAUS</td><td class="num">18</td><td class="num">$1,250</td></tr><tr><td>Apex Landscape & Construction</td><td class="num">2</td><td class="num">$1,000</td></tr><tr><td>JQGlassworks Inc</td><td class="num">30</td><td class="num">$1,000</td></tr><tr><td>Pro 360 Construction</td><td class="num">10</td><td class="num">$500</td></tr><tr><td>Golden Rule Construction and Remodeling</td><td class="num">3</td><td class="num">$399</td></tr><tr><td>LaFara Luxury Properties</td><td class="num">10</td><td class="num">$299</td></tr><tr><td>Build By JM LLC</td><td class="num">4</td><td class="num">$199</td></tr><tr><td>Mariachi Corazon de Maria</td><td class="num">6</td><td class="num">$199</td></tr><tr><td>Paver Rescue LLC - Tampa</td><td class="num">6</td><td class="num">$100</td></tr></tbody></table>
+</div>
+
+<footer>
+Built 2026-09-19 00:37 UTC from &ldquo;Copy of billing&rdquo;, column AD (September 2026).
+Month-to-date cross-checked two ways: gviz query and Sheets status-bar sum over AD3:AD500 &mdash; both $175,637.
+Pipeline amounts are each account&rsquo;s August charge, used as the estimate for September.
+Caveat: the gviz reader only sees roughly the first 130 rows; rows below that sit in collapsed groups. The status-bar cross-check covers the full column and agrees, but individual account rows below 130 &mdash; including At Your Service Heating &amp; Air &mdash; could not be read.
+</footer>
+</div></body></html>

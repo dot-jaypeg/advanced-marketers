@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers · Go-Live Audit — Fri Aug 7, 2026</title>
+<style>
+  /* ============ ADVANCED MARKETERS brand tokens (from AM report system) ============ */
+  :root {
+    color-scheme: dark;
+    --page:#0D0D12; --surface:#16161D; --surface2:#1B1B24; --border:#2B2B35;
+    --ink:#EDEDF2; --ink2:#B8B8C4; --muted:#8A8A99;
+    --accent:#7D7BF7; --accent-deep:#5A58C4; --accent-ink:#FFFFFF;
+    --good:#3FCF95; --warn:#D9A441; --serious:#E0642F; --critical:#E4604F;
+    --grid:#22222B; --baseline:#2B2B35;
+    --bar:#7D7BF7; --bar-soft:#4a488f;
+    --shadow:0 4px 18px rgba(0,0,0,.45);
+  }
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --page:#F5F5F8; --surface:#FFFFFF; --surface2:#FAFAFC; --border:#DDDDE6;
+    --ink:#16161D; --ink2:#3E3E4C; --muted:#8A8A99;
+    --accent:#5A58C4; --accent-deep:#4A48A8; --accent-ink:#FFFFFF;
+    --good:#178A5E; --warn:#9A6E14; --serious:#B84A1B; --critical:#C43D2E;
+    --grid:#E8E8EF; --baseline:#C9C9D4;
+    --bar:#5A58C4; --bar-soft:#B9B8E8;
+    --shadow:0 4px 14px rgba(22,22,29,.10);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink);
+    font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; padding:22px; }
+  .wrap { max-width:1080px; margin:0 auto; }
+
+  /* ---- header / brand ---- */
+  header { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-bottom:18px; }
+  .kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:5px; }
+  .brand { font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  h1 { font-size:24px; line-height:1.15; margin:0; font-weight:750; }
+  h1 .hl { color:var(--accent); }
+  .sub { color:var(--ink2); font-size:12.5px; margin-top:7px; }
+  .sub a { color:var(--accent); }
+
+  /* ---- buttons: primary CTA + secondary, high visibility ---- */
+  .hbtns { display:flex; gap:10px; align-items:center; }
+  .btn { display:inline-flex; align-items:center; gap:8px; font:inherit; font-size:13.5px; font-weight:700;
+    border-radius:10px; padding:11px 18px; cursor:pointer; text-decoration:none; line-height:1;
+    transition:transform .12s ease, box-shadow .12s ease, background .12s ease; }
+  .btn:active { transform:translateY(1px); }
+  .btn-primary { background:var(--accent); color:var(--accent-ink); border:1px solid transparent;
+    box-shadow:0 0 0 1px rgba(125,123,247,.25), var(--shadow); }
+  .btn-primary:hover { background:var(--accent-deep); box-shadow:0 0 0 2px rgba(125,123,247,.35), var(--shadow); text-decoration:none; }
+  .btn-primary .plus { font-size:16px; font-weight:800; }
+  .btn-ghost { background:var(--surface); color:var(--ink); border:1px solid var(--border); }
+  .btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+  /* ---- stat tiles ---- */
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:12px; margin-bottom:20px; }
+  .tile { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent);
+    border-radius:12px; padding:14px 16px; }
+  .tile.alert { border-left-color:var(--critical); }
+  .tile.ok { border-left-color:var(--good); }
+  .tile .v { font-size:27px; font-weight:750; }
+  .tile .l { color:var(--ink2); font-size:12px; margin-top:3px; font-weight:600; }
+  .tile .n { color:var(--muted); font-size:11px; margin-top:2px; }
+
+  /* ---- tabs ---- */
+  .tabbar { display:flex; gap:6px; flex-wrap:wrap; border-bottom:2px solid var(--border); }
+  .tab { appearance:none; border:none; background:transparent; color:var(--ink2);
+    font:inherit; font-size:13.5px; font-weight:650; padding:11px 16px 12px; cursor:pointer;
+    border-radius:10px 10px 0 0; position:relative; display:inline-flex; align-items:center; gap:8px; }
+  .tab:hover { background:var(--surface); color:var(--ink); }
+  .tab .badge { font-size:11px; font-weight:750; color:var(--ink2); background:var(--grid);
+    border-radius:999px; padding:2px 8px; }
+  .tab[aria-selected="true"] { color:var(--ink); background:var(--surface);
+    border:1px solid var(--border); border-bottom:none; }
+  .tab[aria-selected="true"]::after { content:""; position:absolute; left:0; right:0; bottom:-2px;
+    height:3px; background:var(--accent); border-radius:3px; }
+  .tab .badge.crit { background:rgba(228,96,79,.14); border:1px solid var(--critical); color:var(--critical); }
+  .tab .badge.goodb { background:rgba(63,207,149,.12); border:1px solid var(--good); color:var(--good); }
+  .panel { display:none; background:var(--surface); border:1px solid var(--border); border-top:none;
+    border-radius:0 0 12px 12px; padding:18px; box-shadow:var(--shadow); }
+  .panel.active { display:block; }
+  .panel h2 { font-size:11.5px; margin:0 0 12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); }
+  .panel h2 .count { color:var(--muted); font-weight:600; font-size:11px; margin-left:8px; letter-spacing:.05em; }
+
+  /* ---- tables / chips ---- */
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color:var(--muted); font-weight:700; font-size:11px; text-transform:uppercase;
+       letter-spacing:.08em; padding:6px 8px; border-bottom:1px solid var(--baseline); }
+  td { padding:9px 8px; border-bottom:1px solid var(--grid); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  .num { font-variant-numeric:tabular-nums; }
+  .chip { display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:750;
+    letter-spacing:.04em; padding:3px 10px; border-radius:999px; border:1px solid; white-space:nowrap; }
+  .chip.crit { color:var(--critical); border-color:var(--critical); background:rgba(228,96,79,.10); }
+  .chip.ser  { color:var(--serious);  border-color:var(--serious);  background:rgba(224,100,47,.10); }
+  .chip.warn { color:var(--warn);     border-color:var(--warn);     background:rgba(217,164,65,.10); }
+  .chip.good { color:var(--good);     border-color:var(--good);     background:rgba(63,207,149,.10); }
+  .chip.info { color:var(--ink2);     border-color:var(--baseline); background:var(--surface2); }
+  .unv { border-bottom:1.5px dotted var(--serious); cursor:help; }
+  a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+
+  /* ---- per-row task button ---- */
+  td.taskcol { white-space:nowrap; text-align:right; width:92px; }
+  .btn-task { display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:750;
+    background:var(--accent); color:var(--accent-ink); border-radius:8px; padding:7px 12px;
+    text-decoration:none; line-height:1; box-shadow:0 0 0 1px rgba(125,123,247,.25);
+    transition:background .12s ease, box-shadow .12s ease, transform .12s ease; }
+  .btn-task:hover { background:var(--accent-deep); text-decoration:none; box-shadow:0 0 0 2px rgba(125,123,247,.4); }
+  .btn-task:active { transform:translateY(1px); }
+  .btn-task.create { background:transparent; color:var(--accent); border:1.5px dashed var(--accent); box-shadow:none; }
+  .btn-task.create:hover { background:rgba(125,123,247,.12); }
+  .nolink { color:var(--muted); font-size:12px; }
+
+  /* ---- aging bars ---- */
+  .barrow { display:grid; grid-template-columns:215px 1fr 58px; gap:10px; align-items:center; padding:5px 0; }
+  .bl { font-size:12.5px; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bl small { color:var(--muted); }
+  .track { position:relative; height:16px; }
+  .track .base { position:absolute; inset:0; border-bottom:1px solid var(--grid); }
+  .bar { position:absolute; left:0; top:2px; bottom:2px; border-radius:0 4px 4px 0; background:var(--bar); }
+  .bar.over { background:var(--critical); }
+  .bar.exempt { background:var(--bar-soft); }
+  .t14 { position:absolute; top:-2px; bottom:-2px; width:0; border-left:2px dashed var(--serious); }
+  .bv { font-size:12px; color:var(--ink2); text-align:right; font-variant-numeric:tabular-nums; }
+  .legend { display:flex; gap:16px; flex-wrap:wrap; color:var(--ink2); font-size:11.5px; margin:8px 0 2px; }
+  .sw { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .kv { color:var(--ink2); font-size:12.5px; }
+
+  /* ---- highlight card + footer, per AM report style ---- */
+  .foot { color:var(--muted); font-size:11.5px; margin-top:18px; line-height:1.7;
+    border-top:1px solid var(--border); padding-top:12px; }
+  .foot .am { color:var(--ink2); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:10.5px; }
+  @media (max-width:640px){ .tab{padding:9px 10px;font-size:12.5px} .barrow{grid-template-columns:140px 1fr 48px} h1{font-size:20px} }
+</style>
+</head>
+<body>
+<!-- ============================================================================
+  TEMPLATE USAGE (for the daily go-live audit agent):
+  - Keep ALL CSS, brand tokens, layout, tab structure, buttons, and scripts EXACTLY as-is.
+  - Replace only the DATA: dates in <title>/<h1>/.sub, tile values, tab badge counts,
+    table rows, aging bar rows/widths, and footer run-notes.
+  - Sections/tabs (fixed): 🚨 Action needed · 📊 Heartbeat · 💳 Payment · ⏰ Pipeline aging · 🆕 New deals · ✅ Went live
+  - Every table row gets a Task column: solid .btn-task "Open task ↗" → https://app.clickup.com/t/<task_id>
+    when a ClickUp card/task exists; dashed .btn-task.create "＋ Create" → the Go-Live board URL when none exists.
+  - Mark any unverified (single-source) figure with <span class="unv" title="why">…</span>.
+  - Aging: marketing bars vs the dashed day-14 target line (.t14 at 14/22 = 63.6% of a 22-day scale);
+    .bar.over past target, .bar for in-flight, .bar.exempt for websites/free-promo (400-day scale).
+  - Severity chips: .crit ⛔ / .ser ⚠ / .warn ▲ / .good ✓ / .info ℹ — never invent new colors.
+============================================================================ -->
+<div class="wrap">
+<header>
+  <div>
+    <div class="brand">Advanced Marketers<span style="font-size:9px;vertical-align:super">®</span></div>
+    <div class="kicker">Daily Go-Live Audit</div>
+    <h1>Friday, August 7 <span class="hl">· 2026</span></h1>
+    <div class="sub">Spend window: Thu 8/6 · heartbeats Google 6:27–9:29a / Meta 6:53a · <a href="https://app.clickup.com/10552018/v/b/li/901417990784">Go-Live Pipeline board</a> · <span class="unv" title="Figure could not be cross-checked against a second source">dotted&nbsp;underline&nbsp;=&nbsp;unverified</span></div>
+  </div>
+  <div class="hbtns">
+    <a class="btn btn-primary" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="Opens the Go-Live Pipeline board in ClickUp — hit + Task there"><span class="plus">＋</span> New task</a>
+    <button class="btn btn-ghost" onclick="const r=document.documentElement;r.dataset.theme=r.dataset.theme==='light'?'dark':'light'">◐ Theme</button>
+  </div>
+</header>
+
+<div class="tiles">
+  <div class="tile alert"><div class="v num">10</div><div class="l">Action items today</div><div class="n">4 cancelled accts still spending/enabled</div></div>
+  <div class="tile"><div class="v num">94</div><div class="l">Live &amp; spending</div><div class="n">either platform · per TV feed</div></div>
+  <div class="tile"><div class="v num">$21,017</div><div class="l">Spend yesterday</div><div class="n">per TV feed</div></div>
+  <div class="tile alert"><div class="v num">11</div><div class="l">Payment-state accounts</div><div class="n">2 burning · 9 dark</div></div>
+  <div class="tile"><div class="v num">5</div><div class="l">Marketing past Day 14</div><div class="n">incl. Magic Snake at Day 14 today</div></div>
+  <div class="tile ok"><div class="v num">0</div><div class="l">Went live</div><div class="n">none new · Inland 7/31 last</div></div>
+</div>
+
+<div class="tabbar role="tablist">
+  <button class="tab" role="tab" id="tab-actions"  aria-selected="true"  aria-controls="panel-actions"  onclick="showTab('actions')">🚨 Action needed <span class="badge crit">10</span></button>
+  <button class="tab" role="tab" id="tab-heartbeat" aria-selected="false" aria-controls="panel-heartbeat" onclick="showTab('heartbeat')">📊 Heartbeat <span class="badge">6</span></button>
+  <button class="tab" role="tab" id="tab-payment"  aria-selected="false" aria-controls="panel-payment"  onclick="showTab('payment')">💳 Payment <span class="badge">12</span></button>
+  <button class="tab" role="tab" id="tab-aging"    aria-selected="false" aria-controls="panel-aging"    onclick="showTab('aging')">⏰ Pipeline aging <span class="badge">21</span></button>
+  <button class="tab" role="tab" id="tab-newdeals" aria-selected="false" aria-controls="panel-newdeals" onclick="showTab('newdeals')">🆕 New deals <span class="badge">3</span></button>
+  <button class="tab" role="tab" id="tab-live"     aria-selected="false" aria-controls="panel-live"     onclick="showTab('live')">✅ Went live <span class="badge goodb">0</span></button>
+</div>
+
+<section class="panel active" id="panel-actions" role="tabpanel" aria-labelledby="tab-actions">
+  <h2>Action needed today <span class="count">10 items</span></h2>
+  <table>
+    <tr><th style="width:110px">Severity</th><th style="width:190px">Account</th><th>What &amp; why</th><th style="width:92px;text-align:right">Task</th></tr>
+    <tr><td><span class="chip crit">⛔ CRITICAL</span></td><td>Piggies Air Conditioning</td><td>Cancelled 8/6 per Chris (remainder waived) but ads STILL ON both platforms — Google $86.77 + Meta $21.63 yest. Turn campaigns off + stop billing. Card moved to Cancel Request today (86baw6004).</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw6004" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip crit">⛔ CRITICAL</span></td><td>Magic Snake Pro</td><td>Day 14 is TODAY, not live. Mak promised Liz “live Friday” (8/5); LP DNS still being wired 8/6 3pm. Still open: site defaced (big X), ad stopped on policy (wrong URL), targeting Chino-only.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb3zqbm" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip crit">⛔ CRITICAL</span></td><td>His Hands Plumbing</td><td>Cancelled ~7/23; Google STILL ON — $1,176.46 yest, 3 campaigns (client-billed legacy). >$8k spent post-cancel. Decide keep/kill today.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw605j" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip crit">⛔ CRITICAL</span></td><td>Bluepoint Pools</td><td>Cancel intent 7/28 + Meta campaign still ENABLED (unsettled) + $3,641 declined balance. Turn off + collect — still no card on the 90-day board.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td><span class="chip ser">⚠ SERIOUS</span></td><td>Roof City Professionals</td><td>Cancelled in writing 8/2; Meta off ✓ but Google “Roof City Inc - CC” spent $217.28 yest (2 campaigns, day 5). Verify same client → turn off.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zpm" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip ser">⚠ SERIOUS</span></td><td>Ground Up Plumbing 24-7</td><td>Client called 8/6 to cancel (web-only; never delivered assets despite chases). Julie filed the form — get contract sign date + owner outreach.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zuj" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip ser">⚠ SERIOUS</span></td><td>Sierra Trimlight</td><td>Cancel intent + card declining; Meta account UNSETTLED with 1 campaign still enabled ($0 spend). Turn the campaign off before it bills again.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bawp7fy" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip ser">⚠ SERIOUS</span></td><td>Vera Plumbing &amp; Drain</td><td>“On the verge of cancelling” (Chris 8/5) and their $3,500 charge is scheduled TODAY — decide before it bills.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw6007" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip ser">⚠ SERIOUS</span></td><td>The Alliance 247</td><td>Day 24 past 14-day target [MKTG — SEO pkg]. Package ruling is Chris's call; Tim escalating by name today.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baznke9" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td><span class="chip warn">▲ CHECK</span></td><td>MGS Air Conditioning</td><td>[CLIENT] access blocker stuck 4+ days → playbook: Zoom call within 24h. GAds invite went to bob@….com (not .co), Miguel never invited, channel empty. Deadline Mon 8/11.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb60ek0" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+  </table>
+</section>
+
+<section class="panel" id="panel-heartbeat" role="tabpanel" aria-labelledby="tab-heartbeat">
+  <h2>Heartbeat mismatches — board vs spend data <span class="count">6</span></h2>
+  <table>
+    <tr><th style="width:110px">Severity</th><th style="width:190px">Item</th><th>Detail</th><th style="width:92px;text-align:right">Task</th></tr>
+    <tr><td style="width:110px"><span class="chip warn">▲ CHECK</span></td><td style="width:190px">Amaral's Construction</td><td>Board LIVE, data dark on BOTH platforms — Meta 0 active campaigns / $0, no Google row. Board says live, data says dark.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zr0" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip warn">▲ CHECK</span></td><td style="width:190px">Emberline Shower Enclosures</td><td>Board LIVE; Google not serving since the 7/28 launch attempt (call-asset bug), no Emberline-named row on either heartbeat, no client update since 7/31. Verify ad-account naming.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bay4jtj" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip warn">▲ CHECK</span></td><td style="width:190px">At Your Service H&amp;C</td><td>Board LIVE but no heartbeat row on either platform; client said 8/4 “$5,000 into this thing… I still don't have anything” + Aug charge missed. Delivery unverifiable — owner call.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zuv" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip info">ℹ INFO</span></td><td style="width:190px">Unmatched LIVE cards</td><td>Inland Renovation, OG Plumbing, Shelby Plumbing, Drain Force, Best in the West AC — no matching heartbeat row on either platform. Verify account linkage/naming in the scripts.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb0yc96" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip info">ℹ INFO</span></td><td style="width:190px">Google heartbeat script</td><td>AM-BUILD spend column reads $0 for every account (all spend tagged “legacy”) — likely mis-tagging in Heartbeat v2. Fix so live-detection stays trustworthy.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ CLEARED</span></td><td style="width:190px">Ram Dumpster · Allegiance 76</td><td>Ram Dumpster no longer in Google heartbeat (ads off ✓, card closed 7/29). Allegiance 76: Meta campaigns off after 8/6 cancel filing ($14 residual).</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw605c" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+  </table>
+</section>
+
+<section class="panel" id="panel-payment" role="tabpanel" aria-labelledby="tab-payment">
+  <h2>Payment <span class="count">2 burning · 9 dark · 6 cleared</span></h2>
+  <table>
+    <tr><th style="width:110px">Status</th><th style="width:190px">Account</th><th>Detail</th><th style="width:92px;text-align:right">Task</th></tr>
+    <tr><td style="width:110px"><span class="chip crit">⛔ BURNING</span></td><td style="width:190px">Premium Floor &amp; Design</td><td>Meta account IN_GRACE_PERIOD yet spent $432.54 yest across 3 campaigns — money burning on a failing payment state. Fix billing or pause.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw6054" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip crit">⛔ BURNING</span></td><td style="width:190px">Next Era HVAC</td><td>Meta UNSETTLED while spending ($30.64 yest); Google campaigns on with $0 spend both days. Billing broken on both sides.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zue" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip ser">⚠ DARK</span></td><td style="width:190px">Energyscape Renewables</td><td>Campaigns on, $0 spend on Google AND both Meta accounts — fully dark while enabled. Check billing/payment.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip ser">⚠ DARK</span></td><td style="width:190px">One Nation Energy · Palm Valley</td><td>One Nation: Meta UNSETTLED, 1 campaign enabled, $0. Palm Valley: Meta UNSETTLED $0 (Google fine, $212 yest). Fix or disable.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip ser">⚠ DARK</span></td><td style="width:190px">WestCoast Fence Pros</td><td>Meta campaigns on, $0 yest; Google account has no enabled campaigns. Zero delivery anywhere — check payment.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip ser">⚠ DARK</span></td><td style="width:190px">Texan Roofing · Always Insurance · Caliber K9 (Meta) · GG&amp;N (Google) · acct 129853217452321</td><td>Campaigns on, $0 spend yesterday on the named platform (each is live elsewhere except Texan/Always). Quick billing sweep.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip info">ℹ INFO</span></td><td style="width:190px">Missed Aug charges</td><td>OG Plumbing $2.5k · On Stage $800 · At Your Service $2.5k · OC Coastal ~$1.7k · Build By JM $199 · JLG $2.5k (~$10k out). Vera $3.5k + All City $2.5k bill today.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ CLEARED</span></td><td style="width:190px">LV Heating &amp; Cooling</td><td>Meta status now ACTIVE (was unsettled) and spending $214 M / $222 G — billing looks fixed, BUT client “believes paused” per 8/5 flag — reconcile before more spend.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zrx" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ CLEARED</span></td><td style="width:190px">Reel Electric</td><td>Meta now ACTIVE, $153.84 yest (was spending-while-unsettled). Google $282 is the pre-existing client-run legacy campaign (known).</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw5zu1" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ CLEARED</span></td><td style="width:190px">Haro HVAC · Jq Glasswork · Leo's Landscaping</td><td>All three Meta accounts ACTIVE and spending — Haro's 7/14 card payment cleared grace, Jq + Leo's no longer unsettled.</td><td class="taskcol"><a class="btn-task create" href="https://app.clickup.com/10552018/v/b/li/901417990784" target="_blank" rel="noopener" title="No card yet — create one on the board">＋ Create</a></td></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ CLEARED</span></td><td style="width:190px">Saucedo Plumbing</td><td>$3,500 retry landed (collection card closed 7/17). Meta ACTIVE, $62.43 yest. Package is $3,500/mo (7/11 “5000” message was wrong — corrected).</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86baw6058" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+  </table>
+</section>
+
+<section class="panel" id="panel-aging" role="tabpanel" aria-labelledby="tab-aging">
+  <h2>Pipeline aging <span class="count">marketing vs day-14 target · websites tracked without alarm</span></h2>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--critical)"></span>Marketing, past target</span>
+    <span><span class="sw" style="background:var(--bar)"></span>Marketing, in flight</span>
+    <span><span class="sw" style="background:var(--bar-soft)"></span>Website / promo — exempt, no alarm</span>
+    <span style="color:var(--serious)">┆ Day-14 target (marketing only)</span>
+  </div>
+  <div style="margin-top:6px">
+    <div class="barrow"><div class="bl">The Alliance 247 <small>· MKTG-SEO · signed 7/14</small></div><div class="track"><div class="base"></div><div class="bar over" style="width:100.0%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 24</div></div>
+    <div class="barrow"><div class="bl">Emberline <small>· MKTG · signed ~7/14 · Google dark</small></div><div class="track"><div class="base"></div><div class="bar over" style="width:100.0%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 24</div></div>
+    <div class="barrow"><div class="bl">M.L. Berni Co. <small>· marker TBD · signed 7/20</small></div><div class="track"><div class="base"></div><div class="bar over" style="width:81.8%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 18</div></div>
+    <div class="barrow"><div class="bl">Pavement Enforcement <small>· marker missing · signed 7/21</small></div><div class="track"><div class="base"></div><div class="bar over" style="width:77.3%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 17</div></div>
+    <div class="barrow"><div class="bl">Magic Snake Pro <small>· MKTG · channel 7/24 · DUE TODAY</small></div><div class="track"><div class="base"></div><div class="bar over" style="width:63.6%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 14</div></div>
+    <div class="barrow"><div class="bl">MGS Air <small>· marker missing · 7/28 · due 8/11</small></div><div class="track"><div class="base"></div><div class="bar" style="width:45.5%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 10</div></div>
+    <div class="barrow"><div class="bl">Smithco Construction <small>· MKTG · Day 10</small></div><div class="track"><div class="base"></div><div class="bar" style="width:45.5%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 10</div></div>
+    <div class="barrow"><div class="bl">Roberts Garage Doors <small>· MKTG · Day 9 (no domain)</small></div><div class="track"><div class="base"></div><div class="bar" style="width:40.9%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 9</div></div>
+    <div class="barrow"><div class="bl">Capri Plumbing <small>· MKTG · Chris closed 7/31</small></div><div class="track"><div class="base"></div><div class="bar" style="width:31.8%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 7</div></div>
+    <div class="barrow"><div class="bl">REC Elite Mechanical <small>· MKTG · signed 8/3</small></div><div class="track"><div class="base"></div><div class="bar" style="width:18.2%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 4</div></div>
+    <div class="barrow"><div class="bl">Alejandro's Remodeling <small>· MKTG+VIDEO · signed 8/4</small></div><div class="track"><div class="base"></div><div class="bar" style="width:13.6%"></div><div class="t14" style="left:63.6%"></div></div><div class="bv">Day 3</div></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="barrow"><div class="bl">ColdRiite Walk-Ins <small>· WEB · OLDEST — finish ASAP</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:93.5%"></div></div><div class="bv">374 d</div></div>
+    <div class="barrow"><div class="bl">MM Cellar Systems <small>· WEB+VIDEO</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:22.0%"></div></div><div class="bv">88 d</div></div>
+    <div class="barrow"><div class="bl">Verterra Outdoor Living <small>· FREE 6-mo promo</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:20.0%"></div></div><div class="bv">80 d</div></div>
+    <div class="barrow"><div class="bl">Cal Pro Plumbing <small>· WEB</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:10.8%"></div></div><div class="bv">43 d</div></div>
+    <div class="barrow"><div class="bl">World Famous Plumbing <small>· WEB</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:10.5%"></div></div><div class="bv">42 d</div></div>
+    <div class="barrow"><div class="bl">Hernandez <small>· WEB · client unreachable 1 mo</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:8.8%"></div></div><div class="bv">35 d</div></div>
+    <div class="barrow"><div class="bl">My Contractor Stack <small>· WEB · Meta acct DISABLED</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:8.8%"></div></div><div class="bv">35 d</div></div>
+    <div class="barrow"><div class="bl">Clog Monkey <small>· WEB · client silent</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:8.0%"></div></div><div class="bv">32 d</div></div>
+    <div class="barrow"><div class="bl">Premium Plumbing &amp; Drain <small>· WEB-SEO · owner + ads-date open</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:8.0%"></div></div><div class="bv">32 d</div></div>
+    <div class="barrow"><div class="bl">Ground Up Plumbing 24-7 <small>· WEB · client cancelling 8/6</small></div><div class="track"><div class="base"></div><div class="bar exempt" style="width:6.2%"></div></div><div class="bv">25 d</div></div>
+  </div>
+</section>
+
+<section class="panel" id="panel-newdeals" role="tabpanel" aria-labelledby="tab-newdeals">
+  <h2>New deals <span class="count">2 statused · 1 unstatused · over-promise check done</span></h2>
+  <table>
+    <tr><th style="width:110px">Status</th><th style="width:190px">Client</th><th>Agreement · over-promises · recording</th><th style="width:92px;text-align:right">Task</th></tr>
+    <tr><td style="width:110px"><span class="chip good">✓ STATUSED</span></td><td style="width:190px">REC Elite Mechanical (8/3)</td><td>Signed ✓, paid ✓ — $2,500×2 → $3,500/mo + 6-mo, +10% ad-spend fee. Over-promises to honor: weekly growth calls, custom site w/ location pages, ~2-week launch. ⚠️ Client entered $300 ad budget — Tim raising. Compliance: card+CVV read aloud on 8/4 recording — redact + rotate.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb86jz8" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip warn">▲ CHECK</span></td><td style="width:190px">Alejandro's Remodeling (8/4)</td><td>Card ✓ [MKTG+VIDEO]. <span class="unv" title="Single source: parsed sales notes — no signed-agreement cross-check yet">$5,500×2 → $6,500/mo + $1,500/mo video</span>. Over-promises: 10 videos, 2 shoot visits/mo, drone-quality + AI. Debit-limit billing risk. Sales-call recording not reachable from this run — have the closer post the link. Confirm contract signature on file.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb8xn5k" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+    <tr><td style="width:110px"><span class="chip warn">▲ CHECK</span></td><td style="width:190px">New Generation Construction</td><td>UNSTATUSED DEAL — no signed agreement or amount in sales notes; Alan joined the channel 8/5 and no one has spoken to him in 2 days. Assign owner + first contact.</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb7h4dp" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+  </table>
+</section>
+
+<section class="panel" id="panel-live" role="tabpanel" aria-labelledby="tab-live">
+  <h2>Went live <span class="count">0</span></h2>
+  <table>
+    <tr><th style="width:110px">Status</th><th style="width:190px">Client</th><th>Evidence</th><th style="width:92px;text-align:right">Task</th></tr>
+    <tr><td style="width:110px"><span class="chip info">ℹ INFO</span></td><td style="width:190px">No new go-lives</td><td>Nothing launched since Inland Renovation &amp; Construction (7/31 — board LIVE; heartbeat row not yet matchable, verify naming). Watching: Cortex spending ✓ · Contreras spending ✓ (fee-split awaiting Chris).</td><td class="taskcol"><a class="btn-task" href="https://app.clickup.com/t/86bb0yc96" target="_blank" rel="noopener">Open task ↗</a></td></tr>
+  </table>
+</section>
+
+<p class="foot">
+<span class="am">Advanced Marketers®</span> · Daily go-live audit · Friday, August 7, 2026 · run ~7:30a PT<br>
+Sources: Google MCC heartbeat, Meta heartbeat, TV Board Feed, ClickUp lists 901417990784 / 901413623955, internal Slack channels.
+Ex-clients excluded: Joa Brothers, Paradise Concrete, SM Brothers, Prestige Builders &amp; Design (collections case tracked separately), Elite Electric NTX. TV feed has no “Ignore” tab this run. ClickUp writes today: Piggies → Cancel Request + audit comments on His Hands &amp; Roof City. Weekend caveat n/a (Thu spend window).<br>
+135 S Lemon St Ste D, Orange, CA 92856 · (650) 250-0405
+</p>
+</div>
+<script>
+function showTab(name){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+name));
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', t.id==='tab-'+name ? 'true':'false'));
+}
+// auto-link ClickUp task IDs (86b…) mentioned in any panel
+(function(){
+  const re=/\b(86b[a-z0-9]{5,7})\b/g;
+  document.querySelectorAll('.panel td, .panel .kv').forEach(el=>{
+    const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), hits=[];
+    while(w.nextNode()){ if(re.test(w.currentNode.nodeValue)) hits.push(w.currentNode); re.lastIndex=0; }
+    hits.forEach(node=>{
+      const frag=document.createDocumentFragment();
+      let last=0, m; const s=node.nodeValue; re.lastIndex=0;
+      while((m=re.exec(s))){
+        frag.appendChild(document.createTextNode(s.slice(last,m.index)));
+        const a=document.createElement('a');
+        a.href='https://app.clickup.com/t/'+m[1]; a.target='_blank'; a.rel='noopener'; a.textContent=m[1];
+        frag.appendChild(a); last=m.index+m[1].length;
+      }
+      frag.appendChild(document.createTextNode(s.slice(last)));
+      node.parentNode.replaceChild(frag,node);
+    });
+  });
+})();
+// keyboard arrows on the tablist
+document.querySelector('.tabbar').addEventListener('keydown',e=>{
+  if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+  const tabs=[...document.querySelectorAll('.tab')];
+  const i=tabs.findIndex(t=>t.getAttribute('aria-selected')==='true');
+  const n=(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+  tabs[n].click(); tabs[n].focus();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers — July 2026 ROAS &amp; Revenue Report</title>
+<style>
+  :root{--bg:#0D0D12;--panel:#16161D;--border:#2B2B35;--text:#EDEDF2;--muted:#8A8A99;--accent:#7D7BF7;--good:#3FCF95;--bad:#E4604F;--warn:#D9A441}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);padding:0 18px 36px}
+  .wrap{max-width:980px;margin:0 auto}
+  nav{position:sticky;top:0;z-index:50;background:rgba(13,13,18,.97);border-bottom:1px solid var(--border);margin:0 -18px 26px;padding:0 18px;backdrop-filter:blur(8px)}
+  nav .in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:12px 0;overflow-x:auto;scrollbar-width:none}
+  nav .in::-webkit-scrollbar{display:none}
+  nav .brand{color:var(--accent);font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;margin-right:10px;white-space:nowrap}
+  nav button{appearance:none;cursor:pointer;background:#1A1A23;border:1px solid var(--border);color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:all .15s ease;font-family:inherit}
+  nav button:hover{color:var(--text);border-color:#3A3A48}
+  nav button.active{background:var(--accent);border-color:var(--accent);color:#0D0D12}
+  .kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px}
+  header{border-bottom:1px solid var(--border);padding:26px 0 24px;margin-bottom:28px}
+  header h1{font-size:28px;font-weight:800;line-height:1.2}
+  header h1 .hl{color:var(--accent)}
+  header .sub{color:var(--muted);font-size:13px;margin-top:8px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:26px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .kpi .label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600}
+  .kpi .value{font-size:23px;font-weight:800;margin-top:7px}
+  .kpi .note{font-size:11px;color:var(--muted);margin-top:4px}
+  .kpi.good .value{color:var(--good)}
+  .kpi.accent{border-color:var(--accent)}
+  .kpi.accent .value{color:var(--accent)}
+  section{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px;scroll-margin-top:70px}
+  section.hidden{display:none}
+  section h2{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  section h3{font-size:18px;font-weight:700;margin-bottom:16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:8px 10px;border-bottom:1px solid var(--border)}
+  td{padding:10px;border-bottom:1px solid var(--border);color:var(--text)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.total td{font-weight:800;border-top:2px solid var(--accent);border-bottom:none}
+  tbody tr{transition:background .12s ease}
+  tbody tr:hover td{background:#1B1B25}
+  .good{color:var(--good);font-weight:700}.bad{color:var(--bad);font-weight:700}
+  .highlight{background:#191927;border:1px solid var(--accent);border-radius:12px;padding:14px 18px;font-size:13px;line-height:1.65;margin-top:16px}
+  .cav{background:#1C1720;border:1px solid #3a3040;border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:12px 16px;font-size:12.5px;line-height:1.6;margin-top:14px;color:#CBB88A}
+  footer{color:var(--muted);font-size:11px;text-align:center;padding:20px 0 8px;line-height:1.7;border-top:1px solid var(--border);margin-top:8px}
+  footer b{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:10px}
+</style>
+</head>
+<body>
+<nav><div class="in">
+  <span class="brand">Advanced Marketers</span>
+  <button data-view="all" class="active">All</button>
+  <button data-view="roas">ROAS</button>
+  <button data-view="cpql">CPL / CPQL</button>
+  <button data-view="meta">Meta Sales</button>
+  <button data-view="ads">Sales by Ad</button>
+  <button data-view="ltv">LTV</button>
+  <button data-view="ledger">Cash Ledger</button>
+  <button data-view="spend">Spend</button>
+</div></nav>
+<div class="wrap" id="top">
+
+  <header>
+    <div class="kicker">Advanced Marketers · Growth System</div>
+    <h1>July 2026 <span class="hl">ROAS &amp; Revenue Report</span></h1>
+    <div class="sub">Full month: Jul 1 – Jul 31, 2026 · Generated Jul 31, 2026 · Google Ads · Meta Ads · ChatGPT Ads · GoHighLevel</div>
+  </header>
+
+  <div class="kpis" id="overview">
+    <div class="kpi"><div class="label">Ad Spend</div><div class="value">$14,071.93</div><div class="note">All 3 channels</div></div>
+    <div class="kpi good"><div class="label">Cash Collected</div><div class="value">$30,000</div><div class="note">23 payments, tests excluded</div></div>
+    <div class="kpi good"><div class="label">Blended ROAS</div><div class="value">2.13x</div><div class="note">Cash ÷ spend</div></div>
+    <div class="kpi"><div class="label">Blended CPQL</div><div class="value">$124.53</div><div class="note">113 qualified leads</div></div>
+    <div class="kpi"><div class="label">Diagnosis Sales</div><div class="value">10</div><div class="note">$5,000 collected ($500 ea)</div></div>
+    <div class="kpi"><div class="label">New Clients</div><div class="value">8</div><div class="note">$30,500 won value</div></div>
+    <div class="kpi accent"><div class="label">Est. Client LTV</div><div class="value">$25,417</div><div class="note">@ 15% monthly churn</div></div>
+  </div>
+
+  <section id="roas">
+    <h2>Channel Economics</h2>
+    <h3>ROAS &amp; revenue by channel</h3>
+    <table>
+      <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Attributed Cash Rev.</th><th class="num">Cash ROAS</th><th class="num">LTV-Based ROAS*</th></tr></thead>
+      <tbody>
+        <tr><td>Meta Ads (direct-attributed)</td><td class="num">$4,370.23</td><td class="num">$3,500</td><td class="num">0.80x</td><td class="num good">4.04x</td></tr>
+        <tr><td style="color:var(--muted)">&nbsp;&nbsp;+ Meta-influenced (organic FB/IG touch)</td><td class="num">—</td><td class="num">+$6,500 → $10,000</td><td class="num good">2.29x</td><td class="num">—</td></tr>
+        <tr><td>ChatGPT Ads</td><td class="num">$5,067.52</td><td class="num">$2,500</td><td class="num">0.49x</td><td class="num good">3.29x</td></tr>
+        <tr><td>Google Ads</td><td class="num">$4,634.18</td><td class="num">$0 tracked (platform: $4,720)</td><td class="num">~1.02x platform</td><td class="num">n/a</td></tr>
+        <tr><td>Affiliate referrals (no ad spend)</td><td class="num">$0</td><td class="num">$10,000 won value</td><td class="num good">∞</td><td class="num">—</td></tr>
+        <tr><td>Organic / dialer / other</td><td class="num">$0</td><td class="num">$17,500</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr class="total"><td>Total</td><td class="num">$14,071.93</td><td class="num">$30,000</td><td class="num">2.13x</td><td class="num"></td></tr>
+      </tbody>
+    </table>
+    <div class="cav">
+      Attribution is conservative — only cash tied to a contact with verified channel attribution counts. $17,500 of July cash sits in organic/dialer/other, some likely ad-assisted. Google's forwarding-number gap (ad calls don't create GHL contacts) is the biggest tracking hole.
+    </div>
+  </section>
+
+  <section id="cpql">
+    <h2>Lead Economics</h2>
+    <h3>CPL &amp; CPQL by channel (July)</h3>
+    <table>
+      <thead><tr><th>Channel</th><th class="num">Spend</th><th class="num">Leads</th><th class="num">CPL</th><th class="num">Qualified*</th><th class="num">CPQL</th></tr></thead>
+      <tbody>
+        <tr><td>Meta Ads</td><td class="num">$4,370.23</td><td class="num">87</td><td class="num good">$50.23</td><td class="num">67</td><td class="num good">$65.23</td></tr>
+        <tr><td>Google Ads</td><td class="num">$4,634.18</td><td class="num">11 (1 form + 10 calls)</td><td class="num">$421.29</td><td class="num">9</td><td class="num">$514.91</td></tr>
+        <tr><td>ChatGPT Ads</td><td class="num">$5,067.52</td><td class="num">10</td><td class="num">$506.75</td><td class="num">7</td><td class="num">$723.93</td></tr>
+        <tr><td>Affiliate / referral</td><td class="num">$0</td><td class="num">1</td><td class="num">—</td><td class="num">1</td><td class="num">—</td></tr>
+        <tr><td>Organic / other</td><td class="num">$0</td><td class="num">38</td><td class="num">—</td><td class="num">29</td><td class="num">—</td></tr>
+        <tr class="total"><td>Total</td><td class="num">$14,071.93</td><td class="num">147</td><td class="num">$95.73</td><td class="num">113</td><td class="num">$124.53</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <b>Meta is the efficiency leader</b>: $50.23 CPL and $65.23 CPQL on 87 pipeline leads — roughly 8x cheaper per qualified lead than Google ($514.91) or ChatGPT ($723.93). ChatGPT's CPQL is high but it converts: 1 of its 7 qualified leads already became a $2,500/mo client (Scott Stevens), putting its cost-per-client at $5,068 against a $16,667 LTV.
+    </div>
+    <div class="cav">
+      *Qualified = reached Booked Call or beyond in the ADV Master Pipeline (excludes New Lead, No-Show, Close Lost); Google phone leads use the AM standard — answered calls of 60+ seconds. 137 unique pipeline leads in July (duplicates removed) + 10 answered Google ad calls = 147 total leads.
+    </div>
+  </section>
+
+  <section id="meta">
+    <h2>Meta Ads</h2>
+    <h3>Yes — Meta produced sales in July</h3>
+    <table>
+      <thead><tr><th>Customer</th><th>What they bought</th><th class="num">Cash</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td>Nicholas Venegas (Inland Renovation)</td><td>Diagnosis $500 → Client $2,000</td><td class="num">$2,500</td><td>Meta click ID (fbc) on signup — direct paid attribution</td></tr>
+        <tr><td>Ruben Vazquez (Bigfoot Roofing)</td><td>Digital Diagnosis</td><td class="num">$500</td><td>utm_source=facebook · Influencer Campaign / LAL 1%</td></tr>
+        <tr><td>Enrique Lopez</td><td>Digital Diagnosis</td><td class="num">$500</td><td>utm_source=facebook · Influencer Campaign / LAL 1%</td></tr>
+        <tr><td>Miguel Guerra (MG's AC &amp; Heating)</td><td>Client — Closed Won</td><td class="num">$4,000</td><td>Facebook social touch (organic; possible Google ad call, 559 match)</td></tr>
+        <tr><td>Richard Gonzalez (The Alliance 247)</td><td>Client — Closed Won</td><td class="num">$2,500</td><td>GHL source "Facebook" (event attendee — assisted)</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      Direct Meta-paid cash: <span class="good">$3,500</span> (0.80x on $4,370 spend). Counting Meta-influenced closes: <span class="good">$10,000 → 2.29x</span>. The Influencer Campaign (LAL 1%) also feeds the diagnosis funnel that upsold Nicholas — Meta's true payback shows up in LTV below.
+    </div>
+  </section>
+
+  <section id="ads">
+    <h2>Creative Attribution</h2>
+    <h3>Which ads brought in the sales (July)</h3>
+    <table>
+      <thead><tr><th>Sale</th><th class="num">Cash</th><th>Channel</th><th>Campaign</th><th>Ad set / Ad group</th><th>Ad</th></tr></thead>
+      <tbody>
+        <tr><td>Ruben Vazquez — Diagnosis</td><td class="num">$500</td><td>Meta</td><td>AM - MH | Influencer Campaign (IF) | ABO</td><td>LAL 1% Followers (ISH)</td><td>Ad 1 | Video 8 (Ish) | Learn More CTA</td></tr>
+        <tr><td>Enrique Lopez — Diagnosis</td><td class="num">$500</td><td>Meta</td><td>AM - MH | Influencer Campaign (IF) | ABO</td><td>LAL 1% Followers (ISH)</td><td>Ad 1 | Video 8 (Ish) | Learn More CTA</td></tr>
+        <tr><td>Nicholas Venegas — Diagnosis + Client</td><td class="num">$2,500</td><td>Meta</td><td>Digital Marketing</td><td>Digital Marketing</td><td>"Ad 1" or "Ad 1 - apply now" (fbc click via /local-services form; exact ad ambiguous)</td></tr>
+        <tr><td>Scott Stevens — Client</td><td class="num">$2,500</td><td>ChatGPT</td><td>AM - TRAFFIC CAMPAIGN - TEST THANK YOU PAGE</td><td>Marketing Agency KW</td><td>contractor marketing keywords</td></tr>
+        <tr><td>Miguel Guerra — Client</td><td class="num">$4,000</td><td>Google (probable)</td><td>AM-CP-AI-SEARCH</td><td>— (call asset)</td><td>Phone call, 4m 40s, area 559 match; organic FB touch also present</td></tr>
+        <tr><td>Richard Gonzalez — Client</td><td class="num">$2,500</td><td>Meta-assisted</td><td>Not click-tracked</td><td>—</td><td>Event attendee; GHL source "Facebook"</td></tr>
+      </tbody>
+    </table>
+    <h3 style="margin-top:22px">Ad-level spend vs results (Meta, July)</h3>
+    <table>
+      <thead><tr><th>Ad</th><th>Ad set</th><th class="num">Spend</th><th class="num">Leads</th><th class="num">Sales cash</th></tr></thead>
+      <tbody>
+        <tr><td>Ad 1 | Video 8 (Ish) | Learn More CTA</td><td>LAL 1% Followers (ISH)</td><td class="num">$3,706.72</td><td class="num">87 on-FB</td><td class="num">$1,000 (2 diagnoses)</td></tr>
+        <tr><td>Ad 1 / Ad 1 - apply now</td><td>Digital Marketing</td><td class="num">$284.15</td><td class="num">221 website</td><td class="num good">$2,500 (1 client)</td></tr>
+        <tr><td>Ad 1 | Video 3 + other tests (7 ads)</td><td>LAL 1% Followers (ISH)</td><td class="num">$230.79</td><td class="num">3</td><td class="num">$0</td></tr>
+        <tr><td>Video 7 (Ish) variants</td><td>Followers (ISH)</td><td class="num">$152.82</td><td class="num">0</td><td class="num">$0</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <b>One creative is doing the heavy lifting on Meta:</b> "Video 8 (Ish)" took 85% of Meta spend ($3,706.72), produced 87 leads and both Meta diagnosis sales. But the standout is the <b>Digital Marketing ad set: a $2,500/mo client on $284.15 of spend</b> — 221 website leads at $1.29 each and the month's best cost-per-client. That ad set looks underfunded relative to results and is the first place to scale.
+      On ChatGPT, the single "contractor marketing keywords" ad produced the Scott Stevens client — $5,068 cost-per-client vs $16,667 LTV.
+    </div>
+    <div class="cav">
+      Ad-level attribution comes from the UTMs captured on each contact (ad ID 120243771946330476 = "Video 8 (Ish)", ad set, creative name) matched to ad-level spend from Meta and ChatGPT. Nicholas's exact creative is ambiguous — Instagram in-app clicks passed a click ID (fbc) but no ad-level UTMs, and both Digital Marketing ads point at the same form; add UTM templates to those ads to fix. Google call sales can't be tied to a creative (calls come from campaign-level call assets).
+    </div>
+  </section>
+
+  <section id="ltv">
+    <h2>Unit Economics</h2>
+    <h3>LTV &amp; the 15% churn math</h3>
+    <table>
+      <thead><tr><th>Input</th><th class="num">Value</th></tr></thead>
+      <tbody>
+        <tr><td>Average new-client retainer (8 July wins: $2.5k ×4, $4k, $5k ×2, $6.5k)</td><td class="num">$3,812.50/mo</td></tr>
+        <tr><td>Monthly churn assumption</td><td class="num">15%</td></tr>
+        <tr><td>Expected client lifetime (1 ÷ 0.15)</td><td class="num">6.67 months</td></tr>
+        <tr><td><b>Average client LTV</b> ($3,812.50 × 6.67)</td><td class="num good">$25,417</td></tr>
+        <tr><td>LTV of a $2,500/mo client</td><td class="num">$16,667</td></tr>
+        <tr><td>LTV of the July cohort (8 clients × avg LTV)</td><td class="num good">$203,333</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      <b>What this means for ad buying:</b> at 15% churn a $2,500/mo client is worth ~$16,667. Meta acquired 1 direct client + 2 diagnosis buyers for $4,370 → <span class="good">4.04x LTV-ROAS</span>. ChatGPT acquired Scott Stevens for $5,068 → <span class="good">3.29x LTV-ROAS</span>. Both channels look unprofitable on first-month cash but strongly profitable on LTV. Break-even CAC is ~$25k/client; you're paying $4–5k — room to scale as long as churn holds at or below 15%.
+    </div>
+    <div class="cav">
+      Assumptions to validate: (1) won-deal value = monthly retainer (one-time projects lower LTV); (2) actual churn — at 10% LTV rises to $38,125, at 20% it falls to $19,063.
+    </div>
+  </section>
+
+  <section id="ledger">
+    <h2>Cash Ledger</h2>
+    <h3>July sales — cash collected</h3>
+    <table>
+      <thead><tr><th>Date</th><th>Customer</th><th class="num">Amount</th><th>Channel</th></tr></thead>
+      <tbody>
+        <tr><td>Jul 1</td><td>Gonzalo</td><td class="num">$500</td><td>Organic/other (diagnosis)</td></tr>
+        <tr><td>Jul 2</td><td>Pablo Renteria</td><td class="num">$500</td><td>Organic/other (diagnosis)</td></tr>
+        <tr><td>Jul 2</td><td>Kris Villanueva</td><td class="num">$2,500</td><td>Organic/other</td></tr>
+        <tr><td>Jul 6</td><td>Scott Stevens</td><td class="num">$2,500</td><td class="good">ChatGPT Ads (growth-diagnostic)</td></tr>
+        <tr><td>Jul 13</td><td>Arturo (diagnosis)</td><td class="num">$500</td><td>Inbound call</td></tr>
+        <tr><td>Jul 14</td><td>Richard Gonzalez</td><td class="num">$2,500</td><td>Meta-assisted</td></tr>
+        <tr><td>Jul 14</td><td>Nicholas Venegas (diagnosis)</td><td class="num">$500</td><td class="good">Meta Ads (fbc)</td></tr>
+        <tr><td>Jul 14</td><td>(unnamed)</td><td class="num">$500</td><td>Unattributed (diagnosis)</td></tr>
+        <tr><td>Jul 20</td><td>Arturo (client)</td><td class="num">$6,000</td><td>Inbound call</td></tr>
+        <tr><td>Jul 20</td><td>Nicholas Venegas (client)</td><td class="num">$2,000</td><td class="good">Meta Ads (fbc)</td></tr>
+        <tr><td>Jul 22</td><td>Daniel</td><td class="num">$500</td><td>Booking widget (diagnosis)</td></tr>
+        <tr><td>Jul 23</td><td>RL Foreign &amp; Domestic Auto</td><td class="num">$500</td><td>Instagram organic (diagnosis)</td></tr>
+        <tr><td>Jul 28</td><td>Miguel Guerra</td><td class="num">$4,000</td><td>Meta-influenced / possible Google call</td></tr>
+        <tr><td>Jul 28</td><td>Ely Ramos (diagnosis)</td><td class="num">$500</td><td>Organic/other</td></tr>
+        <tr><td>Jul 29</td><td>Ruben Vazquez</td><td class="num">$500</td><td class="good">Meta Ads (diagnosis)</td></tr>
+        <tr><td>Jul 29</td><td>Enrique Lopez</td><td class="num">$500</td><td class="good">Meta Ads (diagnosis)</td></tr>
+        <tr><td>Jul 29</td><td>Antonio Flores</td><td class="num">$1,500</td><td>Organic/other</td></tr>
+        <tr><td>Jul 31</td><td>Ely Ramos (client)</td><td class="num">$2,000</td><td>Organic/other</td></tr>
+        <tr><td>Jul 31</td><td>Edgar Amaral</td><td class="num">$2,000</td><td>Organic/other</td></tr>
+        <tr class="total"><td colspan="2">Total (excl. $8 test transactions)</td><td class="num">$30,000</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="highlight">
+      Closed in July but not yet paid through GHL: <b>London Ramirez $5,000</b> (affiliate: laura valdez) and <b>Lincoln Plumbing &amp; Rooter $5,000</b> (referral: ismael valdez) — $10,000 of affiliate-driven won value, presumably invoiced outside GHL.
+    </div>
+  </section>
+
+  <section id="spend">
+    <h2>Spend Detail</h2>
+    <h3>Channel &amp; campaign spend (July)</h3>
+    <table>
+      <thead><tr><th>Channel / Campaign</th><th class="num">Impr.</th><th class="num">Clicks</th><th class="num">Spend</th><th class="num">Platform results</th></tr></thead>
+      <tbody>
+        <tr><td>Google — AM-CP-AI-SEARCH</td><td class="num">6,262</td><td class="num">175</td><td class="num">$3,156.59</td><td class="num">11 conv / $4,320</td></tr>
+        <tr><td>Google — Competitor (Scorpion)</td><td class="num">1,841</td><td class="num">32</td><td class="num">$1,477.59</td><td class="num">1 conv / $400</td></tr>
+        <tr><td>Meta — LAL 1% Followers (ISH)</td><td class="num">142,314</td><td class="num">1,502</td><td class="num">$3,933.26</td><td class="num">90 on-FB leads</td></tr>
+        <tr><td>Meta — Digital Marketing</td><td class="num">54,137</td><td class="num">1,072</td><td class="num">$284.15</td><td class="num">221 website leads</td></tr>
+        <tr><td>Meta — Followers (ISH)</td><td class="num">5,191</td><td class="num">29</td><td class="num">$152.82</td><td class="num">—</td></tr>
+        <tr><td>ChatGPT — AM Traffic Campaign</td><td class="num">47,307</td><td class="num">407</td><td class="num">$5,067.52</td><td class="num">10 leads, 1 client</td></tr>
+        <tr class="total"><td>Total</td><td class="num">257,052</td><td class="num">3,217</td><td class="num">$14,071.93</td><td class="num"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <b>Advanced Marketers · Growth System</b><br>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; support@advancedmarketers.co<br>
+    Cash ROAS = attributed succeeded payments ÷ spend · LTV-Based ROAS = (new-client LTV @15% monthly churn + diagnosis cash) ÷ spend · LTV = monthly retainer ÷ 0.15 · CPQL = spend ÷ qualified leads (Booked Call+ / calls ≥60s)
+  </footer>
+
+</div>
+<script>
+(function(){
+  var buttons=document.querySelectorAll('nav button');
+  var sections=document.querySelectorAll('section[id]');
+  buttons.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var view=btn.getAttribute('data-view');
+      buttons.forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      sections.forEach(function(s){
+        if(view==='all'||s.id===view){s.classList.remove('hidden')}else{s.classList.add('hidden')}
+      });
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>

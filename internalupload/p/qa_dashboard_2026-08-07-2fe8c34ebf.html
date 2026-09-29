@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers — Growth Team QA Scores</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1B1B24; --panel3:#22222B; --line:#2B2B35;
+    --txt:#EDEDF2; --muted:#8A8A99; --purple:#7D7BF7; --purple-deep:#5A58C4;
+    --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font:15px/1.55 Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:38px 26px 60px}
+  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:10px;font-weight:700;color:var(--purple)}
+  .kicker.mut{color:var(--muted)}
+  header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:10px}
+  .brand .nm{font-weight:800;font-size:15px;letter-spacing:.02em}
+  .brand .sub{letter-spacing:.4em;text-transform:uppercase;font-size:9px;color:var(--muted);margin-top:2px}
+  h1{font-size:32px;font-weight:800;margin:10px 0 4px}
+  h1 em{font-style:normal;color:var(--purple)}
+  .datesub{color:var(--muted);font-size:13.5px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;margin:22px 0 30px;padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .meta div{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .meta b{display:block;font-size:19px;color:var(--txt);letter-spacing:0;margin-top:2px}
+  .meta b.pp{color:var(--purple)}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+  .hl{border:1px solid var(--purple);background:linear-gradient(180deg,#1b1b2a,#16161D);border-radius:14px;padding:16px 20px;margin-bottom:14px;font-size:13.5px}
+  .hl b{color:var(--purple)}
+  .warnbox{border:1px solid var(--warn);background:linear-gradient(180deg,#241f14,#16161D);border-radius:14px;padding:16px 20px;margin-bottom:14px;font-size:13.5px}
+  .warnbox b{color:var(--warn)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
+  .role{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--panel3);color:var(--muted)}
+  .score{font-weight:800;font-size:17px}
+  .s-good{color:var(--good)} .s-mid{color:var(--warn)} .s-bad{color:var(--bad)}
+  .s-na{color:var(--muted);font-weight:700;font-size:13px}
+  .barwrap{background:var(--panel3);border-radius:6px;overflow:hidden;width:100%}
+  .bar{height:8px;border-radius:6px;min-width:3px}
+  .delta{font-size:12px;font-weight:800}
+  .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--muted)}
+  .pill{display:inline-block;font-size:12px;font-weight:800;border-radius:8px;padding:3px 11px}
+  .pill.p5{background:rgba(63,207,149,.15);color:var(--good)}
+  .pill.p4{background:rgba(125,123,247,.16);color:var(--purple)}
+  .pill.p3{background:rgba(217,164,65,.15);color:var(--warn)}
+  .pill.p2{background:rgba(228,96,79,.15);color:var(--bad)}
+  .pill.pna{background:var(--panel3);color:var(--muted)}
+  .st{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  .st.red{color:var(--bad)} .st.yel{color:var(--warn)} .st.wht{color:var(--muted)} .st.grn{color:var(--good)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .repcard h3{font-size:16px;font-weight:800;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+  .repcard .cm{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .repcard .line{font-size:13px;margin:7px 0}
+  .repcard .line span{color:var(--purple);font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:1px}
+  .repcard blockquote{margin:10px 0 0;padding:9px 14px;border-left:3px solid var(--purple);background:var(--panel2);border-radius:0 8px 8px 0;font-size:12.5px;color:#c9c9d6;font-style:italic}
+  .reminders .line{font-size:13.5px;margin:9px 0}
+  .reminders b{color:var(--txt)}
+  .note{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.6}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:11px;letter-spacing:.06em;line-height:2}
+  canvas{max-height:280px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="nm">ADVANCED</div>
+    <div class="sub">M A R K E T E R S</div>
+  </div>
+  <div class="kicker mut" style="padding-top:6px">WEEKLY QA SCORECARD &middot; GROWTH TEAM</div>
+</header>
+
+<div class="kicker">REVENUE FIRST, ALWAYS</div>
+<h1>Growth Team <em>Call-QA Report</em></h1>
+<div class="datesub">Week of August 3 &ndash; August 7, 2026 &middot; full Monday&ndash;Friday window, data cut Friday 8/7 ~2:00pm PT. <b>This edition supersedes the Monday 8/3 one-day partial.</b></div>
+
+<div class="meta">
+  <div>Reps scored<b>5</b></div>
+  <div>Zoom calls reviewed<b>48</b></div>
+  <div>Phone calls transcribed<b>13</b></div>
+  <div>Team average<b class="pp">68.0</b></div>
+  <div>Tampering flags<b class="pp">0</b></div>
+  <div>Past day-14 deadline<b>3</b></div>
+</div>
+
+<div class="warnbox">
+  <b>THE HEADLINE THIS WEEK &mdash; CREDENTIAL HANDLING.</b> After three clean weeks on the AI-transcript rule, a different discipline slipped: <b>three separate credential events on recorded lines</b>, across two reps who are normally at the top of the board. Passwords remain a violation &mdash; the SOP is that the client resets it themselves, or adds Advanced Marketers as a user. This single dimension accounts for most of the drop in the team average; on the other seven dimensions the week was broadly flat.
+</div>
+
+<div class="hl">
+  <b>THE GOOD NEWS.</b> <b>Zero AI-tampering instances</b> across all 61 reviewed calls &mdash; the third consecutive fully clean week since the practice was stopped on 7/20. Trend: 7/17: 4 &rarr; 7/24: 0 &rarr; 7/31: 0 &rarr; 8/7: 0. Nobody addressed the recording, the transcript, or any AI system with an instruction. Consider this rule holding.
+</div>
+
+<div class="panel">
+  <div class="kicker" style="margin-bottom:14px">SCORECARD &middot; WEEK OF AUGUST 3</div>
+  <table>
+    <thead><tr><th>Rep</th><th></th><th class="num">Score</th><th class="num">vs 7/31</th><th>Headline</th></tr></thead>
+    <tbody>
+      <tr><td><b>Lindsey Gray</b></td><td><span class="role">Growth Specialist</span></td>
+        <td class="num"><span class="score s-good">80</span></td><td class="num"><span class="delta down">&darr; 3</span></td>
+        <td>Top of the board for a second week. Best expectation management on the team; spotless recorded-line conduct. Two calls only.</td></tr>
+      <tr><td><b>Julie M&oacute;nico</b></td><td><span class="role">Growth Manager</span></td>
+        <td class="num"><span class="score s-mid">75</span></td><td class="num"><span class="delta down">&darr; 4</span></td>
+        <td>Seven of eight dimensions consistent with her 87.5 week. One password request on a recorded line carried the whole drop.</td></tr>
+      <tr><td><b>Mak Rogers</b></td><td><span class="role">Growth Specialist</span></td>
+        <td class="num"><span class="score s-mid">67.5</span></td><td class="num"><span class="delta down">&darr; 13.5</span></td>
+        <td>Best reporting on the board and the strongest live problem-ownership. Three credential events took Professionalism to a 2.</td></tr>
+      <tr><td><b>Donovan Shipley</b></td><td><span class="role">Provisional</span></td>
+        <td class="num"><span class="score s-bad">62.5</span></td><td class="num"><span class="delta down">&darr; 10.5</span></td>
+        <td>Three live root-cause fixes and textbook credential discipline. Rep-originated profanity with the client live, and no numbers on any call.</td></tr>
+      <tr><td><b>Simon Ting</b></td><td><span class="role">Provisional</span></td>
+        <td class="num"><span class="score s-bad">55</span></td><td class="num"><span class="delta down">&darr; 2.5</span></td>
+        <td>Cleanest password handling on the team across 61 minutes of live troubleshooting. Still no numbers and no dates to any client.</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Provisional = small sample, score is directional. Simon reviewed 4 Zooms (one no-show, one 3-minute mis-scheduled check-in) plus one 61-minute phone call. Lindsey reviewed 2 Zooms and had zero phone calls in the window. Overall = average of scored dimensions &times; 20; dimensions with no evidence are marked N/A and never counted against a rep.</div>
+</div>
+
+<div class="panel">
+  <div class="kicker" style="margin-bottom:14px">SCORE TREND</div>
+  <canvas id="trend"></canvas>
+  <div class="note">The Monday 8/3 one-day partial is not plotted &mdash; this full-week score replaces it.</div>
+</div>
+
+<div class="panel">
+  <div class="kicker" style="margin-bottom:14px">DIMENSION DETAIL</div>
+  <table>
+    <thead><tr><th>Dimension</th><th class="num">Lindsey</th><th class="num">Julie</th><th class="num">Mak</th><th class="num">Donovan</th><th class="num">Simon</th></tr></thead>
+    <tbody>
+      <tr><td>Preparation</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+      <tr><td>Call control</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+      <tr><td>Reporting quality</td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+      <tr><td>Expectation management</td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+      <tr><td>Problem handling</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td></tr>
+      <tr><td>Retention &amp; upsell</td><td class="num"><span class="pill pna">N/A</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p4">4</span></td></tr>
+      <tr><td>Follow-through</td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td></tr>
+      <tr><td><b>Professionalism</b></td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p2">2</span></td><td class="num"><span class="pill p2">2</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p4">4</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">Read the bottom row across. Professionalism is the only dimension where the team is not clustered &mdash; and it is the one carrying the average down.</div>
+</div>
+
+<div class="panel">
+  <div class="kicker" style="margin-bottom:14px">GO-LIVE SLA BOARD &middot; ACCOUNTS SOLD SINCE 7/6</div>
+  <table>
+    <thead><tr><th>Account</th><th>Rep</th><th class="num">Sold</th><th class="num">Day-14</th><th class="num">Live / elapsed</th><th>Status</th><th>Blocker</th></tr></thead>
+    <tbody>
+      <tr><td><b>Magic Snake Pro</b></td><td>Mak</td><td class="num">7/24</td><td class="num">8/7</td><td class="num">day 14</td><td><span class="st red">&#128308; deadline day, not live</span></td><td>Client's Google Ads card declined 8/7 13:19 + client power outage &mdash; raised same day. LSA routing calls to a competitor still open at 7 days.</td></tr>
+      <tr><td><b>Alliance 247</b></td><td>Tim</td><td class="num">7/14</td><td class="num">7/28</td><td class="num">day 24</td><td><span class="st red">&#128308; past SLA</span></td><td>Website still not started. Package-type ruling (SEO/web-first vs ads) awaiting an owner decision, 7 days.</td></tr>
+      <tr><td><b>Premium Plumbing</b></td><td>Simon</td><td class="num">7/6</td><td class="num">7/20</td><td class="num">day 32</td><td><span class="st red">&#128308; past SLA</span></td><td>Website live 7/31&ndash;8/1. Ads confirmed <b>out of scope</b> (proposal only). Appointment-form email to info@ still broken since 8/4.</td></tr>
+      <tr><td><b>Emberline</b></td><td>Donovan</td><td class="num">7/14</td><td class="num">7/28</td><td class="num">day 24</td><td><span class="st yel">&#128993; partial</span></td><td>Meta live 7/28. Google status still unconfirmed &mdash; no client-facing confirmation posted all week.</td></tr>
+      <tr><td><b>MGS Air Conditioning</b></td><td><b>UNASSIGNED</b></td><td class="num">7/28</td><td class="num">8/11</td><td class="num">day 10</td><td><span class="st red">&#128308; unowned</span></td><td><b>Channel has zero messages, ever.</b> No rep, no onboarding, client never invited. Deadline is 2 business days away.</td></tr>
+      <tr><td><b>New Generation Constr.</b></td><td><b>UNASSIGNED</b></td><td class="num">7/31</td><td class="num">8/14</td><td class="num">day 7</td><td><span class="st red">&#128308; unowned</span></td><td>Client <b>joined himself 8/5 16:04</b> after never being invited &mdash; and got no response. Still no rep.</td></tr>
+      <tr><td><b>Capri Plumbing</b></td><td>Tim&rarr;Julie&rarr;Mak</td><td class="num">7/31</td><td class="num">8/14</td><td class="num">day 7</td><td><span class="st yel">&#128993; within SLA</span></td><td>Three owners in five days; the client asked about it. His 7/31 heat-map question is still unanswered at 7 days.</td></tr>
+      <tr><td><b>Inland Renovation</b></td><td>Donovan</td><td class="num">7/20</td><td class="num">&mdash;</td><td class="num">LIVE 8/4</td><td><span class="st grn">&#128994; live</span></td><td>Google live 8/4 10:48. Landing-page defect caught <i>before</i> launch. Cleanest account on the board.</td></tr>
+      <tr><td><b>M.L. Bernie Co</b></td><td>Tim / Kyle</td><td class="num">7/20</td><td class="num">&mdash;</td><td class="num">n/a</td><td><span class="st wht">&#9899; SLA n/a</span></td><td>Audit/web only. MVP delivered and client-approved 8/3. $6,500-vs-$500 billing conflict still open at 18 days.</td></tr>
+      <tr><td><b>Good Neighbor Fence</b></td><td>Tim&rarr;Allondra</td><td class="num">7/30</td><td class="num">&mdash;</td><td class="num">day 8</td><td><span class="st wht">&#9899; SLA n/a</span></td><td>Website+creative, no ads. New blocker 8/5: outstanding website balance gates the build. 8/6 video shoot unconfirmed.</td></tr>
+    </tbody>
+  </table>
+  <div class="note">Two accounts are 10 and 7 days old with <b>no owner and no client contact at all</b>. MGS is now in its third week in this state. Both trace to the same blank client-invite field in the channel-creation automation.</div>
+</div>
+
+<div class="warnbox">
+  <b>PIPELINE RISK &mdash; SIX MORE ABOUT TO REPEAT IT.</b> Six new sales intakes landed 8/3&ndash;8/6 (REC Elite Mechanical, Alejandro's Remodeling, MOVEHAUS, Custom Kitchens By Lopez, Aspen, Signature Plumbing) and <b>every one has an internal channel only</b> &mdash; no client channel, no growth manager assigned, no onboarding scheduled. Signature Plumbing (Google Ads $6k/mo + LSA, intake 8/6) carries a real day-14 clock of roughly <b>8/20</b>. Assign owners before these become the next MGS.
+</div>
+
+<div class="grid">
+  <div class="panel repcard">
+    <h3>Lindsey Gray <span class="score s-good">80</span></h3>
+    <div class="cm">Growth Specialist &middot; 2 Zoom calls, 0 phone</div>
+    <div class="line"><span>Strength</span>Sets the frame before the client can form a wrong one &mdash; learning phase, the 2-week no-change window, why Meta's own recommendations get ignored, and an honest cause for a month-over-month dip. Nothing overpromised.</div>
+    <div class="line"><span>Growth area</span>Bring pre-pulled numbers to <i>every</i> weekly call, and run the recap. Verterra proves she reports well with data in front of her; the Leo's call had no spend, CPL, or cost-per-booked figure at all.</div>
+    <blockquote>&ldquo;Technically, since you guys have your friend fill this out, this would be, like, zero and not applicable&hellip;&rdquo; &mdash; flagging a misleading number before it could mislead. Verterra, 8/6 [10:32]</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Julie M&oacute;nico <span class="score s-mid">75</span></h3>
+    <div class="cm">Growth Manager &middot; 10 Zoom sessions, 5 phone calls</div>
+    <div class="line"><span>Strength</span>Names the phase, the launch date, and the elapsed days before a client can ask &ldquo;why no leads yet&rdquo; &mdash; and fixes pipeline hygiene live rather than describing it. Secured explicit client consent for every change she made.</div>
+    <div class="line"><span>Growth area</span>Recorded-line data handling, and reporting the actual numbers to the client rather than directional language. She told one client &ldquo;cost per result is pretty good&rdquo; while holding back the lead drop she recited to a colleague minutes later.</div>
+    <blockquote>&ldquo;CallConnect tried to connect&hellip; But then today, I see that it was moved to lost already. We wouldn't kind of want you to do that.&rdquo; Vera Plumbing, 8/6 [03:02]</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Mak Rogers <span class="score s-mid">67.5</span></h3>
+    <div class="cm">Growth Specialist &middot; 14 client Zooms, 5 internal, 1 phone</div>
+    <div class="line"><span>Strength</span>Live problem ownership. When a client raised an issue she diagnosed it on the call, pulled the responsible internal person in by name, and tasked the fix in front of the client &mdash; four separate accounts this week.</div>
+    <div class="line"><span>Growth area</span>Credential handling, and closing with a named owner and a date. Excluding Professionalism her week averages 3.57 &mdash; in line with her trailing trend.</div>
+    <blockquote>&ldquo;Okay, so this is the one where we're a little upside down, then&hellip;&rdquo; &mdash; leading with the losing channel on a month-end P&amp;L. ML Plumbing, 8/7 [11:18]</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Donovan Shipley <span class="score s-bad">62.5</span></h3>
+    <div class="cm">Provisional &middot; 2 Zoom, 9 phone (2 Zooms not captured)</div>
+    <div class="line"><span>Strength</span>Three live root-cause fixes in one week, and he caught a landing-page defect <i>before</i> Inland went live rather than after. Textbook credential discipline &mdash; steered a vendor login off the recorded line unprompted.</div>
+    <div class="line"><span>Growth area</span>The weekly-call spine. No spend, CPL, or cost-per-booked on any of eleven calls, and Emberline got a 26-minute call at day 24 with no launch status and no date.</div>
+    <blockquote>&ldquo;I'll have to have my meta team look at it&hellip; the tracking isn't capturing those things at all, which is a problem.&rdquo; Nicholas Venegas, 8/3 [02:15]</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Simon Ting <span class="score s-bad">55</span></h3>
+    <div class="cm">Provisional &middot; 4 Zoom (1 no-show), 1 phone (61 min)</div>
+    <div class="line"><span>Strength</span>He did not hand the Premium defect off. He held the line 61 minutes, relayed the web team in real time, and did not end the call until the client confirmed the fix on his own screen &mdash; and never once asked for a credential while doing it.</div>
+    <div class="line"><span>Growth area</span>Bring numbers and give dates. Four client conversations, zero metrics reported, zero dates issued. On the past-SLA account he let the client set an October expectation unchallenged.</div>
+    <blockquote>&ldquo;Let's &mdash; if you wanna try that while I'm on the line&rdquo; &mdash; the client performed every authenticated action himself. Premium Plumbing, 8/4 [06:45]</blockquote>
+  </div>
+
+  <div class="panel repcard reminders">
+    <h3>Reminders for everyone</h3>
+    <div class="cm">Same three every week until they stop appearing</div>
+    <div class="line"><b>1. Never take a password on a recorded line.</b> Not spoken, not typed into chat, not &ldquo;just send it to me.&rdquo; The client resets it themselves, or adds us as a user. MFA codes count too. Cards are fine &mdash; passwords are not.</div>
+    <div class="line"><b>2. Pre-pulled numbers are the spine of the weekly call.</b> Spend, CPL, cost per booked job, in hand before you join. &ldquo;How have the leads been?&rdquo; is backwards &mdash; we track, we tell.</div>
+    <div class="line"><b>3. Close every call out loud: owner, date, channel, next meeting.</b> Not one call this week ran the full recap segment. &ldquo;I'll send you an update&rdquo; is not a commitment.</div>
+    <div class="note">Every client call is QA-reviewed and every go-live is tracked against the day-14 SLA. Client messaging is always <b>week 2</b> &mdash; never week 4, never &ldquo;about a month.&rdquo; If something is blocking a launch, escalate it by day 10; a blocker you raise is never held against you, a blocker you sit on is.</div>
+  </div>
+</div>
+
+<footer>
+  135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; advancedmarketers.co<br>
+  Generated Friday, August 7, 2026 &middot; 48 Zoom transcripts and 13 phone transcripts reviewed &middot; Sources: Zoom Cloud Recording API, GoHighLevel Conversations API, Slack, ClickUp
+</footer>
+
+</div>
+<script>
+new Chart(document.getElementById('trend'),{
+ type:'line',
+ data:{labels:['Jun 11','Jun 19','Jun 29','Jul 4','Jul 10','Jul 17','Jul 20','Jul 24','Jul 31','Aug 7'],
+ datasets:[
+  {label:'Mak Rogers',data:[85,85,82,90,85,80,77.5,85,81,67.5],borderColor:'#7D7BF7',backgroundColor:'#7D7BF7',tension:.3},
+  {label:'Julie Mónico',data:[80,83,84,80,75,83,80,87.5,79,75],borderColor:'#3FCF95',backgroundColor:'#3FCF95',tension:.3},
+  {label:'Simon Ting',data:[null,76,74,80,78,70,72.5,70,57.5,55],borderColor:'#E4604F',backgroundColor:'#E4604F',tension:.3},
+  {label:'Donovan Shipley',data:[null,null,null,null,73,73,75,70,73,62.5],borderColor:'#D9A441',backgroundColor:'#D9A441',tension:.3},
+  {label:'Lindsey Gray',data:[null,null,null,null,null,null,null,65,83,80],borderColor:'#8A8A99',backgroundColor:'#8A8A99',tension:.3}
+ ]},
+ options:{responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{labels:{color:'#8A8A99',boxWidth:12,font:{size:11}}}},
+  scales:{y:{min:40,max:100,grid:{color:'#2B2B35'},ticks:{color:'#8A8A99'}},
+          x:{grid:{color:'#2B2B35'},ticks:{color:'#8A8A99'}}}}
+});
+</script>
+</body>
+</html>

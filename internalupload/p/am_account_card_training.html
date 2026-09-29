@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account Card Setup | Advanced Marketers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0C0E12;--panel:#14171D;--panel2:#1B1F27;--line:#2B313B;--line2:#232833;
+  --white:#F2F4F7;--dim:#A9B2BF;--dimmer:#727C8A;
+  --blue:#3b82f6;--blue-t:#A7C4F5;--blue-d:#17233A;--blue-l:#C6D9F9;
+  --ok:#5FCB9B;--ok-d:#14291F;--warn:#E0A44A;--warn-d:#2A2110;
+  --yellow:#E8C33A;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--white);
+  font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;line-height:1.6;padding-inline:20px;padding-block:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-block:46px 90px}
+.anton{font-family:Anton,"Arial Narrow",Haettenschweiler,sans-serif;font-weight:400;letter-spacing:.005em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+
+.brandbar{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:38px}
+.mark{width:26px;height:26px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mark span{font-family:Anton,sans-serif;font-size:15px;color:#000;line-height:1}
+.brandbar b{font-family:Anton,sans-serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+.brandbar i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dimmer);margin-left:auto}
+
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--blue-t);margin:0 0 14px}
+h1{font-family:Anton,"Arial Narrow",sans-serif;font-weight:400;
+  font-size:clamp(40px,7vw,74px);line-height:.98;letter-spacing:-.005em;text-transform:uppercase;
+  margin:0 0 18px;text-wrap:balance}
+.stand{font-size:19px;color:var(--dim);margin:0;max-width:56ch}
+
+h2{font-family:Anton,sans-serif;font-weight:400;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);margin:0 0 24px;padding-bottom:10px;border-bottom:2px solid var(--blue-t)}
+section{margin-top:60px}
+p{margin:0 0 15px}
+
+.steps{display:grid;gap:14px}
+.step{background:var(--panel);border:1px solid var(--line);display:grid;
+  grid-template-columns:58px 1fr 392px;align-items:stretch}
+.step .num{font-family:Anton,sans-serif;font-size:22px;color:#000;background:var(--blue);
+  display:flex;align-items:center;justify-content:center}
+.step .txt{padding:20px 24px;align-self:center}
+.step .txt b{font-family:Anton,sans-serif;font-weight:400;font-size:19px;letter-spacing:.01em;
+  text-transform:uppercase;display:block;margin-bottom:6px;line-height:1.15}
+.step .txt span{font-size:15.5px;color:var(--dim);display:block}
+.step .pic{padding:14px;border-left:1px solid var(--line2);background:var(--panel2);
+  display:flex;align-items:center;justify-content:center}
+.step .pic svg{width:100%;height:auto;display:block}
+@media(max-width:880px){.step{grid-template-columns:48px 1fr}
+  .step .pic{grid-column:1/-1;border-left:none;border-top:1px solid var(--line2)}}
+
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.rule{background:var(--panel);border-left:3px solid var(--blue-t);padding:18px 22px}
+.rule b{font-family:Anton,sans-serif;font-weight:400;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:7px}
+.rule span{font-size:15.5px;color:var(--dim)}
+@media(max-width:700px){.rules{grid-template-columns:1fr}}
+
+.bar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:18px}
+input[type=search]{font-family:"DM Sans",sans-serif;font-size:15px;padding:10px 14px;flex:1;min-width:210px;
+  border:1px solid var(--line);background:var(--panel);color:var(--white);border-radius:0}
+input[type=search]::placeholder{color:var(--dimmer)}
+input[type=search]:focus-visible{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+button{font-family:"DM Sans",sans-serif;font-size:13.5px;font-weight:500;color:var(--dim);
+  background:var(--panel);border:1px solid var(--line);padding:9px 15px;cursor:pointer;border-radius:0}
+button:hover{border-color:var(--dimmer);color:var(--white)}
+button[aria-pressed="true"]{background:var(--blue);color:#000;border-color:var(--blue);font-weight:700}
+button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tally{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--dimmer);margin-left:auto;letter-spacing:.05em}
+
+.acct{background:var(--panel);border:1px solid var(--line);margin-bottom:8px}
+.acct summary{padding:14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;list-style:none}
+.acct summary::-webkit-details-marker{display:none}
+.acct summary::before{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--blue-t);font-size:16px;flex-shrink:0}
+.acct[open] summary::before{content:"\2212"}
+.acct:hover{border-color:var(--dimmer)}
+.acct .nm{font-family:Anton,sans-serif;font-weight:400;font-size:17px;letter-spacing:.02em;text-transform:uppercase}
+.acct .ow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dimmer);margin-left:auto;white-space:nowrap}
+.pill{font-family:"DM Sans",sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:4px 9px;white-space:nowrap;flex-shrink:0}
+.p-todo{background:var(--blue-d);color:var(--blue-l)}
+.p-done{background:var(--ok-d);color:var(--ok)}
+.p-empty{background:var(--warn-d);color:var(--warn)}
+.p-check{background:var(--panel2);color:var(--dimmer);border:1px solid var(--line)}
+.body{padding:0 18px 18px;display:flex;gap:12px;align-items:flex-start}
+pre{font-family:"IBM Plex Mono",monospace;font-size:13.5px;line-height:1.8;background:#0A0C10;
+  border:1px solid var(--line);padding:15px 17px;margin:0;flex:1;overflow-x:auto;white-space:pre;color:var(--white)}
+.copy{flex-shrink:0;font-size:13.5px;font-weight:700;padding:11px 18px;background:var(--blue);color:#000;border-color:var(--blue)}
+.copy:hover{background:var(--blue-l);border-color:var(--blue-l);color:#000}
+.copy.done{background:var(--ok);border-color:var(--ok);color:#000}
+@media(max-width:640px){.body{flex-direction:column}.copy{width:100%}.acct .ow{display:none}}
+
+footer{margin-top:66px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dimmer);line-height:1.9;letter-spacing:.03em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brandbar">
+  <div class="mark"><span>AM</span></div>
+  <b>Advanced Marketers</b>
+  <i>Internal Training</i>
+</div>
+
+<p class="eyebrow">ClickUp &middot; AM Delivery 2.0</p>
+<h1>Put the account card<br>on your folders</h1>
+<p class="stand">45 seconds each. You are pasting, not typing. Every block is below with a copy button.</p>
+
+<section>
+<h2>How to do one folder</h2>
+<div class="steps"><div class="step"><div class="num">1</div><div class="txt"><b>Open the folder, click Overview</b><span>Not Channel. Not List. The Overview tab.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<line x1="4" y1="34" x2="396" y2="34" class="st"/>
+<text x="16" y="23" class="tx">AM Delivery 2.0 / Client Name</text>
+<rect x="14" y="42" width="54" height="21" class="f2 st"/><text x="24" y="56" class="tx">Channel</text>
+<rect x="74" y="42" width="60" height="21" fill="#3b82f6"/><text x="82" y="56" class="bt">Overview</text>
+<rect x="140" y="42" width="34" height="21" class="f2 st"/><text x="149" y="56" class="tx">List</text>
+<rect x="180" y="42" width="44" height="21" class="f2 st"/><text x="188" y="56" class="tx">Board</text>
+<path d="M104 76 L104 96" class="acs" stroke-dasharray="3 3"/>
+<path d="M99 90 L104 99 L109 90 Z" class="ac"/>
+<rect x="14" y="105" width="180" height="35" class="f2 st"/>
+<rect x="204" y="105" width="182" height="35" class="f2 st"/></svg></div></div>
+<div class="step"><div class="num">2</div><div class="txt"><b>Top right, hit + Card</b><span>It sits above the cards on the far right.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<line x1="4" y1="40" x2="396" y2="40" class="st"/>
+<text x="16" y="26" class="tx">Overview</text>
+<rect x="316" y="12" width="66" height="21" fill="#3b82f6"/>
+<text x="331" y="27" class="bt">+ Card</text>
+<circle cx="349" cy="22" r="18" class="acs"/>
+<rect x="14" y="52" width="176" height="40" class="f2 st"/>
+<rect x="200" y="52" width="186" height="40" class="f2 st"/>
+<rect x="14" y="100" width="176" height="40" class="f2 st"/>
+<rect x="200" y="100" width="186" height="40" class="f2 st"/></svg></div></div>
+<div class="step"><div class="num">3</div><div class="txt"><b>Pick the yellow Notes tile</b><span>Featured row. Not AI Brain, not Discussion.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<text x="16" y="22" class="txb">Add Card</text>
+<rect x="14" y="32" width="112" height="42" class="f2 st"/><text x="24" y="57" class="tx">AI Brain</text>
+<rect x="134" y="32" width="112" height="42" class="f2 st"/><text x="144" y="57" class="tx">Task List</text>
+<rect x="254" y="32" width="112" height="42" class="f2 st"/><text x="264" y="57" class="tx">Workload</text>
+<rect x="14" y="84" width="112" height="52" fill="#E8C33A"/>
+<text x="24" y="105" style="fill:#000;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700">Notes</text>
+<text x="24" y="120" style="fill:#3A2E07;font-family:'DM Sans',sans-serif;font-size:9px">Add rich text</text>
+<rect x="10" y="80" width="120" height="60" class="acs"/>
+<rect x="134" y="84" width="112" height="52" class="f2 st"/><text x="144" y="114" class="tx">Discussion</text>
+<rect x="254" y="84" width="112" height="52" class="f2 st"/><text x="264" y="114" class="tx">Bookmarks</text></svg></div></div>
+<div class="step"><div class="num">4</div><div class="txt"><b>The card lands at the bottom</b><span>That is normal. You move it in the last step.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<rect x="14" y="14" width="176" height="30" class="f2 st"/>
+<rect x="200" y="14" width="186" height="30" class="f2 st"/>
+<rect x="14" y="54" width="372" height="26" class="f2 st"/>
+<rect x="14" y="90" width="220" height="48" class="f st"/>
+<rect x="10" y="86" width="228" height="56" class="acs"/>
+<text x="26" y="109" class="txb">Notes</text>
+<line x1="26" y1="121" x2="120" y2="121" class="st"/>
+<text x="252" y="112" class="tx">lands at the bottom</text>
+<path d="M247 108 L237 114" class="acs"/></svg></div></div>
+<div class="step"><div class="num">5</div><div class="txt"><b>Rename it, then paste</b><span>Click where it says Notes, select all, type <span class='mono' style='color:var(--blue-t)'>WHO IS ON THIS ACCOUNT</span>. Click into the body and paste your client block from below.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<text x="16" y="24" class="tx">Click the title, select all, retype it</text>
+<rect x="14" y="34" width="238" height="25" class="f st"/>
+<rect x="10" y="30" width="246" height="33" class="acs"/>
+<text x="24" y="52" class="txb">WHO IS ON THIS ACCOUNT</text>
+<text x="16" y="83" class="tx">Then click in the body and paste</text>
+<rect x="14" y="91" width="372" height="47" class="f2 st"/>
+<text x="26" y="107" class="mn">Package:</text>
+<text x="26" y="121" class="mn">Account owner: Mak Rogers</text>
+<text x="26" y="135" class="mn">Google Ads:</text></svg></div></div>
+<div class="step"><div class="num">6</div><div class="txt"><b>Drag it to the top left</b><span>Grab the card by its title. Top left of the Overview, first thing anyone sees.</span></div><div class="pic"><svg viewBox="0 0 400 150" role="img" aria-hidden="true"><style>.f{fill:#14171D}.f2{fill:#1B1F27}.st{stroke:#2B313B;fill:none}.tx{fill:#9AA4B2;font-family:"DM Sans",sans-serif;font-size:11px}.txb{fill:#F2F4F7;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:700}.ac{fill:#7FA9EE}.acs{stroke:#7FA9EE;fill:none;stroke-width:2}.bt{fill:#000;font-family:"DM Sans",sans-serif;font-size:10px;font-weight:700}.mn{fill:#9AA4B2;font-family:"IBM Plex Mono",monospace;font-size:10px}</style><rect x="4" y="4" width="392" height="142" class="f st"/>
+<rect x="14" y="14" width="150" height="52" class="f st"/>
+<rect x="10" y="10" width="158" height="60" class="acs"/>
+<text x="26" y="35" class="txb">WHO IS ON</text>
+<text x="26" y="49" class="txb">THIS ACCOUNT</text>
+<rect x="176" y="14" width="104" height="52" class="f2 st"/><text x="192" y="44" class="tx">Files</text>
+<rect x="290" y="14" width="96" height="52" class="f2 st"/><text x="302" y="44" class="tx">Links</text>
+<rect x="14" y="78" width="180" height="58" class="f2 st"/><text x="30" y="111" class="tx">Client Chat</text>
+<rect x="204" y="78" width="182" height="58" class="f2 st"/><text x="220" y="111" class="tx">The Work</text>
+<path d="M152 92 C122 92 98 80 92 70" class="acs" stroke-dasharray="4 3"/>
+<path d="M86 76 L90 66 L98 72 Z" class="ac"/></svg></div></div></div>
+<div class="rules">
+  <div class="rule"><b>A blank line stays blank</b><span>It means nobody is assigned to that channel yet. Do not put your name on a channel you do not run. A blank is a question we can answer. A wrong name is a lie that spreads.</span></div>
+  <div class="rule"><b>Package stays blank unless you are sure</b><span>Billing amount is not the package. A $2,500 client might be Foundation on the two month test drive, or SEO only, or an old rate that never stepped up. Not sure? Leave it.</span></div>
+</div>
+</section>
+
+<section>
+<h2>Your accounts</h2>
+<div class="bar">
+  <input type="search" id="q" placeholder="Search client or owner" autocomplete="off">
+  <button data-f="" aria-pressed="true">All</button>
+  <button data-f="todo" aria-pressed="false">Needs a card</button>
+  <button data-f="check" aria-pressed="false">Already has one</button>
+  <button data-f="done" aria-pressed="false">Done</button>
+  <span class="tally" id="tally"></span>
+</div>
+<div id="list"></div>
+</section>
+
+<footer>
+Four folders are done as examples. All City Janitorial, Heavy Duty Metal Buildings, Moreno Building &amp; Development, Haro Hvac.<br>
+Mad Differentials has a card with the right title but an empty body. Paste into the one already there.<br>
+Name on the wrong account? Tell Chris.
+</footer>
+</div>
+
+<script>
+const D=[{"n": "Absolute Best Service Plumbing Inc", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Alejandro's Remodelling LLC", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Joboni Casapao\nSEO:\nCreative: Kristian Grimaldo\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Allegiance 76 HVAC", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Amaral's Construction Corp", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Andy's Pools", "o": "Simon Ting", "b": "Package: Foundation - $3,500\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Apex Landscape & Construction", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo, Joboni Casapao\nSEO:\nCreative: Isaac Gutierrez, Pedro Jacobo\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "At Your Service Heating & Cooling", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Axxels Plumbing Corp", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Best In The West Air Conditioning", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Build By JM", "o": "Chris Paniagua", "b": "Package: Website $199\nAccount owner: Chris Paniagua\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Cal Pro Plumbing Inc", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Capri Plumbing", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Central Roofing", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Clog Monkey", "o": "Simon Ting", "b": "Package: Website $499\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Contrera's Welding Shop", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Cortex Plastering", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Joboni Casapao, Kyle Lorenzo\nSEO:\nCreative: Isaac Gutierrez\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Desert Sky Mechanical", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Down The Line Plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative: Matthew Carlos\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Drain Force", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads: Laiba Shahid\nMeta Ads:\nWebsite and CRO: Joboni Casapao\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Elevate Restore", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Emberline Shower Enclosure", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Forbes Fence", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Forbes Landscape", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "GG&N Plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Ground Up Plumbing 24-7 Inc", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Dhruv Jha\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "His Hands Plumbing Services", "o": "Simon Ting", "b": "Package: Accelerator - $5,000\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Inland Renovation & Construction", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Integrity Quality Plumbing", "o": "Chris Paniagua", "b": "Package:\nAccount owner: Chris Paniagua\nGoogle Ads: Scott Babbitt\nMeta Ads:\nWebsite and CRO: Jayden Ramirez\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "JQ Glassworks", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Lincoln Plumbing & Rooter", "o": "Mak Rogers", "b": "Package: Empire - $6,500\nAccount owner: Mak Rogers\nGoogle Ads: Scott Babbitt\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Lopez Brother's Drywall", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "LV Heating & Cooling", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo, Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Mad Differentials", "o": "Chris Paniagua", "b": "Package: Foundation - $3,500\nAccount owner: Chris Paniagua\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "empty"}, {"n": "Magic Snake Pro", "o": "Mak Rogers", "b": "Package: Accelerator - $5,000\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo, Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Major League Plumbing", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "MM Wine Cellar Systems", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "My Contractor Stack", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Next Era HVAC", "o": "Simon Ting", "b": "Package: Foundation - $3,500\nAccount owner: Simon Ting\nGoogle Ads: Dafne Sakatauskas\nMeta Ads:\nWebsite and CRO: Joboni Casapao, Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Next Level Sheet Metal", "o": "Chris Paniagua", "b": "Package: Website $499\nAccount owner: Chris Paniagua\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "OC Coastal Cleaning", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "OC Professional Rain Gutters", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "OG Plumbing", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "On Stage Cut & Style", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Pin Pon Junk Removal", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Platinum Paving", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Premium Plumbing & Drain", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Prestige Builders & Design (MP)", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Primal Windows", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Pro Sewer and Drains", "o": "Simon Ting", "b": "Package: Accelerator - $5,000\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Jayden Ramirez, Kyle Lorenzo\nSEO: Greg Solorio\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Promade Roofing", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative: Pedro Jacobo\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Quick Fix Home Solutions", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "REC Elite Mechanical", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Redwood Coastal Cleaning", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Reel Electric", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Rising Green", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo, Joboni Casapao\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Roof City Professionals", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Roof Solutions Construction", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Roofing Pro", "o": "Allondra Gutierrez", "b": "Package: Foundation - $3,500\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Saucedo Plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Shelby Plumbing Inc", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads: Scott Babbitt\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative: Matthew Carlos\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Signature Plumbing Solutions Inc", "o": "Julia Monico", "b": "Package: Foundation - $3,500\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads: Mizael Huante\nWebsite and CRO: Deepak Prajapati, Joboni Casapao\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "SKYVIEW MAINTENANCE INC", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Dhruv Jha\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Smithco Construction & Design", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Speedee Drains and Plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads: Dafne Sakatauskas\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Stable Air LLC", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Top Level Plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "Verterra Outdoor Living", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative: Mizael Huante\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "World Famous Plumbing", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "todo"}, {"n": "All City Janitorial", "o": "Julia Monico", "b": "Package:\nAccount owner: Julia Monico\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "done"}, {"n": "Heavy Duty Metal Buildings", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "done"}, {"n": "Moreno Building & Development", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "done"}, {"n": "Haro Hvac", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "done"}, {"n": "Bay Area Roofing Master", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Bella Banana Pet Spa", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Caliber K9", "o": "Allondra Gutierrez", "b": "Package: Foundation - $3,500\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Custom Kitchens by Lopez", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO: Greg Solorio\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Elite Restoration", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Good Neighbor", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Green Ladder Roofing", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Hidden Gem Landscape", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "J&C Concrete Restoration", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "JG Concrete", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Joboni Casapao\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "JLG Tree Services", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "JQ Glsssworks", "o": "Donovan Shipley", "b": "Package:\nAccount owner: Donovan Shipley\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Leo's Landscaping", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "M.L. Bernie Co.", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "MG's Air Conditioning & Heating", "o": "Allondra Gutierrez", "b": "Package: Accelerator - $5,000\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Jayden Ramirez\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Move Haus", "o": "Simon Ting", "b": "Package:\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo, Jayden Ramirez\nSEO: Greg Solorio\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "New Generation Construction", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Nuve", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads: Mizael Huante\nWebsite and CRO: Kyle Lorenzo\nSEO: Greg Solorio\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "One Nation Energy", "o": "Mak Rogers", "b": "Package:\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Palm Valley Insurance", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Pavement Enforcement", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Kyle Lorenzo\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Paver Rescue", "o": "Tim Rodriguez", "b": "Package: Hosting Only $99\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Premium Floor and Design", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Pro 360 Construction", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Pro Integrity Plumbing", "o": "Mak Rogers", "b": "Package: Foundation - $3,500\nAccount owner: Mak Rogers\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative: Matthew Carlos\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Robert's Garage Doors", "o": "Tim Rodriguez", "b": "Package:\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Speedee Drains & Plumbing", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads: Dafne Sakatauskas\nMeta Ads:\nWebsite and CRO: Jayden Ramirez\nSEO:\nCreative: Matthew Carlos\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "The Alliance 247", "o": "Allondra Gutierrez", "b": "Package:\nAccount owner: Allondra Gutierrez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Total Door Service", "o": "Tim Rodriguez", "b": "Package: Foundation - $3,500\nAccount owner: Tim Rodriguez\nGoogle Ads:\nMeta Ads:\nWebsite and CRO:\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Ultimate HVAC", "o": "Simon Ting", "b": "Package: Accelerator - $5,000\nAccount owner: Simon Ting\nGoogle Ads:\nMeta Ads:\nWebsite and CRO: Deepak Prajapati\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Vera Plumbing And Drain", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads: Scott Babbitt\nMeta Ads:\nWebsite and CRO: Joboni Casapao\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}, {"n": "Viper plumbing", "o": "", "b": "Package:\nAccount owner:\nGoogle Ads: Scott Babbitt\nMeta Ads:\nWebsite and CRO: Jayden Ramirez\nSEO:\nCreative:\nQA before go-live: Nelssy Cruz\nBilling: Victor Lemus", "s": "check"}];
+const LBL={todo:"Needs a card",done:"Done",empty:"Empty card, paste into it",check:"Check it exists"};
+let f="",q="";
+const list=document.getElementById("list"),tally=document.getElementById("tally");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function draw(){
+  const r=D.filter(a=>(!f||a.s===f||(f==="todo"&&a.s==="empty"))
+    &&(!q||a.n.toLowerCase().includes(q)||a.o.toLowerCase().includes(q)));
+  list.innerHTML=r.map((a,i)=>`<details class="acct">
+    <summary><span class="nm">${esc(a.n)}</span>
+      <span class="pill p-${a.s}">${LBL[a.s]}</span>
+      <span class="ow">${a.o?esc(a.o):"no owner"}</span></summary>
+    <div class="body"><pre id="b${i}">${esc(a.b)}</pre>
+      <button class="copy" data-i="${i}">Copy</button></div></details>`).join("");
+  tally.textContent=`${r.length} of ${D.length}`;
+}
+list.addEventListener("click",e=>{
+  const b=e.target.closest(".copy"); if(!b) return;
+  const t=document.getElementById("b"+b.dataset.i).textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    b.textContent="Copied"; b.classList.add("done");
+    setTimeout(()=>{b.textContent="Copy";b.classList.remove("done");},1600);
+  }).catch(()=>{b.textContent="Select it manually";});
+});
+document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
+  f=b.dataset.f;
+  document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+  draw();
+}));
+document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();draw();});
+draw();
+</script>
+</body>
+</html>

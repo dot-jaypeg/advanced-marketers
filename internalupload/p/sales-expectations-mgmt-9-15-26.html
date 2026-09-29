@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced Marketers — Sales → Delivery Expectation Gap — Sept 2026</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1B1B24; --border:#2B2B35;
+    --purple:#7D7BF7; --green:#3FCF95; --red:#E4604F; --amber:#D9A441;
+    --text:#EDEDF2; --muted:#8A8A99;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:Helvetica,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.58;}
+  .wrap{max-width:1080px;margin:0 auto;padding:46px 28px 90px;}
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--muted);font-weight:700;}
+  header.brand{border-bottom:1px solid var(--border);padding-bottom:26px;margin-bottom:32px;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;}
+  .logo{font-size:29px;font-weight:700;letter-spacing:.04em;line-height:1.1;}
+  .logo span{display:block;font-size:12.5px;letter-spacing:.62em;color:var(--purple);font-weight:700;margin-top:6px;}
+  .hdr-meta{text-align:right;font-size:11.5px;color:var(--muted);line-height:1.7;}
+  h1{font-size:30px;margin:22px 0 8px;letter-spacing:-.015em;line-height:1.2;}
+  .sub{color:var(--muted);font-size:14px;max-width:760px;}
+  h2{font-size:19px;margin:0 0 6px;letter-spacing:-.005em;}
+  h3{font-size:15px;margin:26px 0 8px;letter-spacing:.01em;}
+  .sect{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:26px 28px 24px;margin-bottom:20px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px;}
+  .chip{background:var(--panel2);border:1px solid var(--border);border-radius:7px;padding:11px 16px;min-width:130px;flex:1;}
+  .chip .k{font-size:9.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:700;}
+  .chip .v{font-size:21px;font-weight:700;margin-top:5px;}
+  .v.red{color:var(--red);} .v.green{color:var(--green);} .v.amber{color:var(--amber);} .v.purple{color:var(--purple);}
+  .partbar{display:flex;align-items:center;gap:14px;margin:44px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--purple);}
+  .partbar .tag{background:var(--purple);color:#0D0D12;font-size:10px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.16em;padding:5px 11px;border-radius:4px;white-space:nowrap;}
+  .partbar.mgmt{border-bottom-color:var(--red);}
+  .partbar.mgmt .tag{background:var(--red);color:#0D0D12;}
+  .partbar h2{margin:0;}
+  .partbar .note{font-size:11.5px;color:var(--muted);margin-left:auto;text-align:right;}
+  .lead{background:var(--panel2);border-left:3px solid var(--purple);border-radius:6px;padding:18px 22px;margin-bottom:22px;font-size:14.5px;}
+  .lead.good{border-left-color:var(--green);}
+  .lead.bad{border-left-color:var(--red);}
+  .lead.warn{border-left-color:var(--amber);}
+  blockquote{margin:12px 0;padding:12px 18px;background:var(--panel2);border-left:2px solid var(--border);
+    border-radius:0 6px 6px 0;font-size:14px;}
+  blockquote .ts{color:var(--purple);font-weight:700;font-size:11.5px;letter-spacing:.06em;margin-right:8px;}
+  blockquote .who{color:var(--muted);font-size:11.5px;display:block;margin-top:7px;letter-spacing:.04em;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px;}
+  th{text-align:left;text-transform:uppercase;letter-spacing:.13em;font-size:9.5px;color:var(--muted);
+    font-weight:700;padding:9px 12px;border-bottom:1px solid var(--border);}
+  td{padding:12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .ok{color:var(--green);font-weight:700;} .bad{color:var(--red);font-weight:700;} .warn{color:var(--amber);font-weight:700;}
+  .muted{color:var(--muted);}
+  ul,ol{padding-left:20px;margin:10px 0;} li{margin-bottom:9px;}
+  .script{background:#12121A;border:1px solid var(--purple);border-radius:8px;padding:22px 24px;margin-top:14px;}
+  .script .step{margin-bottom:20px;}
+  .script .step:last-child{margin-bottom:0;}
+  .script .n{display:inline-block;background:var(--purple);color:#0D0D12;font-weight:700;font-size:11px;
+    width:21px;height:21px;line-height:21px;text-align:center;border-radius:4px;margin-right:9px;}
+  .script .lbl{font-weight:700;font-size:14px;}
+  .script .say{margin:9px 0 0 30px;padding-left:14px;border-left:2px solid var(--green);
+    font-size:13.5px;color:#D6D6E0;font-style:italic;}
+  .mgmtbox{background:rgba(228,96,79,.06);border:1px solid var(--red);border-radius:10px;padding:26px 28px;margin-bottom:20px;}
+  .confidential{background:var(--red);color:#0D0D12;font-weight:700;font-size:11px;text-transform:uppercase;
+    letter-spacing:.16em;padding:10px 16px;border-radius:6px;margin-bottom:22px;text-align:center;}
+  footer{border-top:1px solid var(--border);margin-top:48px;padding-top:24px;font-size:11.5px;color:var(--muted);}
+  footer .fb{text-transform:uppercase;letter-spacing:.2em;font-weight:700;color:var(--text);font-size:11px;margin-bottom:8px;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:760px){.two{grid-template-columns:1fr;} .hdr-meta{text-align:left;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="brand">
+    <div class="logo">ADVANCED<span>M A R K E T E R S</span></div>
+    <div class="hdr-meta">
+      Internal briefing · September 15, 2026<br>
+      Prepared for Paul Rastrelli, VP of Sales<br>
+      Part 1 cleared for team circulation
+    </div>
+  </header>
+
+  <div class="kicker">Sales Call Review · Scope &amp; Expectations</div>
+  <h1>What we're promising on sales calls vs.<br>what onboarding has to deliver</h1>
+  <p class="sub">Five accounts reached onboarding in the last six weeks believing Advanced Marketers would handle their setup end to end with no work on their side. This brief reviews an actual recorded sales call to find out where that belief comes from — and sets the fix.</p>
+
+  <div class="chips">
+    <div class="chip"><div class="k">Sales call reviewed</div><div class="v purple">56:26</div></div>
+    <div class="chip"><div class="k">Accounts affected</div><div class="v amber">5</div></div>
+    <div class="chip"><div class="k">Hidden fees found</div><div class="v green">0</div></div>
+    <div class="chip"><div class="k">Client tasks stated</div><div class="v red">0</div></div>
+    <div class="chip"><div class="k">"Atlas" mentions</div><div class="v red">0</div></div>
+    <div class="chip"><div class="k">"For sure" promises</div><div class="v red">3</div></div>
+  </div>
+
+  <!-- ============ PART 1 ============ -->
+  <div class="partbar">
+    <span class="tag">Part 1</span>
+    <h2>Team-facing findings &amp; the required fix</h2>
+    <span class="note">No names. Safe to share with the sales team.</span>
+  </div>
+
+  <div class="sect">
+    <h2>1 · What onboarding is reporting</h2>
+    <p style="margin-top:4px;">From the 09/02 Client Updates meeting and the onboarding team's written notes, the same complaint is recurring across accounts:</p>
+    <blockquote>
+      "Sales team is not providing the complete information to our clients… when they see that we need information from them to fill out Atlas and creating GBP, meta or Google ADS they always say <strong>'I've been told by my sales rep that you'll be handling EVERYTHING.'</strong>"
+      <span class="who">— Onboarding team, Client Updates notes, 09/02/2026</span>
+    </blockquote>
+    <blockquote>
+      "I think there's… a miscommunication between our clients and sales. Because it seems that sales is telling them that we're going to do everything, and they don't need to do or fill out Atlas or to complete something."
+      <span class="who">— Onboarding lead, recorded internal call, 09/02/2026 [00:32:26–00:32:50]</span>
+    </blockquote>
+    <p><strong>Accounts showing this pattern:</strong> Sunset Walls &amp; Ceilings · Viper Rooter &amp; Plumbing · Green Lawn Care · New Generation Construction · O Painting. A sixth, Bracero Plumbing, was flagged separately by the growth team on the cost of ad spend.</p>
+  </div>
+
+  <div class="sect">
+    <h2>2 · What the recorded sales call actually shows</h2>
+    <p style="margin-top:4px;">We pulled the full transcript of the 56-minute discovery/pitch call behind one of these accounts — a $2,500/month deal closed in late August. Three findings.</p>
+
+    <div class="lead good" style="margin-top:20px;">
+      <strong class="ok">FINDING 1 — Pricing and ad spend were disclosed properly. This part is clean.</strong><br>
+      The rep stated the fee, the step-up, the contract term, and the fact that ad budget is <em>separate and additional</em> — twice, including a direct answer when the client asked about extra costs.
+    </div>
+    <blockquote>
+      <span class="ts">36:50</span>"This is our service charge. <strong>You still have to allocate some money for your ad spend itself.</strong> Normally, when people come on, they'll do anywhere between 500 and $1,000 for the first two months."
+    </blockquote>
+    <blockquote>
+      <span class="ts">41:03</span>"Your card is hooked up to Google and it's hooked up to Meta. <strong>We don't have our fingers in that transaction at all.</strong>"
+    </blockquote>
+    <p class="muted" style="font-size:13px;">Fee terms were also stated plainly: $2,500/mo for the first two months, $3,500/mo from month three, six-month agreement with the first two months cancellable. <strong>Nobody hid a fee.</strong> The residual friction is the <span class="warn">$500–$1,000 ad-spend anchor</span> — when the real recommended budget lands above it, the client experiences the difference as a surprise. Give a realistic range, not a floor.</p>
+
+    <div class="lead bad" style="margin-top:26px;">
+      <strong class="bad">FINDING 2 — Client responsibilities were never stated. This is the root cause.</strong><br>
+      Searched the full transcript: <strong>zero</strong> mentions of Atlas. No mention of needing a Meta Business account, Google Business Profile access, photos, assets, or a license. The only client effort described was a single onboarding Zoom.
+    </div>
+    <blockquote>
+      <span class="ts">38:17</span>"In about two days, you're gonna get on board, get on a Zoom call like this with the onboarding person, and they're gonna start getting information, all the information that we need from you."
+    </blockquote>
+    <p><strong>Read this part carefully, because it matters:</strong> the rep <em>never said</em> "we handle everything." Every instance of the word "everything" in the call came from the client, not the rep. What happened instead is that the pitch listed roughly <strong>ten things Advanced Marketers does</strong> — website, landing pages, service and city pages, 10 creatives a month, CRM, automations, review engine, dedicated growth specialist — and <strong>zero things the client does</strong>. A reasonable buyer concludes we're handling everything without anyone having lied to him.</p>
+    <p class="muted" style="font-size:13px;">That makes this a <strong>script defect, not a dishonesty problem</strong> — and it's fixable in one paragraph.</p>
+
+    <div class="lead bad" style="margin-top:26px;">
+      <strong class="bad">FINDING 3 — Timeline and outcome language we cannot deliver on.</strong><br>
+      This is the real exposure, and it is the part that has to stop.
+    </div>
+    <blockquote><span class="ts">38:07</span>"It's gonna start getting those residential calls, <strong>like, within a week</strong>."</blockquote>
+    <blockquote><span class="ts">38:39</span>"Your <strong>first ad will be live within a week</strong> of coming on board with us."</blockquote>
+    <blockquote><span class="ts">44:39</span>"Drywall stuff is easy. <strong>We can get you drywall work next week, literally.</strong>"</blockquote>
+    <blockquote><span class="ts">46:45</span>"<strong>This is for sure going to work</strong> for your business. <strong>This is for sure going to get you more residential jobs.</strong>"</blockquote>
+    <blockquote><span class="ts">47:02</span>"<strong>Within the first month of you paying for it… it will have paid for itself for sure.</strong>"</blockquote>
+    <p><strong>Reality check:</strong> this account was sold on 8/28 and was still not live at day 14 on 9/11. Across the book, <strong>11 accounts are currently past the 14-day go-live SLA.</strong> "For sure" appears three times in ninety seconds. The word "guarantee" is never used — that distinction will matter to a lawyer and to nobody else.</p>
+  </div>
+
+  <div class="sect">
+    <h2>3 · The fix — a mandatory close-out on every sales call</h2>
+    <p style="margin-top:4px;">Sixty seconds before you take payment. Say it out loud, in this order, every time. It costs you nothing on the close and it removes the single biggest cause of week-two cancellations.</p>
+
+    <div class="script">
+      <div class="step">
+        <span class="n">1</span><span class="lbl">What we do</span>
+        <div class="say">"Here's everything on our side: website build, landing pages, ad campaigns on Google and Meta, ten creatives a month, your CRM, review engine, and a growth specialist you'll talk to weekly."</div>
+      </div>
+      <div class="step">
+        <span class="n">2</span><span class="lbl">What we need from you — name every item</span>
+        <div class="say">"Here's what we'll need from you, and I want to be upfront because it's real work: an onboarding form called Atlas that takes about 30–45 minutes, access to your Google Business Profile, a Meta Business account — we can help you set one up if you don't have one — plus photos of your work and your license number. If we don't get those, we can't launch. Are you able to get me that in the first week?"</div>
+      </div>
+      <div class="step">
+        <span class="n">3</span><span class="lbl">What it costs — fee and budget separately</span>
+        <div class="say">"$2,500 a month for the first two months, then $3,500 from month three, on a six-month agreement. Separate from that, you'll pay Google and Meta directly for your ad budget — that's your card, not ours. For your market I'd budget roughly $X–$Y a month to get real volume. So plan on about $Z all-in."</div>
+      </div>
+      <div class="step">
+        <span class="n">4</span><span class="lbl">When things actually happen — no "for sure"</span>
+        <div class="say">"Onboarding call within two business days. Website mockups for your review in the first week. We target going live by day 14, and that clock depends on how fast we get your assets. Paid ads usually need 30–60 days of data before performance settles — I'm not going to tell you the phone rings next week, because that's not how this works."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sect">
+    <h2>4 · Language to retire · language to use</h2>
+    <table>
+      <thead><tr><th style="width:50%">Stop saying</th><th>Say instead</th></tr></thead>
+      <tbody>
+        <tr><td class="bad">"Your first ad will be live within a week."</td><td class="ok">"We target day 14, and it depends on how fast we get your assets."</td></tr>
+        <tr><td class="bad">"This is for sure going to work."</td><td class="ok">"Here's what we've done for similar contractors. Here's what I think is realistic for you."</td></tr>
+        <tr><td class="bad">"It will have paid for itself in the first month, for sure."</td><td class="ok">"Most accounts need 30–60 days before the numbers stabilize. I'd judge us at 90 days."</td></tr>
+        <tr><td class="bad">"We can get you work next week, literally."</td><td class="ok">"Leads typically start coming in once ads have been live a couple of weeks."</td></tr>
+        <tr><td class="bad">Listing only what we do.</td><td class="ok">Listing what we do <em>and</em> what you'll need from them, in the same breath.</td></tr>
+        <tr><td class="bad">"Ad spend is usually $500–$1,000."</td><td class="ok">A realistic range for that market, framed as a floor <em>and</em> a recommended level.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sect">
+    <h2>5 · How this gets checked</h2>
+    <p style="margin-top:4px;">The weekly call-QA program will score the close-out block as a pass/fail item on every closed deal, under <strong>Pitch &amp; value framing</strong> and <strong>Compliance &amp; professionalism</strong>. Four checks:</p>
+    <ol>
+      <li>Were client deliverables named specifically — Atlas, GBP, Meta, assets?</li>
+      <li>Was ad spend stated as separate and additional, with a realistic range?</li>
+      <li>Was the go-live timeline stated as day 14 and conditional on assets?</li>
+      <li>Were there any absolute outcome promises — "for sure", "guaranteed", "paid for itself"?</li>
+    </ol>
+    <p class="muted" style="font-size:13px;margin-top:14px;">All sales calls are recorded and QA-reviewed; the team is already aware of this program. Nothing here changes that.</p>
+  </div>
+
+  <!-- ============ PART 2 ============ -->
+  <div class="partbar mgmt">
+    <span class="tag">Part 2 · Management only</span>
+    <h2>Account detail &amp; coaching items</h2>
+    <span class="note">Chris &amp; Paul only. Do not circulate to the team.</span>
+  </div>
+
+  <div class="confidential">Confidential — names an individual rep. Not for team channels.</div>
+
+  <div class="mgmtbox">
+    <h3 style="margin-top:0;">The call</h3>
+    <table>
+      <tbody>
+        <tr><td style="width:190px;"><strong>Account</strong></td><td>Sunset Walls &amp; Ceilings — Aldo Martinez (partner: Eduardo Martinez)</td></tr>
+        <tr><td><strong>Rep</strong></td><td>Kyle Kellner</td></tr>
+        <tr><td><strong>Sales call</strong></td><td>Mon Aug 25, 2026 · 7:11 PM · 56 min 26 sec · recorded in GoHighLevel with full transcript</td></tr>
+        <tr><td><strong>Closed</strong></td><td>Aug 28, 2026 · $2,500 collected (3 failed card attempts, then 1 success)</td></tr>
+        <tr><td><strong>Status</strong></td><td class="bad">Not live at day 14 (9/11). Flagged by onboarding as a cancellation red flag.</td></tr>
+        <tr><td><strong>Lead source</strong></td><td>Facebook form lead, created Aug 22 — three days from lead to pitch</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Red flags that were audible on the call and sold through anyway</h3>
+    <blockquote>
+      <span class="ts">11:28</span>"Since we both have <strong>full time jobs outside of this</strong>… this is something we just basically do right after work and then on weekends."
+      <span class="who">— Aldo Martinez</span>
+    </blockquote>
+    <p style="font-size:13.5px;">This is precisely the "no time for onboarding" problem the onboarding team later escalated. It was stated in minute eleven of the sales call.</p>
+    <blockquote>
+      <span class="ts">45:44</span>"<strong>I can't make a decision on the spot like this.</strong> You know? It's just me… <strong>That's not how I roll.</strong>"
+      <span class="who">— Aldo Martinez, after saying three separate times he needed to talk to his partner</span>
+    </blockquote>
+    <blockquote>
+      <span class="ts">44:17</span>"So <strong>wouldn't this, like, make that easier, hypothetically?</strong>"
+      <span class="who">— Kyle Kellner, reframing the client's stated financial and family caution as a reason to buy</span>
+    </blockquote>
+    <p style="font-size:13.5px;">This is the same pattern flagged in the 09/04 QA report on the Samuel Bautista call — using a prospect's personal or financial pressure as closing leverage after they have asked for time. <strong>Second occurrence in three weeks. This is the item to coach first.</strong></p>
+
+    <h3>Two other things worth Paul knowing</h3>
+    <ul>
+      <li><strong>The "Eduardo Martinez" record error starts here.</strong> Both partners were on the call and Kyle addressed follow-ups to Eduardo. The opportunity, the $2,500 invoice and the signed agreement all went out in the wrong partner's name against contact "Aldo Martinez." This was already flagged as a CRM-hygiene item on 09/04 — now we know the origin.</li>
+      <li><strong>Affordability.</strong> Our own intake fields record projected revenue of <strong>$100K–$250K</strong> and "no marketing experience." $2,500 rising to $3,500 plus ad spend is roughly <strong>15–40% of projected revenue</strong>. Worth a qualification gate, not a compliance finding.</li>
+      <li><strong>Headcount inconsistency</strong> [33:28]: "we're, like, 25 people, a little bit less than 25 people." Same wobble noted on 08/28. Give the team one number.</li>
+    </ul>
+
+    <h3>Recommended actions</h3>
+    <ol>
+      <li><strong>Coach Kyle on the "stated hesitation" pattern</strong> — when a prospect says they need to consult a partner, book the follow-up rather than re-closing. Second instance in three weeks.</li>
+      <li><strong>Absolute-outcome language is now a scored item</strong> for the whole team, not just Kyle. He is the one we have a transcript for, not necessarily the only one doing it.</li>
+      <li><strong>Decide whether Sunset Walls is savable</strong> — the client is a part-time operator who never understood his own obligations and is past SLA. Either assign someone to walk him through Atlas personally or offer an adapted plan.</li>
+      <li><strong>Fix the name on the Sunset Walls records</strong> before any further billing goes out.</li>
+    </ol>
+  </div>
+
+  <div class="sect">
+    <h2>Method &amp; limits</h2>
+    <ul style="margin-top:4px;">
+      <li>One sales call was reviewed in full (Sunset Walls / Aldo Martinez, Aug 25). <strong>Bracero Plumbing and Viper Rooter have not yet been pulled</strong> — the same review should be run on both before drawing team-wide conclusions.</li>
+      <li>Transcript retrieved from GoHighLevel's call-recording transcript. Timestamps are as shown in GHL; light diarization errors are possible and only unambiguous lines are quoted.</li>
+      <li>Onboarding quotes come from the 09/02 recorded internal call and the written Client Updates notes of the same date.</li>
+      <li>Go-live and SLA figures come from the 09/11 Growth QA report.</li>
+      <li>No claim here is inferred — every quote is verbatim from a recording.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <div class="fb">Advanced Marketers · Sales System</div>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; advancedmarketers.co<br><br>
+    All sales calls are recorded and QA-reviewed; reps are aware of this program. Part 1 of this brief is cleared for team circulation. Part 2 names an individual and is for Chris Paniagua and Paul Rastrelli only.
+  </footer>
+
+</div>
+</body>
+</html>

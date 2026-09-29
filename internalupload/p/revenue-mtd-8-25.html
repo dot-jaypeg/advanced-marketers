@@ -1,0 +1,361 @@
+<title>August Revenue Tracker</title>
+<style>
+:root {
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --series-1:#2a78d6; --series-2:#eb6834; --bar-faint:#b7d3f6;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --goodtext:#006300; --track:#eceae4;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --series-1:#3987e5; --series-2:#d95926; --bar-faint:#184f95;
+    --goodtext:#0ca30c; --track:#26261f;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --series-1:#3987e5; --series-2:#d95926; --bar-faint:#184f95;
+  --goodtext:#0ca30c; --track:#26261f;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--page); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:15px; line-height:1.5; }
+.wrap { max-width:1060px; margin:0 auto; padding:34px 22px 70px; }
+header { margin-bottom:26px; }
+.eyebrow { font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+h1 { font-size:29px; margin:6px 0 4px; letter-spacing:-.02em; }
+.sub { color:var(--ink2); font-size:14px; }
+.card { background:var(--surface); border:1px solid var(--ring); border-radius:12px; padding:22px; margin-bottom:18px; }
+h2 { font-size:16px; margin:0 0 3px; letter-spacing:-.01em; }
+.cap { font-size:13px; color:var(--ink2); margin:0 0 18px; }
+.hero { display:grid; grid-template-columns:minmax(240px,1fr) 1fr; gap:30px; align-items:start; }
+.bignum { font-size:58px; font-weight:650; letter-spacing:-.035em; line-height:1; }
+.bigsub { color:var(--ink2); font-size:14px; margin-top:8px; }
+.track { height:16px; background:var(--track); border-radius:8px; position:relative; margin:20px 0 10px; overflow:visible; }
+.fill { height:100%; border-radius:8px; background:var(--series-1); }
+.elapsed { position:absolute; top:-7px; bottom:-7px; width:2px; background:var(--ink2); }
+.elabel { position:absolute; top:-24px; transform:translateX(-50%); font-size:11px; color:var(--ink2); white-space:nowrap; font-weight:600; }
+.trackfoot { display:flex; justify-content:space-between; font-size:12px; color:var(--muted); }
+.tiles { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.tile { border:1px solid var(--ring); border-radius:9px; padding:13px 15px; }
+.tlab { font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--muted); font-weight:600; }
+.tval { font-size:24px; font-weight:620; letter-spacing:-.02em; margin-top:4px; }
+.tnote { font-size:12px; color:var(--ink2); margin-top:2px; }
+.warn { color:var(--critical); }
+.ok { color:var(--goodtext); }
+svg { display:block; width:100%; height:auto; }
+.grid { stroke:var(--grid); stroke-width:1; }
+.tick, .barlab, .barsub, .barval { fill:var(--muted); font-size:11px; font-family:system-ui,sans-serif; }
+.tick { text-anchor:end; font-variant-numeric:tabular-nums; }
+.barlab { text-anchor:middle; fill:var(--ink2); font-size:12px; font-weight:600; }
+.barsub { text-anchor:middle; font-size:10.5px; }
+.barval { text-anchor:middle; fill:var(--ink); font-size:12px; font-weight:640; }
+.hit { fill:transparent; }
+.bar:hover .mark { opacity:.82; }
+.goalline { stroke:var(--critical); stroke-width:2; stroke-dasharray:6 4; }
+.goaltext { fill:var(--critical); font-size:11px; font-weight:640; font-family:system-ui,sans-serif; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font-size:12.5px; color:var(--ink2); margin-top:12px; }
+.sw { display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; }
+th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+  padding:0 10px 8px 0; border-bottom:1px solid var(--grid); font-weight:600; }
+td { padding:7px 10px 7px 0; border-bottom:1px solid var(--grid); vertical-align:top; }
+.acct { color:var(--ink); }
+.amt { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600; }
+.day { text-align:right; color:var(--muted); font-variant-numeric:tabular-nums; width:44px; }
+.barcell { width:130px; padding-right:0; }
+.minibar { display:block; height:7px; border-radius:4px; background:var(--series-1); min-width:2px; }
+.minibar.pipe { background:var(--bar-faint); }
+.note { color:var(--ink2); font-size:12.5px; }
+.pill { display:inline-block; padding:2px 9px; border-radius:20px; font-size:11.5px; font-weight:640; white-space:nowrap; }
+.p-blocked { background:rgba(208,59,59,.14); color:var(--critical); }
+.p-partial { background:rgba(236,131,90,.18); color:var(--serious); }
+.p-cleared { background:rgba(12,163,12,.14); color:var(--goodtext); }
+.scroller { max-height:520px; overflow:auto; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.flag { border-left:3px solid var(--warning); background:rgba(250,178,25,.09); padding:14px 16px; border-radius:0 9px 9px 0; margin-bottom:18px; }
+.flag h3 { margin:0 0 6px; font-size:14px; }
+.flag p { margin:0 0 6px; font-size:13.5px; color:var(--ink2); }
+.flag ul { margin:6px 0 6px 18px; padding:0; font-size:13.5px; color:var(--ink2); }
+footer { color:var(--muted); font-size:12px; margin-top:24px; }
+#tip { position:fixed; pointer-events:none; opacity:0; transition:opacity .1s; background:var(--surface);
+  border:1px solid var(--ring); border-radius:8px; padding:8px 11px; font-size:12.5px; z-index:9;
+  box-shadow:0 4px 14px rgba(0,0,0,.14); }
+#tip b { display:block; font-size:13px; }
+@media (max-width:820px) { .hero,.two { grid-template-columns:1fr; } .bignum { font-size:46px; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Advanced Marketers &middot; Revenue Tracker</div>
+  <h1>August 2026 &mdash; Month to Date</h1>
+  <div class="sub">Refreshed Tuesday, August 25, 2026 &middot; source: <em>Copy of billing</em>, column AC</div>
+</header>
+
+<div class="card">
+  <div class="hero">
+    <div>
+      <div class="bignum">$216,554</div>
+      <div class="bigsub">79 charges collected &middot; 72.2% of the $300,000 goal</div>
+      <div class="track">
+        <div class="fill" style="width:72.2%"></div>
+        <div class="elapsed" style="left:80.6%"></div>
+        <div class="elabel" style="left:80.6%">Day 25 of 31 &middot; 81% elapsed</div>
+      </div>
+      <div class="trackfoot"><span>$0</span><span>Goal $300,000</span></div>
+    </div>
+    <div class="tiles">
+      <div class="tile"><div class="tlab">Gap to goal</div><div class="tval warn">$83,446</div><div class="tnote">6 days left to close it</div></div>
+      <div class="tile"><div class="tlab">Required daily pace</div><div class="tval warn">$13,908</div><div class="tnote">vs $8,662 actual &mdash; 1.6&times; current run rate</div></div>
+      <div class="tile"><div class="tlab">Pipeline still to bill</div><div class="tval">$94,084</div><div class="tnote">33 accounts with no August charge yet</div></div>
+      <div class="tile"><div class="tlab">Projection at current pace</div><div class="tval">$268,527</div><div class="tnote">$31,473 short of goal if nothing changes</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Can the goal still be hit?</h2>
+  <p class="cap">Three scenarios against the $300,000 target.</p>
+  <div class="tiles" style="grid-template-columns:repeat(3,1fr)">
+    <div class="tile"><div class="tlab">Run rate only</div><div class="tval warn">$268,527</div><div class="tnote">Current daily pace held to Aug 31. Misses by $31,473.</div></div>
+    <div class="tile"><div class="tlab">Pipeline collects at 90%</div><div class="tval ok">$301,230</div><div class="tnote">Applies the 10% average decline rate. Clears goal by $1,230.</div></div>
+    <div class="tile"><div class="tlab">Pipeline collects in full</div><div class="tval ok">$310,638</div><div class="tnote">Zero declines. Clears goal by $10,638.</div></div>
+  </div>
+  <p class="cap" style="margin:16px 0 0">The goal is reachable, but only through collections &mdash; not through new billing. Every dollar of the $83,446 gap has to come out of the $94,084 still-to-bill list, and at the standard 10% decline rate that list clears the goal by just $1,230. There is almost no cushion: a handful of declines in the last 6 days puts August under $300,000.</p>
+</div>
+
+<div class="card">
+  <h2>Monthly trend</h2>
+  <p class="cap">Collected revenue by month, against the $300,000 goal line. August is month-to-date and will keep rising; September reflects charges already booked forward.</p>
+  <svg viewBox="0 0 760 300" role="img" aria-label="Bar chart of monthly revenue: June $215,357, July $251,339, August month to date $216,554, September booked $17,979, against a $300,000 goal line.">
+    <line class="grid" x1="62" y1="254.0" x2="744" y2="254.0"/><text class="tick" x="52" y="258.0">$0K</text><line class="grid" x1="62" y1="196.0" x2="744" y2="196.0"/><text class="tick" x="52" y="200.0">$80K</text><line class="grid" x1="62" y1="138.0" x2="744" y2="138.0"/><text class="tick" x="52" y="142.0">$160K</text><line class="grid" x1="62" y1="80.0" x2="744" y2="80.0"/><text class="tick" x="52" y="84.0">$240K</text><line class="grid" x1="62" y1="22.0" x2="744" y2="22.0"/><text class="tick" x="52" y="26.0">$320K</text>
+    <g class="bar" data-label="Jun 2026" data-val="$215,357" data-cnt="76 charges" data-kind="closed">
+      <rect class="hit" x="92.9" y="22" width="108.7" height="232"/>
+      <rect class="mark" x="102.9" y="97.9" width="88.7" height="156.1" rx="4" fill="var(--series-1)"/>
+      <text class="barval" x="147.2" y="88.9">$215,357</text>
+      <text class="barlab" x="147.2" y="274.0">Jun 2026</text>
+      <text class="barsub" x="147.2" y="288.0">closed</text>
+    </g><g class="bar" data-label="Jul 2026" data-val="$251,339" data-cnt="94 charges" data-kind="closed">
+      <rect class="hit" x="263.4" y="22" width="108.7" height="232"/>
+      <rect class="mark" x="273.4" y="71.8" width="88.7" height="182.2" rx="4" fill="var(--series-1)"/>
+      <text class="barval" x="317.8" y="62.8">$251,339</text>
+      <text class="barlab" x="317.8" y="274.0">Jul 2026</text>
+      <text class="barsub" x="317.8" y="288.0">closed</text>
+    </g><g class="bar" data-label="Aug 2026" data-val="$216,554" data-cnt="79 charges" data-kind="mtd">
+      <rect class="hit" x="433.9" y="22" width="108.7" height="232"/>
+      <rect class="mark" x="443.9" y="97.0" width="88.7" height="157.0" rx="4" fill="var(--series-2)"/>
+      <text class="barval" x="488.2" y="88.0">$216,554</text>
+      <text class="barlab" x="488.2" y="274.0">Aug 2026</text>
+      <text class="barsub" x="488.2" y="288.0">month to date</text>
+    </g><g class="bar" data-label="Sep 2026" data-val="$17,979" data-cnt="7 charges" data-kind="booked">
+      <rect class="hit" x="604.4" y="22" width="108.7" height="232"/>
+      <rect class="mark" x="614.4" y="241.0" width="88.7" height="13.0" rx="4" fill="var(--bar-faint)"/>
+      <text class="barval" x="658.8" y="232.0">$17,979</text>
+      <text class="barlab" x="658.8" y="274.0">Sep 2026</text>
+      <text class="barsub" x="658.8" y="288.0">booked so far</text>
+    </g>
+    <line class="goalline" x1="62" y1="36.5" x2="744" y2="36.5"/>
+    <text class="goaltext" x="744" y="29.5" text-anchor="end">Goal $300,000</text>
+    <line x1="62" y1="254" x2="744" y2="254" stroke="var(--axis)" stroke-width="1"/>
+  </svg>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--series-1)"></span>Closed month</span>
+    <span><span class="sw" style="background:var(--series-2)"></span>August (month to date)</span>
+    <span><span class="sw" style="background:var(--bar-faint)"></span>September (booked so far)</span>
+    <span><span class="sw" style="background:var(--critical)"></span>$300K goal</span>
+  </div>
+  <p class="cap" style="margin-top:14px">July is shown at $251,339 &mdash; the sheet's own figure. See the open discrepancy note below.</p>
+</div>
+
+<div class="card">
+  <div class="flag">
+    <h3>&#9888; Open discrepancy &mdash; July 2026 close</h3>
+    <p>Three different numbers exist for July and none of them reconcile. This has not been resolved since it was first raised:</p>
+    <ul>
+      <li><b>$268,119</b> &mdash; the figure Chris states July closed at. This number does not appear anywhere in the sheet.</li>
+      <li><b>$251,339.20</b> &mdash; the Sheets status-bar sum of AB3:AB241, read directly in the UI today.</li>
+      <li><b>$254,920.20</b> &mdash; the gviz query sum of column AB, filtered to values above $0 and below $40,000.</li>
+    </ul>
+    <p>The two sheet-derived figures differ by $3,581; both sit $13,199&ndash;$16,780 below the stated close. <b>Which source is authoritative?</b> Until that is settled, the July bar above and any month-over-month comparison should be treated as provisional.</p>
+  </div>
+  <h2>Blocked and at-risk accounts</h2>
+  <p class="cap">Re-verified against the sheet today, against the list Chris gave on Aug 18. Three have cleared; four are still open.</p>
+  <table>
+    <thead><tr><th>Account</th><th style="text-align:right">Amount</th><th>Reason</th><th>Status</th><th>Verified today</th></tr></thead>
+    <tbody><tr class="st-blocked"><td class="acct">At Your Service Heating &amp; Air</td><td class="amt">$2,500</td><td>No card on file</td>
+        <td><span class="pill p-blocked">&#9679; Blocked</span></td><td class="note">No August charge. July $2,500 billed, still open.</td></tr>
+<tr class="st-blocked"><td class="acct">One Nation Energy</td><td class="amt">$1,500</td><td>Card declined</td>
+        <td><span class="pill p-blocked">&#9679; Blocked</span></td><td class="note">No August charge. Sheet shows July at $1,500, not $2,500.</td></tr>
+<tr class="st-blocked"><td class="acct">Apollo Home Solutions</td><td class="amt">$2,000</td><td>Restart never fired</td>
+        <td><span class="pill p-blocked">&#9679; Blocked</span></td><td class="note">No July and no August entry anywhere in the sheet.</td></tr>
+<tr class="st-partial"><td class="acct">Contreras Welding Shop</td><td class="amt">$1,469</td><td>Moved to biweekly</td>
+        <td><span class="pill p-partial">&#9680; Partial</span></td><td class="note">Aug 17 charge of $1,500 landed. July was $2,969 &mdash; running $1,469 behind.</td></tr>
+<tr class="st-cleared"><td class="acct">The Alliance 247</td><td class="amt">$2,500</td><td>No card on file</td>
+        <td><span class="pill p-cleared">&#10003; Cleared</span></td><td class="note">Charged $2,500 on Aug 14. Resolved since Aug 18.</td></tr>
+<tr class="st-cleared"><td class="acct">Ground Up Plumbing 24-7</td><td class="amt">$499</td><td>Open balance</td>
+        <td><span class="pill p-cleared">&#10003; Cleared</span></td><td class="note">Charged $499 on Aug 16. Resolved since Aug 18.</td></tr>
+<tr class="st-cleared"><td class="acct">JQGlassworks</td><td class="amt">$1,832</td><td>July $2,000 owed</td>
+        <td><span class="pill p-cleared">&#10003; Cleared</span></td><td class="note">Charged $1,832 on Aug 30 line. July column still blank.</td></tr></tbody>
+  </table>
+  <p class="cap" style="margin:14px 0 0"><b>$7,469 still open</b> across the four unresolved accounts. Note that One Nation Energy shows $1,500 in the sheet's July column, not the $2,500 previously cited &mdash; worth confirming which is right.</p>
+</div>
+
+<div class="two">
+  <div class="card">
+    <h2>Charged in August</h2>
+    <p class="cap">79 accounts &middot; $216,554 total</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Account</th><th style="text-align:right">Day</th><th style="text-align:right">Amount</th><th></th></tr></thead>
+        <tbody><tr><td class="acct">Pro Sewer and Drains</td><td class="day">17</td><td class="amt">$8,000</td><td class="barcell"><span class="minibar" style="width:100.0%"></span></td></tr>
+<tr><td class="acct">Speedee Plumbing</td><td class="day">13</td><td class="amt">$6,500</td><td class="barcell"><span class="minibar" style="width:81.2%"></span></td></tr>
+<tr><td class="acct">Central Roofing</td><td class="day">7</td><td class="amt">$5,272</td><td class="barcell"><span class="minibar" style="width:65.9%"></span></td></tr>
+<tr><td class="acct">Alejandro's Remodeling LLC</td><td class="day">3</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar" style="width:62.5%"></span></td></tr>
+<tr><td class="acct">Signature Plumbing</td><td class="day">6</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar" style="width:62.5%"></span></td></tr>
+<tr><td class="acct">IQ Plumbing</td><td class="day">13</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar" style="width:62.5%"></span></td></tr>
+<tr><td class="acct">M&M Cellars</td><td class="day">14</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar" style="width:62.5%"></span></td></tr>
+<tr><td class="acct">The Reel Electric Company</td><td class="day">10</td><td class="amt">$4,571</td><td class="barcell"><span class="minibar" style="width:57.1%"></span></td></tr>
+<tr><td class="acct">Mad Differential</td><td class="day">16</td><td class="amt">$4,507</td><td class="barcell"><span class="minibar" style="width:56.3%"></span></td></tr>
+<tr><td class="acct">Pro Integrity Plumbing</td><td class="day">19</td><td class="amt">$4,446</td><td class="barcell"><span class="minibar" style="width:55.6%"></span></td></tr>
+<tr><td class="acct">Premium Floor & Design</td><td class="day">1</td><td class="amt">$4,395</td><td class="barcell"><span class="minibar" style="width:54.9%"></span></td></tr>
+<tr><td class="acct">Down The Line Plumbing Inc</td><td class="day">25</td><td class="amt">$4,214</td><td class="barcell"><span class="minibar" style="width:52.7%"></span></td></tr>
+<tr><td class="acct">Total Door Service</td><td class="day">17</td><td class="amt">$4,135</td><td class="barcell"><span class="minibar" style="width:51.7%"></span></td></tr>
+<tr><td class="acct">Roofing Pro</td><td class="day">21</td><td class="amt">$4,003</td><td class="barcell"><span class="minibar" style="width:50.0%"></span></td></tr>
+<tr><td class="acct">Ultimate HVAC</td><td class="day">7</td><td class="amt">$4,000</td><td class="barcell"><span class="minibar" style="width:50.0%"></span></td></tr>
+<tr><td class="acct">Vera Plumbing and Drain</td><td class="day">7</td><td class="amt">$3,965</td><td class="barcell"><span class="minibar" style="width:49.6%"></span></td></tr>
+<tr><td class="acct">Major League Plumbing</td><td class="day">2</td><td class="amt">$3,921</td><td class="barcell"><span class="minibar" style="width:49.0%"></span></td></tr>
+<tr><td class="acct">Roof Solutions</td><td class="day">6</td><td class="amt">$3,919</td><td class="barcell"><span class="minibar" style="width:49.0%"></span></td></tr>
+<tr><td class="acct">Forbes Fencing CO</td><td class="day">12</td><td class="amt">$3,844</td><td class="barcell"><span class="minibar" style="width:48.0%"></span></td></tr>
+<tr><td class="acct">5 Blox</td><td class="day">11</td><td class="amt">$3,824</td><td class="barcell"><span class="minibar" style="width:47.8%"></span></td></tr>
+<tr><td class="acct">Primal Windows</td><td class="day">&mdash;</td><td class="amt">$3,803</td><td class="barcell"><span class="minibar" style="width:47.5%"></span></td></tr>
+<tr><td class="acct">Pro Made Roofing</td><td class="day">3</td><td class="amt">$3,792</td><td class="barcell"><span class="minibar" style="width:47.4%"></span></td></tr>
+<tr><td class="acct">Lopez Brothers Drywall</td><td class="day">4</td><td class="amt">$3,760</td><td class="barcell"><span class="minibar" style="width:47.0%"></span></td></tr>
+<tr><td class="acct">Next Era Heating & Air Conditioning</td><td class="day">15</td><td class="amt">$3,718</td><td class="barcell"><span class="minibar" style="width:46.5%"></span></td></tr>
+<tr><td class="acct">Saucedo plumbing</td><td class="day">13</td><td class="amt">$3,702</td><td class="barcell"><span class="minibar" style="width:46.3%"></span></td></tr>
+<tr><td class="acct">Andy's pools Inc</td><td class="day">11</td><td class="amt">$3,679</td><td class="barcell"><span class="minibar" style="width:46.0%"></span></td></tr>
+<tr><td class="acct">Moreno building & Development LLC</td><td class="day">16</td><td class="amt">$3,679</td><td class="barcell"><span class="minibar" style="width:46.0%"></span></td></tr>
+<tr><td class="acct">Precision Drywall & Paint llc</td><td class="day">19</td><td class="amt">$3,650</td><td class="barcell"><span class="minibar" style="width:45.6%"></span></td></tr>
+<tr><td class="acct">Shelby Plumbing</td><td class="day">22</td><td class="amt">$3,649</td><td class="barcell"><span class="minibar" style="width:45.6%"></span></td></tr>
+<tr><td class="acct">Rising Green Inc</td><td class="day">20</td><td class="amt">$3,622</td><td class="barcell"><span class="minibar" style="width:45.3%"></span></td></tr>
+<tr><td class="acct">HARO HVAC SERVICES</td><td class="day">9</td><td class="amt">$3,617</td><td class="barcell"><span class="minibar" style="width:45.2%"></span></td></tr>
+<tr><td class="acct">All City Janitorial</td><td class="day">7</td><td class="amt">$3,505</td><td class="barcell"><span class="minibar" style="width:43.8%"></span></td></tr>
+<tr><td class="acct">Heavy Duty Metal Buildings</td><td class="day">16</td><td class="amt">$3,291</td><td class="barcell"><span class="minibar" style="width:41.1%"></span></td></tr>
+<tr><td class="acct">J&C Concrete Restoration, Inc</td><td class="day">19</td><td class="amt">$3,280</td><td class="barcell"><span class="minibar" style="width:41.0%"></span></td></tr>
+<tr><td class="acct">Apex Landscape & Construction</td><td class="day">2</td><td class="amt">$3,200</td><td class="barcell"><span class="minibar" style="width:40.0%"></span></td></tr>
+<tr><td class="acct">Quickfix Home Solutions Inc</td><td class="day">23</td><td class="amt">$2,902</td><td class="barcell"><span class="minibar" style="width:36.3%"></span></td></tr>
+<tr><td class="acct">GG&N Plumbing Solutions Inc</td><td class="day">17</td><td class="amt">$2,733</td><td class="barcell"><span class="minibar" style="width:34.2%"></span></td></tr>
+<tr><td class="acct">Emberline Shower Enclosures</td><td class="day">&mdash;</td><td class="amt">$2,648</td><td class="barcell"><span class="minibar" style="width:33.1%"></span></td></tr>
+<tr><td class="acct">Inland Renovation & Construction</td><td class="day">20</td><td class="amt">$2,616</td><td class="barcell"><span class="minibar" style="width:32.7%"></span></td></tr>
+<tr><td class="acct">Leo's landscaping inc</td><td class="day">22</td><td class="amt">$2,580</td><td class="barcell"><span class="minibar" style="width:32.2%"></span></td></tr>
+<tr><td class="acct">REC Elite Mechanical</td><td class="day">3</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Stable Air LLC</td><td class="day">3</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Jlg Tree Service</td><td class="day">5</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Premium Plumbing & DRAIN INC.</td><td class="day">6</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">JG Concrete LLC</td><td class="day">7</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Desert Sky Mechanical, LLC</td><td class="day">10</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Elite restoration by villegas</td><td class="day">11</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">The Alliance 247</td><td class="day">14</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar" style="width:31.2%"></span></td></tr>
+<tr><td class="acct">Sky view maintenance, inc</td><td class="day">17</td><td class="amt">$2,328</td><td class="barcell"><span class="minibar" style="width:29.1%"></span></td></tr>
+<tr><td class="acct">Cortex Plastering</td><td class="day">11</td><td class="amt">$2,251</td><td class="barcell"><span class="minibar" style="width:28.1%"></span></td></tr>
+<tr><td class="acct">OC Professional Rain Gutters</td><td class="day">9</td><td class="amt">$2,194</td><td class="barcell"><span class="minibar" style="width:27.4%"></span></td></tr>
+<tr><td class="acct">Bella banana Pet Spa</td><td class="day">19</td><td class="amt">$2,138</td><td class="barcell"><span class="minibar" style="width:26.7%"></span></td></tr>
+<tr><td class="acct">Prestige Heating & Air LLC</td><td class="day">4</td><td class="amt">$2,048</td><td class="barcell"><span class="minibar" style="width:25.6%"></span></td></tr>
+<tr><td class="acct">Custom Kitchens by Lopez</td><td class="day">5</td><td class="amt">$2,000</td><td class="barcell"><span class="minibar" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">JQGlassworks Inc</td><td class="day">30</td><td class="amt">$1,832</td><td class="barcell"><span class="minibar" style="width:22.9%"></span></td></tr>
+<tr><td class="acct">Oc Coastal Clean</td><td class="day">4</td><td class="amt">$1,697</td><td class="barcell"><span class="minibar" style="width:21.2%"></span></td></tr>
+<tr><td class="acct">Amaral's Construction Corp</td><td class="day">13</td><td class="amt">$1,544</td><td class="barcell"><span class="minibar" style="width:19.3%"></span></td></tr>
+<tr><td class="acct">Pinpons junk removal</td><td class="day">1</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">Heavy Duty Metal Buildings</td><td class="day">13</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">Forbes landscape services</td><td class="day">16</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">Contreras Welding Shop</td><td class="day">17</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">Major League Plumbing - SEO</td><td class="day">18</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">Forbes Fencing CO</td><td class="day">24</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar" style="width:18.8%"></span></td></tr>
+<tr><td class="acct">MOVEHAUS</td><td class="day">4</td><td class="amt">$1,250</td><td class="barcell"><span class="minibar" style="width:15.6%"></span></td></tr>
+<tr><td class="acct">MOVEHAUS</td><td class="day">18</td><td class="amt">$1,250</td><td class="barcell"><span class="minibar" style="width:15.6%"></span></td></tr>
+<tr><td class="acct">Palm Valley Insurance</td><td class="day">21</td><td class="amt">$1,091</td><td class="barcell"><span class="minibar" style="width:13.6%"></span></td></tr>
+<tr><td class="acct">on stage cuts and styles</td><td class="day">1</td><td class="amt">$800</td><td class="barcell"><span class="minibar" style="width:10.0%"></span></td></tr>
+<tr><td class="acct">Next Level Sheet Metal</td><td class="day">17</td><td class="amt">$598</td><td class="barcell"><span class="minibar" style="width:7.5%"></span></td></tr>
+<tr><td class="acct">Pro 360 Construction</td><td class="day">10</td><td class="amt">$500</td><td class="barcell"><span class="minibar" style="width:6.2%"></span></td></tr>
+<tr><td class="acct">Aspen</td><td class="day">4</td><td class="amt">$499</td><td class="barcell"><span class="minibar" style="width:6.2%"></span></td></tr>
+<tr><td class="acct">Ground Up Plumbing 24-7 Inc</td><td class="day">16</td><td class="amt">$499</td><td class="barcell"><span class="minibar" style="width:6.2%"></span></td></tr>
+<tr><td class="acct">Golden Rule Construction and Remodeling</td><td class="day">3</td><td class="amt">$399</td><td class="barcell"><span class="minibar" style="width:5.0%"></span></td></tr>
+<tr><td class="acct">WESTERN LINQ</td><td class="day">&mdash;</td><td class="amt">$399</td><td class="barcell"><span class="minibar" style="width:5.0%"></span></td></tr>
+<tr><td class="acct">LaFara Luxury Properties</td><td class="day">10</td><td class="amt">$299</td><td class="barcell"><span class="minibar" style="width:3.7%"></span></td></tr>
+<tr><td class="acct">Van's Carpet and Flooring</td><td class="day">&mdash;</td><td class="amt">$299</td><td class="barcell"><span class="minibar" style="width:3.7%"></span></td></tr>
+<tr><td class="acct">Build By JM LLC</td><td class="day">4</td><td class="amt">$199</td><td class="barcell"><span class="minibar" style="width:2.5%"></span></td></tr>
+<tr><td class="acct">Mariachi Corazon de Maria</td><td class="day">6</td><td class="amt">$199</td><td class="barcell"><span class="minibar" style="width:2.5%"></span></td></tr>
+<tr><td class="acct">Build By JM LLC</td><td class="day">11</td><td class="amt">$199</td><td class="barcell"><span class="minibar" style="width:2.5%"></span></td></tr>
+<tr><td class="acct">Paver Rescue LLC - Tampa</td><td class="day">6</td><td class="amt">$100</td><td class="barcell"><span class="minibar" style="width:1.2%"></span></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Still to bill</h2>
+    <p class="cap">33 accounts with no August charge &middot; $94,084 at July amounts</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Account</th><th style="text-align:right">Day</th><th style="text-align:right">July amt</th><th></th></tr></thead>
+        <tbody><tr><td class="acct">Lincoln Plumbing & Rooter</td><td class="day">2</td><td class="amt">$10,000</td><td class="barcell"><span class="minibar pipe" style="width:100.0%"></span></td></tr>
+<tr><td class="acct">M. L Bernie Co</td><td class="day">&mdash;</td><td class="amt">$6,500</td><td class="barcell"><span class="minibar pipe" style="width:65.0%"></span></td></tr>
+<tr><td class="acct">magic snake pro</td><td class="day">25</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar pipe" style="width:50.0%"></span></td></tr>
+<tr><td class="acct">capri plumbing</td><td class="day">&mdash;</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar pipe" style="width:50.0%"></span></td></tr>
+<tr><td class="acct">Digital Diagnosis</td><td class="day">&mdash;</td><td class="amt">$5,000</td><td class="barcell"><span class="minibar pipe" style="width:50.0%"></span></td></tr>
+<tr><td class="acct">Absolute Best Service Plumbing Inc</td><td class="day">27</td><td class="amt">$4,466</td><td class="barcell"><span class="minibar pipe" style="width:44.7%"></span></td></tr>
+<tr><td class="acct">LV Heating & Cooling LLC</td><td class="day">29</td><td class="amt">$4,014</td><td class="barcell"><span class="minibar pipe" style="width:40.1%"></span></td></tr>
+<tr><td class="acct">MG's Air Conditioning & Heating</td><td class="day">&mdash;</td><td class="amt">$4,000</td><td class="barcell"><span class="minibar pipe" style="width:40.0%"></span></td></tr>
+<tr><td class="acct">Roof City Inc</td><td class="day">27</td><td class="amt">$3,785</td><td class="barcell"><span class="minibar pipe" style="width:37.9%"></span></td></tr>
+<tr><td class="acct">Caliber K9 Training</td><td class="day">24</td><td class="amt">$3,749</td><td class="barcell"><span class="minibar pipe" style="width:37.5%"></span></td></tr>
+<tr><td class="acct">La Mini Splits</td><td class="day">27</td><td class="amt">$3,593</td><td class="barcell"><span class="minibar pipe" style="width:35.9%"></span></td></tr>
+<tr><td class="acct">Luxury Turf And Green LLC</td><td class="day">3</td><td class="amt">$3,581</td><td class="barcell"><span class="minibar pipe" style="width:35.8%"></span></td></tr>
+<tr><td class="acct">Bay Area Roofing Master Inc</td><td class="day">19</td><td class="amt">$3,563</td><td class="barcell"><span class="minibar pipe" style="width:35.6%"></span></td></tr>
+<tr><td class="acct">East Valley Feed & Tack, Inc.</td><td class="day">27</td><td class="amt">$2,938</td><td class="barcell"><span class="minibar pipe" style="width:29.4%"></span></td></tr>
+<tr><td class="acct">OG Plumbing</td><td class="day">1</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">At Your Service Heating and AIr</td><td class="day">2</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">piggies air conditioning</td><td class="day">26</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">Longhorn Landscapes INC</td><td class="day">30</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">5 Blox</td><td class="day">11</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">5 Blox</td><td class="day">11</td><td class="amt">$2,500</td><td class="barcell"><span class="minibar pipe" style="width:25.0%"></span></td></tr>
+<tr><td class="acct">New Generation Construciton</td><td class="day">&mdash;</td><td class="amt">$2,000</td><td class="barcell"><span class="minibar pipe" style="width:20.0%"></span></td></tr>
+<tr><td class="acct">Nations Instant Insurance Services</td><td class="day">12</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">Jc Concrete Restoration</td><td class="day">28</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">Bella banana Pet Spa</td><td class="day">30</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">Premium Floor & Design</td><td class="day">30</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">Inland Renovation & Construction</td><td class="day">20</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">One Nation Energy</td><td class="day">13</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">piggies air conditioning</td><td class="day">&mdash;</td><td class="amt">$1,500</td><td class="barcell"><span class="minibar pipe" style="width:15.0%"></span></td></tr>
+<tr><td class="acct">Unleashed Electric</td><td class="day">27</td><td class="amt">$499</td><td class="barcell"><span class="minibar pipe" style="width:5.0%"></span></td></tr>
+<tr><td class="acct">Clog Monkey Corp</td><td class="day">28</td><td class="amt">$499</td><td class="barcell"><span class="minibar pipe" style="width:5.0%"></span></td></tr>
+<tr><td class="acct">Lorenzo's Painting Services</td><td class="day">29</td><td class="amt">$199</td><td class="barcell"><span class="minibar pipe" style="width:2.0%"></span></td></tr>
+<tr><td class="acct">Paver Rescue LLC - Tampa</td><td class="day">21</td><td class="amt">$99</td><td class="barcell"><span class="minibar pipe" style="width:1.0%"></span></td></tr>
+<tr><td class="acct">OC Professional Rain Gutters</td><td class="day">22</td><td class="amt">$99</td><td class="barcell"><span class="minibar pipe" style="width:1.0%"></span></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Built from <em>Copy of billing</em> (column AC, August 2026). Month-to-date cross-checked two ways &mdash; the gviz query and the Sheets status-bar sum of AC3:AC241 both return $216,554, so the figure is confirmed. Still-to-bill amounts are the accounts' July charges, used as the estimate for what August should collect from them.
+</footer>
+</div>
+<div id="tip"></div>
+<script>
+(function(){
+  var tip=document.getElementById('tip');
+  document.querySelectorAll('.bar').forEach(function(b){
+    b.addEventListener('mousemove',function(e){
+      tip.innerHTML='<b>'+b.dataset.label+'</b>'+b.dataset.val+' &middot; '+b.dataset.cnt;
+      tip.style.opacity=1;
+      tip.style.left=Math.min(e.clientX+14,window.innerWidth-180)+'px';
+      tip.style.top=(e.clientY-46)+'px';
+    });
+    b.addEventListener('mouseleave',function(){ tip.style.opacity=0; });
+  });
+})();
+</script>

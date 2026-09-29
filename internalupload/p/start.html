@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start Here | Advanced Marketers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0C0E12;--panel:#14171D;--panel2:#1B1F27;--line:#2B313B;--line2:#232833;
+  --white:#F2F4F7;--dim:#A9B2BF;--dimmer:#727C8A;
+  --blue:#3b82f6;--blue-t:#A7C4F5;--blue-d:#17233A;--blue-l:#C6D9F9;
+  --red:#E8736F;--red-d:#2E1618;--ok:#5FCB9B;--ok-d:#14291F;--warn:#E0A44A;--warn-d:#2A2110;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);
+  font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;line-height:1.62;padding-inline:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding-block:46px 96px}
+
+.brandbar{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:38px}
+.mark{width:26px;height:26px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mark span{font-family:Anton,sans-serif;font-size:15px;color:#000;line-height:1}
+.brandbar b{font-family:Anton,sans-serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase;font-weight:400}
+.brandbar i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dimmer);margin-left:auto}
+
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--blue-t);margin:0 0 14px}
+h1{font-family:Anton,"Arial Narrow",sans-serif;font-weight:400;
+  font-size:clamp(38px,6.6vw,66px);line-height:.98;text-transform:uppercase;margin:0 0 18px;text-wrap:balance}
+.stand{font-size:19px;color:var(--dim);margin:0;max-width:60ch}
+
+h2{font-family:Anton,sans-serif;font-weight:400;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);margin:0 0 22px;padding-bottom:10px;border-bottom:2px solid var(--blue-t);
+  display:flex;align-items:baseline;gap:14px}
+h2 em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.12em;color:var(--dimmer)}
+section{margin-top:58px;scroll-margin-top:20px}
+p{margin:0 0 15px}
+strong{font-weight:700;color:var(--white)}
+a{color:var(--blue-t)}
+h3.sub{font-family:Anton,sans-serif;font-weight:400;font-size:19px;letter-spacing:.03em;
+  text-transform:uppercase;margin:34px 0 12px;color:var(--white)}
+.lede{font-size:18px;color:var(--dim);max-width:64ch;margin:0 0 8px}
+
+.toc{background:var(--panel);border:1px solid var(--line);padding:26px 30px;margin-top:40px}
+.toc b{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dimmer);display:block;margin-bottom:16px}
+.toc ol{list-style:none;counter-reset:t;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 34px}
+.toc li{counter-increment:t;padding:6px 0}
+.toc a{text-decoration:none;color:var(--white);font-size:15.5px;display:flex;gap:12px;align-items:baseline}
+.toc a:hover{color:var(--blue-t)}
+.toc a::before{content:counter(t,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px;color:var(--blue-t);flex-shrink:0}
+@media(max-width:660px){.toc ol{grid-template-columns:1fr}}
+
+.alarm{background:var(--red-d);border-left:3px solid var(--red);padding:20px 24px;margin:26px 0 0}
+.alarm b{font-family:Anton,sans-serif;font-weight:400;font-size:20px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:8px;color:var(--red)}
+.alarm p{margin:0;color:var(--dim);font-size:16px}
+.alarm p+p{margin-top:10px}
+.note{background:var(--blue-d);border-left:3px solid var(--blue-t);padding:20px 24px;margin:26px 0 0}
+.note b{font-family:Anton,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:8px;color:var(--blue-l)}
+.note p{margin:0;color:var(--dim);font-size:16px}
+.note p+p{margin-top:10px}
+
+.rule{border:1px solid var(--line);background:var(--panel);padding:30px 34px;margin:26px 0 0}
+.rule q{quotes:none;font-family:Anton,sans-serif;font-weight:400;
+  font-size:clamp(21px,3.2vw,30px);line-height:1.14;text-transform:uppercase;display:block;text-wrap:balance}
+.rule p{margin:14px 0 0;color:var(--dim);font-size:16px}
+
+/* big link buttons */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.lk{display:block;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--blue);
+  padding:20px 24px;text-decoration:none;transition:background .15s}
+.lk:hover{background:var(--panel2)}
+.lk b{font-family:Anton,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;text-transform:uppercase;
+  display:block;margin-bottom:6px;color:var(--white)}
+.lk span{color:var(--dim);font-size:15px;display:block}
+.lk i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--blue-t);
+  display:block;margin-top:8px;letter-spacing:.06em}
+@media(max-width:700px){.links{grid-template-columns:1fr}}
+
+/* status chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;padding:6px 11px;
+  background:var(--panel2);border:1px solid var(--line);color:var(--dim)}
+.chip.b{border-color:var(--blue-t);color:var(--blue-l)}
+.chip.w{border-color:var(--warn);color:var(--warn)}
+.chip.g{border-color:var(--ok);color:var(--ok)}
+.chip.r{border-color:var(--red);color:var(--red)}
+
+.phase{background:var(--panel);border:1px solid var(--line);margin-bottom:14px;
+  display:grid;grid-template-columns:132px 1fr}
+.phase .when{background:var(--panel2);border-right:1px solid var(--line2);padding:20px 16px;text-align:center}
+.phase .when b{font-family:Anton,sans-serif;font-weight:400;font-size:24px;line-height:1;display:block;color:var(--blue-t)}
+.phase .when span{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dimmer);display:block;margin-top:7px}
+.phase .what{padding:20px 24px}
+.phase .what h3{font-family:Anton,sans-serif;font-weight:400;font-size:19px;letter-spacing:.02em;
+  text-transform:uppercase;margin:0 0 12px;line-height:1.15}
+.phase .what p{margin:0;color:var(--dim);font-size:15.5px}
+.phase .what p+p{margin-top:9px}
+.phase.fire{border-color:var(--red)}
+.phase.fire .when b{color:var(--red)}
+.phase.go{border-color:var(--ok)}
+.phase.go .when b{color:var(--ok)}
+@media(max-width:660px){.phase{grid-template-columns:1fr}
+  .phase .when{border-right:none;border-bottom:1px solid var(--line2);text-align:left;padding:14px 20px;display:flex;align-items:baseline;gap:12px}
+  .phase .when span{margin-top:0}}
+
+ul.acts{list-style:none;padding:0;margin:0}
+ul.acts li{padding:11px 0;border-bottom:1px solid var(--line2);display:flex;gap:14px;align-items:flex-start}
+ul.acts li:last-child{border-bottom:none;padding-bottom:0}
+ul.acts li:first-child{padding-top:0}
+.who{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-t);background:var(--blue-d);padding:4px 9px;white-space:nowrap;flex-shrink:0;min-width:110px;text-align:center}
+.act{flex:1}
+.act b{display:block;font-weight:700;margin-bottom:2px}
+.act span{color:var(--dim);font-size:15px}
+@media(max-width:560px){ul.acts li{flex-direction:column;gap:7px}.who{min-width:0;align-self:flex-start}}
+
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:6px}
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--panel);margin-top:22px}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dimmer);text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);
+  background:var(--panel2);white-space:nowrap}
+td{padding:11px 16px;border-bottom:1px solid var(--line2);vertical-align:top;color:var(--dim)}
+tbody tr:last-child td{border-bottom:none}
+td.code{font-family:Anton,sans-serif;font-weight:400;font-size:16px;letter-spacing:.03em;
+  text-transform:uppercase;color:var(--white);white-space:nowrap}
+td.owns{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--blue-t);white-space:nowrap}
+tr.fire td.owns{color:var(--red)}
+td.num{font-family:Anton,sans-serif;font-size:20px;color:var(--red);text-align:center;width:64px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.box{background:var(--panel);border-left:3px solid var(--blue-t);padding:18px 22px}
+.box.bad{border-left-color:var(--red)}
+.box.good{border-left-color:var(--ok)}
+.box b{font-family:Anton,sans-serif;font-weight:400;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:7px}
+.box span{font-size:15.5px;color:var(--dim)}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+
+ol.chk{list-style:none;counter-reset:c;padding:0;margin:22px 0 0}
+ol.chk li{counter-increment:c;padding:13px 0 13px 44px;border-bottom:1px solid var(--line2);position:relative;color:var(--dim)}
+ol.chk li:last-child{border-bottom:none}
+ol.chk li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--blue-t)}
+ol.chk b{color:var(--white);font-weight:700}
+
+ul.plain{list-style:none;padding:0;margin:16px 0 0}
+ul.plain li{padding:9px 0 9px 22px;position:relative;color:var(--dim);border-bottom:1px solid var(--line2)}
+ul.plain li:last-child{border-bottom:none}
+ul.plain li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--blue-t)}
+ul.plain b{color:var(--white)}
+
+/* week grid for the save cadence */
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:22px}
+.day{background:var(--panel);border:1px solid var(--line);padding:16px 12px;text-align:center}
+.day b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dimmer);display:block;margin-bottom:10px}
+.day .mk{font-family:Anton,sans-serif;font-size:26px;line-height:1;color:var(--line)}
+.day.on{border-color:var(--blue)}
+.day.on .mk{color:var(--blue-t)}
+.day .lbl{font-size:12.5px;color:var(--dim);margin-top:8px;display:block;min-height:2.4em}
+@media(max-width:660px){.week{grid-template-columns:repeat(2,1fr)}}
+
+footer{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dimmer);line-height:1.9;letter-spacing:.03em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brandbar">
+  <div class="mark"><span>A</span></div>
+  <b>Advanced Marketers</b>
+  <i>Internal &middot; Start Here</i>
+</div>
+
+<p class="eyebrow">Every process, one door</p>
+<h1>Start Here</h1>
+<p class="stand">This is the only page you need to bookmark. Every written process lives one click from here. If a process is not on this page, it is not official, and you should not be following it.</p>
+
+<div class="rule">
+  <q>One process, one page, one link, forever</q>
+  <p>When something changes, the page changes. The link never does. We do not make a version two, a copy, or a new folder. That is how you end up with four documents and nobody knowing which one is real.</p>
+</div>
+
+<!-- 01 -->
+<section id="s1">
+<h2>Growth and retention <em>01</em></h2>
+<p class="lede">A client is unhappy, wants to pause, or wants out. Everything about what happens next is in one place.</p>
+
+<div class="links">
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-cancels-and-saves.html">
+    <b>Cancels &amp; Saves</b>
+    <span>Three tabs. <strong>Save</strong> is how you keep a client who wants out. <strong>Cancel</strong> is the offboarding, including what we charge to keep their website. <strong>Reference</strong> is links, statuses and reason codes.</span>
+    <i>THE MAIN ONE &middot; START WITH SAVE</i>
+  </a>
+  <a class="lk" href="https://app.clickup.com/10552018/v/l/li/901417897821">
+    <b>Retention &amp; Cancellation Clients</b>
+    <span>Where every cancel, pause and at-risk client is filed. Use the Form tab, not a Slack message.</span>
+    <i>CLICKUP LIST</i>
+  </a>
+</div>
+</section>
+
+<!-- 02 -->
+<section id="s2">
+<h2>Money <em>02</em></h2>
+<p class="lede">Nothing about billing is ever agreed verbally. Every free month, pause, cancel, amount change and payment plan becomes a task with an owner.</p>
+
+<div class="links">
+  <a class="lk" href="https://forms.clickup.com/10552018/p/f/a20pj-164934/MBYQKQHI9R25VQ6S8Z/form">
+    <b>Billing Change Request form</b>
+    <span>Pause, change amount, change billing date, payment plan, or a free month promised at signup. Cancels and approved free months are automatic, do not use the form for those.</span>
+    <i>NO LOGIN NEEDED</i>
+  </a>
+  <a class="lk" href="https://app.clickup.com/10552018/v/l/li/901421033968">
+    <b>Billing Requests</b>
+    <span>Victor's queue. Nothing here is finished until BILLING CONFIRMED DONE is ticked.</span>
+    <i>CLICKUP LIST</i>
+  </a>
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-billing-run.html">
+    <b>The Billing Run</b>
+    <span>Victor's guide to running billing day.</span>
+    <i>GUIDE</i>
+  </a>
+</div>
+</section>
+
+<!-- 03 -->
+<section id="s3">
+<h2>Starting a new client <em>03</em></h2>
+<p class="lede">Signature to live in fourteen days. Build the folder the same way every time.</p>
+
+<div class="links">
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-new-client-onboarding.html">
+    <b>Onboarding a New Client</b>
+    <span>What happens from signature to go-live.</span>
+    <i>GUIDE</i>
+  </a>
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-build-your-folders.html">
+    <b>Build Your Client Folders</b>
+    <span>The folder structure every client gets. Identical every time.</span>
+    <i>GUIDE</i>
+  </a>
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am_account_card_training.html">
+    <b>Account Card Setup</b>
+    <span>The card that says who owns the account, what services, what package.</span>
+    <i>GUIDE</i>
+  </a>
+</div>
+</section>
+
+<!-- 04 -->
+<section id="s4">
+<h2>Working in ClickUp <em>04</em></h2>
+<p class="lede">Everything lives in ClickUp. If there is no task, it never happened.</p>
+
+<div class="links">
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-fix-client-chat.html">
+    <b>Fix Your Client Chat</b>
+    <span>Getting the client channel pointed at the right place.</span>
+    <i>GUIDE</i>
+  </a>
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-finding-old-tasks.html">
+    <b>Finding Old Tasks</b>
+    <span>How to find something when you know it exists but cannot see it.</span>
+    <i>GUIDE</i>
+  </a>
+  <a class="lk" href="https://advancedmarketers.co/internalupload/p/am-scale-studio-guide.html">
+    <b>AM Scale Studio</b>
+    <span>The internal space. Growth, events, hiring, community.</span>
+    <i>GUIDE</i>
+  </a>
+</div>
+</section>
+
+<!-- 05 -->
+<section id="s5">
+<h2>The rules everyone works to <em>05</em></h2>
+<p class="lede">Announced 11 September 2026. These are not suggestions and they apply to every department.</p>
+
+<ol class="chk">
+  <li><b>Everything lives in ClickUp.</b> If there is no task, it never happened.</li>
+  <li><b>We communicate in ClickUp.</b> Decisions, approvals, cancels, emails, calls, questions, all of it goes on the task. Slack is for urgent pings only, as in "I sent you something, please look."</li>
+  <li><b>Every account has one name on it.</b> Who owns it, what services, what package.</li>
+  <li><b>Managers clear the queue</b> and keep it clear.</li>
+  <li><b>Morning meetings daily,</b> no later than 9:30 AM PT.</li>
+</ol>
+
+<div class="note">
+  <b>One owner, one due date</b>
+  <p>A task with two owners has no owner. A task with no due date does not exist as far as the system is concerned. If you are handed work with neither, that is the first thing to fix, not the last.</p>
+</div>
+</section>
+
+<!-- 06 -->
+<section id="s6">
+<h2>For whoever is training someone <em>06</em></h2>
+<p class="lede">If you are onboarding a new person, this page is the syllabus. Send them this link, not a folder, not a zip, not a doc you exported.</p>
+
+<h3 class="sub">How to run it</h3>
+<ul class="plain">
+  <li><b>Send this page first.</b> Everything else is reachable from it. They only ever need one bookmark.</li>
+  <li><b>Go in order of what they will touch.</b> A growth hire reads Cancels &amp; Saves before anything else. Someone joining onboarding starts at Section 03.</li>
+  <li><b>Have them do it live, not read it.</b> Open the ClickUp list next to the guide and file a real card.</li>
+  <li><b>If a guide is wrong, tell Christian.</b> Do not write a corrected version of your own. The page gets fixed and everybody gets the fix at once.</li>
+</ul>
+
+<div class="alarm">
+  <b>Do not make a copy of anything on this page</b>
+  <p>No duplicated docs, no personal versions, no "final v2" in a Drive folder. The moment there are two copies of a process, half the team is following the wrong one and nobody finds out until a client is angry.</p>
+  <p>If you need something that is not here, ask for it to be added here.</p>
+</div>
+</section>
+
+<!-- 07 -->
+<section id="s7">
+<h2>What is not on this page <em>07</em></h2>
+<p>Weekly ads reports, revenue trackers, QA dashboards, audit snapshots and client landing pages also live on this domain, but they are <strong>point-in-time documents</strong>, not process. They go stale by design and they are not linked here on purpose.</p>
+<p>If you are looking for how we do something, it is on this page. If you are looking for what happened in a particular week, ask for that report directly.</p>
+</section>
+
+<footer>
+Advanced Marketers &middot; Internal &middot; Start Here &middot; v1.0 &middot; 12 September 2026<br>
+The single index. If a process page is missing from here, it is not official yet.
+</footer>
+
+</div>
+</body>
+</html>

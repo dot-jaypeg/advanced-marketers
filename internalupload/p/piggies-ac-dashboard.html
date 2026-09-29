@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piggies Air Conditioning — Performance Review | Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --border:#2B2B35; --text:#EDEDF2; --muted:#8A8A99;
+    --accent:#7D7BF7; --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+    --accent-soft:rgba(125,123,247,.12); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:1080px;margin:0 auto;padding:34px 24px 50px}
+  .kicker{font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);font-weight:700}
+  header.hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:20px}
+  .hero h1{font-size:28px;font-weight:760;margin-top:8px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  .hero .brand{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.7}
+  .hero .brand b{display:block;color:var(--text);font-size:14px;letter-spacing:3px;font-weight:760}
+  .hero .brand b i{color:var(--accent);font-style:normal}
+  .badge{display:inline-block;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:3px 14px;font-size:12px;color:#c9c8fb;margin-top:10px}
+  nav.menu{position:sticky;top:0;z-index:50;background:rgba(13,13,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);margin:0 -24px 18px;padding:0 24px}
+  nav.menu .inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+  nav.menu .inner::-webkit-scrollbar{display:none}
+  nav.menu .logo{font-size:12px;letter-spacing:2.5px;font-weight:760;color:var(--text);margin-right:14px;white-space:nowrap}
+  nav.menu .logo i{color:var(--accent);font-style:normal}
+  nav.menu a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:650;padding:6px 12px;border-radius:999px;white-space:nowrap}
+  nav.menu a:hover{color:var(--text);background:var(--accent-soft)}
+  nav.menu a.hot{color:#f0a9a1}
+  section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;margin-top:16px;scroll-margin-top:64px}
+  section.highlight{border:1px solid var(--accent);box-shadow:0 0 0 1px var(--accent-soft),0 8px 30px rgba(125,123,247,.08)}
+  section.alert{border:1px solid var(--bad);box-shadow:0 0 0 1px rgba(228,96,79,.15)}
+  h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:4px}
+  section.alert h2{color:var(--bad)}
+  .h2sub{font-size:17px;font-weight:720;margin-bottom:14px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:6px 0 8px;scroll-margin-top:64px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+  .kpi .label{font-size:10.5px;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);font-weight:700}
+  .kpi .value{font-size:30px;font-weight:760;margin-top:8px}
+  .kpi .note{font-size:12.5px;color:var(--muted);margin-top:5px}
+  .kpi.accent .value{color:var(--accent)} .kpi.good .value{color:var(--good)}
+  .kpi.warn .value{color:var(--warn)} .kpi.bad .value{color:var(--bad)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--accent);font-weight:700}
+  td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;color:#cfcfda}
+  td b{color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;background:rgba(125,123,247,.1);border:1px solid var(--border);border-radius:6px;padding:1px 9px;font-size:12px;color:#b9b8f5;white-space:nowrap}
+  .status-q{color:var(--good);font-weight:650}.status-m{color:var(--bad);font-weight:650}.status-n{color:var(--muted)}
+  .chain{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin:14px 0 6px}
+  .chip{flex:1 1 200px;background:#131318;border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .chip .big{font-size:26px;font-weight:760}
+  .chip .cap{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .chip.c1 .big{color:var(--bad)} .chip.c2 .big{color:var(--good)} .chip.c3 .big{color:var(--accent)}
+  .chip.c3{border-color:var(--accent);background:var(--accent-soft)}
+  .arrow{align-self:center;color:var(--accent);font-size:20px;font-weight:800}
+  .bars{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+  .bar-row{display:grid;grid-template-columns:200px 1fr 60px;gap:12px;align-items:center;font-size:13.5px;color:#cfcfda}
+  .bar-row b{color:var(--text)}
+  .bar-track{background:#0f0f15;border:1px solid var(--border);border-radius:6px;height:24px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;color:#0D0D12;font-size:11.5px;font-weight:750;padding-left:9px;white-space:nowrap}
+  .deal p{font-size:14px;margin:7px 0;color:#cfcfda}
+  .deal p b{color:var(--text)}
+  .quote{border-left:3px solid var(--accent);background:rgba(125,123,247,.08);padding:11px 15px;border-radius:0 8px 8px 0;font-size:13.5px;font-style:italic;color:#c9c8fb;margin:12px 0}
+  .callback{display:flex;justify-content:space-between;gap:10px;padding:12px 15px;background:#131318;border:1px solid var(--border);border-left:4px solid var(--bad);border-radius:8px;margin-bottom:9px;font-size:13.5px;flex-wrap:wrap;color:#cfcfda}
+  .callback b{color:var(--text);font-size:14px}
+  .callback.stale{border-left-color:var(--warn)}
+  .callback .when{color:var(--muted)}
+  .recs{counter-reset:rec;display:flex;flex-direction:column;gap:11px}
+  .rec{display:flex;gap:13px;font-size:14px;color:#cfcfda}
+  .rec::before{counter-increment:rec;content:counter(rec);flex:0 0 26px;height:26px;border-radius:50%;background:var(--accent);color:#0D0D12;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rec b{color:var(--text)}
+  .fineprint{font-size:12.5px;color:var(--muted);margin-top:12px}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--muted);line-height:1.9}
+  footer .fbrand{letter-spacing:3px;font-weight:760;color:var(--text);font-size:12.5px}
+  footer .fbrand i{color:var(--accent);font-style:normal}
+  @media print{body{background:#0D0D12!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} section,.kpi{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="menu">
+    <div class="inner">
+      <span class="logo">ADVANCED <i>MARKETERS</i></span>
+      <a href="#overview">Overview</a>
+      <a href="#meta" class="hot">Meta Alert</a>
+      <a href="#opportunity">Answer Rate</a>
+      <a href="#deals">Open Deals</a>
+      <a href="#attribution">Attribution</a>
+      <a href="#filtered">Filtered Out</a>
+      <a href="#recommendations">Recommendations</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="kicker">Growth System · Client Performance Review</div>
+      <h1>Piggies Air Conditioning — <span>Lead &amp; Call Performance</span></h1>
+      <div class="sub">Google Ads + Meta Ads · call quality verified against recordings &amp; transcripts</div>
+      <span class="badge">Reporting window: June 14 – July 13, 2026 (vs. prior 30 days)</span>
+    </div>
+    <div class="brand">
+      <b>ADVANCED <i>MARKETERS</i></b>
+      Orange County, CA<br>Prepared July 14, 2026
+    </div>
+  </header>
+
+  <div class="kpis" id="overview">
+    <div class="kpi">
+      <div class="label">Total ad spend</div>
+      <div class="value">$2,749</div>
+      <div class="note">Google $1,809 · Meta $940</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Leads (AM standard)</div>
+      <div class="value">18</div>
+      <div class="note">Google: 8 conversions + 8 missed ad calls · Meta: 2</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Blended CPL</div>
+      <div class="value">$152.75</div>
+      <div class="note">Google-only: $113 · Meta-only: $470</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">Blended CPQL</div>
+      <div class="value">$305.49</div>
+      <div class="note">9 qualified: 7 Google calls ≥60s (fit-checked) + 2 Meta leads</div>
+    </div>
+  </div>
+  <div class="kpis">
+    <div class="kpi good">
+      <div class="label">Ad calls answered</div>
+      <div class="value">77%</div>
+      <div class="note">27 of 35 tracked ad calls picked up — strong vs. industry</div>
+    </div>
+    <div class="kpi bad">
+      <div class="label">Missed ad calls</div>
+      <div class="value">8</div>
+      <div class="note">≈ $904 of lead value at current CPL — mostly early-AM bursts</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Google CPC</div>
+      <div class="value">$12.92</div>
+      <div class="note">Was $5.37 prior period — clicks fell 234 → 140 at higher spend</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Average order value</div>
+      <div class="value">—</div>
+      <div class="note">Not trackable from ad platforms — see note below</div>
+    </div>
+  </div>
+  <p class="fineprint" style="margin:8px 4px 0">Lead definitions (Advanced Marketers standard): Total Leads = tracked conversions + missed ad calls · Qualified = Total − calls needing review (missed or under 60s; the one 2-min caller seeking only spare parts was excluded after transcript review) · CPL = spend ÷ Total · CPQL = spend ÷ Qualified. <b style="color:var(--text)">AOV:</b> neither Google nor Meta is receiving revenue values (Google reports conversion count only, Meta has no purchase events), so average order value cannot be computed from ad data — it requires job/invoice data from the CRM or accounting system. Recommended fix below.</p>
+
+  <!-- META ALERT -->
+  <section class="alert" id="meta">
+    <h2>Needs A Decision — Meta Ads</h2>
+    <div class="h2sub">Meta lead flow stopped in mid-June and hasn't recovered</div>
+    <div class="bars">
+      <div class="bar-row"><span><b>Jun 2–11</b> daily avg</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good)">$107/day spend · 17 leads in 10 days</div></div><span>~$63/lead</span></div>
+      <div class="bar-row"><span><b>Jun 12–30</b> daily avg</span><div class="bar-track"><div class="bar-fill" style="width:16%;background:var(--warn)">$17/day</div></div><span>0 leads</span></div>
+      <div class="bar-row"><span><b>Jul 1–13</b> daily avg</span><div class="bar-track"><div class="bar-fill" style="width:47%;background:var(--bad)">$52/day</div></div><span>2 leads</span></div>
+    </div>
+    <p style="font-size:14px;margin-top:14px;color:#cfcfda">Early June Meta was producing leads at roughly <b style="color:var(--text)">$63 each</b> (17 on-Facebook leads, Jun 2–11). Around June 12 daily spend collapsed to ~$17/day and lead flow stopped entirely; July's partial restart (~$52/day) has produced only 2 leads. Impressions tell the same story: ~15,000/day in early June vs ~800/day now. The result: this window's Meta CPL reads $470 — not because the channel stopped working, but because it was throttled right after proving it works. <b style="color:var(--text)">Decision needed: restore Meta budget to early-June levels, or reallocate deliberately.</b></p>
+    <p class="fineprint">Data note: a "345 website leads" spike on May 15 is a pixel misfire (345 events on $89 spend) and is excluded from every number on this page. The website-lead pixel event has reported nothing since — worth re-verifying the pixel while restoring budget.</p>
+  </section>
+
+  <!-- ANSWER RATE / OPPORTUNITY -->
+  <section class="highlight" id="opportunity">
+    <h2>The Answer-Rate Story</h2>
+    <div class="h2sub">Piggies answers well — the leak is small but expensive</div>
+    <div class="chain">
+      <div class="chip c2">
+        <div class="big">77%</div>
+        <div class="cap">of tracked ad calls reached the team (27 of 35) — genuinely good coverage from Eric, Jeanine, Patricia &amp; Arthur</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip c1">
+        <div class="big">8</div>
+        <div class="cap">ad calls missed — including one caller who rang 4 times in 35 seconds on Jun 20 and never connected</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip c3">
+        <div class="big">~$904</div>
+        <div class="cap">of paid lead value in those missed calls at the current $113 Google CPL — likely qualified buyers (modeled, not tracked)</div>
+      </div>
+    </div>
+    <p style="font-size:14px;margin-top:14px;color:#cfcfda"><b style="color:var(--text)">Why the misses matter beyond the lost lead:</b> Google's smart bidding learns from call outcomes. Long, connected calls (like the 17-minute Jun 17 call and the 17-minute Jul 1 tune-up call) register as conversions — talk time is a buying signal — so Google finds more searchers like those callers. Missed and seconds-long calls register as non-conversions, teaching the algorithm those searchers are the wrong audience and quietly steering budget away from exactly the buyers it found. The misses cluster around 8–9 AM: extending live coverage to the first hour of the morning closes most of the gap.</p>
+  </section>
+
+  <!-- OPEN DEALS -->
+  <section id="deals">
+    <h2>Open Deals &amp; Follow-Ups</h2>
+    <div class="h2sub">Money currently sitting in the follow-up queue</div>
+    <div class="deal">
+      <p><b>1. Birch Construction — new-build HVAC bid (Nathan, 310-758-3211).</b> Sent an RFP for 4445 Conifer Rd (Trane, single-family new build). On Jun 15 Patricia told him the quote was waiting on duct manufacturer pricing — <b>a month ago, with no contact since.</b> Likely the largest ticket in this window. Send the bid or a holding update this week.</p>
+      <p><b>2. Jae Ko — Glendale tune-up shopper (323-527-6692).</b> 17-minute call on Jul 1; Eric defended $249/$360-membership pricing against $45 gimmick offers, and the caller responded to the honesty:</p>
+      <div class="quote">"Why I'm calling you is I like your straight shooting. I saw your website…"</div>
+      <p>Confirm whether he booked; if not, one follow-up call referencing that conversation should close a membership.</p>
+      <p><b>3. Garcia — mini-split estimate (909-973-5682).</b> Confirmed a Jul 2 morning estimate with Mark. Verify the estimate went out and is being chased.</p>
+    </div>
+    <div style="margin-top:14px">
+      <div class="callback">
+        <div><b>SERVICE RECOVERY — Hayden Rossman (909) 241-5360.</b> Existing repair customer: AC died again same day as the tech visit (blank thermostat). Called 4 times Jun 23–25 + left a voicemail. No callback logged.</div>
+        <div class="when">Review risk — call first</div>
+      </div>
+      <div class="callback stale">
+        <div><b>(909) 908-6386</b> — rang 4× in 35 seconds on Jun 20, never connected, no callback logged</div>
+        <div class="when">Jun 20 · AC Maintenance ad</div>
+      </div>
+      <div class="callback stale">
+        <div><b>(909) 709-2856</b> (Jul 6) and <b>(714) 330-8173</b> (Jul 7) — recent missed callers, no callback logged</div>
+        <div class="when">Still worth an attempt</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTRIBUTION -->
+  <section id="attribution">
+    <h2>Google Ads Call Attribution</h2>
+    <div class="h2sub">Which ads make the phone ring (calls ≥ 60s shown)</div>
+    <table>
+      <thead><tr><th>Date</th><th>Ad group</th><th>Duration</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Jun 16</td><td>AC Installation</td><td>1m 00s</td><td class="status-q">Connected</td></tr>
+        <tr><td>Jun 17</td><td>AC Maintenance</td><td><b>17m 01s</b></td><td class="status-q">Qualified length — no CRM record ⚠</td></tr>
+        <tr><td>Jun 17</td><td>AC Repair</td><td>1m 47s</td><td class="status-q">Connected — no CRM record ⚠</td></tr>
+        <tr><td>Jun 19</td><td>AC Installation</td><td>4m 09s</td><td class="status-q">Qualified length — no CRM record ⚠</td></tr>
+        <tr><td>Jul 1</td><td>AC Maintenance</td><td><b>16m 43s</b></td><td class="status-q">Jae Ko — tune-up/membership discussion</td></tr>
+        <tr><td>Jul 2</td><td>AC Installation</td><td>1m 58s</td><td class="status-q">Garcia — mini-split estimate confirmed</td></tr>
+        <tr><td>Jul 3</td><td>AC Installation</td><td>2m 00s</td><td class="status-n">Parts-only caller — not a fit (excluded)</td></tr>
+        <tr><td>Jul 10</td><td>AC Repair</td><td>4m 10s</td><td class="status-q">Qualified length — no CRM record ⚠</td></tr>
+      </tbody>
+    </table>
+    <p class="fineprint">⚠ Four qualified-length ad calls have no CRM record — they rang a line that isn't tracked in GoHighLevel. Same fix as recommended for all clients: route every ad forwarding number through tracked lines so no paid lead disappears. Plus 19 shorter received calls and 8 missed. Campaign: AM_DS_Air Conditioner_Form+Calls (AC Repair / AC Installation / AC Maintenance).</p>
+  </section>
+
+  <!-- FILTERED OUT -->
+  <section id="filtered">
+    <h2>Filtered Out</h2>
+    <div class="h2sub">Keeping your lead counts honest</div>
+    <table>
+      <tbody>
+        <tr><td>(310) 978-8577</td><td>Insurance robocall — two calls Jul 3, identified from transcripts</td><td class="status-n">Excluded</td></tr>
+        <tr><td>(626) 506-1529</td><td>Wanted spare parts / owner-supplied install — services Piggies doesn't offer (politely declined, quoted new install)</td><td class="status-n">Excluded</td></tr>
+        <tr><td>(209) 263-7430</td><td>Wrong number (7s)</td><td class="status-n">Excluded</td></tr>
+        <tr><td>(949) 214-9751</td><td>Misdial — customer of another AC company; appointment she booked was cancelled on her callback</td><td class="status-n">Excluded</td></tr>
+        <tr><td>Meta · May 15</td><td>345 "website leads" in one day on $89 spend — pixel misfire, excluded from all metrics</td><td class="status-n">Excluded</td></tr>
+      </tbody>
+    </table>
+    <p class="fineprint">Every call is verified against its recording transcript before it counts as a lead — CPL/CPQL reflect real prospects only.</p>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section id="recommendations">
+    <h2>Recommendations</h2>
+    <div class="h2sub">Priority order for the next 30 days</div>
+    <div class="recs">
+      <div class="rec"><div><b>Restore Meta budget to early-June levels (~$100–130/day)</b> and re-verify the website-lead pixel. The channel proved ~$63/lead before it was throttled; at that rate the current $940 would have produced ~15 leads instead of 2.</div></div>
+      <div class="rec"><div><b>Call Hayden Rossman today (service recovery)</b> and set a same-day callback standard for any repair customer whose fix fails — that's where 1-star reviews come from.</div></div>
+      <div class="rec"><div><b>Send the Birch Construction bid.</b> A month of silence on a new-build RFP is how commercial work walks to a competitor.</div></div>
+      <div class="rec"><div><b>Cover the phones 8–9 AM.</b> Most missed ad calls cluster in the first morning hour; that's ~$904 of paid lead value this window and negative training signals to Google's bidding.</div></div>
+      <div class="rec"><div><b>Route all ad numbers through tracked lines.</b> Four qualified-length ad calls (including a 17-minute conversation) never appeared in the CRM this window.</div></div>
+      <div class="rec"><div><b>Start passing job values so AOV becomes reportable.</b> Push closed-job amounts from the CRM/invoicing into GHL payments (or share invoice totals monthly) and this report gains AOV and true ROAS per channel.</div></div>
+      <div class="rec"><div><b>Investigate the Google CPC jump ($5.37 → $12.92).</b> Spend rose 44% while clicks fell 40% — likely competition or bid-strategy drift; conversions still improved (5 → 8), so efficiency is recoverable.</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fbrand">ADVANCED <i>MARKETERS</i></span><br>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; support@advancedmarketers.co<br>
+    Sources: Google Ads (653-550-0805) &amp; Meta Ads (act_1513942253501297) via Supermetrics · GoHighLevel call recordings &amp; transcripts · Jun 14 – Jul 13, 2026
+  </footer>
+</div>
+</body>
+</html>

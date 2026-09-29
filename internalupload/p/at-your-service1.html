@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>At Your Service Heating & Cooling × Advanced Marketers · 6-Month Growth Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* At Your Service Heating & Cooling palette: navy + gold + cream */
+    --bg: #f8f7f3;
+    --bg-alt: #ede9dd;
+    --cream: #fbfaf6;
+    --ink: #141414;
+    --ink-soft: #4a4540;
+    --line: #d6cfc1;
+
+    /* PRIMARY = Navy (dominant in logo) - main accent */
+    --accent: #1c2949;
+    --accent-deep: #0c1828;
+    --accent-bright: #2d3f6b;
+    --accent-bg: #dde2ed;
+
+    /* POP = Gold (logo accent) - for high-impact moments */
+    --pop: #e5a818;
+    --pop-deep: #b88008;
+    --pop-bright: #f4c842;
+    --pop-bg: #faecbe;
+
+    /* DARK = Deep navy (the anchor) - dark sections */
+    --dark: #182430;
+    --dark-soft: #232f3f;
+    --darker: #0c1620;
+
+    --highlight: #faecbe;
+    --warning: #b8401a;
+    --success: #3d6638;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter Tight', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-feature-settings: 'ss01', 'ss02', 'cv11';
+  }
+  ::selection { background: var(--accent); color: var(--cream); }
+
+  /* TYPOGRAPHY */
+  .display {
+    font-family: 'Anton', 'Inter Tight', sans-serif;
+    font-weight: 400; letter-spacing: -0.01em; line-height: 0.92;
+    text-transform: uppercase;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
+  }
+  .label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--pop);
+    font-weight: 700;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 4vw; }
+  section { padding: 8rem 0; position: relative; }
+  @media (max-width: 768px) { section { padding: 5rem 0; } }
+
+  /* NAV BAR */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0.8rem 4vw;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(248, 247, 243, 0.96);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 3px solid var(--dark);
+    min-height: 70px;
+  }
+  .brand-stack {
+    display: flex; align-items: center; gap: 1.2rem;
+  }
+  .brand-am {
+    font-family: 'Anton', sans-serif; font-size: 0.95rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark);
+  }
+  .brand-x {
+    font-family: 'Anton', sans-serif; font-size: 1.4rem;
+    color: var(--pop); font-weight: 400;
+  }
+  .brand-logo {
+    height: 52px; width: auto; display: block;
+  }
+  @media (max-width: 700px) {
+    .brand-am { font-size: 0.75rem; }
+    .brand-logo { height: 38px; }
+    .brand-x { font-size: 1.1rem; }
+  }
+  .topbar .id {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.18em; color: var(--dark); text-transform: uppercase;
+    font-weight: 700;
+  }
+  @media (max-width: 600px) {
+    .topbar .id { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+    padding-top: 8rem; padding-bottom: 4rem; position: relative;
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(229, 168, 24, 0.10), transparent 50%),
+      radial-gradient(ellipse at 10% 85%, rgba(28, 41, 73, 0.06), transparent 60%),
+      var(--bg);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end;
+    border-top: 1px solid var(--line); padding-top: 3rem;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .hero-meta { display: flex; flex-direction: column; gap: 1.5rem; }
+  .hero-meta-row { display: flex; gap: 3rem; flex-wrap: wrap; }
+  .hero-meta-item .label { display: block; margin-bottom: 0.4rem; }
+  .hero-meta-item .val {
+    font-family: 'Inter Tight', sans-serif; font-size: 1.05rem;
+    font-weight: 700; color: var(--dark);
+  }
+
+  h1.hero-title {
+    font-size: clamp(4rem, 13vw, 11rem);
+    margin-bottom: 2rem;
+    color: var(--dark);
+    line-height: 0.88;
+  }
+  h1.hero-title em { font-style: normal; color: var(--pop); font-weight: 400; }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .hero-eyebrow .dot { width: 10px; height: 10px; background: var(--pop); border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+
+  .hero-x {
+    display: flex; align-items: center; gap: 2rem;
+    margin-bottom: 4rem; padding: 1.5rem 0;
+    border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark);
+  }
+  .hero-x-side { flex: 1; }
+  .hero-x-side .label { display: block; margin-bottom: 0.5rem; }
+  .hero-x-side .name {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    font-weight: 400; letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .hero-x-mark {
+    font-family: 'Anton', sans-serif; font-style: normal;
+    font-size: 2.5rem; color: var(--pop); font-weight: 400;
+  }
+
+  /* SECTION HEADERS */
+  .sec-head { margin-bottom: 4rem; display: grid; grid-template-columns: 100px 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 700px) { .sec-head { grid-template-columns: 1fr; gap: 1rem; } }
+  .sec-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+    letter-spacing: 0.22em; color: var(--pop); padding-top: 0.6rem;
+    font-weight: 700;
+  }
+  .sec-num::before {
+    content: ''; display: inline-block; width: 28px; height: 3px;
+    background: var(--pop); vertical-align: middle; margin-right: 0.8rem;
+  }
+  .sec-title {
+    font-family: 'Anton', sans-serif; font-weight: 400;
+    font-size: clamp(2.5rem, 6.5vw, 5rem); letter-spacing: -0.005em;
+    line-height: 0.95; text-transform: uppercase; color: var(--dark);
+  }
+  .sec-title em { font-style: normal; color: var(--pop); }
+  .sec-sub {
+    font-size: 1.1rem; color: var(--ink-soft); margin-top: 1.2rem;
+    max-width: 620px; line-height: 1.55; font-weight: 500;
+  }
+
+  /* AUDIT SECTION */
+  .audit { background: var(--dark); color: var(--cream); }
+  .audit .sec-num { color: var(--pop-bright); }
+  .audit .sec-num::before { background: var(--pop-bright); }
+  .audit .sec-title { color: var(--cream); }
+  .audit .sec-title em { color: var(--pop-bright); }
+  .audit .sec-sub { color: rgba(250, 246, 239, 0.75); }
+
+  .audit-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+    background: var(--pop); border: 3px solid var(--pop);
+    margin-top: 2rem;
+  }
+  @media (max-width: 700px) { .audit-grid { grid-template-columns: 1fr; } }
+  .audit-card {
+    background: var(--dark); padding: 2.8rem 2.5rem;
+    transition: background 0.3s ease;
+  }
+  .audit-card:hover { background: var(--dark-soft); }
+  .audit-card .audit-status {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pop-bright);
+    margin-bottom: 1.3rem; font-weight: 700;
+  }
+  .audit-card .audit-status::before {
+    content: ''; width: 10px; height: 10px; background: var(--pop-bright);
+    border-radius: 0;
+  }
+  .audit-card h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 2rem;
+    line-height: 1; margin-bottom: 1rem; letter-spacing: 0.005em;
+    text-transform: uppercase; color: var(--cream);
+  }
+  .audit-card p {
+    color: rgba(250, 246, 239, 0.78); font-size: 0.98rem; line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* OPEN HOUSE / OPPORTUNITY */
+  .opp { background: var(--bg-alt); }
+  .opp-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center;
+    margin-top: 2rem;
+  }
+  @media (max-width: 900px) { .opp-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .opp-headline {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 400; line-height: 0.95; letter-spacing: -0.005em;
+    text-transform: uppercase; color: var(--dark);
+  }
+  .opp-headline em { font-style: normal; color: var(--pop); }
+  .opp-headline .underline {
+    text-decoration: underline; text-decoration-color: var(--pop);
+    text-decoration-thickness: 5px; text-underline-offset: 10px;
+  }
+
+  .birds-stack { display: flex; flex-direction: column; gap: 0.8rem; }
+  .bird-row {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+    padding: 1.6rem 1.8rem; background: var(--bg);
+    border-left: 6px solid var(--pop);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .bird-row:hover { transform: translateX(4px); border-color: var(--dark); }
+  .bird-num {
+    font-family: 'Anton', sans-serif; font-style: normal; font-size: 2.4rem;
+    color: var(--pop); line-height: 1; font-weight: 400;
+  }
+  .bird-row h4 {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.3rem;
+    margin-bottom: 0.4rem; letter-spacing: 0.005em; line-height: 1.15;
+    text-transform: uppercase; color: var(--dark);
+  }
+  .bird-row p {
+    font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55;
+    font-weight: 500;
+  }
+
+  /* TIMELINE / 4 MONTH PLAN */
+  .plan { background: var(--bg); }
+  .month-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+    margin-top: 3rem; border-top: 2px solid var(--ink);
+  }
+  @media (max-width: 1200px) { .month-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px) { .month-grid { grid-template-columns: 1fr; } }
+
+  .month-col {
+    padding: 2.5rem 1.2rem 2.5rem 0.4rem; border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .month-col:last-child { border-right: none; padding-right: 0; }
+  @media (max-width: 1200px) {
+    .month-col { padding: 2rem 1.2rem 2rem 0.4rem; }
+  }
+  @media (max-width: 700px) {
+    .month-col { border-right: none; border-bottom: 1px solid var(--line); padding: 2rem 0; }
+    .month-col:last-child { border-bottom: none; }
+  }
+
+  .month-col::before {
+    content: ''; position: absolute; top: -6px; left: 0; width: 70%; height: 6px;
+    background: var(--accent);
+  }
+  .month-col.phase-build::before { background: var(--accent); }
+  .month-col.phase-launch::before { background: var(--pop); }
+  .month-col.phase-scale::before { background: var(--pop-bright); }
+
+  .month-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    letter-spacing: 0.2em; color: var(--ink); text-transform: uppercase;
+    margin-bottom: 0.8rem; font-weight: 700;
+  }
+  .month-title {
+    font-family: 'Anton', sans-serif; font-weight: 400;
+    font-size: 2rem; letter-spacing: 0.005em; line-height: 1;
+    margin-bottom: 0.8rem; text-transform: uppercase; color: var(--dark);
+  }
+  .month-title em { font-style: normal; color: var(--pop); }
+  .month-phase {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream);
+    margin-bottom: 1.5rem; font-weight: 700;
+    padding: 0.4rem 0.8rem; background: var(--dark);
+    display: inline-block; border-radius: 0;
+  }
+  .month-col.phase-launch .month-phase,
+  .month-col.phase-scale .month-phase {
+    background: var(--pop); color: var(--cream);
+  }
+  .month-list { list-style: none; margin-top: 1rem; }
+  .month-list li {
+    padding: 0.8rem 0 0.8rem 1.5rem; position: relative;
+    font-size: 0.93rem; line-height: 1.5; color: var(--ink-soft);
+    border-bottom: 1px solid var(--line); font-weight: 500;
+  }
+  .month-list li::before {
+    content: '+'; position: absolute; left: 0; top: 0.7rem;
+    color: var(--pop); font-weight: 900; font-size: 1.2rem; line-height: 1;
+  }
+  .month-list li:last-child { border-bottom: none; }
+  .month-list li strong { color: var(--dark); font-weight: 700; }
+
+  .month-output {
+    margin-top: 1.5rem; padding: 1.2rem 1rem;
+    background: var(--dark); color: var(--cream);
+  }
+  .month-output-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--pop-bright);
+    margin-bottom: 0.5rem; font-weight: 700;
+  }
+  .month-output-value {
+    font-family: 'Anton', sans-serif; font-style: normal;
+    font-size: 1.1rem; color: var(--cream); line-height: 1.2;
+    font-weight: 400; text-transform: uppercase; letter-spacing: 0.005em;
+  }
+
+  /* CONTENT MATH */
+  .content-math {
+    margin-top: 4rem; background: var(--ink); color: var(--cream);
+    padding: 3rem; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 2rem; align-items: center;
+  }
+  @media (max-width: 800px) {
+    .content-math { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem; }
+    .content-math .plus, .content-math .equals { display: none; }
+  }
+  .cm-block { text-align: center; }
+  .cm-block .label { color: var(--pop-bright); margin-bottom: 0.8rem; }
+  .cm-block .val {
+    font-family: 'Anton', sans-serif; font-size: 3.6rem; font-weight: 400;
+    line-height: 0.9; letter-spacing: -0.005em; margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .cm-block .val em { font-style: normal; color: var(--pop-bright); }
+  .cm-block .sub {
+    font-size: 0.85rem; color: rgba(250, 246, 239, 0.7);
+    font-weight: 500;
+  }
+  .content-math .plus, .content-math .equals {
+    font-family: 'Anton', sans-serif; font-style: normal;
+    font-size: 2.6rem; color: var(--pop-bright); font-weight: 400;
+  }
+
+  /* INVESTMENT */
+  .invest { background: var(--bg); }
+  .invest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    background: var(--dark); border: 3px solid var(--dark); margin-top: 2rem;
+  }
+  @media (max-width: 1000px) { .invest-grid { grid-template-columns: 1fr; } }
+  .invest-card { background: var(--cream); padding: 3rem 2.5rem; }
+  .invest-card .label { margin-bottom: 1rem; }
+  .invest-card h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.9rem;
+    margin-bottom: 0.5rem; letter-spacing: 0.005em;
+    text-transform: uppercase; color: var(--dark); line-height: 1;
+  }
+  .invest-card .price {
+    font-family: 'Anton', sans-serif; font-size: 3.8rem; font-weight: 400;
+    line-height: 0.9; margin: 1.5rem 0; letter-spacing: -0.005em;
+    color: var(--pop); text-transform: uppercase;
+  }
+  .invest-card .price small {
+    font-family: 'Inter Tight', sans-serif; font-size: 0.85rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .invest-card p {
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6;
+    margin-bottom: 1rem; font-weight: 500;
+  }
+  .invest-card ul {
+    list-style: none; margin-top: 1.2rem; padding-top: 1.2rem;
+    border-top: 2px solid var(--dark);
+  }
+  .invest-card li {
+    font-size: 0.9rem; padding: 0.5rem 0; color: var(--ink-soft);
+    padding-left: 1.5rem; position: relative; font-weight: 500;
+  }
+  .invest-card li::before {
+    content: '+'; position: absolute; left: 0; top: 0.45rem;
+    color: var(--pop); font-weight: 900; font-size: 1.2rem; line-height: 1;
+  }
+
+  /* INVESTMENT BREAKDOWN TABLE */
+  .breakdown {
+    margin-top: 3rem; background: var(--dark); color: var(--cream);
+    padding: 3rem;
+    border: 3px solid var(--pop);
+  }
+  @media (max-width: 700px) { .breakdown { padding: 2rem 1.5rem; } }
+  .breakdown-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(250, 246, 239, 0.15);
+  }
+  .breakdown-head .label { color: var(--pop-bright); }
+  .breakdown-head h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 2.2rem;
+    letter-spacing: 0.005em; line-height: 1;
+    text-transform: uppercase; color: var(--cream);
+  }
+  .br-row {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem;
+    padding: 1.2rem 0; border-bottom: 1px solid rgba(250, 246, 239, 0.12);
+    align-items: baseline;
+  }
+  .br-row:last-child { border-bottom: none; }
+  .br-row .br-month {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--pop-bright); letter-spacing: 0.2em; text-transform: uppercase;
+    min-width: 95px; font-weight: 700;
+  }
+  .br-row .br-desc {
+    font-family: 'Inter Tight', sans-serif; font-size: 1.05rem; color: var(--cream);
+    line-height: 1.3; font-weight: 600;
+  }
+  .br-row .br-desc small {
+    display: block; font-family: 'Inter Tight', sans-serif; font-size: 0.8rem;
+    color: rgba(250, 246, 239, 0.6); font-weight: 400; margin-top: 0.3rem;
+  }
+  .br-row .br-amt {
+    font-family: 'Anton', sans-serif; font-style: normal;
+    font-size: 1.8rem; color: var(--pop-bright); white-space: nowrap;
+    font-weight: 400; text-transform: uppercase;
+  }
+  .br-total {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem;
+    padding: 1.8rem 0 0; margin-top: 1rem;
+    border-top: 3px solid var(--pop-bright);
+    align-items: baseline;
+  }
+  .br-total .br-month {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+    color: var(--pop-bright); letter-spacing: 0.2em; text-transform: uppercase;
+    min-width: 95px; font-weight: 700;
+  }
+  .br-total .br-desc {
+    font-family: 'Inter Tight', sans-serif; font-size: 1.15rem; color: var(--cream);
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .br-total .br-amt {
+    font-family: 'Anton', sans-serif; font-size: 3rem; font-weight: 400;
+    color: var(--pop-bright); white-space: nowrap; text-transform: uppercase;
+  }
+
+  /* WHAT YOU GET */
+  .outcomes { background: var(--bg-alt); }
+  .outcomes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 800px) { .outcomes-grid { grid-template-columns: 1fr; gap: 1rem; } }
+  .outcome-card {
+    padding: 2.5rem 2rem; background: var(--bg);
+    border-top: 6px solid var(--pop);
+  }
+  .outcome-card .label { margin-bottom: 1.2rem; }
+  .outcome-card h3 {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.7rem;
+    line-height: 1; margin-bottom: 1rem; letter-spacing: 0.005em;
+    text-transform: uppercase; color: var(--dark);
+  }
+  .outcome-card p {
+    color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* CLOSING */
+  .closing { padding: 10rem 0; text-align: left; background: var(--bg); position: relative; overflow: hidden; }
+  .closing::before {
+    content: ''; position: absolute; top: 50%; left: -10%; width: 120%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--pop), transparent);
+    opacity: 0.6;
+  }
+  .closing h2 {
+    font-family: 'Anton', sans-serif; font-size: clamp(4rem, 13vw, 11rem);
+    font-weight: 400; letter-spacing: -0.005em; line-height: 0.88;
+    margin-bottom: 3rem; text-transform: uppercase; color: var(--dark);
+  }
+  .closing h2 em { font-style: normal; color: var(--pop); }
+  .closing p.closing-body {
+    font-family: 'Inter Tight', sans-serif; font-size: 1.2rem; font-weight: 500;
+    line-height: 1.55; max-width: 640px; margin-bottom: 2rem;
+    color: var(--ink-soft);
+  }
+  .signature {
+    margin-top: 5rem; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; padding-top: 3rem; border-top: 3px solid var(--dark);
+  }
+  @media (max-width: 700px) { .signature { grid-template-columns: 1fr; gap: 1.5rem; } }
+  .sig-block .label { display: block; margin-bottom: 0.6rem; }
+  .sig-block p {
+    font-family: 'Anton', sans-serif; font-size: 1.4rem; font-weight: 400;
+    line-height: 1; text-transform: uppercase; color: var(--dark);
+    letter-spacing: 0.005em;
+  }
+  .sig-block .role {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.18em; color: var(--pop); text-transform: uppercase;
+    margin-top: 0.6rem; display: block; font-weight: 700;
+  }
+
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+  .btn {
+    display: inline-block; padding: 1.3rem 2.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; font-weight: 700;
+    border: 3px solid var(--pop); background: var(--pop); color: var(--cream);
+    transition: all 0.2s ease; cursor: pointer;
+  }
+  .btn:hover {
+    background: var(--dark); border-color: var(--dark);
+    transform: translateY(-2px);
+  }
+  .btn.ghost {
+    background: transparent; color: var(--dark); border-color: var(--dark);
+  }
+  .btn.ghost:hover {
+    background: var(--dark); color: var(--cream); transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: rgba(250, 246, 239, 0.45);
+    padding: 3rem 4vw; font-size: 0.78rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em;
+  }
+  footer .wm { color: var(--pop-bright); font-weight: 500; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* GRAIN */
+  body::before {
+    content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5; mix-blend-mode: multiply;
+  }
+
+  /* STICKY CTA */
+  .pay-sticky {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99;
+    display: flex; align-items: center; gap: 0; opacity: 0; pointer-events: none;
+    transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease;
+    background: var(--ink); color: var(--cream);
+    border-radius: 999px; padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+    box-shadow: 0 12px 40px rgba(20, 17, 14, 0.25), 0 4px 12px rgba(20, 17, 14, 0.15);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .pay-sticky.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .pay-sticky:hover { background: var(--pop); }
+  .pay-sticky .pay-label { padding-right: 0.9rem; white-space: nowrap; }
+  .pay-sticky .pay-arrow {
+    background: var(--pop); color: var(--cream);
+    width: 36px; height: 36px; border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Inter Tight', sans-serif; font-size: 1.4rem; font-weight: 900;
+    transition: transform 0.3s ease;
+  }
+  .pay-sticky:hover .pay-arrow { background: var(--dark); transform: translateX(3px); }
+  @media (max-width: 600px) {
+    .pay-sticky { bottom: 1rem; right: 1rem; padding: 0.4rem 0.4rem 0.4rem 1rem; font-size: 0.62rem; }
+    .pay-sticky .pay-arrow { width: 30px; height: 30px; font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="brand-stack">
+    <span class="brand-am">Advanced Marketers</span>
+    <span class="brand-x">×</span>
+    <img src="data:image/png;base64,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" alt="At Your Service Heating and Cooling" class="brand-logo">
+  </div>
+  <div class="id">6-MONTH PLAN · 2026 · CONFIDENTIAL</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      <div class="mono">6-Month Growth Plan · Prepared for Ryan · At Your Service HVAC</div>
+    </div>
+
+    <div class="hero-x">
+      <div class="hero-x-side">
+        <span class="label">The Operator</span>
+        <div class="name">At Your Service Heating &amp; Cooling · Baltimore, MD</div>
+      </div>
+      <div class="hero-x-mark">×</div>
+      <div class="hero-x-side" style="text-align: right;">
+        <span class="label">The Partner</span>
+        <div class="name">Advanced Marketers · Google Premier Partner</div>
+      </div>
+    </div>
+
+    <h1 class="hero-title display">Back to four.<br><em>Then past it.</em></h1>
+
+    <div class="hero-grid">
+      <div>
+        <p style="font-family: 'Inter Tight', sans-serif; font-size: 1.2rem; font-weight: 500; line-height: 1.55; max-width: 540px; color: var(--ink-soft);">
+          You went from $4M to $2M. The fix isn't more leads, it's more booked appointments, more closed jobs, and clean data so you know exactly which dollar produced which call. This is the 6-month plan to rebuild your pipeline with full attribution, predictable conversion, and the right ad system underneath it.
+        </p>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-row">
+          <div class="hero-meta-item">
+            <span class="label">Issued</span>
+            <div class="val">June 2026</div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Term</span>
+            <div class="val">6-month plan</div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Author</span>
+            <div class="val">Christian Paniagua</div>
+          </div>
+        </div>
+        <div class="hero-meta-row">
+          <div class="hero-meta-item">
+            <span class="label">Current Run Rate</span>
+            <div class="val">$2M, target $3.5M to $4M</div>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">Service Area</span>
+            <div class="val">Baltimore &amp; Surrounding Maryland</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01 — REALITY CHECK -->
+<section class="audit">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">01 · The Reality Check</div>
+      <div>
+        <h2 class="sec-title display">You don't have a marketing problem. <em>You have a clarity problem.</em></h2>
+        <p class="sec-sub">You've been doing this 13 years. BBB accredited. Angi Super Service Award. HomeAdvisor screened. Best of HomeGuide. The work is real, the reputation is real, the close rates are real. What's missing is the data and the system to predictably turn ad spend into booked jobs. That's what we fix.</p>
+      </div>
+    </div>
+
+    <div class="audit-grid reveal">
+      <div class="audit-card">
+        <div class="audit-status">The Pain</div>
+        <h3>Burned twice. Trust is earned now.</h3>
+        <p>RYNO lost it after Chris sold. Kick Charge took 50% mid-build and disappeared. You're hesitant, and you should be. Our job over the next 90 days is to show up consistently, communicate clearly, and prove the math before asking for any more trust than you're willing to give.</p>
+      </div>
+
+      <div class="audit-card">
+        <div class="audit-status">The Bottleneck</div>
+        <h3>You don't close jobs. You close booked appointments.</h3>
+        <p>You close 60 to 70% of every appointment that gets booked. That's elite. But you're only booking 50 to 60% of the qualified leads coming in. That's the leak. Every 10-point lift in booking rate is worth roughly $25K to $40K in monthly revenue at your current lead volume, scaling higher as ad volume grows. The booking system is where the real money is.</p>
+      </div>
+
+      <div class="audit-card">
+        <div class="audit-status">The Blind Spot</div>
+        <h3>You don't know where the leads come from.</h3>
+        <p>You said it yourself, "I didn't even know where the leads were coming from." That's not a marketing failure, that's an attribution failure. The first thing we do is plug the data leaks so every dollar of ad spend is traceable to a booked appointment and a closed job.</p>
+      </div>
+
+      <div class="audit-card">
+        <div class="audit-status">The Asset</div>
+        <h3>Your unit economics are gold.</h3>
+        <p>$5K to $7K average ticket. 70-80% gross margin on service. 50% on installs. 60-70% close rate. These are top-decile numbers in HVAC. The system works. We just need to feed it qualified leads at a predictable cost and watch it compound.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 — RECOVERY PLAY -->
+<section class="opp">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">02 · The Recovery Play</div>
+      <div>
+        <h2 class="sec-title display">Same engine. <em>Better fuel. Better data.</em></h2>
+        <p class="sec-sub">You already know how to close. The team's already trained. The brand's already built. The reviews are already there. We don't need to rebuild any of that. What we need to do is rebuild the lead system, plug the attribution leaks, and turn on a paid acquisition machine that runs with full transparency.</p>
+      </div>
+    </div>
+
+    <div class="opp-grid reveal">
+      <div>
+        <p class="opp-headline">Fix booking. <span class="underline">Multiply revenue.</span></p>
+        <p style="font-family: 'Inter Tight', sans-serif; font-size: 1.05rem; font-weight: 500; line-height: 1.6; color: var(--ink-soft); margin-top: 2rem;">
+          Right now your biggest leak isn't ad spend. It's the gap between qualified lead and booked appointment. You said it yourself, you call from your personal phone within minutes because the close rate craters after that. That's heroic, but it's not scalable. Your CSR rep is already in place. We layer the routing, speed-to-lead automation, and CRM accountability on top so the booking rate can move from 55% to 75%+ without touching your close rate at all.
+        </p>
+        <p style="font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 500; line-height: 1.6; color: var(--ink-soft); margin-top: 1.2rem; padding: 1rem 1.2rem; background: var(--accent-bg); border-left: 4px solid var(--pop);">
+          <strong style="color: var(--dark);">The math on this is in your favor.</strong> At $6K average ticket and 65% close rate, every 10 extra booked appointments per month is roughly $39,000 in extra revenue. A 20-point lift in booking rate at your M6 lead volume is worth $80K+ per month in incremental revenue.
+        </p>
+      </div>
+
+      <div class="birds-stack">
+          <div class="bird-row">
+          <div class="bird-num">01</div>
+          <div>
+            <h4>The Booking Lift</h4>
+            <p>Speed-to-lead automation, smart routing, and CRM accountability layered on top of your existing CSR. Your sub-2-minute callback becomes the system's default, not your overtime. Target: 55% → 75%+ booking rate by Month 6.</p>
+          </div>
+        </div>
+        <div class="bird-row">
+          <div class="bird-num">02</div>
+          <div>
+            <h4>The Attribution Layer</h4>
+            <p>Every call tagged to its source. Every form fill traced. Every booked appointment connected to a campaign. You'll know exactly which dollar produced which job. No more guessing where leads come from.</p>
+          </div>
+        </div>
+        <div class="bird-row">
+          <div class="bird-num">03</div>
+          <div>
+            <h4>The Service-First Filter</h4>
+            <p>You only want repair calls. Installs close low, eat time, distract the team. We mirror that filter in the ads: high-intent service searches, weighted bidding, qualified-call optimization. No more wasted spend on install leads you'd just decline.</p>
+          </div>
+        </div>
+        <div class="bird-row">
+          <div class="bird-num">04</div>
+          <div>
+            <h4>The Ticket Lift</h4>
+            <p>Service calls flipped to installs are where the real money lives. Educational content (warranty truths, system age red flags, when-to-replace guides) primes the customer before the tech ever arrives. Your "flip the small repair into a larger ticket" playbook gets reinforced by the marketing system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 4rem; padding: 1.8rem 2rem; border-top: 3px solid var(--dark); border-bottom: 3px solid var(--dark); background: var(--bg);" class="reveal">
+      <span class="label" style="color: var(--dark);">The Honest Promise</span>
+      <p style="font-family: 'Inter Tight', sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.55; color: var(--ink-soft); margin-top: 0.6rem;">
+        We don't promise to be RYNO 2.0 or solve everything in 30 days. What we promise is weekly accountability, full data transparency, and a Month 4 inflection point where the math gets clear. After that, we either scale aggressively or we go back to the drawing board together. No black boxes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 — THE MATH -->
+<section class="audit" style="padding-top: 7rem; padding-bottom: 7rem;">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">03 · The Math</div>
+      <div>
+        <h2 class="sec-title display">Backtracked from <em>your numbers.</em></h2>
+        <p class="sec-sub">Built off the unit economics you gave us on the call ($5K-$7K avg ticket, 60-70% close rate, 50-60% booking rate) and our blended HVAC account CPL data. Every projection below is mathematically derived, not pulled from thin air. Two scenarios shown: high end (best case execution) and low end (slower ramp, system still dialing in).<sup style="color: var(--pop);">*</sup></p>
+      </div>
+    </div>
+
+    <!-- CPQL EXPLAINER CALLOUT -->
+    <div style="margin-top: 3rem; padding: 2rem 2.5rem; background: var(--pop-bg); border-left: 6px solid var(--pop);" class="reveal">
+      <span class="label" style="color: var(--pop-deep); display: block; margin-bottom: 0.6rem;">Definition · CPQL</span>
+      <h3 style="font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.6rem; line-height: 1.1; color: var(--dark); text-transform: uppercase; margin-bottom: 0.8rem;">Cost Per <em style="color: var(--pop-deep); font-style: normal;">Qualified</em> Lead, not just any lead.</h3>
+      <p style="font-family: 'Inter Tight', sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.6; color: var(--ink);">
+        Most agencies brag about CPL (cost per lead). We track CPQL, the cost per qualified lead, meaning a real person with actual intent to book a service. Junk gets filtered out before it hits your CSR. <strong>CPQL = Ad Spend ÷ Qualified Leads.</strong> If you're paying $65 per lead but only 50% are qualified, your real CPQL is $130. As lead quality ramps over time, your CPQL drops, even when CPL stays flat.
+      </p>
+    </div>
+
+    <!-- THE FUNNEL FORMULA -->
+    <div style="margin-top: 2rem; padding: 2.5rem; background: var(--dark); border: 2px solid var(--pop);" class="reveal">
+      <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 1.2rem;">The Funnel Formula</span>
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; align-items: center; font-family: 'Anton', sans-serif; color: var(--cream);" class="funnel-formula">
+        <div style="text-align: center; padding: 1rem 0.5rem; background: var(--dark-soft); border-radius: 4px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--pop-bright); letter-spacing: 0.15em; margin-bottom: 0.3rem;">SPEND ÷ CPL</div>
+          <div style="font-size: 1.05rem; line-height: 1.1;">Leads</div>
+        </div>
+        <div style="text-align: center; color: var(--pop-bright); font-size: 1.3rem;">×</div>
+        <div style="text-align: center; padding: 1rem 0.5rem; background: var(--dark-soft); border-radius: 4px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--pop-bright); letter-spacing: 0.15em; margin-bottom: 0.3rem;">QUALITY %</div>
+          <div style="font-size: 1.05rem; line-height: 1.1;">Qualified</div>
+        </div>
+        <div style="text-align: center; color: var(--pop-bright); font-size: 1.3rem;">×</div>
+        <div style="text-align: center; padding: 1rem 0.5rem; background: var(--dark-soft); border-radius: 4px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--pop-bright); letter-spacing: 0.15em; margin-bottom: 0.3rem;">BOOK% × CLOSE%</div>
+          <div style="font-size: 1.05rem; line-height: 1.1;">Closed</div>
+        </div>
+        <div style="text-align: center; padding: 1rem 0.5rem; background: var(--pop); color: var(--dark); border-radius: 4px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; margin-bottom: 0.3rem;">× $6,000</div>
+          <div style="font-size: 1.05rem; line-height: 1.1;">Revenue</div>
+        </div>
+      </div>
+      <p style="color: rgba(251, 250, 246, 0.7); font-size: 0.85rem; line-height: 1.55; margin-top: 1.5rem; font-style: italic;">
+        Example, Month 4 high end: $3,500 ÷ $40 CPL = 88 leads × 80% quality = 70 qualified (CPQL = $50) × 65% book = 46 booked × 65% close = 30 jobs × $6,000 = $180,000.
+      </p>
+    </div>
+
+    <!-- ASSUMPTIONS BLOCK -->
+    <div style="margin-top: 2rem; padding: 2rem 2.5rem; background: var(--dark-soft); border: 2px solid rgba(244, 200, 66, 0.4);" class="reveal">
+      <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 1.2rem;">Inputs (Your Numbers)</span>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;" class="math-assumptions">
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Avg Ticket</span>
+          <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--cream); line-height: 1;">$6,000</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; margin-top: 0.3rem;">mid of your $5K-$7K</div>
+        </div>
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Close Rate</span>
+          <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--cream); line-height: 1;">60-65%</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; margin-top: 0.3rem;">your stated 60-70%</div>
+        </div>
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Book Rate</span>
+          <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--cream); line-height: 1;">45→75%</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; margin-top: 0.3rem;">ramps over 6 mo</div>
+        </div>
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Quality %</span>
+          <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--cream); line-height: 1;">50→80%</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; margin-top: 0.3rem;">improves M1 to M4</div>
+        </div>
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Ad Spend</span>
+          <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--cream); line-height: 1;">$3,500</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; margin-top: 0.3rem;">monthly, your budget</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HIGH END TABLE -->
+    <div style="margin-top: 3rem; padding: 2.5rem; background: var(--dark); border: 3px solid var(--pop-bright);" class="reveal">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="label" style="color: var(--pop-bright); display: block; margin-bottom: 0.4rem;">Scenario A · Best Case</span>
+          <h3 style="font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.8rem; line-height: 1; color: var(--cream); text-transform: uppercase;">High End Projection</h3>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-bright); letter-spacing: 0.15em;">6-MO REVENUE</div>
+          <div style="font-family: 'Anton', sans-serif; font-size: 2.4rem; color: var(--pop-bright); line-height: 1;">$906K</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.8rem;">151 closed jobs</div>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; color: var(--cream); font-family: 'Inter Tight', sans-serif; font-size: 0.78rem; min-width: 900px;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--pop-bright);">
+              <th style="text-align: left; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Mo</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Spend</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">CPL</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Leads</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Qual%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Qual'd</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">CPQL</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Book%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Booked</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Close%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Closed</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.12); color: rgba(251, 250, 246, 0.4);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1rem;">M1</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$0</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1rem;">$0</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M2</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$65</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">54</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">50%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">27</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$130</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">55%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">15</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">10</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$60K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M3</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$50</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">70</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">46</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$76</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">28</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">18</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$108K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15); background: rgba(244, 200, 66, 0.10);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--pop-bright);">M4★</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$40</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">88</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">80%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">70</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$50</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">46</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">30</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--pop-bright);">$180K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M5</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$35</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">110<sup style="font-size: 0.6rem;">†</sup></td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">80%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">88</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$40</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">70%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">62</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">40</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$240K</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M6</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$30</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">137<sup style="font-size: 0.6rem;">†</sup></td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">80%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">110</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$32</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">75%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">82</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">53</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$318K</td>
+            </tr>
+            <tr style="border-top: 3px solid var(--pop-bright);">
+              <td style="padding: 1rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 0.85rem; color: var(--pop-bright); text-transform: uppercase; letter-spacing: 0.15em;">6-Mo</td>
+              <td style="padding: 1rem 0.4rem; text-align: right; color: var(--cream); font-weight: 700;">$17.5K</td>
+              <td colspan="8"></td>
+              <td style="padding: 1rem 0.4rem; text-align: right; color: var(--cream); font-weight: 700;">151</td>
+              <td style="padding: 1rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.6rem; color: var(--pop-bright);">$906K</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color: rgba(251, 250, 246, 0.55); font-size: 0.75rem; line-height: 1.5; margin-top: 1rem; font-style: italic;">
+        <sup>†</sup> Includes organic leads from SEO compounding (M5: +10 organic, M6: +20 organic).
+      </p>
+    </div>
+
+    <!-- LOW END TABLE -->
+    <div style="margin-top: 2rem; padding: 2.5rem; background: var(--dark); border: 3px solid rgba(244, 200, 66, 0.4);" class="reveal">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="label" style="color: rgba(244, 200, 66, 0.7); display: block; margin-bottom: 0.4rem;">Scenario B · Slower Ramp</span>
+          <h3 style="font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.8rem; line-height: 1; color: var(--cream); text-transform: uppercase;">Low End Projection</h3>
+          <p style="color: rgba(251, 250, 246, 0.6); font-size: 0.8rem; margin-top: 0.4rem; max-width: 540px;">Ads slip to Month 3, CSR/system still dialing in, lower booking rate, slower CPL drop.</p>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(244, 200, 66, 0.7); letter-spacing: 0.15em;">6-MO REVENUE</div>
+          <div style="font-family: 'Anton', sans-serif; font-size: 2.4rem; color: var(--cream); line-height: 1;">$360K</div>
+          <div style="color: rgba(251, 250, 246, 0.55); font-size: 0.8rem;">60 closed jobs</div>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; color: var(--cream); font-family: 'Inter Tight', sans-serif; font-size: 0.78rem; min-width: 900px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(244, 200, 66, 0.5);">
+              <th style="text-align: left; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Mo</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Spend</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">CPL</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Leads</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Qual%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Qual'd</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">CPQL</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Book%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Booked</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Close%</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Closed</th>
+              <th style="text-align: right; padding: 0.7rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; font-weight: 700;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.12); color: rgba(251, 250, 246, 0.4);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1rem;">M1</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$0</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">—</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1rem;">$0</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.12); color: rgba(251, 250, 246, 0.55);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1rem;">M2</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$1K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$90</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">11</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">50%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">6</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$167</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">45%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">3</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">2</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1rem;">$12K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M3</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$90</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">39</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">50%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">19</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$184</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">45%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">9</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">5</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$30K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M4</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$65</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">54</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">35</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$100</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">50%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">18</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">11</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$66K</td>
+            </tr>
+            <tr style="border-bottom: 1px solid rgba(244, 200, 66, 0.15);">
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M5</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$50</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">70</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">70%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">49</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$71</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">55%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">27</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">16</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$96K</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.8rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 1.1rem;">M6</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$3.5K</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$40</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">88<sup style="font-size: 0.6rem;">†</sup></td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">75%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">66</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">$53</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">60%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">40</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">65%</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right;">26</td>
+              <td style="padding: 0.8rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.2rem;">$156K</td>
+            </tr>
+            <tr style="border-top: 3px solid rgba(244, 200, 66, 0.5);">
+              <td style="padding: 1rem 0.4rem; font-family: 'Anton', sans-serif; font-size: 0.85rem; color: rgba(244, 200, 66, 0.8); text-transform: uppercase; letter-spacing: 0.15em;">6-Mo</td>
+              <td style="padding: 1rem 0.4rem; text-align: right; color: var(--cream); font-weight: 700;">$15K</td>
+              <td colspan="8"></td>
+              <td style="padding: 1rem 0.4rem; text-align: right; color: var(--cream); font-weight: 700;">60</td>
+              <td style="padding: 1rem 0.4rem; text-align: right; font-family: 'Anton', sans-serif; font-size: 1.6rem; color: var(--cream);">$360K</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- INVESTMENT SUMMARY -->
+    <div style="margin-top: 3rem; padding: 2.5rem; background: var(--bg); border: 3px solid var(--dark);" class="reveal">
+      <span class="label" style="color: var(--dark); display: block; margin-bottom: 0.6rem;">Total Investment · All-In</span>
+      <h3 style="font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.8rem; line-height: 1; color: var(--dark); text-transform: uppercase; margin-bottom: 1.5rem;">What you actually pay each month.</h3>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;" class="investment-grid">
+        <!-- Monthly breakdown -->
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-deep); letter-spacing: 0.15em; margin-bottom: 1rem;">MONTHLY</div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Accelerator Fee</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$5,000</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Ad Spend (your accounts)</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$3,500</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Ad Mgmt (10% of spend)</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$350</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 1.2rem 0 0; align-items: baseline;">
+            <span style="color: var(--dark); font-weight: 700; font-size: 1.05rem;">TOTAL / MONTH</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 2.2rem; color: var(--pop-deep);">$8,850</span>
+          </div>
+        </div>
+
+        <!-- 6-month + ROI -->
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-deep); letter-spacing: 0.15em; margin-bottom: 1rem;">6-MONTH TOTAL</div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Accelerator Fees (6× $5K)</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$30,000</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Ad Spend (varies, see tables)</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$15K-$17.5K</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid var(--line);">
+            <span style="color: var(--ink-soft); font-size: 0.95rem;">Ad Mgmt Fees</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 1.3rem; color: var(--dark);">$1.5K-$1.75K</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 1.2rem 0 0; align-items: baseline;">
+            <span style="color: var(--dark); font-weight: 700; font-size: 1.05rem;">TOTAL 6-MO</span>
+            <span style="font-family: 'Anton', sans-serif; font-size: 2.2rem; color: var(--pop-deep);">~$48-49K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROI panel -->
+      <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 2px solid var(--dark);">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;" class="roi-grid">
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-deep); letter-spacing: 0.15em; margin-bottom: 0.4rem;">REVENUE RANGE</div>
+            <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--dark); line-height: 1;">$360K – $906K</div>
+            <div style="color: var(--ink-soft); font-size: 0.8rem; margin-top: 0.3rem;">6-month projected (60–151 jobs)</div>
+          </div>
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-deep); letter-spacing: 0.15em; margin-bottom: 0.4rem;">MARKETING ROAS</div>
+            <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--dark); line-height: 1;">7.5x – 18.9x</div>
+            <div style="color: var(--ink-soft); font-size: 0.8rem; margin-top: 0.3rem;">revenue ÷ total marketing</div>
+          </div>
+          <div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-deep); letter-spacing: 0.15em; margin-bottom: 0.4rem;">GROSS PROFIT RANGE</div>
+            <div style="font-family: 'Anton', sans-serif; font-size: 1.8rem; color: var(--dark); line-height: 1;">$216K – $544K</div>
+            <div style="color: var(--ink-soft); font-size: 0.8rem; margin-top: 0.3rem;">at your 60% blended margin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY INSIGHTS -->
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--pop); border: 3px solid var(--pop);" class="reveal seo-deliverables">
+      <div style="background: var(--dark); padding: 2.2rem 2rem;">
+        <span class="label" style="color: var(--pop-bright);">M4 Inflection</span>
+        <h4 style="font-family: 'Anton', sans-serif; font-size: 1.4rem; font-weight: 400; line-height: 1; margin: 1rem 0 0.8rem; color: var(--cream); text-transform: uppercase;">When We Confidently Scale</h4>
+        <p style="color: rgba(251, 250, 246, 0.75); font-size: 0.9rem; line-height: 1.55; font-weight: 500;">
+          Months 2 and 3 generate leads but the data isn't yet clean enough to scale aggressively. By Month 4 we have enough signal across channels, audiences, creatives, and lead quality to make confident scaling decisions, not guesses.
+        </p>
+      </div>
+
+      <div style="background: var(--dark); padding: 2.2rem 2rem;">
+        <span class="label" style="color: var(--pop-bright);">Why CPQL Drops</span>
+        <h4 style="font-family: 'Anton', sans-serif; font-size: 1.4rem; font-weight: 400; line-height: 1; margin: 1rem 0 0.8rem; color: var(--cream); text-transform: uppercase;">$130 → $32</h4>
+        <p style="color: rgba(251, 250, 246, 0.75); font-size: 0.9rem; line-height: 1.55; font-weight: 500;">
+          M2: $130 per qualified lead (CPL $65 ÷ 50% quality). M6: $32 (CPL $30 ÷ 80% quality + organic). Same $3,500 ad spend produces 4x more qualified conversations as the algorithm learns and SEO compounds.
+        </p>
+      </div>
+
+      <div style="background: var(--dark); padding: 2.2rem 2rem;">
+        <span class="label" style="color: var(--pop-bright);">Honest Caveat</span>
+        <h4 style="font-family: 'Anton', sans-serif; font-size: 1.4rem; font-weight: 400; line-height: 1; margin: 1rem 0 0.8rem; color: var(--cream); text-transform: uppercase;">Real Life Has Wobble</h4>
+        <p style="color: rgba(251, 250, 246, 0.75); font-size: 0.9rem; line-height: 1.55; font-weight: 500;">
+          This is the engine on paper. Real life has seasonality, market shifts, learning curves. The range exists because we're being honest about that. Best case requires execution AND a few breaks going right. Low end happens if anything slips.
+        </p>
+      </div>
+    </div>
+
+    <style>
+      @media (max-width: 800px) {
+        .math-assumptions { grid-template-columns: repeat(2, 1fr) !important; gap: 1rem !important; }
+        .seo-deliverables { grid-template-columns: 1fr !important; }
+        .quality-ramp { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+        .investment-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+        .roi-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+        .funnel-formula { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+        .funnel-formula > div:nth-child(even) { display: none; }
+      }
+    </style>
+  </div>
+</section>
+
+<!-- SECTION 04 — 6-MONTH PLAN -->
+<section class="plan">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">04 · The 6-Month Plan</div>
+      <div>
+        <h2 class="sec-title display">Setup first. <em>Then we scale into the math.</em></h2>
+        <p class="sec-sub">Month 1 is plumbing: attribution, tracking, account access, website conversion fixes, CSR system integration. Month 2 ads go live (best case) and we start learning. Month 3 is the worst case timing for first scalable lead flow. Month 4 we hit confident scale. Months 5 and 6 compound, with SEO and review velocity stacking on top of paid acquisition.</p>
+      </div>
+    </div>
+
+    <div class="month-grid reveal">
+      <div class="month-col phase-build">
+        <div class="month-num">Month 01</div>
+        <div class="month-title">Setup</div>
+        <div class="month-phase">Plumbing</div>
+        <ul class="month-list">
+          <li><strong>Attribution stack</strong> built, every dollar to every call</li>
+          <li><strong>Website conversion audit</strong> + speed-to-lead fixes</li>
+          <li><strong>CSR system integration</strong>, smart routing + SLA enforcement</li>
+          <li><strong>Google + Meta ad accounts</strong> rebuilt with clean data</li>
+          <li><strong>SEO foundation</strong>, first 4 service pages live</li>
+          <li>GBP optimization, review velocity engine starts</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">Data plumbing clean, ads ready</div>
+        </div>
+      </div>
+
+      <div class="month-col phase-build">
+        <div class="month-num">Month 02</div>
+        <div class="month-title">Learn</div>
+        <div class="month-phase">Ads Live</div>
+        <ul class="month-list">
+          <li><strong>Google Search + LSA launch</strong>, repair-only filter</li>
+          <li><strong>Meta retargeting + service ads</strong> live</li>
+          <li>Booking rate baseline established</li>
+          <li><strong>SEO</strong>, 3 more pages (insurance claims, brand pages)</li>
+          <li>Weekly performance reviews begin</li>
+          <li>First conversion data flows in by mid-month</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">$0-$60K · 0-10 jobs</div>
+        </div>
+      </div>
+
+      <div class="month-col phase-launch">
+        <div class="month-num">Month 03</div>
+        <div class="month-title">Optimize</div>
+        <div class="month-phase">Ads + SEO</div>
+        <ul class="month-list">
+          <li>Bid optimization + audience refinement</li>
+          <li><strong>Kill losers</strong>, double down on winners</li>
+          <li>Landing page A/B tests live</li>
+          <li><strong>SEO</strong>, 3 new pages, first organic rankings show</li>
+          <li>Review velocity push, target 30+ new reviews</li>
+          <li>Booking rate analysis + first lift wave</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">$30K-$108K · 5-18 jobs</div>
+        </div>
+      </div>
+
+      <div class="month-col phase-launch">
+        <div class="month-num">Month 04 ★</div>
+        <div class="month-title">Scale</div>
+        <div class="month-phase">Inflection</div>
+        <ul class="month-list">
+          <li><strong>Confident ad spend scaling</strong> on proven channels</li>
+          <li>Booking rate hits 65% (up from baseline)</li>
+          <li>AEO optimization for ChatGPT &amp; Google AI</li>
+          <li><strong>SEO</strong>, 3 more pages, traffic compounds</li>
+          <li>First full attribution dashboard delivered</li>
+          <li>QBR call with full P&amp;L on marketing</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">$66K-$180K · 11-30 jobs</div>
+        </div>
+      </div>
+
+      <div class="month-col phase-scale">
+        <div class="month-num">Month 05</div>
+        <div class="month-title">Compound</div>
+        <div class="month-phase">Compound</div>
+        <ul class="month-list">
+          <li>Ad spend scaled, multi-channel allocation</li>
+          <li><strong>SEO</strong>, Page 1 rankings start hitting</li>
+          <li>Booking rate at 70%, retraining locked in</li>
+          <li>50+ Google reviews milestone</li>
+          <li>Educational content series scaling</li>
+          <li>Install upsell systems running</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">$96K-$240K · 16-40 jobs</div>
+        </div>
+      </div>
+
+      <div class="month-col phase-scale">
+        <div class="month-num">Month 06</div>
+        <div class="month-title">Mature</div>
+        <div class="month-phase">Compound</div>
+        <ul class="month-list">
+          <li><strong>Page 1 SEO dominance</strong> for Baltimore HVAC</li>
+          <li>Booking rate at 75%, system mature</li>
+          <li>60+ Google reviews, full directory presence</li>
+          <li>AEO ranking, AI search results show you</li>
+          <li>System runs without daily babysitting</li>
+          <li>Year 2 expansion planning begins</li>
+        </ul>
+        <div class="month-output">
+          <div class="month-output-label">Output</div>
+          <div class="month-output-value">$156K-$318K · 26-53 jobs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT MATH -->
+    <div class="content-math reveal">
+      <div class="cm-block">
+        <span class="label">Book Rate Lift</span>
+        <div class="val"><em>+20</em> pts</div>
+        <div class="sub">55% → 75% by M6</div>
+      </div>
+      <div class="plus">×</div>
+      <div class="cm-block">
+        <span class="label">Same Lead Vol</span>
+        <div class="val"><em>+36%</em> jobs</div>
+        <div class="sub">from booking lift alone</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="cm-block">
+        <span class="label">Hidden Upside</span>
+        <div class="val"><em>$84K+</em>/mo</div>
+        <div class="sub">extra revenue at M6 volume</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 — INVESTMENT -->
+<section class="invest">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">05 · Investment</div>
+      <div>
+        <h2 class="sec-title display">Accelerator tier. <em>Flat. Transparent.</em></h2>
+        <p class="sec-sub">$5,000/mo flat. No hidden fees, no surprise tiers, no upsells. The Accelerator package is the right fit for At Your Service. You've got the brand, the team, the close rate. What you need is the system, the SEO, the ads, and the data. That's what Accelerator delivers.</p>
+      </div>
+    </div>
+
+    <div class="invest-grid reveal" style="grid-template-columns: 1.3fr 1fr;">
+      <div class="invest-card">
+        <span class="label">Months 01-06 · Accelerator</span>
+        <h3>The Full System</h3>
+        <div class="price">$5,000<small> per month, flat</small></div>
+        <p>One flat rate for the entire engagement. No tiered ramp-up, no surprise jumps in Month 3. Same deliverables, same accountability, same price every month for the whole 6 months.</p>
+        <ul>
+          <li>Full attribution stack, every dollar to every call</li>
+          <li>Website conversion optimization</li>
+          <li>CRM system integration + smart routing layer for your CSR</li>
+          <li>Google Search + LSA (pay-per-call) management</li>
+          <li>Meta Ads management (Facebook + Instagram)</li>
+          <li>SEO + AEO, 3+ new pages per month</li>
+          <li>Conversion-focused landing pages</li>
+          <li>Omnichannel retargeting + full attribution dashboard</li>
+          <li>Biweekly strategy calls + Slack channel</li>
+          <li>Reviews engine + review velocity management</li>
+        </ul>
+      </div>
+
+      <div class="invest-card">
+        <span class="label">Variable · Ad Spend</span>
+        <h3>10% of Ad Spend</h3>
+        <div class="price">+10%<small> management fee</small></div>
+        <p>You fund ad spend directly into your own Google and Meta accounts. We manage every dollar with full transparency. At your stated $3,500/mo budget, that's $350/mo management fee. Zero markup.</p>
+        <ul>
+          <li>You own and fund the ad accounts directly</li>
+          <li>Starting budget: $3,500/mo (your stated)</li>
+          <li>Management fee: 10% of monthly ad spend</li>
+          <li>Zero markup (you see every dollar)</li>
+          <li>Real-time attribution dashboard</li>
+          <li>Scale up or down based on results</li>
+        </ul>
+      </div>
+          <li>You own and fund the ad accounts directly</li>
+          <li>Starting budget: $3,500/mo (your stated)</li>
+          <li>Management fee: 10% of monthly ad spend</li>
+          <li>Zero markup (you see every dollar)</li>
+          <li>Real-time attribution dashboard</li>
+          <li>Scale up or down based on results</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ADD-ON CALLOUT -->
+    <div style="margin-top: 3rem; padding: 2.5rem 2.8rem; background: var(--bg-alt); border-left: 6px solid var(--pop);" class="reveal">
+      <span class="label" style="color: var(--pop-deep);">Optional Add-On · Available Anytime</span>
+      <h3 style="font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.8rem; line-height: 1; color: var(--dark); text-transform: uppercase; margin: 0.8rem 0 1rem;">After-hours overflow, when you need it.</h3>
+      <p style="font-family: 'Inter Tight', sans-serif; font-size: 1rem; font-weight: 500; line-height: 1.6; color: var(--ink-soft); max-width: 720px;">
+        Your CSR rep handles your phones during business hours. If you ever want to stack our <strong style="color: var(--dark);">Guadalajara CSR Call Center ($1,500/mo)</strong> as a backup for after-hours and weekend overflow, it plugs in seamlessly. Most HVAC operators add this in Month 4 or 5 when ad volume picks up and the after-hours calls start mattering more. Optional, never required.
+      </p>
+    </div>
+
+    <!-- BREAKDOWN -->
+    <div class="breakdown reveal">
+      <div class="breakdown-head">
+        <span class="label">Month-by-Month Breakdown</span>
+        <h3>What you pay, when you pay it.</h3>
+      </div>
+
+      <div class="br-row">
+        <div class="br-month">Month 01</div>
+        <div class="br-desc">Setup, attribution built, ad accounts rebuilt
+          <small>Website fixes, CSR system integration, SEO foundation begins</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+      <div class="br-row">
+        <div class="br-month">Month 02</div>
+        <div class="br-desc">Ads launch (best case scenario)
+          <small>Google + LSA + Meta live. First leads possible. Plus $3,500 ad spend + $350 mgmt</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+      <div class="br-row">
+        <div class="br-month">Month 03</div>
+        <div class="br-desc">Optimize, learning data accumulates
+          <small>Worst-case first scalable lead flow lands here. Bid optimization + A/B tests</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+      <div class="br-row">
+        <div class="br-month">Month 04 ★</div>
+        <div class="br-desc">Confident scale, the inflection point
+          <small>Enough data to scale on proven channels. Booking rate lift begins</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+      <div class="br-row">
+        <div class="br-month">Month 05</div>
+        <div class="br-desc">Compound, Page 1 rankings hitting
+          <small>50+ reviews, SEO traffic compounds, ad spend optimized</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+      <div class="br-row">
+        <div class="br-month">Month 06</div>
+        <div class="br-desc">Mature, system on autopilot
+          <small>Booking rate dialed in, 60+ reviews, predictable pipeline established</small>
+        </div>
+        <div class="br-amt">$5,000</div>
+      </div>
+
+      <div class="br-total">
+        <div class="br-month">6-Mo Base</div>
+        <div class="br-desc">Investment to Advanced Marketers (excl. ad spend)</div>
+        <div class="br-amt">$30,000</div>
+      </div>
+    </div>
+
+    <p style="font-size: 0.85rem; color: var(--ink-soft); font-style: italic; max-width: 720px; line-height: 1.6; margin-top: 2rem;">
+      Plus 10% of monthly ad spend ($350/mo at your stated $3,500 budget). Ad spend itself is funded directly into your own Google and Meta accounts. We never hold or invoice ad spend dollars. Total marketing investment over 6 months at recommended spend: $30,000 agency fees + $21,000 ad spend + $2,100 ad management = <strong>$53,100 all-in</strong>. Revenue projections elsewhere in this proposal are modeled assumptions, not guarantees.<sup>*</sup>
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 06 — WHAT YOU GET -->
+<section class="outcomes">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-num">06 · By Day 180</div>
+      <div>
+        <h2 class="sec-title display">What you'll have <em>that you don't today</em>.</h2>
+        <p class="sec-sub">Concrete deliverables, not vague promises. Here's what At Your Service looks like six months from signing.</p>
+      </div>
+    </div>
+
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card">
+        <span class="label">Clean Attribution</span>
+        <h3>Every dollar traceable.</h3>
+        <p>You'll finally know exactly where every booked call comes from. Which ad. Which keyword. Which channel. No more "I didn't even know where the leads were coming from." Real-time dashboard, weekly reports, monthly QBR.</p>
+      </div>
+
+      <div class="outcome-card">
+        <span class="label">Booking Rate Lift</span>
+        <h3>55% → 75% on the same volume.</h3>
+        <p>Speed-to-lead automation, CSR routing optimization, and CRM accountability convert leads you already have into appointments you currently miss. That's a 36% lift in closed jobs from zero increase in lead spend. Hidden margin you've been leaving on the table.</p>
+      </div>
+
+      <div class="outcome-card">
+        <span class="label">Predictable Pipeline</span>
+        <h3>$200K to $300K+ months by M6.</h3>
+        <p>Google Search + LSA + Meta ads optimized weekly. SEO compounding into Page 1 rankings for Baltimore HVAC searches. AEO ranking so when customers ask AI for an HVAC company, you come up. System runs without you babysitting it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Next Step</span>
+      <h2 class="display">Let's <em>get to work.</em></h2>
+      <p class="closing-body">
+        You've been burned before, so we're not asking for blind trust. The first 30 days are weekly check-ins and full data transparency. Show up, do the work, prove the math. By Month 3 the data is real and the conversion path is clear.
+      </p>
+      <p class="closing-body">
+        If this plan tracks with what you're trying to build, the next step is locking in the start. Once Month 1 payment of $5,000 clears, you'll be redirected to the service agreement to e-sign. Kickoff call within 7 days, full attribution stack live by end of Month 1.
+      </p>
+
+      <div class="cta-row">
+        <a href="#STRIPE_LINK_PLACEHOLDER" class="btn">Approve &amp; Begin → Secure Payment</a>
+        <a href="mailto:support@advancedmarketers.co?subject=At%20Your%20Service%20HVAC%20Proposal%20-%20Questions" class="btn ghost">Questions? Email Christian</a>
+      </div>
+
+      <div class="signature">
+        <div class="sig-block">
+          <span class="label">Prepared By</span>
+          <p>Christian Paniagua</p>
+          <span class="role">Founder · Advanced Marketers</span>
+        </div>
+        <div class="sig-block">
+          <span class="label">Prepared For</span>
+          <p>Ryan</p>
+          <span class="role">At Your Service Heating &amp; Cooling · Baltimore, MD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL DISCLAIMER -->
+<section style="background: var(--bg-alt); padding: 3rem 4vw 2rem; border-top: 1px solid var(--line);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; color: var(--pop-deep); text-transform: uppercase; font-weight: 700; margin-bottom: 0.8rem;">
+      <sup>*</sup> Important Notes &amp; Disclaimers
+    </div>
+    <p style="font-family: 'Inter Tight', sans-serif; font-size: 0.78rem; line-height: 1.65; color: var(--ink-soft); max-width: 980px; font-style: italic;">
+      All revenue projections, CPQL ranges, conversion rates, and 6-month performance estimates in this proposal are <strong style="color: var(--dark); font-style: normal;">modeled assumptions</strong>, not guarantees of future results. The assumptions are derived from two sources: (1) the unit economics provided by Ryan during our discovery call on June 23, 2026 ($5K-$7K average ticket, 60-70% close rate on booked appointments, 50-60% booking rate, currently $2M annualized revenue), and (2) Advanced Marketers' blended account data from comparable HVAC operators at similar ad spend levels. Actual performance will vary based on market conditions, seasonality, competitive activity, ad platform changes, lead quality at scale, the client's ability to staff and respond to leads, and many other factors outside of Advanced Marketers' control. Advanced Marketers makes no warranty, express or implied, regarding specific revenue outcomes, lead volume, conversion rates, or return on investment. Past performance of other accounts is not indicative of future results for At Your Service Heating &amp; Cooling. This document is for proposal and planning purposes only and does not constitute a contract. Final terms and conditions will be governed by the Service Agreement executed at signing.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Advanced Marketers · Google Premier Partner · Top 3% Globally</div>
+  <div><span class="wm">REVENUE FIRST.</span> ALWAYS.</div>
+</footer>
+
+<!-- Sticky CTA -->
+<a href="#STRIPE_LINK_PLACEHOLDER" class="pay-sticky" id="paySticky">
+  <span class="pay-label">Approve &amp; Pay</span>
+  <span class="pay-arrow">→</span>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const paySticky = document.getElementById('paySticky');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight * 0.6) {
+      paySticky.classList.add('show');
+    } else {
+      paySticky.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>

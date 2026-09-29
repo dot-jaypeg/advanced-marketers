@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best In The West Air Conditioning | Las Vegas AC Repair &amp; Installation</title>
+<meta name="description" content="Las Vegas AC repair, maintenance and installation from Best In The West Air Conditioning. Upfront pricing, licensed technicians, $1,500 off full system replacements. Call (702) 682-8439.">
+<link rel="icon" href="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Logo-small.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BEST IN THE WEST AIR CONDITIONING — homepage
+   Layout modeled on the Rosewood Landscape reference.
+   Palette sampled from the client logo (ram mark):
+     rust #9E3B1E, copper #C6714B, charcoal #141110, sand #F5F0E9
+   All photography loads from the client's live domain.
+   ============================================================ */
+
+:root{
+  --ink:#141110;
+  --ink-2:#1E1917;
+  --ink-3:#2A2321;
+  --rust:#9E3B1E;
+  --rust-dark:#7E2D14;
+  --copper:#C6714B;
+  --sand:#F5F0E9;
+  --paper:#FFFFFF;
+  --body:#57504B;
+  --line:#E2DAD1;
+  --hair:rgba(255,255,255,.30);
+  --wrap:1280px;
+  --r:10px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--body);
+  background:var(--paper);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{color:var(--ink);margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+h1{font-size:clamp(2.1rem,5.2vw,4.15rem)}
+h2{font-size:clamp(1.85rem,4vw,3.35rem)}
+h3{font-size:clamp(1.15rem,1.7vw,1.5rem);letter-spacing:-.015em}
+p{margin:0 0 1rem}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 clamp(18px,4vw,48px)}
+:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+
+/* ---------- license strip ---------- */
+.strip{
+  background:var(--sand);
+  color:#4A423D;
+  text-align:center;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:9px 16px;
+  border-bottom:1px solid var(--line);
+}
+.strip b{color:var(--rust);font-weight:700}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:var(--ink);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-in{
+  max-width:1420px;margin:0 auto;
+  padding:12px clamp(16px,3vw,34px);
+  display:flex;align-items:center;gap:22px;
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:0 0 auto}
+.brand img{width:46px;height:46px;border-radius:50%;background:#fff}
+.brand span{
+  color:#fff;font-weight:800;font-size:.95rem;line-height:1.12;
+  letter-spacing:.01em;max-width:150px;
+}
+.menu{
+  display:flex;align-items:center;gap:clamp(12px,1.8vw,30px);
+  margin:0 auto;padding:0;list-style:none;
+}
+.menu>li{position:relative}
+.menu a{
+  color:#fff;text-decoration:none;font-size:.9rem;font-weight:600;
+  padding:10px 2px;display:inline-block;white-space:nowrap;
+}
+.menu a:hover,.menu a.is-here{color:var(--copper)}
+.menu a.is-here{color:var(--copper)}
+.has-sub>a::after{content:"";display:inline-block;margin-left:7px;border:4px solid transparent;border-top-color:currentColor;transform:translateY(2px)}
+.sub{
+  position:absolute;left:-14px;top:calc(100% + 6px);min-width:238px;
+  background:#fff;border-radius:8px;padding:8px;list-style:none;margin:0;
+  box-shadow:0 22px 44px rgba(20,17,16,.24);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .16s ease,transform .16s ease,visibility .16s;
+}
+.has-sub:hover .sub,.has-sub:focus-within .sub{opacity:1;visibility:visible;transform:translateY(0)}
+.sub a{color:var(--ink);display:block;padding:9px 12px;border-radius:6px;font-weight:500;font-size:.88rem}
+.sub a:hover{background:var(--sand);color:var(--rust)}
+.nav-right{display:flex;align-items:center;gap:16px;flex:0 0 auto}
+.nav-tel{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem}
+.nav-tel:hover{color:var(--copper)}
+.pill{
+  background:var(--rust);color:#fff;text-decoration:none;
+  padding:14px 26px;border-radius:999px;
+  font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  transition:background .18s ease;
+}
+.pill:hover{background:var(--rust-dark)}
+.burger{
+  display:none;background:none;border:1px solid rgba(255,255,255,.35);
+  color:#fff;border-radius:7px;padding:9px 11px;cursor:pointer;
+}
+.burger span{display:block;width:20px;height:2px;background:#fff;margin:4px 0}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  min-height:min(86vh,760px);
+  display:flex;align-items:center;
+  background:#0B0908 url("https://bestinthewestairconditioning.com/media/posts/7/Best-In-The-West-Air-Conditioning-Installation-Photo.jpg") center 38% / cover no-repeat;
+  isolation:isolate;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(100deg,rgba(11,9,8,.90) 0%,rgba(11,9,8,.74) 46%,rgba(11,9,8,.42) 100%);
+}
+.hero-in{padding:clamp(64px,9vw,120px) 0}
+.hero h1{color:#fff;max-width:19ch}
+.hero p{
+  color:rgba(255,255,255,.90);
+  max-width:62ch;margin:22px 0 0;
+  font-size:clamp(1rem,1.35vw,1.16rem);
+}
+.hero-btns{display:flex;flex-wrap:wrap;gap:16px;margin-top:38px}
+.ghost{
+  border:1px solid var(--hair);color:#fff;text-decoration:none;
+  padding:19px 42px;font-size:1rem;font-weight:600;
+  background:rgba(255,255,255,.04);
+  transition:background .18s ease,border-color .18s ease;
+}
+.ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+.ghost.solid{background:var(--rust);border-color:var(--rust)}
+.ghost.solid:hover{background:var(--rust-dark);border-color:var(--rust-dark)}
+.hero-trust{
+  display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:40px;
+  color:rgba(255,255,255,.82);font-size:.86rem;font-weight:600;
+}
+.hero-trust li{list-style:none}
+.hero-trust li::before{content:"✓";color:var(--copper);font-weight:800;margin-right:9px}
+.hero-trust{padding:0}
+
+/* ---------- offer band ---------- */
+.offer{background:var(--rust);color:#fff}
+.offer-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:14px 30px;padding:22px 0;text-align:center;
+}
+.offer strong{font-size:clamp(1.05rem,2vw,1.4rem);font-weight:800;letter-spacing:-.01em;color:#fff}
+.offer small{display:block;font-weight:500;opacity:.86;font-size:.84rem;letter-spacing:.01em}
+.offer a{
+  background:#fff;color:var(--rust);text-decoration:none;
+  padding:13px 28px;border-radius:999px;font-weight:800;
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;
+}
+.offer a:hover{background:var(--ink);color:#fff}
+
+/* ---------- section shell ---------- */
+.section{padding:clamp(64px,8vw,116px) 0}
+.section.tint{background:var(--sand)}
+.head{display:flex;align-items:center;gap:clamp(20px,4vw,54px);margin-bottom:clamp(34px,5vw,60px)}
+.head::before{content:"";flex:0 0 clamp(60px,14vw,240px);height:3px;background:var(--ink)}
+.head.on-dark::before{background:var(--copper)}
+.head h2{flex:1 1 auto}
+.head.on-dark h2{color:#fff}
+.head .lead{margin:12px 0 0;max-width:58ch;font-size:.98rem}
+.head.on-dark .lead{color:rgba(255,255,255,.74)}
+
+/* ---------- service cards ---------- */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+.card{
+  position:relative;display:block;text-decoration:none;
+  border-radius:var(--r);overflow:hidden;min-height:430px;
+  background:var(--ink-2);
+}
+.card img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .5s ease;
+}
+.card:hover img{transform:scale(1.04)}
+.card::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,9,8,.16) 0%,rgba(11,9,8,.30) 42%,rgba(11,9,8,.62) 100%);
+}
+.card-body{
+  position:relative;z-index:2;height:100%;min-height:430px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:34px 26px;gap:14px;
+}
+.card-body h3{
+  color:#fff;font-size:clamp(1.5rem,2.5vw,2.1rem);text-transform:uppercase;
+  letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.45);max-width:12ch;
+}
+.card-body .card-sub{
+  color:rgba(255,255,255,.92);font-size:.9rem;font-weight:600;
+  text-shadow:0 1px 10px rgba(0,0,0,.5);
+}
+.view{
+  margin-top:6px;border:1px solid rgba(255,255,255,.85);color:#fff;
+  padding:11px 30px;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+}
+.card:hover .view{background:#fff;color:var(--ink)}
+.card.finance{grid-column:span 2}
+.card.finance::after{background:linear-gradient(180deg,rgba(11,9,8,.62) 0%,rgba(11,9,8,.72) 50%,rgba(11,9,8,.84) 100%)}
+.card.finance img{object-fit:cover;opacity:.32}
+.more{
+  border:1px solid var(--line);border-radius:var(--r);background:var(--sand);
+  padding:34px 30px;display:flex;flex-direction:column;justify-content:center;gap:14px;
+  min-height:430px;
+}
+.more h3{margin-bottom:2px}
+.more p{margin:0;font-size:.94rem}
+.more ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:12px}
+.more ul a{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  text-decoration:none;color:var(--ink);font-weight:700;font-size:1rem;
+  border-top:1px solid var(--line);padding:14px 0 4px;
+}
+.more ul a:hover{color:var(--rust)}
+.more ul a::after{content:"";width:22px;height:2px;background:var(--rust);flex:0 0 auto}
+
+/* ---------- on the job (gif) ---------- */
+.job{background:var(--ink);color:rgba(255,255,255,.78)}
+.job-shell{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(26px,4vw,62px);align-items:center;
+}
+.job h2{color:#fff}
+.job p{margin-top:18px;max-width:46ch}
+.job-media{border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+.job-media img{width:100%;height:auto}
+.job-cap{
+  margin:12px 0 0;font-size:.8rem;color:rgba(255,255,255,.55);
+}
+.job-list{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
+.job-list li{
+  padding-left:30px;position:relative;color:#fff;font-weight:600;font-size:.96rem;
+}
+.job-list li::before{
+  content:"";position:absolute;left:0;top:.55em;width:14px;height:2px;background:var(--copper);
+}
+
+/* ---------- about / owner ---------- */
+.about{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(28px,4.5vw,72px);align-items:center}
+.about-copy h2{margin-bottom:20px}
+.checks{list-style:none;margin:24px 0 30px;padding:0;display:grid;gap:11px}
+.checks li{padding-left:32px;position:relative;color:var(--ink);font-weight:600}
+.checks li::before{
+  content:"✓";position:absolute;left:0;top:-1px;
+  width:21px;height:21px;border-radius:50%;background:var(--rust);color:#fff;
+  font-size:.7rem;font-weight:800;display:grid;place-items:center;
+}
+.text-link{
+  color:var(--rust);font-weight:700;text-decoration:none;
+  border-bottom:2px solid var(--rust);padding-bottom:2px;
+}
+.text-link:hover{color:var(--ink);border-color:var(--ink)}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:14px}
+.collage figure{margin:0;border-radius:var(--r);overflow:hidden;background:var(--sand)}
+.collage img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.collage figure:first-child{grid-column:1 / -1}
+.collage figure:first-child img{aspect-ratio:16/9}
+
+/* ---------- process ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,34px);counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:34px 30px 32px}
+.step .n{
+  display:block;font-size:.78rem;font-weight:800;letter-spacing:.14em;
+  color:var(--rust);margin-bottom:14px;
+}
+.step h3{margin-bottom:10px}
+.step p{margin:0;font-size:.96rem}
+.step a{color:var(--rust);font-weight:700;text-decoration:none}
+.step a:hover{text-decoration:underline}
+
+/* ---------- reviews: two opposite-direction rows ---------- */
+.reviews{background:var(--ink);overflow:hidden}
+.note{
+  display:inline-block;margin-top:16px;background:rgba(198,113,75,.14);
+  border:1px solid rgba(198,113,75,.42);color:var(--copper);
+  padding:9px 16px;border-radius:6px;font-size:.82rem;font-weight:600;
+}
+.rows{display:grid;gap:clamp(16px,2vw,22px)}
+.row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.track{display:flex;gap:clamp(16px,2vw,22px);width:max-content;will-change:transform}
+.row-a .track{animation:slide-left 62s linear infinite}
+.row-b .track{animation:slide-left 74s linear infinite reverse}
+.row:hover .track,.row:focus-within .track{animation-play-state:paused}
+@keyframes slide-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rev{
+  flex:0 0 clamp(280px,25vw,360px);
+  background:var(--ink-2);border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--r);padding:26px 26px 24px;
+}
+.stars{color:#E8A33D;letter-spacing:.16em;font-size:.9rem}
+.rev p{color:rgba(255,255,255,.84);margin:14px 0 18px;font-size:.96rem}
+.rev footer{display:flex;align-items:center;gap:12px;border-top:1px solid rgba(255,255,255,.10);padding-top:16px}
+.avatar{
+  width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+  background:var(--rust);color:#fff;display:grid;place-items:center;
+  font-weight:800;font-size:.85rem;
+}
+.rev .who{color:#fff;font-weight:700;font-size:.9rem;line-height:1.2}
+.rev .where{color:rgba(255,255,255,.55);font-size:.8rem}
+.rev-cta{margin-top:clamp(30px,4vw,44px);display:flex;flex-wrap:wrap;gap:14px}
+
+/* ---------- financing ---------- */
+.fin{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,4vw,64px);align-items:center}
+.fin-media{
+  position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--r);
+  min-height:300px;display:grid;place-items:center;text-align:center;
+  padding:clamp(28px,5vw,52px);
+  background:#fff url("https://bestinthewestairconditioning.com/media/posts/13/responsive/air-conditioning-financing-greensky-and-wisetack-xs.png") center / 190% no-repeat;
+}
+.fin-media::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(255,255,255,.86)}
+.fin-media .partners{font-size:clamp(1.35rem,2.4vw,1.9rem);font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.fin-media .partners span{color:#1E8A3B}
+.fin-media .partners em{font-style:normal;color:#12BFD6}
+.fin-media .terms{margin:12px 0 0;font-weight:600;color:var(--body);font-size:.95rem}
+.fin h2{margin-bottom:18px}
+
+/* ---------- areas ---------- */
+.areas{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0;list-style:none}
+.areas li{
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:11px 22px;font-weight:600;color:var(--ink);font-size:.92rem;
+}
+
+/* ---------- faq ---------- */
+.faq{max-width:900px}
+.faq details{border-bottom:1px solid var(--line);padding:8px 0}
+.faq summary{
+  cursor:pointer;list-style:none;padding:20px 44px 20px 0;position:relative;
+  font-weight:700;color:var(--ink);font-size:clamp(1.02rem,1.5vw,1.18rem);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  color:var(--rust);font-size:1.5rem;font-weight:700;line-height:1;
+}
+.faq details[open] summary::after{content:"–"}
+.faq .answer{padding:0 10px 24px 0}
+.faq .answer p:last-child{margin-bottom:0}
+.faq ul{margin:0 0 12px;padding-left:22px}
+.faq li{margin-bottom:6px}
+
+/* ---------- closing cta ---------- */
+.close-cta{
+  background:var(--ink-2) url("https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Crane.jpeg") center / cover no-repeat;
+  position:relative;isolation:isolate;text-align:center;
+}
+.close-cta::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(11,9,8,.80)}
+.close-cta h2{color:#fff;max-width:24ch;margin:0 auto}
+.close-cta p{color:rgba(255,255,255,.82);max-width:56ch;margin:20px auto 0}
+.close-cta .hero-btns{justify-content:center}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink);color:rgba(255,255,255,.66);padding:clamp(52px,6vw,82px) 0 0}
+.foot-grid{display:grid;grid-template-columns:1.05fr .8fr .7fr 1.1fr;gap:clamp(26px,3.5vw,54px)}
+.foot h4{color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.foot a{color:rgba(255,255,255,.72);text-decoration:none}
+.foot a:hover{color:var(--copper)}
+.foot-brand img{width:74px;height:74px;border-radius:50%;background:#fff;margin-bottom:18px}
+.foot-brand p{font-size:.9rem;max-width:34ch}
+.foot .pill{margin-top:8px;display:inline-block}
+.foot-list{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:.94rem}
+.foot-tel{color:#fff;font-size:1.3rem;font-weight:800;letter-spacing:-.01em;text-decoration:none}
+.socials{display:flex;gap:10px;margin-top:16px}
+.socials a{
+  width:40px;height:40px;border:1px solid rgba(255,255,255,.24);border-radius:50%;
+  display:grid;place-items:center;font-size:.72rem;font-weight:700;letter-spacing:.02em;
+}
+.socials a:hover{background:var(--rust);border-color:var(--rust);color:#fff}
+.map{border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.14)}
+.map iframe{width:100%;height:230px;border:0;display:block;filter:saturate(.9)}
+.legal{
+  margin-top:clamp(38px,5vw,60px);border-top:1px solid rgba(255,255,255,.12);
+  padding:22px 0 30px;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:space-between;
+  font-size:.82rem;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .menu{display:none}
+  .burger{display:block}
+  .nav-in{justify-content:space-between}
+  .menu.open{
+    display:flex;flex-direction:column;align-items:flex-start;
+    position:absolute;top:100%;left:0;right:0;background:var(--ink-2);
+    padding:16px clamp(16px,4vw,34px) 26px;gap:4px;margin:0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .menu.open>li{width:100%}
+  .menu.open a{display:block;padding:12px 0;font-size:1rem;width:100%}
+  .menu.open .sub{
+    position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;
+    background:transparent;padding:0 0 8px 14px;
+  }
+  .menu.open .sub a{color:rgba(255,255,255,.7);font-size:.92rem;padding:8px 0}
+  .menu.open .has-sub>a::after{display:none}
+  .grid-3,.steps{grid-template-columns:repeat(2,1fr)}
+  .card.finance{grid-column:span 2}
+  .job-shell,.about,.fin{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  /* tap-to-call becomes the primary header action on phones */
+  .nav-in{gap:12px;padding:10px 14px}
+  .brand img{width:40px;height:40px}
+  .brand span{font-size:.78rem;max-width:104px}
+  .nav-right{gap:12px}
+  .nav-right .pill{display:none}
+  .nav-tel{background:var(--rust);color:#fff;padding:11px 16px;border-radius:999px;font-size:.82rem}
+  .nav-tel:hover{background:var(--rust-dark);color:#fff}
+}
+@media (max-width:410px){
+  .brand span{display:none}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .hero::after{background:linear-gradient(180deg,rgba(11,9,8,.84) 0%,rgba(11,9,8,.76) 100%)}
+  .grid-3,.steps,.foot-grid,.collage{grid-template-columns:1fr}
+  .card.finance{grid-column:span 1}
+  .more{min-height:0}
+  .head{flex-direction:column;align-items:flex-start;gap:18px}
+  .head::before{flex:0 0 auto;width:80px}
+  .card,.card-body{min-height:330px}
+  .ghost{width:100%;text-align:center;padding:18px 22px}
+  .offer a{width:100%;text-align:center}
+  .collage figure:first-child{grid-column:auto}
+  .legal{flex-direction:column}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .row-a .track,.row-b .track{animation:none}
+  .row{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .track{width:auto}
+  .card img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="strip">
+  Licensed, Fully Bonded &amp; Insured — License #0085161 &nbsp;·&nbsp; <b>¡Hablamos Español!</b>
+</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="https://bestinthewestairconditioning.com/">
+      <img src="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Logo-small.webp" alt="Best In The West Air Conditioning logo" width="46" height="46">
+      <span>Best In The West<br>Air Conditioning</span>
+    </a>
+
+    <ul class="menu" id="menu">
+      <li><a class="is-here" href="#top">Home</a></li>
+      <li class="has-sub">
+        <a href="https://bestinthewestairconditioning.com/hvac-services/">Services</a>
+        <ul class="sub">
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/ac-maintenance/">AC Maintenance</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/ac-repair/">AC Repair</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/ac-replacement-installation/">AC Installation</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/ac-energy-savings/">AC Energy Savings</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/heating-repair/">Heating Repair</a></li>
+        </ul>
+      </li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="https://bestinthewestairconditioning.com/financing/">Financing</a></li>
+      <li><a href="#areas">Service Area</a></li>
+      <li><a href="#faq">FAQs</a></li>
+      <li><a href="https://bestinthewestairconditioning.com/about-best-in-the-west-air-conditioning-north-las-vegas/">About</a></li>
+      <li><a href="https://bestinthewestairconditioning.com/contact-best-in-the-west-air-conditioning/">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a class="nav-tel" href="tel:+17026828439">(702) 682-8439</a>
+      <a class="pill" href="https://bestinthewestairconditioning.com/schedule-your-service/">Schedule Service</a>
+      <button class="burger" id="burger" aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-in">
+      <h1>Best In The West Air Conditioning – Las Vegas AC Repair</h1>
+      <p>We are more than a service call — we keep Las Vegas homes and businesses cool through the worst of the valley heat. Residential and commercial AC repair, maintenance, installation and heating repair, with licensed technicians, flat-rate quotes before the work starts, and prices we guarantee against the big-name companies. From a capacitor at 9 p.m. to a full crane-set system replacement, we handle it.</p>
+      <div class="hero-btns">
+        <a class="ghost solid" href="https://bestinthewestairconditioning.com/schedule-your-service/">Schedule Your Service</a>
+        <a class="ghost" href="tel:+17026828439">Call (702) 682-8439</a>
+      </div>
+      <ul class="hero-trust">
+        <li>Licensed &amp; certified technicians</li>
+        <li>Upfront, honest pricing</li>
+        <li>100% satisfaction guaranteed</li>
+        <li>Open Mon–Sat, 8 AM–8 PM</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OFFER BAND -->
+  <section class="offer">
+    <div class="wrap offer-in">
+      <div>
+        <strong>Get $1,500 off a full HVAC system replacement</strong>
+        <small>Financing available through GreenSky and Wisetack — ask about it on your free consultation.</small>
+      </div>
+      <a href="https://bestinthewestairconditioning.com/schedule-your-service/">Claim this offer</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Air Conditioning Services</h2>
+          <p class="lead">Repairs, upkeep, new systems and the money side of it. Pick what you need, or call and we'll tell you honestly which one it is.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <a class="card" href="https://bestinthewestairconditioning.com/hvac-services/ac-maintenance/">
+          <img src="https://bestinthewestairconditioning.com/media/posts/5/Best-In-The-West-Air-Conditioning-Maintenance.jpg" alt="Technician's tools on a rooftop air conditioning unit during a maintenance visit in Las Vegas" loading="lazy">
+          <span class="card-body">
+            <h3>Maintenance</h3>
+            <span class="card-sub">Monthly &amp; quarterly plans</span>
+            <span class="view">View</span>
+          </span>
+        </a>
+
+        <a class="card" href="https://bestinthewestairconditioning.com/hvac-services/ac-repair/">
+          <img src="https://bestinthewestairconditioning.com/media/posts/6/Best-In-The-West-Air-Conditioning-Maintenance-Repairs-Photo.jpg" alt="Open commercial HVAC unit with exposed wiring and refrigerant lines during a repair" loading="lazy">
+          <span class="card-body">
+            <h3>Repairs</h3>
+            <span class="card-sub">Air conditioning &amp; heating</span>
+            <span class="view">View</span>
+          </span>
+        </a>
+
+        <a class="card" href="https://bestinthewestairconditioning.com/hvac-services/ac-replacement-installation/">
+          <img src="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Crane.jpeg" alt="Crane lifting a new packaged HVAC unit onto a rooftop in Las Vegas" loading="lazy">
+          <span class="card-body">
+            <h3>Installation</h3>
+            <span class="card-sub">Installations &amp; replacements</span>
+            <span class="view">View</span>
+          </span>
+        </a>
+
+        <a class="card finance" href="https://bestinthewestairconditioning.com/financing/">
+          <img src="https://bestinthewestairconditioning.com/media/posts/13/responsive/air-conditioning-financing-greensky-and-wisetack-xs.png" alt="" loading="lazy">
+          <span class="card-body">
+            <h3>Financing</h3>
+            <span class="card-sub">GreenSky &amp; Wisetack — flexible monthly payments</span>
+            <span class="view">View</span>
+          </span>
+        </a>
+
+        <!-- Text panel rather than photo cards: the client's photo library has no
+             images that honestly depict energy savings or heating repair yet. -->
+        <div class="more">
+          <h3>Also from our team</h3>
+          <p>Same technicians, same upfront pricing.</p>
+          <ul>
+            <li><a href="https://bestinthewestairconditioning.com/hvac-services/ac-energy-savings/">AC energy savings</a></li>
+            <li><a href="https://bestinthewestairconditioning.com/hvac-services/heating-repair/">Heating repair</a></li>
+            <li><a href="https://bestinthewestairconditioning.com/hvac-services/">All HVAC services</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ON THE JOB / PROMO GIF -->
+  <section class="section job" id="work">
+    <div class="wrap">
+      <div class="job-shell">
+        <div>
+          <h2>See us on the job</h2>
+          <p>Rooftop packaged units, split systems, crane sets, late-season heating calls. This is the same crew and the same truck that shows up at your address.</p>
+          <ul class="job-list">
+            <li>Residential and commercial work</li>
+            <li>Flat-rate quote before we start</li>
+            <li>Repair or replace — we tell you which, and why</li>
+            <li>Spanish-speaking technicians</li>
+          </ul>
+        </div>
+        <div>
+          <div class="job-media">
+            <img src="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Promo-Video.gif" alt="Best In The West Air Conditioning technicians working on air conditioning units in Las Vegas" loading="lazy" decoding="async">
+          </div>
+          <!-- BUILD NOTE: this GIF is 11.7 MB. Convert to MP4/WebM before go-live. -->
+          <p class="job-cap">Clips from recent Las Vegas Valley jobs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section tint" id="about">
+    <div class="wrap">
+      <div class="about">
+        <div class="about-copy">
+          <h2>Welcome to Best In The West</h2>
+          <p>We're Las Vegas's premier air conditioning repair service and heating contractor, handling expert residential and commercial HVAC repairs and installations across the valley. Don't overpay with the big-name companies — our prices are the best in town, guaranteed.</p>
+          <p>Owner Ivan Luis still runs calls, which is why the answer you get on the phone is the same one you get on the roof.</p>
+          <ul class="checks">
+            <li>Licensed &amp; certified technicians</li>
+            <li>100% satisfaction guaranteed</li>
+            <li>Upfront, honest pricing</li>
+            <li>Years of trusted experience in the Las Vegas heat</li>
+          </ul>
+          <a class="text-link" href="https://bestinthewestairconditioning.com/about-best-in-the-west-air-conditioning-north-las-vegas/">Read more about us</a>
+        </div>
+        <div class="collage">
+          <figure><img src="https://bestinthewestairconditioning.com/media/website/Ivan-Luis-Best-in-The-West-Air-Conditioning.jpg" alt="Ivan Luis, owner of Best In The West Air Conditioning" loading="lazy"></figure>
+          <figure><img src="https://bestinthewestairconditioning.com/media/website/Best-in-The-West-Air-Conditioning-Work-Truck.jpg" alt="Best In The West Air Conditioning work truck" loading="lazy"></figure>
+          <figure><img src="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Finish-Project.jpeg" alt="Finished air conditioning installation by Best In The West" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Our 3-Step Process to Comfort</h2>
+          <p class="lead">No mystery pricing and no surprise visits. Here's exactly how a job runs.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="n">Step one</span>
+          <h3>Schedule your service</h3>
+          <p>Call <a href="tel:+17026828439">(702) 682-8439</a> or book online. We handle AC repairs, installations and maintenance, residential or commercial.</p>
+        </article>
+        <article class="step">
+          <span class="n">Step two</span>
+          <h3>Diagnosis &amp; service</h3>
+          <p>A trained technician diagnoses the issue and gives you upfront pricing, so the repair fits your budget before any work begins.</p>
+        </article>
+        <article class="step">
+          <span class="n">Step three</span>
+          <h3>Relax &amp; enjoy</h3>
+          <p>Your system runs the way it should. Our maintenance plans keep it that way through summer and into winter.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS — two rows, opposite directions -->
+  <!-- ================================================================
+       PLACEHOLDER CONTENT: the 12 cards below are sample copy so the
+       scrolling layout can be reviewed. Replace every card with real
+       Google / Yelp review text + first name + city before go-live,
+       and delete the amber "sample layout" note above the rows.
+       ================================================================ -->
+  <section class="section reviews" id="reviews">
+    <div class="wrap">
+      <div class="head on-dark">
+        <div>
+          <h2>What Las Vegas Says About Us</h2>
+          <p class="lead">Five stars across Google and Yelp, earned one hot afternoon at a time.</p>
+          <p class="note">Sample layout — real Google and Yelp reviews get dropped in before launch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rows">
+      <div class="row row-a">
+        <div class="track">
+          <!-- set 1 -->
+          <article class="rev"><div class="stars">★★★★★</div><p>Called at 7 in the morning with no cool air and they were at the house before noon. Found a bad capacitor, showed me the part, quoted it before touching anything.</p><footer><span class="avatar">MR</span><span><span class="who">Marisol R.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Two other companies told me I needed a whole new system. These guys fixed what was actually broken and explained why the unit had another few years in it.</p><footer><span class="avatar">DT</span><span><span class="who">Derek T.</span><br><span class="where">Summerlin</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>We run a small restaurant and the rooftop unit died mid-service. They had it back on that evening and followed up the next day to check it.</p><footer><span class="avatar">AV</span><span><span class="who">Ana V.</span><br><span class="where">Las Vegas</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Honest pricing, no upsell, no drama. The quote I got on the phone was the number on the invoice.</p><footer><span class="avatar">JC</span><span><span class="who">James C.</span><br><span class="where">Henderson</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Full system replacement with a crane on the roof. Crew was on time, cleaned up after themselves, and my power bill dropped noticeably.</p><footer><span class="avatar">PS</span><span><span class="who">Priya S.</span><br><span class="where">Spring Valley</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Signed up for the maintenance plan after the first visit. Two visits a year and the AC has not quit on us since.</p><footer><span class="avatar">RG</span><span><span class="who">Robert G.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+          <!-- set 1 duplicated for a seamless loop -->
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Called at 7 in the morning with no cool air and they were at the house before noon. Found a bad capacitor, showed me the part, quoted it before touching anything.</p><footer><span class="avatar">MR</span><span><span class="who">Marisol R.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Two other companies told me I needed a whole new system. These guys fixed what was actually broken and explained why the unit had another few years in it.</p><footer><span class="avatar">DT</span><span><span class="who">Derek T.</span><br><span class="where">Summerlin</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>We run a small restaurant and the rooftop unit died mid-service. They had it back on that evening and followed up the next day to check it.</p><footer><span class="avatar">AV</span><span><span class="who">Ana V.</span><br><span class="where">Las Vegas</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Honest pricing, no upsell, no drama. The quote I got on the phone was the number on the invoice.</p><footer><span class="avatar">JC</span><span><span class="who">James C.</span><br><span class="where">Henderson</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Full system replacement with a crane on the roof. Crew was on time, cleaned up after themselves, and my power bill dropped noticeably.</p><footer><span class="avatar">PS</span><span><span class="who">Priya S.</span><br><span class="where">Spring Valley</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Signed up for the maintenance plan after the first visit. Two visits a year and the AC has not quit on us since.</p><footer><span class="avatar">RG</span><span><span class="who">Robert G.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+        </div>
+      </div>
+
+      <div class="row row-b">
+        <div class="track">
+          <!-- set 2 -->
+          <article class="rev"><div class="stars">★★★★★</div><p>Heater went out on one of those cold January nights. Same company, same fast service, and they wear shoe covers in the house.</p><footer><span class="avatar">LK</span><span><span class="who">Lauren K.</span><br><span class="where">Enterprise</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Ivan came out himself, walked me through the duct issue with photos, and gave me options instead of a sales pitch.</p><footer><span class="avatar">MO</span><span><span class="who">Miguel O.</span><br><span class="where">Las Vegas</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Used the financing to spread out a new system. Application took minutes and the install happened that week.</p><footer><span class="avatar">TN</span><span><span class="who">Tasha N.</span><br><span class="where">Paradise</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>They service four of our rental properties now. Reliable scheduling and clear invoices, which is all I ever wanted from an HVAC company.</p><footer><span class="avatar">BH</span><span><span class="who">Brian H.</span><br><span class="where">Henderson</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Hablan español y explicaron todo con calma. Precio justo y el aire quedó funcionando perfecto.</p><footer><span class="avatar">CE</span><span><span class="who">Carmen E.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+          <article class="rev"><div class="stars">★★★★★</div><p>Third summer with these guys. Still answer the phone, still show up when they say they will.</p><footer><span class="avatar">SW</span><span><span class="who">Steve W.</span><br><span class="where">Sunrise Manor</span></span></footer></article>
+          <!-- set 2 duplicated for a seamless loop -->
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Heater went out on one of those cold January nights. Same company, same fast service, and they wear shoe covers in the house.</p><footer><span class="avatar">LK</span><span><span class="who">Lauren K.</span><br><span class="where">Enterprise</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Ivan came out himself, walked me through the duct issue with photos, and gave me options instead of a sales pitch.</p><footer><span class="avatar">MO</span><span><span class="who">Miguel O.</span><br><span class="where">Las Vegas</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Used the financing to spread out a new system. Application took minutes and the install happened that week.</p><footer><span class="avatar">TN</span><span><span class="who">Tasha N.</span><br><span class="where">Paradise</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>They service four of our rental properties now. Reliable scheduling and clear invoices, which is all I ever wanted from an HVAC company.</p><footer><span class="avatar">BH</span><span><span class="who">Brian H.</span><br><span class="where">Henderson</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Hablan español y explicaron todo con calma. Precio justo y el aire quedó funcionando perfecto.</p><footer><span class="avatar">CE</span><span><span class="who">Carmen E.</span><br><span class="where">North Las Vegas</span></span></footer></article>
+          <article class="rev" aria-hidden="true"><div class="stars">★★★★★</div><p>Third summer with these guys. Still answer the phone, still show up when they say they will.</p><footer><span class="avatar">SW</span><span><span class="who">Steve W.</span><br><span class="where">Sunrise Manor</span></span></footer></article>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="rev-cta">
+        <a class="ghost solid" href="https://bestinthewestairconditioning.com/schedule-your-service/">Schedule your service</a>
+        <a class="ghost" href="https://www.yelp.com/biz/best-in-the-west-air-conditioning-las-vegas-2" target="_blank" rel="noopener">Read reviews on Yelp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCING -->
+  <section class="section tint" id="financing">
+    <div class="wrap">
+      <div class="fin">
+        <!-- BUILD NOTE: the supplied financing artwork is a repeating pattern with
+             logos cropped at the tile edges, so it is used here as a background
+             texture. Ask the client for clean GreenSky / Wisetack logo files
+             before go-live if we want a true partner lockup. -->
+        <div class="fin-media" role="img" aria-label="Financing available through GreenSky and Wisetack">
+          <div>
+            <p class="partners"><span>GreenSky</span> &nbsp;+&nbsp; <em>Wisetack</em></p>
+            <p class="terms">Approved financing partners — apply in minutes</p>
+          </div>
+        </div>
+        <div>
+          <h2>A new system, on a payment that works</h2>
+          <p>A failed AC in July is not a purchase anyone plans for. We offer flexible financing through GreenSky and Wisetack so a replacement becomes a monthly payment instead of one hard hit — and with $1,500 off a full HVAC system replacement, the new unit starts paying you back in lower bills.</p>
+          <p>Ask about financing during your free consultation and we'll tell you what the numbers look like before you commit to anything.</p>
+          <p><a class="text-link" href="https://bestinthewestairconditioning.com/financing/">See financing options</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <!-- BUILD NOTE: confirm this area list with Ivan before go-live. The live
+       site only names Las Vegas and North Las Vegas explicitly. -->
+  <section class="section" id="areas">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Where We Work</h2>
+          <p class="lead">Residential and commercial service across the Las Vegas Valley. Not sure if you're in range? Call and ask — the answer is usually yes.</p>
+        </div>
+      </div>
+      <ul class="areas">
+        <li>Las Vegas</li>
+        <li>North Las Vegas</li>
+        <li>Henderson</li>
+        <li>Summerlin</li>
+        <li>Spring Valley</li>
+        <li>Enterprise</li>
+        <li>Paradise</li>
+        <li>Sunrise Manor</li>
+        <li>Whitney</li>
+        <li>Boulder City</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section tint" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <h2>Questions We Get Every Summer</h2>
+          <p class="lead">Straight answers. If yours isn't here, call (702) 682-8439 and ask.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>How much does it cost to get my air conditioner repaired?</summary>
+          <div class="answer">
+            <p>We price transparently and upfront — no hidden fees, no surprises. A technician diagnoses the issue and gives you a flat-rate quote before starting any repair, so you know exactly what to expect.</p>
+            <p>Considering a replacement instead? There's currently $1,500 off full HVAC system replacements, and an energy-efficient system lowers both your power bills and your future repair costs. Call <a href="tel:+17026828439">(702) 682-8439</a> for a repair quote or a free consultation on which route makes sense.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Should I repair or replace my air conditioner?</summary>
+          <div class="answer">
+            <p>A few signs it's time to upgrade:</p>
+            <ul>
+              <li>The unit is 10–15 years old</li>
+              <li>Repairs cost more than half the price of a new system</li>
+              <li>Energy bills keep climbing despite repairs</li>
+              <li>You're calling for service over and over</li>
+            </ul>
+            <p>We install energy-efficient systems and offer financing to make the upgrade affordable. Call for a free consultation and we'll help you make the call.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>How much does it cost to replace an AC unit in Las Vegas?</summary>
+          <div class="answer">
+            <p>It depends on the size and brand of the unit, its efficiency rating, and how complex the installation is. During a free consultation, our technicians assess your specific setup and give you a transparent, upfront quote before any work begins.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>How long does an air conditioner last in Las Vegas?</summary>
+          <div class="answer">
+            <p>More than most homeowners expect. Typical lifespans here:</p>
+            <ul>
+              <li>15–20 years for a well-maintained unit</li>
+              <li>20–25+ years with regular professional maintenance</li>
+              <li>10–15 years with minimal upkeep or a rough location</li>
+            </ul>
+            <p>Twice-yearly professional service can add five or more years. Filter changes matter, especially with pets. Units sitting in full direct sun tend to run shorter lives. Start budgeting for replacement once your system passes 15 years, and if you can plan it, winter is the cheaper season to install.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Is it worth repairing a 20-year-old AC unit?</summary>
+          <div class="answer">
+            <p>Usually replacement wins on long-term value. At 20+ years the unit has already outlived its expected 15–20 year life, R22 refrigerant in older systems has been phased out (making repairs pricier every year), and new systems run roughly 30–40% more efficiently.</p>
+            <p>Repairs may be cheaper today, but frequent ones add up fast. Our licensed technicians will look at your unit's actual condition, your budget and how long you plan to stay in the home, then give you an honest recommendation. Call <a href="tel:+17026828439">(702) 682-8439</a> for a free assessment.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="section close-cta">
+    <div class="wrap">
+      <h2>Cool air, same day, honest price</h2>
+      <p>Open Monday through Saturday, 8 AM to 8 PM. Talk to a real technician, get a real number, and get back to comfortable.</p>
+      <div class="hero-btns">
+        <a class="ghost solid" href="tel:+17026828439">Call (702) 682-8439</a>
+        <a class="ghost" href="https://bestinthewestairconditioning.com/schedule-your-service/">Schedule online</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="https://bestinthewestairconditioning.com/media/website/Best-In-The-West-Air-Conditioning-Logo-small.webp" alt="Best In The West Air Conditioning logo" width="74" height="74" loading="lazy">
+        <p>Las Vegas air conditioning repair, maintenance and installation. Residential and commercial. ¡Hablamos español!</p>
+        <a class="pill" href="https://bestinthewestairconditioning.com/schedule-your-service/">Schedule Service</a>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="foot-list">
+          <li><a class="foot-tel" href="tel:+17026828439">(702) 682-8439</a></li>
+          <li><strong style="color:#fff">Mon–Sat:</strong> 8 AM – 8 PM<br><strong style="color:#fff">Sun:</strong> Closed</li>
+          <li>Licensed, Bonded &amp; Insured<br>License #0085161</li>
+        </ul>
+        <div class="socials">
+          <a href="https://www.instagram.com/bestinthewestairconditioning/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.tiktok.com/@bestinthewestac" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
+          <a href="https://www.facebook.com/profile.php?id=61561103855978" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          <a href="https://www.yelp.com/biz/best-in-the-west-air-conditioning-las-vegas-2" target="_blank" rel="noopener" aria-label="Yelp">YE</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <ul class="foot-list">
+          <li><a href="https://bestinthewestairconditioning.com/about-best-in-the-west-air-conditioning-north-las-vegas/">About</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/hvac-services/">Services</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/financing/">Financing</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/contact-best-in-the-west-air-conditioning/">Contact</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/terms-of-use/">Terms of Use</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="https://bestinthewestairconditioning.com/cookie-policy/">Cookie Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Service Area</h4>
+        <p class="foot-list" style="margin-bottom:14px"><a href="https://www.google.com/maps/search/Best+In+The+West+Air+Conditioning+Las+Vegas" target="_blank" rel="noopener">Open in Google Maps</a></p>
+        <div class="map">
+          <iframe
+            title="Best In The West Air Conditioning service area — Las Vegas Valley"
+            src="https://www.google.com/maps?q=North+Las+Vegas,+NV&z=10&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>© <span id="yr">2026</span> Best In The West Air Conditioning. All rights reserved.</span>
+      <span>License #0085161 · Licensed, Bonded &amp; Insured</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  burger.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  menu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A' && e.target.getAttribute('href').charAt(0) === '#') {
+      menu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

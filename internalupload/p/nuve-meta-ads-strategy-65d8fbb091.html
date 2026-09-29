@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUVE × ADVANCED MARKETERS® — Meta Demo-Gen Game Plan</title>
+<style>
+  :root{
+    --black:#0a0a0a; --ink:#161616; --soft:#444a50; --muted:#8a9097;
+    --bg:#ffffff; --panel:#f6f6f5; --line:#e3e3e0; --line-dark:#0a0a0a;
+    --accent:#0a0a0a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:52px 26px 90px}
+
+  /* ---------- masthead ---------- */
+  .mast{border-bottom:3px solid var(--black);padding-bottom:34px;margin-bottom:10px}
+  .brandrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:42px;flex-wrap:wrap;gap:10px}
+  .brand{font-weight:800;font-size:15px;letter-spacing:.22em}
+  .brand sup{font-size:9px}
+  .brandrow .cl{font-size:12px;letter-spacing:.18em;color:var(--muted)}
+  .mast h1{font-size:clamp(30px,5vw,46px);font-weight:800;line-height:1.04;letter-spacing:-.01em;text-transform:uppercase;max-width:760px}
+  .mast h1 span{color:var(--muted)}
+  .mast p.sub{margin-top:18px;font-size:16.5px;color:var(--soft);max-width:640px}
+  .mast .meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:30px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .mast .meta b{display:block;color:var(--ink);font-size:13px;letter-spacing:.02em;text-transform:none;font-weight:600}
+
+  /* ---------- TLDR strip ---------- */
+  .tldr{background:var(--black);color:#fff;border-radius:0;padding:26px 30px;margin:34px 0 44px}
+  .tldr .lbl{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#9a9a9a;margin-bottom:14px}
+  .tldr ol{padding-left:20px}
+  .tldr li{font-size:14.5px;margin-bottom:8px;color:#e8e8e8}
+  .tldr li b{color:#fff}
+  .tldr li:last-child{margin-bottom:0}
+
+  /* ---------- accordion ---------- */
+  details{border-top:1px solid var(--line-dark);background:var(--bg)}
+  details:last-of-type{border-bottom:1px solid var(--line-dark)}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:20px;padding:24px 6px;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary .idx{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--muted);flex:none;width:52px}
+  summary h2{font-size:19px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;flex:1}
+  summary .chev{font-size:20px;font-weight:300;color:var(--muted);transition:transform .2s;flex:none}
+  details[open] summary .chev{transform:rotate(45deg)}
+  details[open] summary{padding-bottom:10px}
+  .body{padding:6px 6px 36px 78px}
+  @media(max-width:640px){.body{padding-left:6px}}
+  .body p.lede{font-size:15px;color:var(--soft);margin-bottom:18px;max-width:700px}
+
+  .panel{background:var(--panel);border:1px solid var(--line);padding:22px 24px;margin-bottom:12px}
+  .panel h3{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+  .panel p,.panel li{font-size:14.5px;color:var(--soft)}
+  .panel ul{padding-left:18px;margin-top:6px}
+  .panel li{margin-bottom:7px}
+  .panel li b{color:var(--ink)}
+  .grid2{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+  .grid3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+
+  .kpi{border:1px solid var(--line-dark);padding:20px 22px}
+  .kpi .big{font-size:27px;font-weight:800;letter-spacing:-.01em}
+  .kpi .lbl{font-size:13px;color:var(--muted);margin-top:5px}
+
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:2px solid var(--black)}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--soft);vertical-align:top}
+  td:first-child{color:var(--ink);font-weight:600}
+  tr:last-child td{border-bottom:none}
+
+  .flag{border-left:3px solid var(--black);background:var(--panel);padding:16px 20px;margin:14px 0;font-size:14.5px;color:var(--soft)}
+  .flag b{color:var(--ink)}
+
+  .step{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .n{flex:none;width:30px;height:30px;background:var(--black);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .step h4{font-size:14.5px;font-weight:700;margin-bottom:2px}
+  .step p{font-size:14px;color:var(--soft)}
+
+  .assume{font-size:12.5px;color:var(--muted);margin-top:10px;font-style:italic}
+
+  .quote{font-size:15px;font-style:italic;color:var(--ink);border-left:3px solid var(--black);padding:4px 0 4px 18px;margin:12px 0}
+  .quote span{display:block;font-size:12px;font-style:normal;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+
+  .foot{margin-top:64px;border-top:3px solid var(--black);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .foot b{color:var(--ink)}
+
+  @media print{
+    details{page-break-inside:avoid}
+    summary .chev{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <div class="mast">
+    <div class="brandrow">
+      <div class="brand">ADVANCED MARKETERS<sup>®</sup></div>
+      <div class="cl">CLIENT — NUVE · ISMAEL VALDEZ</div>
+    </div>
+    <h1>Meta Demo-Gen<br>Game Plan <span>// NUVE</span></h1>
+    <p class="sub">A paid acquisition system engineered to feed every AE two qualified, booked product demos per day — built around speed-to-lead, show rate, and the exact language that closes contractors on the phone.</p>
+    <div class="meta">
+      <div>Prepared by<b>Advanced Marketers · Orange, CA</b></div>
+      <div>Date<b>July 17, 2026</b></div>
+      <div>Channel<b>Meta (FB / IG)</b></div>
+      <div>Status<b>Pre-launch strategy</b></div>
+    </div>
+  </div>
+
+  <!-- TLDR -->
+  <div class="tldr">
+    <div class="lbl">The plan of attack — 6 moves</div>
+    <ol>
+      <li><b>Film Ish.</b> Hero videos on the Nuve ad account using the exact hooks from real sales calls — proactive vs. reactive, your logo center-screen, $15–30K replacement jobs calling YOU.</li>
+      <li><b>Qualify silently.</b> Form blockers (revenue, trade, team size) — non-ICP never knows they're disqualified, and Meta only optimizes on leads Brandon marks ICP in HubSpot.</li>
+      <li><b>Win the first 5 minutes.</b> Auto-dial (CallConnect-style) connects Brandon to every qualified lead instantly. Meta leads forget they filled the form — speed IS the show rate.</li>
+      <li><b>Book inside 72 hours.</b> Same day > next day > day 3. Past that, show rate collapses. Automate the reminder + no-show sequence Brandon currently runs by hand.</li>
+      <li><b>Retarget with AI creative.</b> Watched Ish but didn't convert → AI ads answering the real objections: "it's retention, not advertising," platform fit, "the smart stat customers won't rip out."</li>
+      <li><b>Scale on data.</b> AI end-of-day report shadows Brandon's qualification; Guadalajara call center on standby (included, no charge) once volume outruns him.</li>
+    </ol>
+  </div>
+
+  <!-- 01 OBJECTIVE -->
+  <details open>
+    <summary><span class="idx">01 //</span><h2>The Objective &amp; The Risk</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <div class="grid3">
+        <div class="kpi"><div class="big">2 / rep / day</div><div class="lbl">Booked demos from Meta — Ish's target</div></div>
+        <div class="kpi"><div class="big">≤ 5 min</div><div class="lbl">Speed-to-lead target — the Advanced Marketers standard for Meta leads</div></div>
+        <div class="kpi"><div class="big">72 hrs</div><div class="lbl">Max window from booking to demo before show rate collapses</div></div>
+      </div>
+      <div class="flag"><b>The honest risk we're getting ahead of:</b> booked calls are easy to buy — held calls are not. Contractors don't live by their calendars. If show rate isn't protected, AEs label ad leads "junk" within a week and stop working them. Every section below is built to prevent that. We've already set the expectation with the sales floor: the first waves WILL include rough leads while the algorithm learns — that's normal, budgeted for, and exactly how we train Meta to find better ones.</div>
+    </div>
+  </details>
+
+  <!-- 02 ICP -->
+  <details>
+    <summary><span class="idx">02 //</span><h2>Who We're Targeting (ICP)</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Confirmed with the Nuve team + Brandon's exact qualification checklist.</p>
+      <div class="panel">
+        <table>
+          <tr><th>Criteria</th><th>Definition</th></tr>
+          <tr><td>Trade</td><td>HVAC (primary), Plumbing, Electrical</td></tr>
+          <tr><td>Revenue</td><td>$2M+/yr minimum — sweet spot $3M+ (Network tier fit)</td></tr>
+          <tr><td>Fleet / team</td><td>4–5 wrapped trucks, 5+ employees (flexible — a 2-truck shop can run $3M)</td></tr>
+          <tr><td>Time in business</td><td>2–5 years established</td></tr>
+          <tr><td>Segment</td><td>Residential or resi + commercial. Never commercial-only</td></tr>
+          <tr><td>Customer value</td><td>ICP lands at ~$800–$1,500/mo recurring (Network ~$1,287/mo)</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <h3>Brandon's visual qualification check (how leads get graded)</h3>
+        <ul>
+          <li><b>Website shows multiple wrapped trucks</b></li>
+          <li><b>Team photos — 10 and up</b></li>
+          <li><b>500–1,500+ Google reviews</b></li>
+          <li>Verified via <b>ZoomInfo + Apollo</b> for revenue, decision-makers, direct contact info</li>
+          <li>Graded with the <b>ICP / non-ICP toggle in HubSpot</b> — this toggle is the exact signal we feed back to Meta to optimize the campaigns</li>
+        </ul>
+      </div>
+      <div class="flag"><b>Watch-out from live cold calls:</b> small shops (8 employees, tiny service areas) slip through and eat demo slots. Form blockers exist to filter exactly this profile before it ever hits Brandon's phone.</div>
+    </div>
+  </details>
+
+  <!-- 03 MESSAGE -->
+  <details>
+    <summary><span class="idx">03 //</span><h2>Offer &amp; Messaging</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Pulled directly from Brandon's pitch and recorded sales calls — the ads say what already closes on the phone.</p>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Front-end offer</h3>
+          <p><b>Book a product demo → free Sophia AI v2 thermostat.</b> Tied to the v2 launch — tangible, urgent, mirrors what's working on socials and cold outreach.</p>
+          <ul>
+            <li><b>Anchor the value:</b> every free unit ships with a receipt (in the box AND emailed) showing retail price crossed out — the gift carries weight and hands AEs a follow-up conversation.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Pain → Agitate → Solution</h3>
+          <ul>
+            <li><b>Pain:</b> you never know when a customer needs service — you're reactive, not proactive. Other thermostats don't notify you; they carry THEIR brand in your customer's home.</li>
+            <li><b>Agitate:</b> you're paying $300–$500 to win each new customer while your competitor's logo sits on the wall of homes YOU serviced. When the system dies, they Google — not you.</li>
+            <li><b>Solution:</b> one-time fee, lifetime customer. Your logo center-screen. Replacement jobs run $15–30K — and they call you first.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Proof points for creative</h3>
+        <ul>
+          <li><b>900 contractors switched in 2 years</b></li>
+          <li>Ish's story — <b>scaled a contracting business $0 → $100M</b>, built Nuve for contractors, by a contractor</li>
+          <li>Dedicated customer-service reps behind every account</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Objections to answer IN the ads (heard on live calls)</h3>
+        <ul>
+          <li><b>"Is this advertising?"</b> → No — this is retention. Keep the customers you already earned. Say it early or we attract the wrong leads.</li>
+          <li><b>"I already use Housecall Pro / ServiceTitan."</b> → Nuve works alongside your platform, not instead of it.</li>
+          <li><b>"My customers rip out smart thermostats."</b> → Flip it: the smart stat homeowners actually keep — simple for them, powerful for you.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- 04 CREATIVE -->
+  <details>
+    <summary><span class="idx">04 //</span><h2>Creative Strategy</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Two layers: Ish drives cold volume, AI creative handles retargeting at scale.</p>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Layer 1 — Ish hero videos (cold)</h3>
+          <ul>
+            <li>Ish is Nuve's best salesperson — he fronts top-of-funnel.</li>
+            <li>Runs on the <b>Nuve ad account only</b> — nothing touches his personal pages.</li>
+            <li>Builds the Ish ↔ Nuve association in expansion markets (East Coast) where his audience hasn't connected the two.</li>
+            <li>Scripts = the PAS framework above, in his voice.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Layer 2 — AI retargeting</h3>
+          <ul>
+            <li>Watched or clicked Ish's ad but didn't convert → remarketed with AI creative, like a commercial follow-up.</li>
+            <li>Each AI ad answers one objection: retention-not-ads, platform fit, homeowner simplicity, ROI math.</li>
+            <li>Fast angle testing with zero extra filming days.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quote">"Your logo front and center — they don't go to Google, they don't click your competitor's pay-per-click ads."<span>— Live Nuve sales call, the line that landed. This is hook #1.</span></div>
+    </div>
+  </details>
+
+  <!-- 05 FUNNEL -->
+  <details>
+    <summary><span class="idx">05 //</span><h2>Funnel &amp; Speed-to-Lead</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Built to qualify hard without ever telling a lead they've been disqualified — so Meta learns to find more of the right owners.</p>
+      <div class="panel">
+        <div class="step"><div class="n">1</div><div><h4>Ad — Ish video, free v2 thermostat offer</h4><p>Cold ICP targeting: HVAC / plumbing / electrical owners, priority geos incl. East Coast expansion.</p></div></div>
+        <div class="step"><div class="n">2</div><div><h4>Qualifying form with blockers</h4><p>Revenue tier, trade, team size. Non-ICP answers → lead still captured, still callable, but <b>never sent back to Meta as a conversion</b>. Meta only optimizes toward qualified. The lead never knows.</p></div></div>
+        <div class="step"><div class="n">3</div><div><h4>Instant connect — ≤ 5 minutes</h4><p>Auto-dial (CallConnect-style) rings Brandon the second a qualified lead lands and connects the call. Meta leads forget they filled the form within minutes — Advanced Marketers' rule: the first 5 minutes decide everything. Brandon currently works inbound from his phone 25/8; we're automating the dial, not replacing him.</p></div></div>
+        <div class="step"><div class="n">4</div><div><h4>Qualify &amp; book — same day, 72-hour max</h4><p>ZoomInfo/Apollo check → ICP toggle in HubSpot → push for same-day demo, never book past 72 hours. Non-ICP gets a soft redirect to Alex (mentorship / NCU / community) framed as a better fit, never a rejection.</p></div></div>
+        <div class="step"><div class="n">5</div><div><h4>Demo → close → trial fallback</h4><p>ICP no-close still gets the trial unit — with the crossed-out price receipt — and enters AE follow-up cadence.</p></div></div>
+      </div>
+      <div class="panel">
+        <h3>Overflow plan — Guadalajara call center</h3>
+        <p>Brandon works every lead first (his call — he knows the pitch and grades lead quality better than anyone). Once numbers and metrics are proven and volume outruns him, the Advanced Marketers bilingual call center takes first-touch qualification and passes hot leads to the floor. <b>Included in our service — no extra charge.</b></p>
+      </div>
+    </div>
+  </details>
+
+  <!-- 06 SHOW RATE -->
+  <details>
+    <summary><span class="idx">06 //</span><h2>Show-Rate Defense &amp; No-Show Playbook</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Brandon already runs a strong no-show recovery — manually. We systematize it so it survives ad volume.</p>
+      <div class="grid2">
+        <div class="panel">
+          <h3>Before the demo (automate)</h3>
+          <ul>
+            <li>Instant confirmation email + SMS at booking — with Brandon's/AE's direct number ("things change fast in HVAC — text me, we'll reschedule, no problem").</li>
+            <li>Reminders at 24h and 1h, short pre-demo video from Ish so they know who they're meeting and why it's worth showing.</li>
+            <li>Calendar invite verified delivered — <b>check the spam-folder problem</b>; it happened on a live call this week.</li>
+            <li>Never book past 72 hours out. Booked-a-week-out demos with gatekeepers are where shows go to die.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>After a no-show (systematize Brandon's play)</h3>
+          <ul>
+            <li>Multi-text + multi-call from the SDR <b>and</b> Brandon personally — two voices, more pressure.</li>
+            <li>Still ghosting after days → <b>group chat with Ish</b> for credibility leverage. It works; make it a defined stage in HubSpot, not a judgment call.</li>
+            <li>Sequences templated in HubSpot so recovery runs the same at 10 leads/day as it does at 2.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 07 MATH -->
+  <details>
+    <summary><span class="idx">07 //</span><h2>The Math (Working Model)</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <p class="lede">Baseline per AE. Figures marked * are estimates — rebuilt on actuals after 2–3 weeks live.</p>
+      <div class="panel">
+        <table>
+          <tr><th>Metric</th><th>Per AE / day</th><th>Per AE / month (~22 days)</th><th>Basis</th></tr>
+          <tr><td>Booked demos</td><td>2</td><td>44</td><td>Ish's target</td></tr>
+          <tr><td>Held demos</td><td>~1.2*</td><td>~26*</td><td>60% show rate* with 5-min connect + 72h rule + reminder stack</td></tr>
+          <tr><td>Closes</td><td>~0.3*</td><td>~6–8*</td><td>25% close rate* (team said "under 30%")</td></tr>
+          <tr><td>New MRR</td><td>—</td><td>~$7,000–$9,000*</td><td>$1,150 avg ICP subscription ($800–$1,500 range)</td></tr>
+        </table>
+        <p class="assume">*Estimates. Organic today is ~1 submission/day company-wide — ads are what makes a per-rep quota possible. Subscription revenue compounds: every month's closes stack on the last.</p>
+      </div>
+      <div class="grid3">
+        <div class="kpi"><div class="big">~$7–9K*</div><div class="lbl">New MRR per AE per month at target</div></div>
+        <div class="kpi"><div class="big">$300–500</div><div class="lbl">What contractors pay per new customer — the CAC we weaponize in ad copy</div></div>
+        <div class="kpi"><div class="big">$15–30K</div><div class="lbl">Replacement job value that "logo center-screen" protects — the ROI story</div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 08 SALES ALIGNMENT -->
+  <details>
+    <summary><span class="idx">08 //</span><h2>Sales Alignment &amp; AI Shadow</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <div class="grid3">
+        <div class="panel"><h3>1. Same effort, every lead</h3><p>Early ad leads will be rougher than referrals — normal. Full effort while the algorithm learns; it can only optimize off the data we give it.</p></div>
+        <div class="panel"><h3>2. Toggle everything</h3><p>ICP / non-ICP marked in HubSpot on every lead, every time. That toggle literally trains Meta to deliver better leads faster.</p></div>
+        <div class="panel"><h3>3. Get them in, upgrade later</h3><p>Ish's playbook: land the account at any tier, grow it after. Chasing only top-tier closes kills volume.</p></div>
+      </div>
+      <div class="panel">
+        <h3>AI shadow report (Advanced Marketers initiative)</h3>
+        <p>We run an end-of-day AI report replicating Brandon's qualification flow, matched against his actual calls. Once accuracy is proven, AI takes the grunt work. Agreed approach with sales: keep it basic first, zero it out, then layer in automation.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- 09 ROADMAP -->
+  <details>
+    <summary><span class="idx">09 //</span><h2>Launch Roadmap</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <div class="panel">
+        <div class="step"><div class="n">0</div><div><h4>Done — Discovery</h4><p>Brandon deep-dive (process, ICP checklist, tools, no-show play) · live sales-call review · pain-point extraction for creative.</p></div></div>
+        <div class="step"><div class="n">1</div><div><h4>This week — Align &amp; access</h4><p>Call with Ish · walk HubSpot end-to-end as a test lead · confirm baseline show/close rates · lock offer + budget.</p></div></div>
+        <div class="step"><div class="n">2</div><div><h4>Week 1 — Build</h4><p>Film Ish hero batch · PAS copy from call language · qualifying form + blockers · hidden-disqualification pixel wiring · 5-min auto-connect · reminder/no-show sequences in HubSpot · brief the AE floor.</p></div></div>
+        <div class="step"><div class="n">3</div><div><h4>Week 2 — Launch &amp; learn</h4><p>Live to cold ICP audiences · AI retargeting on · daily lead-quality review with Brandon · crossed-out-price receipts start shipping in trial boxes.</p></div></div>
+        <div class="step"><div class="n">4</div><div><h4>Weeks 3–4 — Optimize &amp; scale</h4><p>Rebuild math on actuals · kill losers, scale winners · expand East Coast geos · activate Guadalajara overflow when volume outruns Brandon · scale budget toward 2 booked/rep/day.</p></div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 10 NEEDS -->
+  <details>
+    <summary><span class="idx">10 //</span><h2>What We Need From Nuve</h2><span class="chev">+</span></summary>
+    <div class="body">
+      <div class="panel">
+        <ul>
+          <li><b>Filming time with Ish</b> — one short session covers the initial hero creative batch.</li>
+          <li><b>Baseline numbers</b> — current demo show rate and ICP close rate from Brandon's HubSpot data.</li>
+          <li><b>HubSpot workflow sign-off</b> — auto-connect dialing, reminder sequences, no-show stages (we have access; need the green light to build).</li>
+          <li><b>AE count &amp; hiring ramp</b> — so ad budget scales with the floor, not ahead of it.</li>
+          <li><b>Ad account access + pixel</b> — Nuve Meta Business Manager.</li>
+          <li><b>More call recordings</b> — 5–10 best closes to keep feeding hooks into creative.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <div class="foot">
+    <span><b>ADVANCED MARKETERS®</b> · 135 S Lemon St Ste D, Orange, CA</span>
+    <span>Revenue first. Always.</span>
+    <span>Prepared for NUVE — Confidential</span>
+  </div>
+
+</div>
+</body>
+</html>

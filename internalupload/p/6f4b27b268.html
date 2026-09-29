@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AM Attack Checklist · Week of 7/20</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a2233; --muted:#5c6674; --line:#e4e7ec;
+    --red:#c0392b; --red-bg:#fdeeec; --amber:#9a6700; --amber-bg:#fff6e0;
+    --green:#1a7f37; --green-bg:#e9f7ee; --blue:#1f5fbf; --gray-bg:#eef0f3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12151b; --card:#1b1f27; --ink:#e8ebf0; --muted:#9aa3b0; --line:#2a303b;
+      --red:#ff7b6b; --red-bg:#3a221f; --amber:#e8b93f; --amber-bg:#37301a;
+      --green:#5fce82; --green-bg:#1d3125; --blue:#7aa7ee; --gray-bg:#242a34; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:28px 20px 80px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:6px}
+  .progress{position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;font-size:13px;font-weight:600}
+  .bar{height:8px;background:var(--gray-bg);border-radius:99px;overflow:hidden;margin-top:6px}
+  .bar i{display:block;height:100%;width:0%;background:var(--green);border-radius:99px;transition:width .2s}
+  h2{font-size:15px;margin:26px 0 8px;display:flex;align-items:center;gap:8px}
+  .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .t-red{background:var(--red-bg);color:var(--red)} .t-amber{background:var(--amber-bg);color:var(--amber)} .t-green{background:var(--green-bg);color:var(--green)}
+  ul.check{list-style:none;margin:0 0 6px;padding:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  ul.check li{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13.5px}
+  ul.check li:last-child{border-bottom:none}
+  ul.check li .box{flex:0 0 auto;width:18px;height:18px;border:2px solid var(--muted);border-radius:5px;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+  ul.check li.done .box{background:var(--green);border-color:var(--green)}
+  ul.check li.done .txt{text-decoration:line-through;color:var(--muted)}
+  .who{color:var(--blue);font-weight:600}
+  .acct{font-weight:700}
+  .note{font-size:12px;color:var(--muted);margin:4px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Attack Checklist — Week of July 20</h1>
+  <div class="sub">One account per line. Click to check off — progress saves in your browser (download the file and open in Chrome/Safari; the Claude preview pane doesn't keep state). Built from the Meta heartbeat (7/21 11:53 AM) + ClickUp + Slack + Zoom.</div>
+  <div class="progress"><span id="count">0 / 0 done</span><div class="bar"><i id="fill"></i></div></div>
+
+  <h2>🚨 Today <span class="tag t-red">do these first</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Vizeon Windows &amp; Doors</span> — <span class="who">Jaime</span>: 0 active Meta campaigns on the tampering account. Open the ad account, find out who paused them; if it was the client → churn-save call today.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">5blox</span> — <span class="who">Mizael/Kyle</span>: 83 campaigns active, $0 spend yesterday (acct 303993902). Check billing + delivery before the client asks where the leads are.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Ram Dumpster</span> — <span class="who">Tim</span>: log into Google Ads, confirm campaigns are OFF (cancelled client; board says still enabled — unverified).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Sierra Trimlight</span> — <span class="who">Mak</span>: turn the still-enabled campaign OFF (account unsettled, not spending, but close it formally), then save attempt + collect before next cycle.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Platinum Paving (Edgar)</span> — <span class="who">Jaime</span>: decide — keep spending $32/day with the client unreachable, or pause until contact. 7/16 meeting never happened; Tim's call was due 7/10.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Bluepoint Pools</span> — <span class="who">Tim</span>: Meta payment UNSETTLED, campaigns blocked. Billing call today.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Haro HVAC</span> — <span class="who">Tim</span>: Meta payment UNSETTLED, campaigns blocked. Billing call today.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Forbes Landscape</span> — <span class="who">Mak</span>: reply to Jaime's screenshot thread — heartbeat confirms $31 + $50 spend yesterday. Close the loop.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Atlas (client)</span> — <span class="who">Paul</span>: confirm the 9:00 AM onboarding call happened (billing clock running; 7/16 was a no-show).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">MCC setup</span> — <span class="who">Chris</span>: install "AM Google Heartbeat" (Tools → Bulk Actions → Scripts, paste, schedule daily 11:30 AM). Unlocks Google verification for every account.</span></li>
+  </ul>
+
+  <h2>💳 Payment stalls — campaigns ON, $0 spend yesterday</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Caliber K9</span> — <span class="who">Mak</span>: 1 campaign on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Valle Interiors</span> — <span class="who">growth POC</span>: 4 campaigns on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">WestCoast Fence Pros</span> — <span class="who">growth POC</span>: 1 campaign on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Texan Roofing</span> — <span class="who">growth POC</span>: 1 campaign on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Solar Energy</span> — <span class="who">growth POC</span>: 1 campaign on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Always Insurance</span> — <span class="who">growth POC</span>: 1 campaign on, $0 spend. Billing/delivery check.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Acct 106231623122110</span> — <span class="who">Tim</span>: 27 campaigns on, $0 spend, and the account has no name. Identify the client + rename in Business Manager.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Acct 129853217452321</span> — <span class="who">Tim</span>: 3 campaigns on, $0 spend, no name. Identify + rename.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Pro Made Roofing</span> — <span class="who">Jaime</span>: spending $89/day WITH a payment-declines flag — verify the card before next cycle.</span></li>
+  </ul>
+
+  <h2>🔴 Payment UNSETTLED — Meta has blocked the account</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Prestige Builders</span> — <span class="who">Johnny</span>: collect the $3,579; account unsettled; on red list since 6/29.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Joa Brothers</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">One Nation Energy</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JQ Glasswork</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">SM Brothers</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Palm Valley Insurance</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Paradise Concrete</span> — <span class="who">Tim</span>: billing outreach or formal close-out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">My Contractor Stack</span> — <span class="who">Simon</span>: Meta ad account DISABLED — appeal before promising any launch date.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Elite Electric NTX</span> — <span class="who">Tim</span>: ad account DISABLED — active client or close out?</span></li>
+  </ul>
+
+  <h2>🚀 Launches <span class="tag t-green">get these live</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Drain Force Plumbing</span> — <span class="who">Simon</span>: PAST live date (Day 33, case-study account). Launch this week.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Next Era HVAC</span> — <span class="who">Simon</span>: clear Google business verification (Meta already spending $67/day).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Smithco Construction</span> — <span class="who">Donovan</span>: finish pre-live check inside the 14-day clock (Day 10).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Wed 7/23 launch client</span> — <span class="who">Scotty/Mizael</span>: finish Google + Meta builds on schedule.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">GBP-verified client</span> — <span class="who">Scotty</span>: launch the Google campaign that's had zero blockers since 7/10 (task overdue since 7/13).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Lead-form client</span> — <span class="who">Mizael</span>: launch the Meta campaign waiting only on form approval (promised 7/6).</span></li>
+  </ul>
+
+  <h2>⏱️ Sold — up next on the 14-day clock (Paul's lane)</h2>
+  <div class="note" style="margin:0 0 8px">Every sold account not yet live, ordered by go-live target (signed date + 14 days). This is the "what's launching next" queue.</div>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Smithco Construction</span> — Day 10 · <b>target LIVE ~Fri 7/24</b> · at pre-live check (Donovan). Closest to the wire — clear the check this week.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">At Your Service H&amp;C</span> — Day 10 · <b>target ~7/25</b> · client gone quiet: call, don't Slack (Donovan). Quiet client eats the clock.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Roberts Garage Doors</span> — Day 9 · <b>target ~7/26</b> · blocked: no domain exists — buy it now (Lindsey/Paul).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Apex Landscape</span> — Day 9 · <b>target ~7/26</b> · on track (Mak). Just keep it moving.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Lincoln Plumbing &amp; Rooter</span> — Day 9 · <b>target ~7/26</b> · effectively live early — optimizing client's existing GAds (Mak). Confirm and mark live.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">The Alliance 247</span> — Day 7, signed 7/14 · <b>target 7/28</b> · [MKTG — SEO pkg] no POC yet → Paul takes ownership + kickoff.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Atlas (client)</span> — clock ALREADY RUNNING (billing started before 7/16 no-show) · onboarding call was this morning 9 AM — confirm held, finish remaining modules.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Emberline Shower Enclosures</span> — onboarding due <b>7/28</b> · [MKTG] · schedule the session now (ad account already exists).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Premium Plumbing &amp; Drain</span> — Day 5 · <b>target ~7/30</b> (website-only/SEO — softer clock) · on track (Simon).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">M.L. Berni Co.</span> — Day 1, signed 7/20 · <b>target 8/3</b> · ⚠️ package-marker conflict — resolve BEFORE kickoff → Paul takes POC.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Inland Renovation &amp; Construction</span> — Day 1, signed 7/20 · <b>target 8/3</b> · [MKTG] no POC yet → Paul takes ownership + kickoff.</span></li>
+  </ul>
+
+  <h2>📋 Jaime — decisions</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt">Locate/collect the missing signed agreement (Chris flagged 7/10).</span></li>
+    <li><span class="box"></span><span class="txt">Decide the hospitalization billing credit (asked 6/26, re-asked 7/1).</span></li>
+    <li><span class="box"></span><span class="txt">Decide pause-billing for the unreachable client by end of week.</span></li>
+    <li><span class="box"></span><span class="txt">Reconcile the $5k billing-vs-delivery chargeback risk (flagged 6/11).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JH Disposal</span> — get current status (red-list severe 6/29: wants out; not on the go-live board at all).</span></li>
+    <li><span class="box"></span><span class="txt">Restart the red-list weekly with Tim (last update 6/29, now stale).</span></li>
+  </ul>
+
+  <h2>👀 Jaime — add to the monitoring list (live clients missing from the board)</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Green Ladder Roofing</span> — spending $104/day; weekly held 7/14 + 7/21 ✓.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Nuve Home</span> — daily check-ins running ✓; Meta acct has 0 campaigns (confirm intended channel).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JLG Tree Service</span> — call held 7/14 ✓; Meta 0 campaigns (confirm channel).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">ML Plumbing</span> — call held 7/17 ✓; Meta trailing $11.73 with 0 campaigns (just paused?).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Drain It Plumbing</span> — no Zoom session 7/16; Meta 0 campaigns. Chase status.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Caliber K9</span> — no Zoom session 7/15 AND $0 spend. Chase.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">GRT Renovations</span> — no Zoom session 7/17. Chase.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Techmaster Construction</span> — no Zoom session 7/17. Chase.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Forge Electric</span> — no sessions 7/14 + 7/17; next slot tonight 4:30 — make it happen.</span></li>
+  </ul>
+
+  <h2>🧱 Stuck builds — assign + push</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">ColdRiite Walk-Ins</span> (Day 374) — <span class="who">Chris</span>: assign a single owner today + set a finish date.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Amaral's Construction</span> (Day 40, ghosting) — <span class="who">Julia</span>: final-outreach sequence, then leadership pause/terminate call.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Hernandez</span> (Day 35) — <span class="who">Johnny</span>: email + GHL text 619-410-2488 (no attempts logged since 7/1).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Clog Monkey</span> (Day 32, silent) — <span class="who">Simon</span>: call attempt + deadline letter.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Cal Pro Plumbing</span> (Day 43) — <span class="who">Johnny</span>: post a build ETA in-channel.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">World Famous Plumbing</span> (Day 42) — <span class="who">Johnny</span>: ship the 7/7 revision list + ETA.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Ground Up Plumbing 24-7</span> (Day 25) — <span class="who">Johnny</span>: build start confirmation + ETA.</span></li>
+  </ul>
+
+  <h2>🧹 Hygiene — so next week's board is automatic</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="who">Tim/Kyle</span> — rename stale ClickUp cards (Forbes, 5blox first): keep day-counts/flags in fields, not titles.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="who">Chris</span> — move the Meta heartbeat token into Script Properties (it's readable in Drive right now).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="who">Chris</span> — optional: fix Supermetrics prioritized accounts (for CPL/keyword reporting).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="who">Chris</span> — optional: connect GHL to this workspace for call/speed-to-lead reports.</span></li>
+  </ul>
+
+  <div class="note">Prepared Tue 7/21/2026 · Sources: AM Meta Heartbeat (7/21 11:53 AM, spend = 7/20), ClickUp go-live board, Slack, Zoom log 7/13–7/21.</div>
+</div>
+<script>
+  var items = document.querySelectorAll('ul.check li');
+  var count = document.getElementById('count'), fill = document.getElementById('fill');
+  var KEY = 'am-attack-checklist-2026-07-21';
+
+  function idFor(li){
+    var s = li.querySelector('.txt').textContent.trim(), h = 0;
+    for (var i = 0; i < s.length; i++){ h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    return 'i' + h;
+  }
+  function loadState(){
+    try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; }
+  }
+  function saveState(state){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){ /* preview pane — checks work but won't persist */ }
+  }
+  var state = loadState();
+
+  function render(li){
+    var done = !!state[idFor(li)];
+    li.classList.toggle('done', done);
+    li.querySelector('.box').textContent = done ? '✓' : '';
+  }
+  function update(){
+    var done = document.querySelectorAll('ul.check li.done').length;
+    count.textContent = done + ' / ' + items.length + ' done';
+    fill.style.width = (items.length ? (100*done/items.length) : 0) + '%';
+  }
+  items.forEach(function(li){
+    render(li);
+    li.addEventListener('click', function(){
+      var id = idFor(li);
+      if (state[id]) { delete state[id]; } else { state[id] = 1; }
+      saveState(state);
+      render(li);
+      update();
+    });
+  });
+  update();
+</script>
+</body>
+</html>

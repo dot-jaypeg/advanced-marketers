@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers — Growth Team QA Scores</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1B1B24; --panel3:#22222B; --line:#2B2B35;
+    --txt:#EDEDF2; --muted:#8A8A99; --purple:#7D7BF7; --purple-deep:#5A58C4;
+    --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font:15px/1.55 Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:38px 26px 60px}
+  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:10px;font-weight:700;color:var(--purple)}
+  .kicker.mut{color:var(--muted)}
+  header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:10px}
+  .brand .nm{font-weight:800;font-size:15px;letter-spacing:.02em}
+  .brand .sub{letter-spacing:.4em;text-transform:uppercase;font-size:9px;color:var(--muted);margin-top:2px}
+  h1{font-size:32px;font-weight:800;margin:10px 0 4px}
+  h1 em{font-style:normal;color:var(--purple)}
+  .datesub{color:var(--muted);font-size:13.5px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;margin:22px 0 30px;padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .meta div{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .meta b{display:block;font-size:19px;color:var(--txt);letter-spacing:0;margin-top:2px}
+  .meta b.pp{color:var(--purple)}
+  h2.sec{margin:36px 0 14px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+  .hl{border:1px solid var(--purple);background:linear-gradient(180deg,#1b1b2a,#16161D);border-radius:14px;padding:16px 20px;margin-bottom:14px;font-size:13.5px}
+  .hl b{color:var(--purple)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  td{padding:11px 8px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
+  .role{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--panel3);color:var(--muted)}
+  .score{font-weight:800;font-size:17px}
+  .s-good{color:var(--good)} .s-mid{color:var(--warn)} .s-bad{color:var(--bad)} .s-na{color:var(--muted);font-weight:700;font-size:13px}
+  .barwrap{background:var(--panel3);border-radius:6px;overflow:hidden;width:100%}
+  .bar{height:8px;border-radius:6px;min-width:3px}
+  .delta{font-size:12px;font-weight:800}
+  .up{color:var(--good)} .down{color:var(--bad)}
+  .pill{display:inline-block;font-size:12px;font-weight:800;border-radius:8px;padding:3px 11px}
+  .pill.p5{background:rgba(63,207,149,.15);color:var(--good)}
+  .pill.p4{background:rgba(125,123,247,.16);color:var(--purple)}
+  .pill.p3{background:rgba(217,164,65,.15);color:var(--warn)}
+  .pill.p2{background:rgba(228,96,79,.15);color:var(--bad)}
+  .pill.pna{background:var(--panel3);color:var(--muted)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .repcard h3{font-size:16px;font-weight:800;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+  .repcard .cm{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .repcard .line{font-size:13px;margin:7px 0}
+  .repcard .line span{color:var(--purple);font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:1px}
+  .repcard blockquote{margin:10px 0 0;padding:9px 14px;border-left:3px solid var(--purple);background:var(--panel2);border-radius:0 8px 8px 0;font-size:12.5px;color:#c9c9d6;font-style:italic}
+  .reminders .line{font-size:13.5px;margin:9px 0}
+  .reminders b{color:var(--txt)}
+  .note{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.6}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:11px;letter-spacing:.06em;line-height:2}
+  canvas{max-height:280px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <div class="nm">ADVANCED</div>
+    <div class="sub">M A R K E T E R S</div>
+  </div>
+  <div class="kicker mut" style="padding-top:6px">WEEKLY QA SCORECARD &middot; GROWTH TEAM</div>
+</header>
+
+<div class="kicker">REVENUE FIRST, ALWAYS</div>
+<h1>Growth Team <em>Call-QA Report</em></h1>
+<div class="datesub">Week of July 27 &ndash; July 31, 2026 &middot; standing Monday&ndash;Friday window (data cut ~1pm PT Fri)</div>
+
+<div class="meta">
+  <div>Reps reviewed<b>5</b></div>
+  <div>Zoom calls scored<b>~35</b></div>
+  <div>Phone calls scored<b>~22</b></div>
+  <div>Team average<b class="pp">74.7</b></div>
+  <div>Sources<b>Zoom + GHL</b></div>
+</div>
+
+<div class="hl">
+  🏆 <b>TEAM HIGH — LINDSEY GRAY, 83/100</b> (+18, small sample — but the behaviors were real) · 🎙️ <b>SECOND</b> consecutive fully clean recorded-line week — zero instructions to the transcript system · 🚀 <b>Emberline hit its day-14 deadline on Meta</b> — first on-deadline go-live under the SLA program · 📥 Cancel &amp; Save: this week's two forms were filed by Jaime after the fact — file your own, same day · Rubric: 8 dimensions scored 1–5 per call, overall = average × 20
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">QA SCORES</div>
+<div class="panel">
+<table>
+  <thead><tr><th>Rep</th><th>Role</th><th class="num">Score</th><th style="width:180px">&nbsp;</th><th class="num">vs last wk</th><th>Headline</th></tr></thead>
+  <tbody>
+    <tr><td><b>Lindsey Gray</b> 👑</td><td><span class="role">Growth · 2-call sample</span></td><td class="num score s-good">83</td><td><div class="barwrap"><div class="bar" style="width:83%;background:var(--good)"></div></div></td><td class="num delta up">▲ +18</td><td>Best launch-discipline language on the team + model card handling; now send clients the actual numbers</td></tr>
+    <tr><td><b>Mak Rogers</b></td><td><span class="role">Growth</span></td><td class="num score s-good">81</td><td><div class="barwrap"><div class="bar" style="width:81%;background:var(--good)"></div></div></td><td class="num delta down">▼ −4</td><td>Fixed a misrouted tracking number live on-call; reporting to the cent — tighten the cancel/response process</td></tr>
+    <tr><td><b>Julie Mónico</b></td><td><span class="role">Growth</span></td><td class="num score s-good">79</td><td><div class="barwrap"><div class="bar" style="width:79%;background:var(--good)"></div></div></td><td class="num delta down">▼ −8.5</td><td>Reporting survived a live client challenge + a confirmed text-blast close; own the form, guard client data</td></tr>
+    <tr><td><b>Donovan Shipley</b></td><td><span class="role">Growth Mgr · New</span></td><td class="num score s-mid">73</td><td><div class="barwrap"><div class="bar" style="width:73%;background:var(--warn)"></div></div></td><td class="num delta up">▲ +3</td><td>Provisional — Meta live ON deadline + honest disclosure; close the loop between calls</td></tr>
+    <tr><td><b>Simon Ting</b></td><td><span class="role">Growth · New</span></td><td class="num score s-bad">57.5</td><td><div class="barwrap"><div class="bar" style="width:57.5%;background:var(--bad)"></div></div></td><td class="num delta down">▼ −12.5</td><td>Provisional — strong client education, but the Premium Plumbing date pattern drove both 2-scores</td></tr>
+  </tbody>
+</table>
+<div class="note">Simon and Donovan are provisional (small samples); Lindsey's score rests on a 2-call, one-day sample — directional, not a verdict (and her GHL phone line captured zero calls this week — being checked). Manager call reviews are handled separately in leadership 1:1s.</div>
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">SCORE TREND — 9 WEEKS</div>
+<div class="panel">
+  <canvas id="trend"></canvas>
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">DIMENSION SCORES THIS WEEK (1–5)</div>
+<div class="panel">
+<table>
+  <thead><tr><th>Dimension</th><th class="num">Lindsey</th><th class="num">Mak</th><th class="num">Julie</th><th class="num">Donovan</th><th class="num">Simon</th></tr></thead>
+  <tbody>
+    <tr><td>Preparation</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td></tr>
+    <tr><td>Call control</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td></tr>
+    <tr><td>Reporting quality</td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+    <tr><td>Expectation management</td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+    <tr><td>Problem handling</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td></tr>
+    <tr><td>Retention &amp; upsell</td><td class="num"><span class="pill pna">N/A</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td></tr>
+    <tr><td>Follow-through</td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3.5</span></td><td class="num"><span class="pill p4">4</span></td><td class="num"><span class="pill p2">2</span></td></tr>
+    <tr><td>Professionalism</td><td class="num"><span class="pill p5">5</span></td><td class="num"><span class="pill p3">3.5</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p3">3</span></td><td class="num"><span class="pill p4">4</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">REP DETAIL</div>
+<div class="grid">
+
+  <div class="panel repcard">
+    <h3>Lindsey Gray <span class="score s-good">83</span> 👑 <span class="role">2-call sample</span></h3>
+    <div class="cm">2 client Zoom scored (both Thu) · 0 phone calls captured — line being checked</div>
+    <div class="line"><span>Top strength</span>Expectation management — "not tomorrow, we try not to go live on Fridays, but we could go live by Monday," learning-phase framing ("results by week 2 or 3"), and told the client exactly when the decision-maker is needed. Nobody overpromised less. Model card handling: screen share stopped before card entry, nothing spoken aloud.</div>
+    <div class="line"><span>Top growth</span>Turn internal tracking into client-facing reporting — she compares weeks "for my own use" and the client only hears the headline. Send the actual numbers. Secondary: independent Meta Business Manager fluency.</div>
+    <blockquote>"Not tomorrow, because we try not to go live on Fridays — but we could go live by Monday." — launch discipline, out loud.</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Mak Rogers <span class="score s-good">81</span></h3>
+    <div class="cm">21 Zoom + 4 phone scored · 0 skipped</div>
+    <div class="line"><span>Top strength</span>Real-time problem ownership — caught the website carrying the ads tracking number and repointed it live (Green Ladder), removed a rogue Google Reserve auto-booking mid-call (ML Plumbing), escalated stalled LSA spend same-day on two accounts. Reporting to the cent ("$415.29") and corrected the client's own spreadsheet.</div>
+    <div class="line"><span>Top growth</span>Process discipline on the unglamorous paths — the La Mini Split wind-down went verbal/email (Jaime filed the form after the fact), a client issue sat ~17 hours, and recorded-line language should be client-grade even internally.</div>
+    <blockquote>"We'd be making a quick decision off of quick emotions versus something that's actually gonna serve your business." — talking a hostile client out of a panic move.</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Julie Mónico <span class="score s-good">79</span></h3>
+    <div class="cm">10 Zoom + 8 phone scored · Spanish calls scored identically</div>
+    <div class="line"><span>Top strength</span>Reporting that survives challenge — 71 leads / $69 CPL / 11.21x ROAS on the PrimeLux save call, and when the client questioned $54K she traced it live in his own CRM. Root-caused Shelby's "no calls" to an iPhone spam filter and fixed it on the spot; her text-blast play produced a confirmed closed job.</div>
+    <div class="line"><span>Top growth</span>Process + data boundaries — file the Cancel &amp; Save form yourself the moment a cancel is voiced (ABS went verbal + "email Bob"), and never share one client's ad spend with another, even when asked directly.</div>
+    <blockquote>"Julie's been great. She's been handling everything amazingly." — the ABS client, on the save call.</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Donovan Shipley <span class="score s-mid">73</span> <span class="role">Provisional</span></h3>
+    <div class="cm">6 Zoom + 6 phone scored · short redials noted</div>
+    <div class="line"><span>Top strength</span>Ownership + same-day execution — Emberline live on Meta ON the day-14 deadline (first on-deadline launch under the program), Google bug escalated twice, 9:39pm call to flag an unworked hot lead, and volunteered an underspend to a client unprompted. Consultative upsell: sold the $1,500 creative package AND offered a cheaper DIY alternative.</div>
+    <div class="line"><span>Top growth</span>Close the loop on known risks BETWEEN calls — the client believed both platforms were live for three days while only Meta served. He disclosed it honestly Friday (credited); a 30-second Slack note Wednesday would have cost nothing. Verify fixes before announcing; don't echo card digits on a recording.</div>
+    <blockquote>"We're spending $17.50 a day on Facebook… I wanted to let you know we're not using the full $3,500." — volunteering an underspend. Right instinct.</blockquote>
+  </div>
+
+  <div class="panel repcard">
+    <h3>Simon Ting <span class="score s-bad">57.5</span> <span class="role">Provisional</span></h3>
+    <div class="cm">6 Zoom scored · 0 phone calls recorded this week (sample limit)</div>
+    <div class="line"><span>Top strength</span>Client education — patient, concrete GHL/lead-workflow coaching on Drain Force, Cortex and Next Era, backed by leads he'd actually reviewed. Honest scope-setting ("$1K/mo is a little too low for Google"). Otter.ai note-taker from last week: gone — resolved.</div>
+    <div class="line"><span>Top growth</span>Own the date — "planning to go live today" with no date, "good to publish" then 3 idle days, escalation 4 minutes after the client complained. Third week the Premium go-live date item has been open: acknowledge, give the date, post it in the channel. And bring one real number to every client call.</div>
+    <blockquote>"This might have been somebody who was actually looking for work — but since the call was never connected, they just stopped there." — the lead-review coaching that clients value.</blockquote>
+  </div>
+
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">GO-LIVE SLA TRACKER · ACCOUNTS SOLD SINCE JULY 6, 2026</div>
+<div class="panel">
+<table>
+  <thead><tr><th>Account</th><th>Rep</th><th class="num">Sold</th><th class="num">Day-14 deadline</th><th>Live date / elapsed</th><th class="num">Status</th><th>Blocker</th></tr></thead>
+  <tbody>
+    <tr><td><b>Premium Plumbing &amp; Drain Inc</b></td><td>Simon</td><td class="num">Jul 6</td><td class="num"><b>Jul 20</b></td><td>NOT live — day 25</td><td class="num">🔴 PAST SLA</td><td>Photos arrived Jul 28, publish confirmed — then the edits task sat untouched 3 days; escalation only after the client complained Jul 31. Client STILL has no live date. Post one in the channel today.</td></tr>
+    <tr><td><b>Emberline Shower Enclosures</b></td><td>Donovan</td><td class="num">Jul 14</td><td class="num"><b>Jul 28</b></td><td><b>Meta LIVE Jul 28 — on deadline</b> 🎉 · Google not serving (day 17)</td><td class="num">🟡 Partial</td><td>Google call-asset bug — escalated twice ✅; number swap Jul 31, asset under review. Client got the honest status Friday — keep him updated until Google serves.</td></tr>
+    <tr><td><b>Alliance 247 (Ricardo)</b></td><td>Tim</td><td class="num">Jul 14</td><td class="num"><b>Jul 28</b></td><td>Not live — day 17 · website wireframe stage</td><td class="num">🔴 Past deadline*</td><td>No ads build started; specialist assigned day 13. *Package type (ads vs SEO/website-first) unconfirmed in GHL — flagged for a leadership ruling; confirm it and reset the client's timeline out loud.</td></tr>
+    <tr><td><b>Magic Snake Pro</b></td><td>Mak</td><td class="num">Jul 24</td><td class="num"><b>Aug 7</b></td><td>Day 7</td><td class="num">🟡 In SLA</td><td>Good velocity — onboarding done Jul 29, week-2 language used ✅. Open item: LSA bot routing calls to a competitor (reported Thu, answered Fri am — resolve fast).</td></tr>
+    <tr><td><b>MGS Air Conditioning &amp; Heating</b></td><td><b>UNASSIGNED</b></td><td class="num">Jul 28</td><td class="num"><b>Aug 11</b></td><td>Day 3</td><td class="num">🟡 In SLA</td><td>Nobody has contacted the client and he was never invited to his channel; GBP held by the old web designer — access risk. Needs an owner TODAY.</td></tr>
+    <tr><td><b>Good Neighbor Fence</b></td><td>Tim</td><td class="num">Jul 30</td><td class="num">Aug 13 <i>if ads</i></td><td>Day 1</td><td class="num">⚪ Pkg TBD</td><td>Sales notes say website + creative only — ads SLA likely n/a; confirm package + agreement.</td></tr>
+    <tr><td><b>M.L. Bernie Co</b></td><td>Allondra / Kyle</td><td class="num">Jul 20</td><td class="num">n/a</td><td>—</td><td class="num">⚪ Audit</td><td>Audit MVP targeted "late this week"; Thursday's status ping went unanswered — don't walk into a client meeting without the deliverable confirmed.</td></tr>
+    <tr><td><b>Inland Renovation &amp; Construction</b></td><td>Donovan (GM)</td><td class="num">Jul 20</td><td class="num">clock not started</td><td>—</td><td class="num">⚪ Pre-clock</td><td>Incumbent lock ~5 wks; prelim site + LPs done, video shoot scheduling — nice head start.</td></tr>
+  </tbody>
+</table>
+<div class="note">🟢 live ≤14 days · 🟡 pending within SLA · 🔴 past SLA. The standard: live by Day 14 — week 1 we align, week 2 we go live; give a real DATE, not "soon." Blockers attributed honestly — a client delay isn't on you if you chase AND escalate promptly (Emberline: credited). Sitting on a blocker &gt;3 days without escalating is on you — and escalating only after the client complains doesn't count. When the date moves, or only ONE platform is live, the client hears it from US first. One new channel was excluded as a false-positive (no client, no agreement, wrong sales notes) — flag ownerless channels in #growth-team same day.</div>
+</div>
+
+<div class="kicker" style="display:block;margin:36px 0 14px">TEAM REMINDERS</div>
+<div class="panel reminders">
+  <div class="line">📥 <b>Cancel &amp; Save form — filed by YOU, same day.</b> Both of this week's cancel conversations ended up with forms, but only because Jaime filed them after the fact. The rep who hears the cancel files the form — pauses, wind-downs and "after our contract" conversations included.</div>
+  <div class="line">🎙️ <b>Recorded-line streak: 2 clean weeks.</b> Zero instructions to the transcript system. Every recorded minute stays client-safe — before the client joins, after they leave, internal calls included.</div>
+  <div class="line">🔒 <b>Passwords:</b> reset links, client self-set, or add-us-as-user. Never ask for, accept, or repeat a password or 2FA code on a recorded line — even if the client offers it first. Redirect to a secure channel.</div>
+  <div class="line">💳 <b>Cards:</b> phone collection remains approved — but prefer pay links / self-entry with screen share OFF (great example this week), and never read or echo digits aloud on a recording.</div>
+  <div class="line">📅 <b>Real numbers on every client call:</b> the strongest scores this week all came from reps who put verifiable numbers in front of clients. If the dashboard is blank, say what you'll send and when.</div>
+  <div class="line">🤖 <b>Note-takers:</b> approved tools only on client calls — and thank you, the stray auto-joiner from last week is gone.</div>
+  <div class="line">⭐ <b>Review solicitation</b> for clients remains approved. 📞 If a client says our outbound number shows as "spam," flag it to leadership — we're looking at it.</div>
+  <div class="note">How scoring works: every Zoom call and every GHL phone call ≥2 minutes from the past 7 days is transcribed and scored on 8 dimensions. Client-facing calls weigh most; N/A dimensions are never penalized. Full individual scorecards with quotes are covered in your 1:1 — ask Tim or Chris anytime.</div>
+</div>
+
+<footer>
+  ADVANCED MARKETERS · GROWTH SYSTEM<br>
+  135 S Lemon St Ste D, Orange, CA 92856&nbsp;&nbsp;|&nbsp;&nbsp;(650) 250-0405&nbsp;&nbsp;|&nbsp;&nbsp;advancedmarketers.co
+</footer>
+</div>
+
+<script>
+new Chart(document.getElementById('trend'),{
+  type:'line',
+  data:{
+    labels:['Jun 11','Jun 19','Jun 29','Jul 4','Jul 10','Jul 17','Jul 20','Jul 24','Jul 31'],
+    datasets:[
+      {label:'Julie',data:[80,83,84,80,75,83,80,87.5,79],borderColor:'#7D7BF7',backgroundColor:'#7D7BF7',tension:.3,borderWidth:2.5},
+      {label:'Mak',data:[85,85,82,90,85,80,77.5,85,81],borderColor:'#3FCF95',backgroundColor:'#3FCF95',tension:.3,borderWidth:2.5},
+      {label:'Simon',data:[null,76,74,80,78,70,72.5,70,57.5],borderColor:'#D9A441',backgroundColor:'#D9A441',tension:.3,borderWidth:2.5},
+      {label:'Lindsey',data:[null,null,null,null,null,null,null,65,83],borderColor:'#EDEDF2',backgroundColor:'#EDEDF2',tension:.3,borderWidth:2.5,pointRadius:5},
+      {label:'Donovan',data:[null,null,null,null,null,73,75,70,73],borderColor:'#8A8A99',backgroundColor:'#8A8A99',tension:.3,borderWidth:2.5}
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{labels:{color:'#EDEDF2',boxWidth:14,boxHeight:14,font:{size:12}}}},
+    scales:{
+      x:{ticks:{color:'#8A8A99'},grid:{color:'#2B2B35'}},
+      y:{min:50,max:95,ticks:{color:'#8A8A99'},grid:{color:'#2B2B35'}}
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advanced Marketers — August 2026 Revenue Tracker</title>
+<style>
+  :root{
+    color-scheme: light;
+    --plane:#f9f9f7; --surface:#fcfcfb;
+    --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+    --s1:#2a78d6; --s1-mid:#5598e7; --s1-soft:#9ec5f4;
+    --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+    --good-text:#006300;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:where(:not([data-theme="light"])){
+      color-scheme: dark;
+      --plane:#0d0d0d; --surface:#1a1a19;
+      --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+      --s1:#3987e5; --s1-mid:#256abf; --s1-soft:#184f95;
+      --good-text:#0ca30c;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--plane);color:var(--ink);
+       font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:32px 20px 64px}
+  header{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+  h1{font-size:20px;margin:0;letter-spacing:-0.01em}
+  .sub{color:var(--muted);font-size:13px}
+  .card{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:20px}
+
+  .hero{margin-top:18px;display:grid;grid-template-columns:minmax(300px,1.1fr) minmax(300px,1fr);gap:14px}
+  @media (max-width:860px){.hero{grid-template-columns:1fr}}
+  .heroLabel{color:var(--ink2);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .heroNum{font-size:50px;font-weight:650;letter-spacing:-0.03em;line-height:1.04;margin:4px 0 0}
+  .of{color:var(--muted);font-size:15px;font-weight:400}
+  .stack{position:relative;height:18px;border-radius:9px;background:var(--grid);overflow:hidden;margin-top:20px;display:flex}
+  .stack span{display:block;height:100%;border-right:2px solid var(--surface)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:var(--ink2)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:0px}
+  .barKey{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:8px;font-variant-numeric:tabular-nums}
+
+  .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .tile{background:var(--surface);border:1px solid var(--ring);border-radius:12px;padding:14px 16px}
+  .tile .k{color:var(--muted);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+  .tile .v{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-top:4px}
+  .tile .n{color:var(--ink2);font-size:12px;margin-top:3px}
+  .pos{color:var(--good-text)} .neg{color:var(--crit)}
+
+  section{margin-top:26px}
+  h2{font-size:15px;margin:0 0 4px;letter-spacing:-0.005em}
+  .note{color:var(--muted);font-size:12.5px;margin:0 0 14px}
+  .callout{background:var(--surface);border:1px solid var(--ring);border-left:3px solid var(--crit);
+           border-radius:10px;padding:16px 18px}
+  .callout p{margin:0;color:var(--ink2);font-size:13.5px}
+  .callout strong{color:var(--ink)}
+
+  .chartWrap{position:relative}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .tick{fill:var(--muted);font-size:11px}
+  .gl{stroke:var(--grid);stroke-width:1}
+  .base{stroke:var(--axis);stroke-width:1}
+  .goal{stroke:var(--crit);stroke-width:2;stroke-dasharray:5 4}
+  .goalTxt{fill:var(--crit);font-size:11px;font-weight:600}
+  .dlab{fill:var(--ink2);font-size:11px;font-variant-numeric:tabular-nums}
+  .barR{fill:var(--s1-mid)} .barR.last{fill:var(--s1)} .barR.proj{fill:var(--s1-soft)}
+  .barHit{fill:transparent}
+  .tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .09s;background:var(--surface);
+       border:1px solid var(--ring);border-radius:8px;padding:7px 10px;font-size:12px;
+       box-shadow:0 6px 20px rgba(0,0,0,.13);white-space:nowrap;z-index:5}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:900px){.cols{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;color:var(--muted);font-weight:500;font-size:11.5px;text-transform:uppercase;
+     letter-spacing:.05em;padding:0 0 8px;border-bottom:1px solid var(--grid)}
+  th.r,td.r{text-align:right}
+  td{padding:7px 0;border-bottom:1px solid var(--grid);vertical-align:top}
+  td.r{font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .day{color:var(--muted);font-variant-numeric:tabular-nums;width:34px}
+  .why{color:var(--muted);font-size:11.5px;display:block}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;vertical-align:1px}
+  .d-crit{background:var(--crit)} .d-warn{background:var(--serious)} .d-ok{background:var(--good)}
+  .tfoot td{border-bottom:0;border-top:1px solid var(--axis);font-weight:600;padding-top:10px}
+  .chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:20px;border:1px solid var(--ring);
+        color:var(--ink2);margin-left:6px;vertical-align:1px}
+  .scroll{max-height:520px;overflow:auto}
+  .steps{list-style:none;margin:0;padding:0}
+  .steps li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--grid)}
+  .steps li:last-child{border-bottom:0}
+  .steps .lab{color:var(--ink2)}
+  .steps .amt{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+  footer{margin-top:34px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>August 2026 Revenue Tracker</h1>
+    <span class="sub">Advanced Marketers · goal $300,000 · updated Aug 18, 2026</span>
+  </header>
+
+  <div class="hero">
+    <div class="card">
+      <div class="heroLabel">Charged month to date</div>
+      <div class="heroNum">$168,365 <span class="of">/ $300,000</span></div>
+
+      <div class="stack">
+        <span style="width:56.1%;background:var(--s1)"></span>
+        <span style="width:7.9%;background:var(--s1-mid)"></span>
+        <span style="width:24.8%;background:var(--s1-soft)"></span>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--s1)"></i>Charged $168,365</span>
+        <span><i style="background:var(--s1-mid)"></i>Due by the 20th $23,600</span>
+        <span><i style="background:var(--s1-soft)"></i>Rest of month $74,261</span>
+        <span><i style="background:var(--grid)"></i>Uncovered $33,774</span>
+      </div>
+      <div class="barKey"><span>56.1% charged · 60 charges</span><span>13 days left</span></div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="k">Gap to goal</div>
+        <div class="v">$131,635</div>
+        <div class="n">$10,126/day for 13 days</div>
+      </div>
+      <div class="tile">
+        <div class="k">Pipeline left</div>
+        <div class="v">$97,861</div>
+        <div class="n">$23,600 by the 20th · $74,261 after</div>
+      </div>
+      <div class="tile">
+        <div class="k">Realistic close</div>
+        <div class="v neg">~$258,800</div>
+        <div class="n">10% decline rate on late-month billing</div>
+      </div>
+      <div class="tile">
+        <div class="k">Short by</div>
+        <div class="v neg">~$41,200</div>
+        <div class="n">Not on the books today</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="callout">
+    <p><strong>Collections alone don't get you to $300K this month.</strong> Even if every open invoice clears,
+    the book tops out at <strong>$266,226</strong> — and at your 10% decline rate it's closer to <strong>$258,800</strong>.
+    The gap is roughly <strong>$41,200</strong>, and $13,592 of that is sitting in seven accounts that are blocked
+    rather than lost (no card on file, a decline, a restart that didn't fire). Clearing those gets you to ~$272K.
+    The remaining <strong>~$27,600</strong> has to come from new sales, upsells, or prepays in the next 13 days —
+    prepays being the fastest lever, since eight clients at $3,500 covers it and you already ran that play with
+    Pro Sewer, Signature Plumbing and IQ Plumbing this month.</p>
+  </section>
+
+  <section class="card">
+    <h2>Monthly charged revenue</h2>
+    <p class="note">Charges recorded in the billing sheet. August shows month-to-date plus the projected close (lighter bar).</p>
+    <div class="chartWrap" id="chartWrap">
+      <svg id="chart" viewBox="0 0 940 320" role="img"
+        aria-label="Monthly charged revenue November 2025 through August 2026 against a 300,000 dollar goal"></svg>
+      <div class="tip" id="tip"></div>
+    </div>
+  </section>
+
+  <section class="cols">
+    <div class="card">
+      <h2>Blocked, not lost <span class="chip">$13,592</span></h2>
+      <p class="note">Accounts held up by something fixable. Every dollar here is recoverable this month.</p>
+      <table>
+        <thead><tr><th>Account</th><th class="r">Amount</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot d-crit"></span>At Your Service Heating &amp; Air
+              <span class="why">No credit card on file</span></td><td class="r">$2,500</td></tr>
+          <tr><td><span class="dot d-crit"></span>The Alliance 247
+              <span class="why">No credit card on file</span></td><td class="r">$2,500</td></tr>
+          <tr><td><span class="dot d-crit"></span>One Nation Energy
+              <span class="why">Card declined — needs a new method</span></td><td class="r">$2,500</td></tr>
+          <tr><td><span class="dot d-warn"></span>Apollo Home Solutions
+              <span class="why">Was supposed to restart this month</span></td><td class="r">$2,000</td></tr>
+          <tr><td><span class="dot d-warn"></span>Contreras Welding Shop
+              <span class="why">Moved to biweekly · $1,500 charged, balance owed</span></td><td class="r">$1,592</td></tr>
+          <tr><td><span class="dot d-warn"></span>Ground Up Plumbing 24-7
+              <span class="why">Open</span></td><td class="r">$500</td></tr>
+          <tr><td><span class="dot d-warn"></span>JQ Glassworks
+              <span class="why">Balance owed from July · the $1,832 Zelle on Aug 5 counts toward August</span></td><td class="r">$2,000</td></tr>
+          <tr class="tfoot"><td>Recoverable</td><td class="r">$13,592</td></tr>
+        </tbody>
+      </table>
+
+      <h2 style="margin-top:26px">Path to $300,000</h2>
+      <ul class="steps">
+        <li><span class="lab">Charged to date</span><span class="amt">$168,365</span></li>
+        <li><span class="lab">Clears by the 20th</span><span class="amt">$23,600</span></li>
+        <li><span class="lab">Rest of month, less 10% declines</span><span class="amt">$66,835</span></li>
+        <li><span class="lab">Blocked accounts recovered</span><span class="amt">$13,592</span></li>
+        <li><span class="lab"><strong>Running total</strong></span><span class="amt">$272,392</span></li>
+        <li><span class="lab neg"><strong>New sales, upsells or prepays needed</strong></span>
+            <span class="amt neg">$27,608</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Charged so far <span class="chip">60 charges · $168,365</span></h2>
+      <p class="note">August 2026 column of the billing sheet, largest first.</p>
+      <div class="scroll"><table id="billed"><thead>
+        <tr><th>Account</th><th style="width:34px">Day</th><th class="r">Amount</th></tr>
+      </thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <footer>
+    Charged figures read from the “Copy of billing” Google Sheet, August 2026 column, active client rows only —
+    one-off and cancelled-account charges further down the sheet aren’t included, so the sheet’s own TOTAL row runs
+    higher (July: $268,119 there vs $252,420 here). Remaining pipeline, decline rate and account statuses per Chris.
+    Refreshed daily at 10am PT.
+  </footer>
+</div>
+
+<script>
+const fmt = n => '$' + n.toLocaleString('en-US');
+const fmtK = n => '$' + Math.round(n/1000) + 'K';
+
+const months = [
+  ['Nov 25',101031],['Dec 25',120710],['Jan 26',120395],['Feb 26',144018],['Mar 26',128103],
+  ['Apr 26',168530],['May 26',203346],['Jun 26',208953],['Jul 26',252420],['Aug 26',168365]
+];
+const PROJ = 258800, GOAL = 300000;
+
+(function(){
+  const svg=document.getElementById('chart');
+  const W=940,H=320,L=56,R=16,T=26,B=34, iw=W-L-R, ih=H-T-B, max=320000;
+  const y=v=>T+ih-(v/max)*ih, n=months.length, step=iw/n, bw=Math.min(52,step*0.56);
+  const ns='http://www.w3.org/2000/svg';
+  const el=(t,a)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const P=[];
+  [0,100000,200000,300000].forEach(v=>{
+    P.push(el('line',{class:'gl',x1:L,x2:W-R,y1:y(v),y2:y(v)}));
+    const t=el('text',{class:'tick',x:L-10,y:y(v)+4,'text-anchor':'end'});t.textContent=v?fmtK(v):'0';P.push(t);
+  });
+  months.forEach((m,i)=>{
+    const x=L+i*step+(step-bw)/2, last=(i===n-1);
+    if(last){
+      const ph=((PROJ-m[1])/max)*ih;
+      P.push(el('rect',{class:'barR proj',x:x,y:y(PROJ),width:bw,height:ph,rx:4}));
+      const pl=el('text',{class:'dlab',x:x+bw/2,y:y(PROJ)-8,'text-anchor':'middle'});
+      pl.textContent='~'+fmtK(PROJ); P.push(pl);
+    }
+    P.push(el('rect',{class:'barR'+(last?' last':''),x:x,y:y(m[1]),width:bw,height:Math.max(2,(m[1]/max)*ih),rx:4}));
+    const lb=el('text',{class:'tick',x:x+bw/2,y:H-B+18,'text-anchor':'middle'});lb.textContent=m[0];P.push(lb);
+    if(i===n-2){const v=el('text',{class:'dlab',x:x+bw/2,y:y(m[1])-8,'text-anchor':'middle'});v.textContent=fmtK(m[1]);P.push(v);}
+    P.push(el('rect',{class:'barHit',x:L+i*step,y:T,width:step,height:ih,'data-i':i}));
+  });
+  P.push(el('line',{class:'goal',x1:L,x2:W-R,y1:y(GOAL),y2:y(GOAL)}));
+  const gt=el('text',{class:'goalTxt',x:W-R,y:y(GOAL)-8,'text-anchor':'end'});gt.textContent='Goal $300K';P.push(gt);
+  P.push(el('line',{class:'base',x1:L,x2:W-R,y1:y(0),y2:y(0)}));
+  P.forEach(p=>svg.appendChild(p));
+
+  const tip=document.getElementById('tip'), wrap=document.getElementById('chartWrap');
+  svg.addEventListener('mousemove',e=>{
+    const t=e.target;
+    if(t.classList.contains('barHit')){
+      const i=+t.dataset.i, m=months[i];
+      tip.innerHTML = m[0]+' &nbsp;<b>'+fmt(m[1])+'</b>' +
+        (i===n-1?' <span style="color:var(--muted)">MTD · projected ~'+fmt(PROJ)+'</span>':'');
+      const r=wrap.getBoundingClientRect();
+      tip.style.left=Math.min(r.width-200,Math.max(0,e.clientX-r.left-80))+'px';
+      tip.style.top=(e.clientY-r.top-42)+'px'; tip.style.opacity=1;
+    } else tip.style.opacity=0;
+  });
+  svg.addEventListener('mouseleave',()=>tip.style.opacity=0);
+})();
+
+const billed = [
+  ['Pro Sewer and Drains','17',8000],['Speedee Plumbing','13',6500],['Central Roofing','7',5272],
+  ['Alejandro’s Remodeling LLC','3',5000],['Signature Plumbing','6',5000],['IQ Plumbing','13',5000],
+  ['The Reel Electric Company','10',4571],['Mad Differential','16',4507],['Premium Floor & Design','1',4395],
+  ['Total Door Service','17',4135],['Ultimate HVAC','7',4000],['Vera Plumbing and Drain','7',3965],
+  ['Major League Plumbing','2',3921],['Roof Solutions','6',3919],['Forbes Fencing CO','12',3844],
+  ['5 Blox','11',3824],['Pro Made Roofing','3',3792],['Lopez Brothers Drywall','4',3760],
+  ['Next Era Heating & Air Conditioning','15',3718],['Saucedo Plumbing','13',3702],['Andy’s Pools Inc','11',3679],
+  ['Moreno Building & Development LLC','16',3679],['HARO HVAC Services','9',3617],['Amaral’s Construction Corp','13',3544],
+  ['All City Janitorial','7',3505],['Heavy Duty Metal Buildings','16',3291],['Apex Landscape & Construction','2',3200],
+  ['GG&N Plumbing Solutions Inc','17',2733],['Emberline Shower Enclosures','—',2648],['REC Elite Mechanical','3',2500],
+  ['Stable Air LLC','3',2500],['Jlg Tree Service','5',2500],['Premium Plumbing & Drain Inc.','6',2500],
+  ['JG Concrete LLC','7',2500],['Desert Sky Mechanical, LLC','10',2500],['Elite Restoration by Villegas','11',2500],
+  ['Sky View Maintenance, Inc','17',2328],['Cortex Plastering','11',2251],['Javiers Landscape','23',2201],
+  ['OC Professional Rain Gutters','9',2194],['Prestige Heating & Air LLC','4',2048],['Custom Kitchens by Lopez','5',2000],
+  ['JQ Glassworks Inc','30',1832],['Oc Coastal Clean','4',1697],['Pinpons Junk Removal','1',1500],
+  ['Heavy Duty Metal Buildings','13',1500],['Forbes Landscape Services','16',1500],['Contreras Welding Shop','17',1500],['Major League Plumbing – SEO','18',1500],
+  ['MOVEHAUS','4',1250],['MOVEHAUS','18',1250],
+  ['On Stage Cuts and Styles','1',800],['Next Level Sheet Metal','17',598],['Pro 360 Construction','10',500],
+  ['Aspen','4',499],['Golden Rule Construction and Remodeling','3',399],['LaFara Luxury Properties','10',299],
+  ['Build By JM LLC','4',199],['Mariachi Corazón de Maria','6',199],['Paver Rescue LLC - Tampa','6',100]
+];
+const bb=document.querySelector('#billed tbody');
+billed.forEach(r=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td>'+r[0]+'</td><td class="day">'+r[1]+'</td><td class="r">'+fmt(r[2])+'</td>';
+  bb.appendChild(tr);
+});
+</script>
+</body>
+</html>

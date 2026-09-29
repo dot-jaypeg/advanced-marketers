@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go-Live Audit · TV — Fri Jul 17, 2026</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --ring:rgba(255,255,255,.12);
+    --blue:#3987e5; --blue-250:#86b6ef;
+    --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+    --slide-dur: 144s; /* 8 slides x 18s */
+  }
+  * { box-sizing:border-box; margin:0; }
+  html,body { height:100%; overflow:hidden; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--page); color:var(--ink); }
+  .stage { position:fixed; inset:0; }
+  .slide {
+    position:absolute; inset:0; padding:3.2vh 3.5vw; display:flex; flex-direction:column;
+    opacity:0; animation: cyc var(--slide-dur) linear infinite; animation-delay: calc(var(--i) * 18s);
+    animation-fill-mode: both; will-change: opacity, transform;
+  }
+  @keyframes cyc {
+    0%    { opacity:0; transform:translateY(3vh); visibility:visible; }
+    1.4%  { opacity:1; transform:translateY(0); }
+    11.1% { opacity:1; transform:translateY(0); }
+    12.5% { opacity:0; transform:translateY(-2vh); }
+    12.6% { visibility:hidden; }
+    100%  { opacity:0; visibility:hidden; }
+  }
+  .slide-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:2.4vh; }
+  h2 { font-size:4vh; font-weight:700; letter-spacing:.01em; }
+  .slide-head .date { font-size:2.2vh; color:var(--ink2); }
+  .bar-progress { position:absolute; left:0; bottom:0; height:.6vh; background:var(--blue);
+    animation: prog var(--slide-dur) linear infinite; animation-delay: calc(var(--i) * 18s); animation-fill-mode: both; }
+  @keyframes prog { 0%{width:0} 12.5%{width:100%} 12.6%{width:0} 100%{width:0} }
+  .dots { position:absolute; bottom:1.6vh; right:3.5vw; display:flex; gap:.9vh; }
+  .dots span { width:1.2vh; height:1.2vh; border-radius:50%; background:var(--grid); }
+  .dots span.on { background:var(--blue); }
+
+  /* KPI slide */
+  .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:2.4vh; flex:1; align-content:center; }
+  .kpi { background:var(--surface); border:1px solid var(--ring); border-radius:1.6vh; padding:3.4vh 2.6vw; }
+  .kpi .v { font-size:7.4vh; font-weight:700; line-height:1.1; }
+  .kpi .l { font-size:2vh; color:var(--ink2); margin-top:.8vh; }
+  .kpi.alert .v { color:var(--critical); } .kpi.ok .v { color:var(--good); }
+  .brand { font-size:2.2vh; color:var(--muted); margin-top:2vh; text-align:center; }
+
+  /* tables */
+  table { width:100%; border-collapse:collapse; font-size:2.6vh; }
+  td { padding:1.5vh 1vw 1.5vh 0; border-bottom:1px solid var(--grid); vertical-align:top; line-height:1.4; }
+  tr:last-child td { border-bottom:none; }
+  td.who { font-weight:700; white-space:nowrap; width:20vw; }
+  td.sev { width:11vw; }
+  .chip { display:inline-flex; align-items:center; font-size:2vh; font-weight:800; border-radius:99px; padding:.5vh 1vw; white-space:nowrap; }
+  .chip.critical { color:#fff; background:var(--critical); }
+  .chip.serious  { color:#3a1608; background:var(--serious); }
+  .chip.warning  { color:#3a2a00; background:var(--warning); }
+  .chip.good     { color:#fff; background:var(--good); }
+  .sub2 { color:var(--ink2); }
+  .mono { font-variant-numeric:tabular-nums; }
+
+  /* bars */
+  .bar-row { display:grid; grid-template-columns:30vw 1fr 9vw; gap:1.2vw; align-items:center; font-size:2.5vh; padding:1vh 0; }
+  .bar-track { background:var(--surface); border:1px solid var(--grid); border-radius:.8vh; height:3vh; position:relative; }
+  .bar-fill { position:absolute; left:0; top:.4vh; bottom:.4vh; border-radius:.6vh; min-width:.4vw; }
+  .bar-val { text-align:right; color:var(--ink2); font-variant-numeric:tabular-nums; }
+  .target-line { position:absolute; top:-.8vh; bottom:-.8vh; width:.35vw; background:var(--critical); border-radius:.2vw; }
+  .sect { font-size:2.1vh; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:1.8vh 0 .8vh; }
+  .pill-list { font-size:2.5vh; color:var(--ink2); line-height:1.9; }
+  .pill-list b { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- S1 · Overview -->
+  <section class="slide" style="--i:0">
+    <div class="slide-head"><h2>🚀 Advanced Marketers — Daily Go-Live Audit</h2><div class="date">Friday, July 17, 2026 · data 1:53 PM</div></div>
+    <div class="kpis">
+      <div class="kpi ok"><div class="v" style="font-size:8.5vh">97</div><div class="l">Live &amp; spending (either platform)</div></div>
+      <div class="kpi"><div class="v" style="font-size:8.5vh">$18,627</div><div class="l">Ad spend yesterday</div></div>
+      <div class="kpi ok"><div class="v">0</div><div class="l">Marketing past 14-day target</div></div>
+      <div class="kpi alert"><div class="v">10</div><div class="l">Campaigns on, $0 spend</div></div>
+      <div class="kpi alert"><div class="v">10</div><div class="l">Accounts in payment state</div></div>
+      <div class="kpi"><div class="v">4</div><div class="l">Marketing accounts in flight</div></div>
+    </div>
+    <div class="brand">Heartbeats: Meta 1:53 PM · Google 1:26 PM · billing sheet cross-checked · board + Slack swept 3 PM</div>
+    <div class="dots"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S2 · Action: critical + serious -->
+  <section class="slide" style="--i:1">
+    <div class="slide-head"><h2>🚨 Action needed — critical &amp; serious</h2><div class="date">Fri Jul 17</div></div>
+    <table>
+      <tr><td class="sev"><span class="chip critical">⛔ CRITICAL</span></td><td class="who">Sierra Trimlight</td><td>Cancel intent + card declining, unreachable since 7/8 — SEO-downsell save before next charge; Meta campaign still enabled</td></tr>
+      <tr><td class="sev"><span class="chip critical">⛔ CRITICAL</span></td><td class="who">ColdRiite Walk-Ins</td><td>Day <b>374</b> — oldest open website build. Finish ASAP</td></tr>
+      <tr><td class="sev"><span class="chip serious">▲ SERIOUS</span></td><td class="who">Reel Electric</td><td>Client's Meta ad billing went UNSETTLED mid-day, still spending <span class="mono">$40.70</span>/day (agency fee is collected ✓)</td></tr>
+      <tr><td class="sev"><span class="chip serious">▲ SERIOUS</span></td><td class="who">Bella Banana Pet Spa</td><td>Card declining <span class="mono">$2,102</span> — parked in August on billing sheet; new-card form requested</td></tr>
+      <tr><td class="sev"><span class="chip serious">▲ SERIOUS</span></td><td class="who">Precision Drywall</td><td>Chris's cancel question unanswered while billing is due and Meta spends <span class="mono">$49.93</span>/day</td></tr>
+      <tr><td class="sev"><span class="chip serious">▲ SERIOUS</span></td><td class="who">Vizeon + Prime Lux</td><td>Pauses requested 7/16 but both still spending (<span class="mono">$89</span> / <span class="mono">$114</span> yest) — execute or withdraw</td></tr>
+      <tr><td class="sev"><span class="chip serious">▲ SERIOUS</span></td><td class="who">LA Mini Splits</td><td>Meta UNSETTLED while spending <span class="mono">$10.72</span>/day</td></tr>
+    </table>
+    <div class="dots"><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S3 · Action: warnings -->
+  <section class="slide" style="--i:2">
+    <div class="slide-head"><h2>⚠️ Warnings &amp; watch list</h2><div class="date">Fri Jul 17</div></div>
+    <table>
+      <tr><td class="sev"><span class="chip warning">● WARNING</span></td><td class="who">Moreno Building</td><td>Card declined — <span class="mono">$3,609</span> parked in August. Collect / re-bill</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WARNING</span></td><td class="who">Apollo Home Solutions</td><td>July blank — billing sheet says "remind Tim to re-bill"</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WARNING</span></td><td class="who">WestCoast Fence Pros</td><td>No charge June or July, Meta campaign still on at $0 — churn/pause never recorded?</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WARNING</span></td><td class="who">One Nation Energy</td><td>Unbilled since March + Meta unsettled, campaign still enabled — close out</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WARNING</span></td><td class="who">Jq Glasswork</td><td>Dark on BOTH platforms — Google $0 two days, Meta unsettled</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WATCH</span></td><td class="who">Piggies Air Conditioning</td><td>Cancel ultimatum 7/14 ($13k in / ~$1.5k back) — wants a call with Chris ASAP; still spending</td></tr>
+      <tr><td class="sev"><span class="chip warning">● WATCH</span></td><td class="who">Amaral's Construction</td><td>Ghosting Day 40 · July partial <span class="mono">$1,000</span> ("$2,500 left") · Meta unsettled — pause/terminate decision open</td></tr>
+    </table>
+    <div class="dots"><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S4 · Resolved today -->
+  <section class="slide" style="--i:3">
+    <div class="slide-head"><h2>✅ Resolved today</h2><div class="date">Fri Jul 17</div></div>
+    <table>
+      <tr><td class="sev"><span class="chip good">✓ PAID</span></td><td class="who">Saucedo Plumbing</td><td>$3,500 retry landed — July <span class="mono">$3,605</span> on billing sheet; card closed</td></tr>
+      <tr><td class="sev"><span class="chip good">✓ PAID</span></td><td class="who">Haro HVAC</td><td>Card went through — July <span class="mono">$3,655</span> collected. (Meta's own ad billing still shows grace — watching until it clears)</td></tr>
+      <tr><td class="sev"><span class="chip good">✓ LIVE</span></td><td class="who">Contreras Welding</td><td>Pause was a payment failure — fixed, live again; July <span class="mono">$2,969</span> collected. Fee-split request awaits Chris</td></tr>
+      <tr><td class="sev"><span class="chip good">✓ DONE</span></td><td class="who">Ram Dumpster</td><td>Cancelled client's Google campaigns confirmed OFF (0 enabled)</td></tr>
+      <tr><td class="sev"><span class="chip good">✓ FIXED</span></td><td class="who">LV Heating</td><td>Meta account ACTIVE again, spent <span class="mono">$212.55</span> yesterday — billing fixed</td></tr>
+    </table>
+    <div class="dots"><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S5 · Payment -->
+  <section class="slide" style="--i:4">
+    <div class="slide-head"><h2>💳 Payment</h2><div class="date">Fri Jul 17</div></div>
+    <div class="sect">Meta ad billing unsettled / grace — while spending ($/yesterday)</div>
+    <div class="bar-row"><div>Haro HVAC (fee collected ✓ — Meta grace)</div><div class="bar-track"><div class="bar-fill" style="width:93%;background:var(--serious)"></div></div><div class="bar-val">$74.53</div></div>
+    <div class="bar-row"><div>Reel Electric (fee collected ✓ — UNSETTLED)</div><div class="bar-track"><div class="bar-fill" style="width:51%;background:var(--critical)"></div></div><div class="bar-val">$40.70</div></div>
+    <div class="bar-row"><div>LA Mini Splits — UNSETTLED</div><div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--critical)"></div></div><div class="bar-val">$10.72</div></div>
+    <div class="sect">Billing sheet — July blank, parked in August (re-bill)</div>
+    <div class="pill-list"><b>Bella Banana</b> $2,102 · <b>Moreno</b> $3,609 · <b>Bluepoint</b> $3,641 (save or churn?) · <b>Nations Ins.</b> $1,500 (verify: mgmt-fee start?) · <b>Amaral's</b> $2,500 left · <b>Apollo</b> re-bill · <b>Prestige Builders</b> COLLECT $3,579</div>
+    <div class="sect">Campaigns on, $0 spend — check billing</div>
+    <div class="pill-list sub2">Google: JQGlassworks · LV Heating · TheWerkstatt — Meta: Solar Energy · Valle Interiors · Luxury Turf · Caliber K9 · Texan Roofing · WestCoast Fence · Always Insurance</div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S6 · Pipeline aging -->
+  <section class="slide" style="--i:5">
+    <div class="slide-head"><h2>⏰ Pipeline aging — 0 marketing accounts overdue 🎉</h2><div class="date">| red line = Day-14 target</div></div>
+    <div class="sect">Marketing (14-day clock)</div>
+    <div class="bar-row"><div>SmithCo — launch due today</div><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:var(--blue)"></div><div class="target-line" style="left:66.7%"></div></div><div class="bar-val">Day 10</div></div>
+    <div class="bar-row"><div>Roberts Garage Doors</div><div class="bar-track"><div class="bar-fill" style="width:42.9%;background:var(--blue)"></div><div class="target-line" style="left:66.7%"></div></div><div class="bar-val">Day 9</div></div>
+    <div class="bar-row"><div>Emberline — onboarded 7/16 ✓</div><div class="bar-track"><div class="bar-fill" style="width:14.3%;background:var(--blue)"></div><div class="target-line" style="left:66.7%"></div></div><div class="bar-val">Day 3</div></div>
+    <div class="bar-row"><div>The Alliance 247 — onboarding missed 7/16</div><div class="bar-track"><div class="bar-fill" style="width:14.3%;background:var(--blue)"></div><div class="target-line" style="left:66.7%"></div></div><div class="bar-val">Day 3</div></div>
+    <div class="sect">Websites &amp; free promo (no alarm — tracking)</div>
+    <div class="bar-row"><div>ColdRiite Walk-Ins 🔴</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--critical)"></div></div><div class="bar-val">Day 374</div></div>
+    <div class="bar-row"><div>MM Cellar Systems</div><div class="bar-track"><div class="bar-fill" style="width:23.5%;background:var(--blue-250)"></div></div><div class="bar-val">Day 88</div></div>
+    <div class="bar-row"><div>Verterra (free promo)</div><div class="bar-track"><div class="bar-fill" style="width:21.4%;background:var(--blue-250)"></div></div><div class="bar-val">Day 80</div></div>
+    <div class="bar-row"><div>Cal Pro · World Famous · Hernandez · MCS · Clog Monkey…</div><div class="bar-track"><div class="bar-fill" style="width:11.5%;background:var(--blue-250)"></div></div><div class="bar-val">Day 43–25</div></div>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S7 · New deals -->
+  <section class="slide" style="--i:6">
+    <div class="slide-head"><h2>🆕 New deals — over-promise check</h2><div class="date">Fri Jul 17</div></div>
+    <table>
+      <tr><td class="who">The Alliance 247<br><span class="sub2" style="font-size:1.8vh">signed 7/14 · SEO $2,500/mo</span></td>
+          <td><span class="chip warning">● Onboarding missed 7/16</span> — rescheduled Tue 7/21 9 AM; billing clock already running (client acknowledged).<br>
+          <span class="sub2">Watch: 20+ SEO keywords · front-page-rankings talk · AI search optimization · multi-region landing pages (Phoenix/Vegas/Havasu mentioned) — client was burned before ($6k → 1 lead). Card was missing from board — created today.</span></td></tr>
+      <tr><td class="who">Emberline Shower Enclosures<br><span class="sub2" style="font-size:1.8vh">$2,500×2 → $3,500×6 +10% ad fee</span></td>
+          <td><span class="chip good">✓ Onboarded 7/16</span> — Atlas modules to finish.<br>
+          <span class="sub2">Promised: ten monthly creatives · weekly growth calls · CRM customer-list import — confirm deliverable or reset expectations.</span></td></tr>
+    </table>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span><span></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+  <!-- S8 · Went live -->
+  <section class="slide" style="--i:7">
+    <div class="slide-head"><h2>🏁 Went live / confirmed spending</h2><div class="date">last 7 days</div></div>
+    <table>
+      <tr><td class="who">Apex Landscape</td><td>Google · 7/16</td><td class="sub2">Jaime EOD ✓</td></tr>
+      <tr><td class="who">At Your Service H&amp;C</td><td>7/16</td><td class="sub2">Jaime EOD ✓</td></tr>
+      <tr><td class="who">Contreras Welding</td><td>Meta · re-live 7/16</td><td class="sub2 mono">$51.98 yest ✓</td></tr>
+      <tr><td class="who">Roof City Professionals</td><td>Google · 7/14</td><td class="sub2 mono">$13.95 today ✓</td></tr>
+      <tr><td class="who">Cortex Plastering</td><td>Meta · 7/14 (chargeback watch)</td><td class="sub2 mono">$22.06 yest ✓</td></tr>
+      <tr><td class="who">Reel Electric</td><td>Google + Meta · 7/13</td><td class="sub2">spending ✓ (billing flag)</td></tr>
+      <tr><td class="who">Shelby Plumbing</td><td>Meta</td><td class="sub2">board ✓</td></tr>
+      <tr><td class="who">His Hands Plumbing</td><td>Google · 7/10</td><td class="sub2 mono">$369 yest ✓</td></tr>
+    </table>
+    <div class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="on"></span></div>
+    <div class="bar-progress"></div>
+  </section>
+
+</div>
+</body>
+</html>

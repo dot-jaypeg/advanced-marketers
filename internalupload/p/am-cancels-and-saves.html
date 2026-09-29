@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cancels &amp; Saves | Advanced Marketers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0C0E12;--panel:#14171D;--panel2:#1B1F27;--line:#2B313B;--line2:#232833;
+  --white:#F2F4F7;--dim:#A9B2BF;--dimmer:#727C8A;
+  --blue:#3b82f6;--blue-t:#A7C4F5;--blue-d:#17233A;--blue-l:#C6D9F9;
+  --red:#E8736F;--red-d:#2E1618;--ok:#5FCB9B;--ok-d:#14291F;--warn:#E0A44A;--warn-d:#2A2110;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);
+  font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px;line-height:1.62;padding-inline:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding-block:46px 96px}
+
+.brandbar{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:38px}
+.mark{width:26px;height:26px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mark span{font-family:Anton,sans-serif;font-size:15px;color:#000;line-height:1}
+.brandbar b{font-family:Anton,sans-serif;font-size:16px;letter-spacing:.06em;text-transform:uppercase;font-weight:400}
+.brandbar i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dimmer);margin-left:auto}
+
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--blue-t);margin:0 0 14px}
+h1{font-family:Anton,"Arial Narrow",sans-serif;font-weight:400;
+  font-size:clamp(38px,6.6vw,66px);line-height:.98;text-transform:uppercase;margin:0 0 18px;text-wrap:balance}
+.stand{font-size:19px;color:var(--dim);margin:0;max-width:60ch}
+
+h2{font-family:Anton,sans-serif;font-weight:400;font-size:15px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--white);margin:0 0 22px;padding-bottom:10px;border-bottom:2px solid var(--blue-t);
+  display:flex;align-items:baseline;gap:14px}
+h2 em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.12em;color:var(--dimmer)}
+section{margin-top:58px;scroll-margin-top:20px}
+p{margin:0 0 15px}
+strong{font-weight:700;color:var(--white)}
+a{color:var(--blue-t)}
+h3.sub{font-family:Anton,sans-serif;font-weight:400;font-size:19px;letter-spacing:.03em;
+  text-transform:uppercase;margin:34px 0 12px;color:var(--white)}
+.lede{font-size:18px;color:var(--dim);max-width:64ch;margin:0 0 8px}
+
+.toc{background:var(--panel);border:1px solid var(--line);padding:26px 30px;margin-top:40px}
+.toc b{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--dimmer);display:block;margin-bottom:16px}
+.toc ol{list-style:none;counter-reset:t;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 34px}
+.toc li{counter-increment:t;padding:6px 0}
+.toc a{text-decoration:none;color:var(--white);font-size:15.5px;display:flex;gap:12px;align-items:baseline}
+.toc a:hover{color:var(--blue-t)}
+.toc a::before{content:counter(t,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px;color:var(--blue-t);flex-shrink:0}
+@media(max-width:660px){.toc ol{grid-template-columns:1fr}}
+
+.alarm{background:var(--red-d);border-left:3px solid var(--red);padding:20px 24px;margin:26px 0 0}
+.alarm b{font-family:Anton,sans-serif;font-weight:400;font-size:20px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:8px;color:var(--red)}
+.alarm p{margin:0;color:var(--dim);font-size:16px}
+.alarm p+p{margin-top:10px}
+.note{background:var(--blue-d);border-left:3px solid var(--blue-t);padding:20px 24px;margin:26px 0 0}
+.note b{font-family:Anton,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:8px;color:var(--blue-l)}
+.note p{margin:0;color:var(--dim);font-size:16px}
+.note p+p{margin-top:10px}
+
+.rule{border:1px solid var(--line);background:var(--panel);padding:30px 34px;margin:26px 0 0}
+.rule q{quotes:none;font-family:Anton,sans-serif;font-weight:400;
+  font-size:clamp(21px,3.2vw,30px);line-height:1.14;text-transform:uppercase;display:block;text-wrap:balance}
+.rule p{margin:14px 0 0;color:var(--dim);font-size:16px}
+
+/* big link buttons */
+.links{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.lk{display:block;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--blue);
+  padding:20px 24px;text-decoration:none;transition:background .15s}
+.lk:hover{background:var(--panel2)}
+.lk b{font-family:Anton,sans-serif;font-weight:400;font-size:18px;letter-spacing:.02em;text-transform:uppercase;
+  display:block;margin-bottom:6px;color:var(--white)}
+.lk span{color:var(--dim);font-size:15px;display:block}
+.lk i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--blue-t);
+  display:block;margin-top:8px;letter-spacing:.06em}
+@media(max-width:700px){.links{grid-template-columns:1fr}}
+
+/* status chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;padding:6px 11px;
+  background:var(--panel2);border:1px solid var(--line);color:var(--dim)}
+.chip.b{border-color:var(--blue-t);color:var(--blue-l)}
+.chip.w{border-color:var(--warn);color:var(--warn)}
+.chip.g{border-color:var(--ok);color:var(--ok)}
+.chip.r{border-color:var(--red);color:var(--red)}
+
+.phase{background:var(--panel);border:1px solid var(--line);margin-bottom:14px;
+  display:grid;grid-template-columns:132px 1fr}
+.phase .when{background:var(--panel2);border-right:1px solid var(--line2);padding:20px 16px;text-align:center}
+.phase .when b{font-family:Anton,sans-serif;font-weight:400;font-size:24px;line-height:1;display:block;color:var(--blue-t)}
+.phase .when span{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dimmer);display:block;margin-top:7px}
+.phase .what{padding:20px 24px}
+.phase .what h3{font-family:Anton,sans-serif;font-weight:400;font-size:19px;letter-spacing:.02em;
+  text-transform:uppercase;margin:0 0 12px;line-height:1.15}
+.phase .what p{margin:0;color:var(--dim);font-size:15.5px}
+.phase .what p+p{margin-top:9px}
+.phase.fire{border-color:var(--red)}
+.phase.fire .when b{color:var(--red)}
+.phase.go{border-color:var(--ok)}
+.phase.go .when b{color:var(--ok)}
+@media(max-width:660px){.phase{grid-template-columns:1fr}
+  .phase .when{border-right:none;border-bottom:1px solid var(--line2);text-align:left;padding:14px 20px;display:flex;align-items:baseline;gap:12px}
+  .phase .when span{margin-top:0}}
+
+ul.acts{list-style:none;padding:0;margin:0}
+ul.acts li{padding:11px 0;border-bottom:1px solid var(--line2);display:flex;gap:14px;align-items:flex-start}
+ul.acts li:last-child{border-bottom:none;padding-bottom:0}
+ul.acts li:first-child{padding-top:0}
+.who{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue-t);background:var(--blue-d);padding:4px 9px;white-space:nowrap;flex-shrink:0;min-width:110px;text-align:center}
+.act{flex:1}
+.act b{display:block;font-weight:700;margin-bottom:2px}
+.act span{color:var(--dim);font-size:15px}
+@media(max-width:560px){ul.acts li{flex-direction:column;gap:7px}.who{min-width:0;align-self:flex-start}}
+
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:6px}
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--panel);margin-top:22px}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--dimmer);text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);
+  background:var(--panel2);white-space:nowrap}
+td{padding:11px 16px;border-bottom:1px solid var(--line2);vertical-align:top;color:var(--dim)}
+tbody tr:last-child td{border-bottom:none}
+td.code{font-family:Anton,sans-serif;font-weight:400;font-size:16px;letter-spacing:.03em;
+  text-transform:uppercase;color:var(--white);white-space:nowrap}
+td.owns{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--blue-t);white-space:nowrap}
+tr.fire td.owns{color:var(--red)}
+td.num{font-family:Anton,sans-serif;font-size:20px;color:var(--red);text-align:center;width:64px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.box{background:var(--panel);border-left:3px solid var(--blue-t);padding:18px 22px}
+.box.bad{border-left-color:var(--red)}
+.box.good{border-left-color:var(--ok)}
+.box b{font-family:Anton,sans-serif;font-weight:400;font-size:17px;letter-spacing:.02em;
+  text-transform:uppercase;display:block;margin-bottom:7px}
+.box span{font-size:15.5px;color:var(--dim)}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+
+ol.chk{list-style:none;counter-reset:c;padding:0;margin:22px 0 0}
+ol.chk li{counter-increment:c;padding:13px 0 13px 44px;border-bottom:1px solid var(--line2);position:relative;color:var(--dim)}
+ol.chk li:last-child{border-bottom:none}
+ol.chk li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--blue-t)}
+ol.chk b{color:var(--white);font-weight:700}
+
+ul.plain{list-style:none;padding:0;margin:16px 0 0}
+ul.plain li{padding:9px 0 9px 22px;position:relative;color:var(--dim);border-bottom:1px solid var(--line2)}
+ul.plain li:last-child{border-bottom:none}
+ul.plain li::before{content:"";position:absolute;left:0;top:19px;width:8px;height:1px;background:var(--blue-t)}
+ul.plain b{color:var(--white)}
+
+/* week grid for the save cadence */
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:22px}
+.day{background:var(--panel);border:1px solid var(--line);padding:16px 12px;text-align:center}
+.day b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dimmer);display:block;margin-bottom:10px}
+.day .mk{font-family:Anton,sans-serif;font-size:26px;line-height:1;color:var(--line)}
+.day.on{border-color:var(--blue)}
+.day.on .mk{color:var(--blue-t)}
+.day .lbl{font-size:12.5px;color:var(--dim);margin-top:8px;display:block;min-height:2.4em}
+@media(max-width:660px){.week{grid-template-columns:repeat(2,1fr)}}
+
+footer{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--dimmer);line-height:1.9;letter-spacing:.03em}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+<style>
+/* keep callout titles from leaking into list bolds */
+.alarm li b,.alarm p b,.note li b,.note p b,.rule li b,.rule p b{
+  display:inline;font-family:"DM Sans",sans-serif;font-weight:700;font-size:inherit;
+  letter-spacing:normal;text-transform:none;color:var(--white);margin:0}
+.alarm ol.plain,.note ol.plain{list-style:none;padding:0;margin:14px 0 0;counter-reset:al}
+.alarm ol.plain li,.note ol.plain li{counter-increment:al;padding:9px 0 9px 30px;position:relative;
+  color:var(--dim);border-bottom:1px solid rgba(255,255,255,.07)}
+.alarm ol.plain li:last-child,.note ol.plain li:last-child{border-bottom:none}
+.alarm ol.plain li::before,.note ol.plain li::before{content:counter(al,decimal-leading-zero);
+  position:absolute;left:0;top:11px;width:auto;height:auto;background:none;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--red)}
+.note ol.plain li::before{color:var(--blue-t)}
+
+/* ---- tabbed shell ---- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(12,14,18,.92);
+  backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);
+  border-bottom:1px solid var(--line);margin:0 -20px 0;padding:0 20px}
+.topbar .inner{max-width:1060px;margin:0 auto}
+.tabs{display:flex;gap:0;padding:10px 0 0}
+.tab{appearance:none;background:none;border:none;cursor:pointer;position:relative;
+  font-family:Anton,sans-serif;font-weight:400;font-size:15px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--dimmer);padding:10px 20px 14px;transition:color .15s}
+.tab:hover{color:var(--dim)}
+.tab[aria-selected="true"]{color:var(--white)}
+.tab[aria-selected="true"]::after{content:"";position:absolute;left:20px;right:20px;bottom:0;height:2px;background:var(--blue-t)}
+.tab i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;
+  color:var(--dimmer);margin-left:8px}
+.subnav{display:flex;gap:6px;overflow-x:auto;padding:9px 0 11px;scrollbar-width:none}
+.subnav::-webkit-scrollbar{display:none}
+.subnav a{flex-shrink:0;text-decoration:none;font-size:13px;color:var(--dim);
+  padding:5px 12px;border:1px solid var(--line);background:var(--panel);white-space:nowrap;transition:.15s}
+.subnav a:hover{border-color:var(--line2);color:var(--white)}
+.subnav a.on{border-color:var(--blue-t);color:var(--blue-l);background:var(--blue-d)}
+.panel{display:none}
+.panel.on{display:block}
+.panel > section:first-of-type{margin-top:44px}
+@media(max-width:660px){
+  .tab{font-size:13px;letter-spacing:.08em;padding:10px 12px 13px}
+  .tab[aria-selected="true"]::after{left:12px;right:12px}
+  .tab i{display:none}
+}
+/* price cards */
+.tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:24px}
+.tier{background:var(--panel);border:1px solid var(--line);padding:22px 24px;display:flex;flex-direction:column}
+.tier.pick{border-color:var(--blue);background:var(--blue-d)}
+.tier .amt{font-family:Anton,sans-serif;font-size:38px;line-height:1;color:var(--white);margin-bottom:4px}
+.tier.pick .amt{color:var(--blue-l)}
+.tier .per{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dimmer);display:block;margin-bottom:14px}
+.tier b{font-family:Anton,sans-serif;font-weight:400;font-size:16px;letter-spacing:.02em;text-transform:uppercase;
+  display:block;margin-bottom:8px}
+.tier span{font-size:14.5px;color:var(--dim)}
+.tier .flag{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue-t);margin-top:auto;padding-top:14px}
+@media(max-width:760px){.tiers{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true"  data-p="save">Save<i>01</i></button>
+      <button class="tab" role="tab" aria-selected="false" data-p="cancel">Cancel<i>02</i></button>
+      <button class="tab" role="tab" aria-selected="false" data-p="ref">Reference<i>03</i></button>
+    </div>
+    <div class="subnav" id="subnav"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="brandbar">
+  <div class="mark"><span>A</span></div>
+  <b>Advanced Marketers</b>
+  <i>Growth &middot; Internal</i>
+</div>
+
+<p class="eyebrow">Growth Department</p>
+<h1>Cancels &amp; Saves</h1>
+<p class="stand">One document. <strong>Save</strong> is how you keep a client who wants out. <strong>Cancel</strong> is what happens when you cannot, including what we charge them to keep their website. <strong>Reference</strong> is where everything lives and what is still broken.</p>
+
+<div class="panel on" id="p-save">
+<section id="sv1">
+<h2>The first hour <em>01</em></h2>
+<p class="lede">The first sixty minutes decide most of these. A client who asks to cancel and hears nothing for a day has already left, they are just waiting for the paperwork.</p>
+
+<div class="alarm">
+  <b>STOP THE BILLING. Within one hour. You do not need permission for any of this.</b>
+  <p>The moment a client says the word cancel, three things happen. Nobody has to approve them and nobody has to be asked.</p>
+  <ol class="plain">
+    <li><b>Flag billing.</b> No further charge until Christian rules on it. Money is reversible and it is the thing that turns a cancel into a chargeback.</li>
+    <li><b>File the retention card</b> and put one name on it. Inside the hour.</li>
+    <li><b>Write to the client</b> confirming the next charge is held and telling them what happens next.</li>
+  </ol>
+  <p>Christian rules on the refund <em>after</em> those three, not before.</p>
+</div>
+
+<div class="rule">
+  <q>Do not pause the ads yet</q>
+  <p>They asked to cancel. They have not cancelled. If we save them, the ads never should have stopped, and a campaign that gets paused and restarted comes back worse. Learning resets, pacing resets, LSA ranking drops. You would be handing yourself a harder save than the one you started with.</p>
+</div>
+
+<h3 class="sub">When the ads do get paused</h3>
+<div class="two">
+  <div class="box bad"><b>They actually cancelled</b><span>Confirmed, not threatened. Pause Google, Meta and LSA that day, then run the Cancel tab.</span></div>
+  <div class="box bad"><b>The save has been stuck over 10 days</b><span>No traction, no answer, no decision. Ten days is the line. Pause the spend and tell Christian it is stuck.</span></div>
+</div>
+
+<div class="note">
+  <b>Why this rule changed</b>
+  <p>It used to say pause everything on day one. That was wrong in one direction, because it protected the money by damaging the account we were trying to keep. Holding the <strong>billing</strong> on day one and holding the <strong>ads</strong> until it is real gets both.</p>
+  <p>It is still true that ads left running on a client who genuinely cancelled is how we get refunds. MGS Air asked to cancel and the ads were still running a week later, $4,000 spent. Roofing Pro was billed roughly three weeks past cancel. Down The Line was charged $4,200 after cancelling. Inland Renovation was double-charged. All City Janitorial cancelled and then got staffed with a phone setter two days later. The billing flag on day one is what stops that, and the 10-day line is what stops a stuck save quietly burning spend for a month.</p>
+</div>
+
+<div class="phase fire">
+  <div class="when"><b>1 HR</b><span>File it</span></div>
+  <div class="what"><h3>Get it into the pipeline</h3>
+    <ul class="acts">
+      <li><span class="who">You</span><span class="act"><b>Create the card in Retention &amp; Cancellation Clients</b><span>Copy the TEMPLATE card in that list. Do not start from a blank task.</span></span></li>
+      <li><span class="who">You</span><span class="act"><b>Put the money in the title</b><span>Client name and monthly amount. "[CANCEL] Acme Plumbing &mdash; $2,500". Anyone scanning the list can then see what is at stake without opening anything.</span></span></li>
+      <li><span class="who">You</span><span class="act"><b>Set status, owner, reason code and last day of service</b><span>Owner is one named human. Not a team, not blank.</span></span></li>
+      <li><span class="who">You</span><span class="act"><b>Tell Christian</b><span>Same day, in his DM. A cancellation is on the list of things he never finds out about from somewhere else.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="when"><b>24 HRS</b><span>First call</span></div>
+  <div class="what"><h3>Call them. Not email.</h3>
+    <p>One call attempt is three consecutive dials. Owner-operators screen a single unknown number as spam.</p>
+    <p>The only goal of this call is to find the <strong>real</strong> reason. Not the polite one. See the reason codes in Reference.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="when"><b>Day 2</b><span>Plan</span></div>
+  <div class="what"><h3>Write the save plan on the card</h3>
+    <p>What is actually wrong, what we are changing, who is doing it, and by when. Three lines is enough. A save with no written plan is a hope.</p>
+  </div>
+</div>
+
+<div class="rule">
+  <q>Do not cancel the billing yourself</q>
+  <p>Ever. You tell the person who handles billing, same day, with the client name, the amount and the last day of service, and you get confirmation back that it is done. Cancelling it yourself is how a client gets charged after they left, and that turns a clean loss into a chargeback and a review.</p>
+</div>
+</section>
+<section id="sv2">
+<h2>Paid or free <em>02</em></h2>
+<p class="lede">A save is a fixed window where the client stops deciding and starts watching. You are not talking them out of leaving. You are buying a defined stretch of time, agreeing what you will prove inside it, and proving it where they can see.</p>
+
+<div class="rule">
+  <q>A save is a promise with a deadline on it</q>
+  <p>If there is no end date, there is no save. There is a client who is still leaving, just more slowly, while everyone tells each other it is being handled.</p>
+</div>
+
+<h3 class="sub">Every save is paid or free. Decide first.</h3>
+<div class="two">
+  <div class="box good"><b>Paid proof period</b><span>They keep paying. Billing continues untouched. This is the default and the stronger position, because the client is still buying and we are still delivering. Nothing has to be unwound if it works.</span></div>
+  <div class="box bad"><b>Free month</b><span>We eat a month to buy the time. Billing has to be stopped by hand, which is a task on Victor Lemus, which is a thing that can be missed. Only when the account genuinely earned it.</span></div>
+</div>
+
+<h3 class="sub">When a free month is on the table</h3>
+<ul class="plain">
+  <li><b>Four or more months with us</b>, and</li>
+  <li><b>No converted leads in that time.</b> Not "they are unhappy". Not "they yelled". Nothing landed.</li>
+  <li><b>Never offered on the intake call.</b> Diagnose first. The moment you lead with a free month you have taught the client that complaining is how they get a discount, and you will see them again next quarter.</li>
+  <li><b>Christian approves it in advance.</b> Free months, credits, price changes and package changes are his call, not yours.</li>
+</ul>
+
+<h3 class="sub">The clock starts when they can see something</h3>
+<p>Not when they said the word cancel. Not when you got off the call. The window opens the day the client can actually watch the work happen, which usually means the day their CRM access is live and the ads are back on. Pick that date, write it in the card, email it to the client so both sides are counting the same days.</p>
+
+<div class="two">
+  <div class="box bad"><b>A failed save</b><span>One call, a promise to keep an eye on it, a card that sits in save attempt for four months, a client who quietly stops paying. Nobody can say what was tried.</span></div>
+  <div class="box good"><b>A real save</b><span>The reason is named. Something concrete changes in week one. The client hears from us twice a week with something new each time. A decision lands inside the window.</span></div>
+</div>
+</section>
+<section id="sv3">
+<h2>Day one <em>03</em></h2>
+<p class="lede">Five things happen in the first twenty-four hours. All five in writing. Email, not Slack, not a text, not "I told him on the phone."</p>
+
+<ol class="chk">
+  <li><b>Confirm the terms to the client in writing.</b> What the window is, when it starts, when it ends, what we will do inside it. One email, copied onto the card.</li>
+  <li><b>Agree the day-30 number with them, out loud, on the first call.</b> Then write it into the card. See The number. This is the part everybody skips.</li>
+  <li><b>Confirm the ad status and the next billing date.</b> They asked about money. Answer the money question before they have to ask twice.</li>
+  <li><b>Billing hold, if this is a free month.</b> A task on <strong>Victor Lemus</strong>, dated today, confirming the account will not be charged.</li>
+  <li><b>Refund, if one is owed.</b> Also Victor Lemus, also today, and the amount and date get confirmed to the client in writing.</li>
+</ol>
+
+<div class="rule">
+  <q>Nothing on a save card is verbal</q>
+  <p>Every promise you make to that client goes on the card the day you make it. Not because we do not trust you. Because in thirty days somebody will ask what we agreed, and the answer needs to exist somewhere other than your memory.</p>
+</div>
+</section>
+<section id="sv4">
+<h2>The number <em>04</em></h2>
+<p class="lede">The most important sentence in a save is the client telling you, in their own words, what would make them stay. Until you have that, you are guessing at a target and you will hit something they never cared about.</p>
+
+<div class="two">
+  <div class="box bad"><b>What not to do</b><span>Decide internally that twenty leads is a good month, deliver twenty leads, and find out on day 30 that he wanted three booked jobs and does not care about lead count at all.</span></div>
+  <div class="box good"><b>What to do</b><span>Ask him on the first call. "Thirty days from now, what has to have happened for you to feel good about this?" Read it back. Put his words in the card.</span></div>
+</div>
+
+<h3 class="sub">Rules on the number</h3>
+<ul class="plain">
+  <li><b>It comes from them, not from us.</b> You are writing down their standard, not negotiating ours.</li>
+  <li><b>No multiples, ever.</b> Do not say 3x. Do not say 10x. Do not promise a return you do not control. We control leads, speed and quality of work. We do not control whether he answers his phone.</li>
+  <li><b>Know their ad spend before you agree to anything.</b> A number that is impossible at their budget is a number you have just promised to miss.</li>
+  <li><b>If they will not give you one,</b> that is information. A client who cannot say what would make them happy has usually already decided. Raise it with Christian the same day.</li>
+  <li><b>Write it in the card before the call ends,</b> or it will not get written at all.</li>
+</ul>
+</section>
+<section id="sv5">
+<h2>The cadence <em>05</em></h2>
+<p class="lede">This is the rule that changes retention. Two calls a week, every week, until it resolves.</p>
+
+<div class="note">
+  <b>Who gets two a week</b>
+  <p><strong>Every client on a free month, automatically.</strong> Plus any other save where the manager decides it warrants that cadence. It is not automatic on every retention card.</p>
+  <p>That is a capacity call, not a softening. Nineteen live cards at twice a week is thirty-eight calls a week on a team already over capacity. Spend the intensity on the accounts that are actually in a proof window.</p>
+</div>
+
+<div class="week">
+  <div class="day on"><b>Mon</b><div class="mk">&#9679;</div><span class="lbl">Call 1<br>What we changed</span></div>
+  <div class="day"><b>Tue</b><div class="mk">&#9675;</div><span class="lbl">Work the account</span></div>
+  <div class="day"><b>Wed</b><div class="mk">&#9675;</div><span class="lbl">Work the account</span></div>
+  <div class="day on"><b>Thu</b><div class="mk">&#9679;</div><span class="lbl">Call 2<br>What it did</span></div>
+  <div class="day"><b>Fri</b><div class="mk">&#9675;</div><span class="lbl">Update the card</span></div>
+</div>
+
+<p style="margin-top:24px">The two calls are not check-ins and they are not the same call twice. They do different jobs.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Call</th><th>Purpose</th><th>What you open with</th></tr></thead>
+<tbody>
+<tr><td class="code">Early week</td><td>Tell them what changed since last time</td><td>"Here is what we changed on your account, and here is why."</td></tr>
+<tr><td class="code">Late week</td><td>Tell them what it did, and what is next</td><td>"Here is what that produced this week, and here is what we are doing next."</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="rule">
+  <q>Every save call reports something that changed since the last one</q>
+  <p>If you have nothing new to tell them, the problem is not the phone call. The problem is that nobody worked the account this week. Fix that, then call.</p>
+</div>
+
+<h3 class="sub">Rules for the cadence</h3>
+<ul class="plain">
+  <li><b>Two calls, not two touches.</b> A text is not a call. An email is not a call. Texts are what you send after the call.</li>
+  <li><b>Different days.</b> Both calls on Friday is one call with extra steps.</li>
+  <li><b>Every attempt gets logged</b> on the card. A save with no notes is treated as untouched, and that is not a technicality, it is how a card ends up sitting for four months.</li>
+  <li><b>If they do not pick up,</b> rotate numbers, call the business line, call the number on their Google Business Profile, message the business on Instagram. Twenty dials from one number they are screening is one attempt.</li>
+  <li><b>The cadence does not pause</b> because you are waiting on another department. If you are blocked, the call is where you say so honestly and give them a date.</li>
+  <li><b>It ends when the window ends,</b> one way or the other. The decision call happens <strong>two days before</strong> the deadline, never after it. See The decision call.</li>
+</ul>
+
+<div class="alarm">
+  <b>Why this rule exists</b>
+  <p>There are accounts sitting in save attempt that have been there for months. Almost none have a note explaining what was tried. Every one of them is money we already earned, still sitting on the table.</p>
+  <p>What goes on the card after each call is in Every call.</p>
+</div>
+</section>
+<section id="sv6">
+<h2>Every call <em>06</em></h2>
+<p class="lede">The call is not finished when you hang up. It is finished when the comment is on the card. Three things, every time, no exceptions.</p>
+
+<div class="phase">
+  <div class="when"><b>1</b><span>Outcome</span></div>
+  <div class="what"><h3>Held, client no-show, or rescheduled</h3>
+    <p>One of those three words. Not "tried him". If he did not show, the word is no-show, because that fact matters later.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="when"><b>2</b><span>Leads</span></div>
+  <div class="what"><h3>Leads sent since the last call</h3>
+    <p>The actual count. This is the spine of the whole thing. Thirty days of these comments is the evidence that we did the work, and it is the only defence we have if the client says we did nothing.</p>
+  </div>
+</div>
+
+<div class="phase">
+  <div class="when"><b>3</b><span>Words</span></div>
+  <div class="what"><h3>What the client said</h3>
+    <p>Their words, not your summary of their mood. "His guy is slow returning calls" is useful. "Seemed fine" is not.</p>
+  </div>
+</div>
+
+<div class="alarm">
+  <b>Two no-shows changes the conversation</b>
+  <p>A client who will not get on the phone twice inside a proof window has usually already left and has not told you. That is not a reason to chase harder. It is a reason to raise it with Christian before the decision call, so nobody is surprised.</p>
+  <p>It also protects you. "We called, he did not show, here are the dates" is a fact. "We were in touch" is an argument you will lose.</p>
+</div>
+</section>
+<section id="sv7">
+<h2>The decision call <em>07</em></h2>
+<p class="lede">Every save ends on a call where somebody says the word. Renew or release. It happens two days before the deadline, never after it.</p>
+
+<div class="phase go">
+  <div class="when"><b>-2</b><span>Days</span></div>
+  <div class="what"><h3>Two days before the window closes</h3>
+    <p>Growth owner and Christian, together. Before the deadline, so there is room to act on whatever gets decided. After the deadline you are not deciding anything, you are reacting to a client who already made the call for you.</p>
+  </div>
+</div>
+
+<h3 class="sub">What you bring to it</h3>
+<ul class="plain">
+  <li><b>The number they gave you</b> on day one, in their words.</li>
+  <li><b>What actually happened</b> against it. Leads sent, across the whole window, from your call comments.</li>
+  <li><b>Call record.</b> How many held, how many no-shows.</li>
+  <li><b>Your read.</b> Do they stay, and do we want them to. Both halves are real questions.</li>
+</ul>
+
+<div class="note">
+  <b>Release is a legitimate outcome</b>
+  <p>Some accounts should leave. An account that cannot be made to work at their budget, or a client who will not pick up the phone, is costing the team more than it pays. Saying so at the decision call is the job. Dragging it another sixty days is not.</p>
+</div>
+
+<h3 class="sub">Then move the card</h3>
+<div class="chips">
+  <span class="chip g">saved +</span>
+  <span class="chip b">happy holding area</span>
+  <span class="chip r">churned x</span>
+</div>
+<p style="margin-top:18px"><strong>churned x</strong> creates the cancel-billing task for Victor automatically. <strong>happy holding area</strong> means saved but still fragile, keep watching. Nothing stays in save attempt after the decision call.</p>
+</section>
+<section id="sv8">
+<h2>The save card <em>08</em></h2>
+<p class="lede">The save gets built as its own card <strong>inside the client's own folder</strong>, so the people doing the work see it where they already are. The retention card is the record that they asked to leave. The save card is the work.</p>
+
+<h3 class="sub">Header, set at creation</h3>
+<ul class="plain">
+  <li><b>Client</b> and <b>growth owner.</b> One owner. Never two.</li>
+  <li><b>Save date</b> and <b>proof window.</b> Start and end, both real dates.</li>
+  <li><b>Cadence.</b> Two a week or one a week. Manager decides.</li>
+  <li><b>Paid or free.</b></li>
+  <li><b>Refund owed.</b> Yes or no, and the amount.</li>
+  <li><b>What success looks like at day 30.</b> Required. No blanks. This is the number from The number.</li>
+</ul>
+
+<h3 class="sub">Subtasks, all dated in advance</h3>
+<div class="scroll">
+<table>
+<thead><tr><th>&nbsp;</th><th>Subtask</th><th>Owner</th><th>When</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>Confirm terms to the client in writing</td><td class="owns">Growth owner</td><td>Day 1</td></tr>
+<tr><td class="num">2</td><td>Agree the day-30 number with the client, write it in</td><td class="owns">Growth owner</td><td>Day 1</td></tr>
+<tr><td class="num">3</td><td>Confirm ad status and next billing date in writing</td><td class="owns">Growth owner</td><td>Day 1</td></tr>
+<tr class="fire"><td class="num">4</td><td>BILLING HOLD, confirm the account is not charged</td><td class="owns">Victor Lemus</td><td>Day 1, free only</td></tr>
+<tr class="fire"><td class="num">5</td><td>REFUND, process and confirm amount and date to client</td><td class="owns">Victor Lemus</td><td>Day 1, if owed</td></tr>
+<tr><td class="num">6</td><td>One subtask per call, at the chosen cadence, to the end of the window</td><td class="owns">Growth owner</td><td>Recurring</td></tr>
+<tr><td class="num">7</td><td>DECISION CALL, renew or release</td><td class="owns">Owner + Christian</td><td>2 days before the end</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alarm">
+  <b>Subtasks 4 and 5 block the parent</b>
+  <p>A save cannot be marked done while money is still moving the wrong way. If the billing hold is not confirmed, the card stays open, no matter how well the calls went.</p>
+</div>
+
+<div class="note">
+  <b>Do not build it from scratch each time</b>
+  <p>Use the save template so every card comes out the same shape. A save built by hand is a save with a missing subtask, and the missing one is always number four.</p>
+</div>
+</section>
+
+</div>
+
+<div class="panel" id="p-cancel">
+<section id="c1">
+<h2>It starts when the save fails <em>01</em></h2>
+<p class="lede">Nothing below happens while you are still trying to keep them. The switch is the retention card moving to <strong>churned x</strong>. That one status change is what fires the rest.</p>
+
+<div class="chips">
+  <span class="chip w">save attempt</span>
+  <span class="chip r">churned x</span>
+  <span class="chip">complete</span>
+</div>
+
+<div class="note">
+  <b>Before you accept the cancel, offer to move the money</b>
+  <p>If they are under contract and want out, we do not pause and we do not shrink the invoice. <strong>We move the money.</strong> The same spend goes into SEO, or into whatever is actually going to work for them, and the contract stays whole.</p>
+  <p>A client who says "this is not working" is usually right about the channel and wrong about the agency. Moving budget is a real answer. Pausing is just a slower cancel.</p>
+</div>
+
+<div class="rule">
+  <q>Moving the money is a save, not a concession</q>
+  <p>It keeps the revenue, keeps the relationship, and gets them a result they can see. Offer it before you ever start the offboarding below.</p>
+</div>
+</section>
+<section id="c2">
+<h2>Day 0 — stop the money moving <em>02</em></h2>
+<p class="lede">Same day the card moves to churned x. This is the point where the ads stop, not before.</p>
+
+<div class="phase fire">
+  <div class="when"><b>DAY 0</b><span>Same day</span></div>
+  <div class="what"><h3>Stop the money moving</h3>
+    <ul class="acts">
+      <li><span class="who">Growth</span><span class="act"><b>Pause every ad channel</b><span>Google, Meta, Yelp, LSA. A cancelled client still spending is either your bill or a furious phone call. Comment on the card with what you paused and when.</span></span></li>
+      <li><span class="who">You</span><span class="act"><b>Confirm Victor has it</b><span>Client name, amount, last day of service. You do not cancel anything in GHL or PayBright yourself. Your job is to make sure he knows today and to get confirmation back.</span></span></li>
+      <li><span class="who">Victor</span><span class="act"><b>Cancels the recurring charge</b><span>GHL Payments and PayBright. Charging someone who cancelled is how you get a chargeback. Websites bill automatically and must be stopped in the system.</span></span></li>
+      <li><span class="who">Victor</span><span class="act"><b>Confirms what is owed</b><span>Last billing date, unpaid invoices, ad spend fee through the pause date.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="note">
+  <b>Moving the card is the request</b>
+  <p><strong>churned x</strong> creates the CANCEL BILLING task on Victor automatically, urgent, due same day. Do not also file one by hand and do not tell him in person. It is not finished until <strong>BILLING CONFIRMED DONE</strong> is ticked on that task.</p>
+</div>
+</section>
+<section id="c3">
+<h2>Days 1 to 3 — confirm it and code it <em>03</em></h2>
+
+<div class="phase">
+  <div class="when"><b>1-3</b><span>In writing</span></div>
+  <div class="what"><h3>Put it in writing and name the reason</h3>
+    <ul class="acts">
+      <li><span class="who">Retention</span><span class="act"><b>Written confirmation to the client</b><span>Last day of service, what they keep, what they do not, what happens to their leads, and the website offer below. Written, not a phone call.</span></span></li>
+      <li><span class="who">Retention</span><span class="act"><b>Set the reason code</b><span>One code, from the table in Reference. This is the step everyone skips and the only one that makes churn fixable.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="alarm">
+  <b>Be honest in the code</b>
+  <p>Coding a delivery failure as "money" protects nobody and guarantees it happens again. Nobody gets in trouble for an honest code.</p>
+  <p>And "price" is not a reason code. Almost nobody leaves over price when the results are there. If someone writes price, push back and get the real answer.</p>
+</div>
+</section>
+<section id="c4">
+<h2>The website offer <em>04</em></h2>
+<p class="lede">We built their site. Right now, when a client leaves, we keep hosting it for free, forever, and nobody bills anybody. That stops here. The offer goes out in the same email as the cancellation confirmation.</p>
+
+<div class="tiers">
+  <div class="tier pick">
+    <div class="amt">$199</div><span class="per">per month</span>
+    <b>Site + GHL</b>
+    <span>Hosting, small edits, and their CRM stays live. Leads, contacts and call recordings keep working. This is the one to push.</span>
+    <div class="flag">RECOMMENDED &middot; LEAD WITH THIS</div>
+  </div>
+  <div class="tier">
+    <div class="amt">$99</div><span class="per">per month</span>
+    <b>Site only</b>
+    <span>Hosting and small edits. No GHL, so they lose the CRM and everything in it.</span>
+    <div class="flag">FALLBACK</div>
+  </div>
+  <div class="tier">
+    <div class="amt">$0</div><span class="per">one time</span>
+    <b>Take it with them</b>
+    <span>We hand over the files, the domain and their accounts, and the site comes off our hosting. Clean break, no hard feelings.</span>
+    <div class="flag">ALWAYS OFFERED</div>
+  </div>
+</div>
+
+<div class="rule">
+  <q>Push the $199. They should stay on GHL.</q>
+  <p>The CRM is where their leads, their contacts and their call recordings live. A client who keeps GHL still has their pipeline running in our system, still sees value every week, and picks up the phone when we call in three months. A client who walks away with a zip file does not.</p>
+</div>
+
+<h3 class="sub">How the offer runs</h3>
+<ol class="chk">
+  <li><b>It goes out in writing with the cancellation confirmation.</b> Days 1 to 3. Not a phone mention, not a maybe. All three doors, with the prices.</li>
+  <li><b>It carries a date.</b> The site comes down <strong>30 days after their last paid day</strong> unless they take one of the first two. Put the actual date in the email.</li>
+  <li><b>Retention makes the offer,</b> on the final call and in the email. While there is still goodwill. Not sales, this is not a new deal, it is keeping a door open.</li>
+  <li><b>If they say yes,</b> a new agreement gets signed and Victor sets up the new billing. File it through the <strong>Billing Change Request form</strong> so it does not live in somebody's head.</li>
+  <li><b>If they say no or say nothing,</b> the site comes down on the date in the email. We do not host for free and we do not quietly keep paying for someone who left.</li>
+</ol>
+
+<div class="alarm">
+  <b>No answer is not a yes</b>
+  <p>Without a date in the email, everybody picks ignore and we host their site for the rest of time. The date is the whole mechanism. If it is not in the email, the offer does not exist.</p>
+</div>
+</section>
+<section id="c5">
+<h2>Day 7 — hand over and cut access <em>05</em></h2>
+
+<div class="phase">
+  <div class="when"><b>DAY 7</b><span>Last day</span></div>
+  <div class="what"><h3>Give them what is theirs</h3>
+    <ul class="acts">
+      <li><span class="who">Web</span><span class="act"><b>Hand over what is in their name</b><span>Domain, website files, Google Business Profile, their own ad accounts. If it is theirs they get it. No holding it hostage. The fastest route to a one star review is making someone fight for their own domain.</span></span></li>
+      <li><span class="who">Account owner</span><span class="act"><b>Export their data and send it</b><span>Leads, call recordings, contacts out of GHL. They paid for those. If they took the $199 they keep GHL and this step does not apply.</span></span></li>
+      <li><span class="who">Web</span><span class="act"><b>Remove our access from their tools</b><span>Google Ads, Meta, GBP, website, GHL.</span></span></li>
+      <li><span class="who">Ops</span><span class="act"><b>Remove their users from ours</b><span>And rotate anything that was shared.</span></span></li>
+      <li><span class="who">Ops</span><span class="act"><b>Remove them from the external Slack channel</b><span>Then close the channel. Nobody should be able to message a client we no longer serve.</span></span></li>
+    </ul>
+  </div>
+</div>
+</section>
+<section id="c6">
+<h2>Day 7+ — close the folder properly <em>06</em></h2>
+
+<div class="phase">
+  <div class="when"><b>7+</b><span>Cleanup</span></div>
+  <div class="what"><h3>Leave nothing behind</h3>
+    <ul class="acts">
+      <li><span class="who">Account owner</span><span class="act"><b>Clear the Links &amp; Logins card</b><span>It holds their passwords. Archiving does not delete it. Wipe it.</span></span></li>
+      <li><span class="who">Account owner</span><span class="act"><b>Close open tasks, delete the Weekly CM</b><span>Leave the Weekly CM and it sits overdue on somebody forever.</span></span></li>
+      <li><span class="who">Account owner</span><span class="act"><b>Rename and archive the folder</b><span>Rename to <strong>[CHURNED 2026-09] Client Name</strong>, then folder menu, Archive. Never delete.</span></span></li>
+      <li><span class="who">Ops</span><span class="act"><b>Pull them off the dashboards</b><span>Client Pipeline card and the Account Health dashboard. Otherwise your MRR number is fiction.</span></span></li>
+      <li><span class="who">Retention</span><span class="act"><b>Write down what actually happened</b><span>Their words, not the version that makes us look better. Then route the root cause to whoever owns the fix, as a task with an owner and a date. An absorbed problem comes back as another cancellation.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="note">
+  <b>Keep working the account through the final paid day</b>
+  <p>They paid for it. We finish it. We do not stop delivering because someone cancelled, and this is also how win-backs stay possible.</p>
+</div>
+</section>
+<section id="c7">
+<h2>Win-back <em>07</em></h2>
+<p class="lede">Some of them come back. Whether they do was decided by how they were treated on the way out, not by what you say at day 60.</p>
+
+<div class="two">
+  <div class="box good"><b>Comes back</b><span>Left clean. Got their domain and their data without a fight. Was worked through to their last paid day. Kept the site and the CRM with us for $199 and never fully left.</span></div>
+  <div class="box bad"><b>Never answers again</b><span>Had to chase us for their own assets. Watched the work stop the day they gave notice. Got forgotten.</span></div>
+</div>
+
+<ol class="chk">
+  <li><b>Day 60 and day 90.</b> Two calls, dated on the card before you close it.</li>
+  <li><b>Anyone on the $199 is a live account,</b> not a win-back. They are already talking to us every month. Treat it that way.</li>
+  <li><b>Log the outcome</b> on the retention card the same way you log a save call.</li>
+</ol>
+
+<div class="note">
+  <b>Win-back cards already exist in the pipeline</b>
+  <p>They are not theoretical. If one is assigned to you it is real work, not a nice idea somebody had.</p>
+</div>
+</section>
+
+</div>
+
+<div class="panel" id="p-ref">
+<section id="rf1">
+<h2>Where it lives <em>01</em></h2>
+<p class="lede">Cancel requests, save attempts, free months and win-backs all live in the retention pipeline. It is not in the client folder. Do not go looking for it there.</p>
+
+<div class="links">
+  <a class="lk" href="https://app.clickup.com/10552018/v/li/901417897821">
+    <b>Retention &amp; Cancellation Clients</b>
+    <span>The main pipeline. Most live requests are here.</span>
+    <i>LIST 901417897821</i>
+  </a>
+  <a class="lk" href="https://app.clickup.com/10552018/v/li/901418656442">
+    <b>API &mdash; Retention (DEAD COPY)</b>
+    <span>Do not use. Renamed and flagged. Its cards are stale.</span>
+    <i>LIST 901418656442</i>
+  </a>
+</div>
+
+<div class="alarm">
+  <b>There were two lists and they disagreed</b>
+  <p>The same client appears in both, sometimes three or four times, with different statuses. BluePoint Pools currently sits in four places at once, marked complete, churned and in save attempt simultaneously.</p>
+  <p>The second list has now been renamed <strong>DEAD COPY &mdash; DO NOT USE</strong>. Everything real lives in Retention &amp; Cancellation Clients. If you find yourself in the dead copy, you are in the wrong place. Nothing filed there will be seen.</p>
+</div>
+
+<p style="margin-top:22px">Both lists carry the tag <strong>retentioncancelsavepipeline</strong>, so searching that tag finds everything across both.</p>
+</section>
+<section id="rf2">
+<h2>The pipeline <em>02</em></h2>
+<p>Six statuses. A card moves left to right and never sits still.</p>
+
+<div class="chips">
+  <span class="chip b">new requests</span>
+  <span class="chip w">save attempt (48hours)</span>
+  <span class="chip w">free month active (all-hands)</span>
+  <span class="chip g">happy holding area</span>
+  <span class="chip r">churned x</span>
+  <span class="chip">complete</span>
+</div>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Status</th><th>What it means</th><th>What moves it on</th></tr></thead>
+<tbody>
+<tr><td class="code">New requests</td><td>A client has asked to cancel, or has signalled it. Nothing has been worked yet.</td><td class="owns">An owner and a call, same day</td></tr>
+<tr><td class="code">Save attempt</td><td>We are actively working to keep them. This is where the job is.</td><td class="owns">A decision, inside 30 days</td></tr>
+<tr><td class="code">Free month active</td><td>A month was given to buy time. The clock is loud and short.</td><td class="owns">Results review before re-bill</td></tr>
+<tr><td class="code">Happy holding area</td><td>Saved. Still watching them, still fragile.</td><td class="owns">60 days clean, then normal</td></tr>
+<tr><td class="code">Churned x</td><td>Gone. Offboarding runs from here.</td><td class="owns">Offboarding complete</td></tr>
+<tr><td class="code">Complete</td><td>Everything is finished and recorded, saved or lost.</td><td class="owns">Nothing. It is closed.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>"Save attempt (48hours)" does not mean 48 hours</b>
+  <p>The label is a leftover. Accounts have been sitting in it for months. What it actually means from today is: first contact within 24 hours, then the cadence under Save, then a decision inside the window.</p>
+</div>
+</section>
+<section id="rf3">
+<h2>Money and billing <em>03</em></h2>
+<p class="lede">Telling someone is not a process. If a free month, a pause or a cancel only exists in a conversation, the client gets billed anyway and we find out when they call angry. From today there is one queue, it belongs to Victor Lemus, and nothing reaches it by mouth.</p>
+
+<div class="links">
+  <a class="lk" href="https://app.clickup.com/10552018/v/l/li/901421033968">
+    <b>&#128179; Billing Requests</b>
+    <span>The billing queue. Everything that changes money lands here.</span>
+    <i>LIST 901421033968</i>
+  </a>
+  <a class="lk" href="https://forms.clickup.com/10552018/p/f/a20pj-164934/MBYQKQHI9R25VQ6S8Z/form">
+    <b>Billing Change Request form</b>
+    <span>Also a tab called BILLING FORM at the top of the retention list.</span>
+    <i>ONE CLICK, NO LOGIN</i>
+  </a>
+</div>
+
+<h3 class="sub">Two of them are automatic. Do not file anything.</h3>
+
+<div class="scroll">
+<table>
+<thead><tr><th>What you do on the retention card</th><th>What happens on its own</th></tr></thead>
+<tbody>
+<tr><td class="code">Set <strong>free month</strong> to Approved</td><td>A task lands on Victor Lemus: <em>FREE MONTH / DO NOT BILL: client</em>. Urgent. Due in 2 days. Linked back to your card.</td></tr>
+<tr><td class="code">Move status to <strong>churned x</strong></td><td>A task lands on Victor Lemus: <em>CANCEL BILLING: client</em>. Urgent. Due same day. Linked back to your card.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p style="margin-top:22px">You never open a second form for those two. The field <em>is</em> the request. That is the whole point.</p>
+
+<p><strong>Victor Lemus owns the billing queue.</strong> He is the one who does or does not run the charge. Every billing hold and every refund goes to him. Do not go around him, and do not tell him in person. The task is how he finds out.</p>
+
+<h3 class="sub">Everything else uses the form</h3>
+
+<div class="chips">
+  <span class="chip w">pause billing</span>
+  <span class="chip w">change amount</span>
+  <span class="chip w">change billing date</span>
+  <span class="chip w">payment plan</span>
+  <span class="chip w">free month promised at signup</span>
+</div>
+
+<p style="margin-top:18px">The form is a tab called <strong>BILLING FORM</strong> at the top of the retention list, next to List and Board. You do not leave ClickUp and you do not go hunting. It takes about twenty seconds: client, amount, the date it has to happen by, whether Christian already approved it, and one line saying what was promised and to who.</p>
+
+<div class="alarm">
+  <b>Nothing is done until the box is ticked</b>
+  <p>Every billing task carries a checkbox called <strong>BILLING CONFIRMED DONE</strong>. Whoever actually pulls the charge in GHL or PayBright ticks it. Not the person who asked. Not the manager.</p>
+  <p>An untick is not a small thing. It means the card is still live and the client is still going to get charged. <strong>If it is not ticked, it did not happen.</strong></p>
+</div>
+
+<div class="alarm">
+  <b>Website clients are the dangerous ones</b>
+  <p>Almost everything we bill is charged <strong>by hand</strong>. For those clients a free month or a cancel just means Victor does not run the charge. Nothing else has to happen.</p>
+  <p><strong>Websites are automatic.</strong> That subscription bills itself whether anyone is paying attention or not. A website client who is given a free month, paused or cancelled will still be charged unless the recurring billing is actually stopped in the system. Say the word "website" out loud when you file one of these.</p>
+</div>
+
+<div class="note">
+  <b>What ClickUp cannot do</b>
+  <p>ClickUp cannot reach into GHL or PayBright and stop a charge. No software here does that. What the automation guarantees is that the request exists, has an owner, has a due date, and cannot be quietly dropped. Victor Lemus still pulls the card.</p>
+</div>
+</section>
+<section id="rf4">
+<h2>Reason codes <em>04</em></h2>
+<p>Every cancellation gets exactly one code. The code decides who owns the fix, and it is how the Company learns anything at all from a loss.</p>
+
+<div class="scroll">
+<table>
+<thead><tr><th>Code</th><th>Means</th><th>Who owns the fix</th></tr></thead>
+<tbody>
+<tr><td class="code">Delivery</td><td>We were late, sloppy, or unresponsive</td><td class="owns">Ops</td></tr>
+<tr><td class="code">Results</td><td>Leads came but the cost or the quality was wrong</td><td class="owns">Growth</td></tr>
+<tr><td class="code">Channel fit</td><td>Launched or kept on the wrong channel for the trade</td><td class="owns">Growth</td></tr>
+<tr><td class="code">Fit</td><td>Wrong client for us. Sold wrong. Needs evidence, not an opinion.</td><td class="owns">Sales</td></tr>
+<tr><td class="code">Money</td><td>Their business is struggling. Not about our work.</td><td class="owns">Nobody</td></tr>
+<tr><td class="code">In-house</td><td>Hired someone internally or a family member</td><td class="owns">Nobody</td></tr>
+<tr class="fire"><td class="code">Forgotten</td><td>We stopped touching the account and they noticed</td><td class="owns">Ops &mdash; this is a fire</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>Price is not a reason code</b>
+  <p>"Too expensive" is what a client says when the value is not obvious. It is almost always Results or Delivery wearing a cheaper coat. Ask one more question before you write it down.</p>
+</div>
+
+<p style="margin-top:22px">There is already a card in the pipeline titled <strong>"[CANCEL] Crown Detail AZ &mdash; WENT FORGOTTEN &mdash; process failure"</strong>. Somebody typed that themselves. That is what the Forgotten code is for, and it is the only one that should make the whole department stop.</p>
+</section>
+<section id="rf5">
+<h2>Known gaps <em>05</em></h2>
+<p class="lede">Current as of 12 September 2026. Written down so you are not wondering whether you are misreading it.</p>
+
+<ul class="plain">
+  <li><b>The "48hours" label is fiction.</b> Cards have sat in save attempt for months. What it means from today: first contact inside 24 hours, then the cadence under Save, then a decision inside the window.</li>
+  <li><b>Four free months are open and two are labelled July.</b> Either they ended and billing never restarted, or we have been working free for two months. Victor Lemus owns resolving those. Do not close the cards to tidy them up.</li>
+  <li><b>Allegiance 76 has three open cards that disagree with each other.</b> One says free month active, two say churned. Somebody has to say which is true before that account is worked.</li>
+  <li><b>Half the client folders have an unnamed delivery list,</b> still reading "Delivery &mdash; [Client Name]" from the template. The client identity lives only in a tag. Being fixed.</li>
+  <li><b>Weekly client meetings have no outcome field yet.</b> Held, no-show, rescheduled and we-missed-it are not being recorded, so no-shows are invisible until the client is already gone.</li>
+  
+</ul>
+
+<div class="note">
+  <b>If this page is wrong, the page is wrong, not you</b>
+  <p>Tell Christian and it gets corrected here. This is the only copy. We do not start a new document when something changes, because that is how you end up with four versions and nobody knowing which one is real.</p>
+</div>
+</section>
+
+</div>
+
+<footer>
+Advanced Marketers &middot; Growth Department &middot; Cancels &amp; Saves &middot; v3.0 &middot; 12 September 2026<br>
+The single source for this process. Superseded versions are deleted, not archived. If anything here does not match what you see on screen, say so.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var NAV = {
+    save:   '<a href="#sv1">The first hour</a><a href="#sv2">Paid or free</a><a href="#sv3">Day one</a><a href="#sv4">The number</a><a href="#sv5">The cadence</a><a href="#sv6">Every call</a><a href="#sv7">The decision call</a><a href="#sv8">The save card</a>',
+    cancel: '<a href="#c1">When it starts</a><a href="#c2">Day 0</a><a href="#c3">Days 1 to 3</a><a href="#c4">The website offer</a><a href="#c5">Day 7</a><a href="#c6">Day 7+</a><a href="#c7">Win-back</a>',
+    ref:    '<a href="#rf1">Where it lives</a><a href="#rf2">The pipeline</a><a href="#rf3">Money and billing</a><a href="#rf4">Reason codes</a><a href="#rf5">Known gaps</a>'
+  };
+  var tabs = [].slice.call(document.querySelectorAll('.tab'));
+  var subnav = document.getElementById('subnav');
+  var obs;
+
+  function spy(panel){
+    if (obs) obs.disconnect();
+    var links = [].slice.call(subnav.querySelectorAll('a'));
+    var secs  = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+    obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        var i = secs.indexOf(e.target);
+        if(i>-1){ links[i].classList.add('on');
+          links[i].scrollIntoView({block:'nearest', inline:'nearest'}); }
+      });
+    }, {rootMargin:'-120px 0px -70% 0px'});
+    secs.forEach(function(s){ if(s) obs.observe(s); });
+  }
+
+  function show(name, push){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t.dataset.p===name)); });
+    ['save','cancel','ref'].forEach(function(n){
+      document.getElementById('p-'+n).classList.toggle('on', n===name);
+    });
+    subnav.innerHTML = NAV[name];
+    if(push!==false){ history.replaceState(null,'','#'+name); }
+    window.scrollTo({top:0});
+    spy(name);
+  }
+
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.dataset.p); }); });
+
+  subnav.addEventListener('click', function(e){
+    var a = e.target.closest('a'); if(!a) return;
+    e.preventDefault();
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    if(el){ window.scrollTo({top: el.offsetTop - 118, behavior:'smooth'}); }
+  });
+
+  var start = (location.hash||'').replace('#','');
+  show(['save','cancel','ref'].indexOf(start)>-1 ? start : 'save', false);
+})();
+</script>
+</body>
+</html>

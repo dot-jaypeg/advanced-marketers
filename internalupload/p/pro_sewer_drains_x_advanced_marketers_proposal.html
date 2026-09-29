@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Sewer and Drains · Growth Proposal · Advanced Marketers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #050505; --bg-alt: #0f0f0f; --bg-card: #141414;
+    --cream: #fafafa; --ink: #f0f0f0; --ink-soft: #b8b8b8; --ink-mute: #7a7a7a;
+    --line: #1f1f1f; --line-bright: #2a2a2a;
+    --pop: #3b82f6; --pop-deep: #2563eb; --pop-bright: #60a5fa;
+    --pop-bg: rgba(59, 130, 246, 0.12); --pop-glow: rgba(59, 130, 246, 0.25);
+    --accent: #a78bfa;
+    --success: #34d399; --success-bg: rgba(52, 211, 153, 0.12);
+    --dark: #000;
+  }
+  html, body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.55; font-weight: 500;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  .display { font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: -0.01em; text-transform: uppercase; line-height: 0.95; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--pop); text-transform: uppercase; font-weight: 700; }
+  body::before { content: ''; position: fixed; top:0; left:0; right:0; bottom:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/></svg>");
+    pointer-events: none; z-index: 1000; opacity: 0.4; }
+
+  /* TOPBAR */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0.9rem 4vw; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(5, 5, 5, 0.94);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line-bright);
+    min-height: 74px;
+  }
+  .brand-stack { display: flex; align-items: center; gap: 1rem; }
+  .brand-am {
+    font-family: 'Anton', sans-serif; font-size: 1.15rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream);
+    line-height: 1;
+  }
+  .brand-am sup { color: var(--pop); font-size: 0.5em; vertical-align: super; margin-left: 0.15em; }
+  .brand-x { font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--pop); line-height: 1; }
+  .brand-client {
+    font-family: 'Anton', sans-serif; font-size: 1.05rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream);
+    line-height: 1;
+  }
+  @media (max-width: 700px) {
+    .brand-am { font-size: 0.85rem; }
+    .brand-client { font-size: 0.8rem; }
+    .brand-x { font-size: 1.1rem; }
+  }
+  .topbar .id {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.2em; color: var(--pop-bright); text-transform: uppercase; font-weight: 700;
+  }
+  @media (max-width: 600px) { .topbar .id { display: none; } }
+
+  /* SECTION NAV BAR */
+  .section-nav {
+    position: fixed; top: 74px; left: 0; right: 0; z-index: 99;
+    background: rgba(5, 5, 5, 0.94);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line-bright);
+    padding: 0.7rem 4vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .section-nav::-webkit-scrollbar { display: none; }
+  .section-nav-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; gap: 0.4rem; align-items: center;
+    white-space: nowrap;
+  }
+  .section-nav a {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-mute); text-decoration: none;
+    padding: 0.55rem 0.9rem; font-weight: 700;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .section-nav a:hover { color: var(--pop-bright); border-color: var(--pop-bright); }
+  .section-nav a.active { color: var(--pop-bright); background: var(--pop-bg); border-color: var(--pop); }
+  @media (max-width: 700px) {
+    .section-nav { top: 62px; padding: 0.5rem 4vw; }
+    .section-nav a { font-size: 0.62rem; padding: 0.45rem 0.7rem; }
+  }
+
+  /* STICKY BOTTOM CTA */
+  .sticky-cta {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 98;
+    background: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-top: 2px solid var(--pop);
+    padding: 0.9rem 4vw;
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.6);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  .sticky-cta.hidden { transform: translateY(100%); }
+  .sticky-cta-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+  }
+  .sticky-cta-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--pop-bright); letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 700; flex-shrink: 1; min-width: 0;
+  }
+  .sticky-cta-label strong { color: var(--cream); }
+  .sticky-cta-btns { display: flex; gap: 0.6rem; flex-shrink: 0; }
+  .sticky-cta-btns a {
+    display: inline-block; padding: 0.85rem 1.4rem;
+    font-family: 'Anton', sans-serif; font-size: 0.9rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    text-decoration: none; border: 2px solid var(--pop);
+    transition: all 0.2s; white-space: nowrap;
+    background: var(--pop); color: var(--dark);
+  }
+  .sticky-cta-btns a:hover { background: var(--pop-bright); border-color: var(--pop-bright); }
+  @media (max-width: 700px) {
+    .sticky-cta { padding: 0.7rem 3vw; }
+    .sticky-cta-label { display: none; }
+    .sticky-cta-inner { justify-content: center; }
+    .sticky-cta-btns { width: 100%; }
+    .sticky-cta-btns a { flex: 1; text-align: center; padding: 0.9rem 0.6rem; font-size: 0.85rem; }
+  }
+
+  body { padding-top: 0; padding-bottom: 80px; }
+  @media (max-width: 700px) { body { padding-bottom: 72px; } }
+
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 4vw; }
+
+  /* HERO */
+  .hero {
+    padding-top: 11rem; padding-bottom: 5rem; position: relative;
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(59, 130, 246, 0.18), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(167, 139, 250, 0.10), transparent 60%),
+      var(--bg);
+  }
+  @media (max-width: 700px) { .hero { padding-top: 9rem; padding-bottom: 3.5rem; } }
+  .hero-eyebrow { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem; }
+  .hero-eyebrow .dot { width: 10px; height: 10px; background: var(--pop); border-radius: 50%; animation: pulse 2s infinite; box-shadow: 0 0 12px var(--pop); }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.9); } }
+  .hero-title { font-size: clamp(2.6rem, 7vw, 5.5rem); color: var(--cream); margin-bottom: 1.8rem; }
+  .hero-title em { font-style: normal; color: var(--pop); }
+  .hero-sub { font-size: 1.15rem; line-height: 1.55; max-width: 720px; color: var(--ink-soft); margin-bottom: 2.5rem; }
+
+  .hero-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line-bright); background: var(--bg-card); }
+  .hero-meta > div { padding: 1.4rem 1.4rem; border-right: 1px solid var(--line-bright); }
+  .hero-meta > div:last-child { border-right: none; }
+  .hero-meta .label { display: block; margin-bottom: 0.4rem; }
+  .hero-meta .val {
+    font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--cream);
+    line-height: 1; text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  @media (max-width: 700px) { .hero-meta { grid-template-columns: 1fr; }
+    .hero-meta > div { border-right: none; border-bottom: 1px solid var(--line-bright); }
+    .hero-meta > div:last-child { border-bottom: none; }
+  }
+
+  section { padding: 5rem 0; }
+  section.alt { background: var(--bg-alt); }
+  .sec-head { margin-bottom: 3rem; max-width: 900px; }
+  .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--pop); text-transform: uppercase; margin-bottom: 1rem; font-weight: 700; }
+  h2.sec-title { font-size: clamp(2rem, 4.5vw, 3.4rem); color: var(--cream); font-family: 'Anton', sans-serif; font-weight: 400; letter-spacing: -0.01em; text-transform: uppercase; line-height: 0.95; }
+  h2.sec-title em { font-style: normal; color: var(--pop); }
+  .lead { font-size: 1.05rem; line-height: 1.6; color: var(--ink-soft); max-width: 780px; margin-top: 1.2rem; }
+
+  /* REALITY GRID */
+  .reality-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 900px) { .reality-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .reality-grid { grid-template-columns: 1fr; } }
+  .reality-card {
+    background: var(--bg-card); padding: 1.8rem 1.8rem 2rem;
+    border: 1px solid var(--line-bright);
+    border-top: 3px solid var(--pop);
+  }
+  .reality-card .stat { font-family: 'Anton', sans-serif; font-size: 3rem; color: var(--pop); line-height: 1; margin-bottom: 0.6rem; }
+  .reality-card .label-inline {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    color: var(--ink-mute); letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 700; margin-bottom: 0.9rem; display: block;
+  }
+  .reality-card p { font-size: 0.92rem; line-height: 1.55; color: var(--ink); }
+
+  /* MATH COMPARISON */
+  .math-block {
+    margin-top: 2.5rem; background: var(--bg-card);
+    padding: 3rem 2.5rem; border: 1px solid var(--line-bright);
+  }
+  .math-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2.5rem; align-items: stretch; }
+  @media (max-width: 800px) {
+    .math-compare { grid-template-columns: 1fr; gap: 1.5rem; }
+    .math-arrow { display: none !important; }
+  }
+  .math-col {
+    padding: 2rem;
+    border: 1px solid var(--line-bright);
+    background: var(--dark);
+  }
+  .math-col.after { border-color: var(--pop); background: linear-gradient(180deg, rgba(59,130,246,0.06), var(--dark)); }
+  .math-col .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    padding: 0.3rem 0.7rem; margin-bottom: 1.5rem;
+    background: var(--bg-alt); color: var(--ink-mute); border: 1px solid var(--line-bright);
+  }
+  .math-col.after .tag { background: var(--pop-bg); color: var(--pop-bright); border-color: var(--pop); }
+  .math-col h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.5rem; color: var(--cream); text-transform: uppercase; line-height: 1.1; margin-bottom: 1.5rem; }
+  .math-row { display: flex; justify-content: space-between; padding: 0.85rem 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .math-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .math-row .l { color: var(--ink-soft); font-size: 0.92rem; }
+  .math-row .v { font-family: 'Anton', sans-serif; color: var(--cream); font-size: 1.6rem; line-height: 1; }
+  .math-row.big { border-top: 2px solid var(--pop); border-bottom: none; margin-top: 0.5rem; padding-top: 1.2rem; }
+  .math-row.big .l { font-family: 'Anton', sans-serif; color: var(--pop-bright); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .math-row.big .v { font-size: 2.2rem; color: var(--pop); }
+  .math-arrow { display: flex; align-items: center; justify-content: center; color: var(--pop); font-size: 2.5rem; font-family: 'Anton', sans-serif; }
+
+  .math-callout {
+    margin-top: 2rem; padding: 1.2rem 1.5rem; background: var(--pop-bg);
+    border-left: 4px solid var(--pop); font-size: 0.92rem; line-height: 1.6; color: var(--ink);
+  }
+  .math-callout strong { color: var(--pop-bright); }
+
+  /* TIMELINE */
+  .timeline { margin-top: 2rem; border-left: 2px solid var(--pop); padding-left: 0; margin-left: 0; }
+  .timeline-row {
+    display: grid; grid-template-columns: 60px 1fr 140px; gap: 2rem;
+    padding: 2rem 2rem 2rem 2.5rem; border: 1px solid var(--line-bright);
+    border-left: none;
+    background: var(--bg-card); position: relative; margin-bottom: 1rem;
+  }
+  .timeline-row::before {
+    content: ''; position: absolute; left: -8px; top: 2.4rem;
+    width: 14px; height: 14px; background: var(--pop); border: 3px solid var(--bg);
+    border-radius: 50%; box-shadow: 0 0 12px var(--pop-glow);
+  }
+  .timeline-num { font-family: 'Anton', sans-serif; font-size: 3.2rem; color: var(--pop); line-height: 0.9; }
+  .timeline-body h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.4rem; color: var(--cream); text-transform: uppercase; margin-bottom: 0.7rem; line-height: 1.05; }
+  .timeline-body p { font-size: 0.95rem; line-height: 1.55; color: var(--ink-soft); margin-bottom: 0.9rem; }
+  .timeline-body ul { list-style: none; padding: 0; }
+  .timeline-body li {
+    padding: 0.4rem 0 0.4rem 1.4rem; position: relative;
+    color: var(--ink); font-size: 0.9rem; line-height: 1.5;
+  }
+  .timeline-body li::before {
+    content: '→'; position: absolute; left: 0; color: var(--pop); font-weight: 700;
+  }
+  .timeline-body li strong { color: var(--cream); }
+  .timeline-timing {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    background: var(--dark); color: var(--pop-bright); padding: 0.4rem 0.7rem;
+    letter-spacing: 0.15em; font-weight: 700; text-transform: uppercase;
+    white-space: nowrap; height: fit-content; text-align: center;
+    border: 1px solid var(--line-bright);
+    align-self: start;
+  }
+  .timeline-row .phase-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    color: var(--pop); letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 0.4rem; display: block;
+  }
+  @media (max-width: 800px) {
+    .timeline-row { grid-template-columns: 1fr; padding: 1.8rem 1.5rem 1.8rem 2rem; gap: 1rem; }
+    .timeline-timing { justify-self: start; }
+    .timeline-num { font-size: 2.2rem; }
+  }
+
+  /* PACKAGE CARD */
+  .package-grid { display: grid; grid-template-columns: minmax(0, 780px); justify-content: center; margin-top: 3rem; }
+  .package-card {
+    background: var(--bg-card); padding: 3rem 2.5rem;
+    border: 2px solid var(--pop); position: relative;
+    background: linear-gradient(180deg, rgba(59,130,246,0.08) 0%, var(--bg-card) 40%);
+  }
+  .package-badge {
+    position: absolute; top: -14px; left: 2.5rem;
+    background: var(--pop); color: var(--dark); padding: 0.4rem 1rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+  }
+  .package-tier {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+    color: var(--pop); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .package-name {
+    font-family: 'Anton', sans-serif; font-weight: 400; font-size: 3rem;
+    color: var(--cream); text-transform: uppercase; line-height: 0.95; margin-bottom: 1rem;
+  }
+  .package-tagline {
+    font-size: 1.05rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 2rem;
+  }
+  .package-price-block { padding: 1.8rem 0; border-top: 1px solid var(--line-bright); border-bottom: 1px solid var(--line-bright); margin-bottom: 2rem; }
+  .package-price-tier { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--pop-bright); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.7rem; }
+  .package-price-main { font-family: 'Anton', sans-serif; font-size: 3.4rem; color: var(--cream); line-height: 1; }
+  .package-price-main .mo { font-size: 1.1rem; color: var(--ink-mute); font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.02em; text-transform: none; margin-left: 0.4rem; }
+  .package-price-then { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55; margin-top: 1rem; }
+  .package-price-then strong { color: var(--pop-bright); font-weight: 700; }
+
+  .package-includes-lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--pop-bright); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 1.2rem; display: block;
+  }
+  .package-includes { list-style: none; padding: 0; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; }
+  @media (max-width: 700px) { .package-includes { grid-template-columns: 1fr; } }
+  .package-includes li {
+    padding: 0.5rem 0 0.5rem 1.6rem; position: relative;
+    color: var(--ink); font-size: 0.92rem; line-height: 1.4;
+    border-bottom: 1px solid var(--line);
+  }
+  .package-includes li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--pop); font-weight: 700; font-size: 1rem;
+  }
+  .package-includes li strong { color: var(--pop-bright); }
+
+  .package-cta { display: flex; flex-direction: column; gap: 0.8rem; }
+  .package-cta .btn {
+    display: block; width: 100%; text-align: center;
+    padding: 1.2rem 1.5rem; background: var(--pop); color: var(--dark);
+    font-family: 'Anton', sans-serif; font-size: 1.15rem; letter-spacing: 0.04em;
+    text-transform: uppercase; text-decoration: none;
+    border: 2px solid var(--pop); transition: all 0.2s;
+    font-weight: 400;
+  }
+  .package-cta .btn:hover { background: var(--pop-bright); border-color: var(--pop-bright); }
+  .package-cta .note { font-size: 0.82rem; color: var(--ink-mute); text-align: center; }
+
+  /* RECOMMENDATION */
+  .rec-block { margin-top: 2.5rem; padding: 3rem 2.5rem; background: var(--bg-card); border: 1px solid var(--line-bright); border-left: 4px solid var(--pop); }
+  .rec-block h3 { font-family: 'Anton', sans-serif; font-size: 2rem; font-weight: 400; color: var(--cream); text-transform: uppercase; line-height: 1; margin-bottom: 1.5rem; }
+  .rec-block h3 em { font-style: normal; color: var(--pop); }
+  .rec-block p { font-size: 1rem; line-height: 1.65; color: var(--ink); margin-bottom: 1.1rem; }
+  .why-list { list-style: none; padding: 0; margin-top: 1.5rem; }
+  .why-list li { padding: 1rem 0 1rem 2rem; position: relative; color: var(--ink); font-size: 0.95rem; line-height: 1.55; border-bottom: 1px solid var(--line); }
+  .why-list li::before { content: '→'; position: absolute; left: 0; color: var(--pop); font-weight: 700; font-size: 1.1rem; }
+  .why-list li strong { color: var(--pop-bright); }
+
+  /* EXPECTATIONS */
+  .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
+  @media (max-width: 800px) { .expect-grid { grid-template-columns: 1fr; } }
+  .expect-card {
+    background: var(--bg-card); padding: 2rem 1.8rem 2.2rem;
+    border: 1px solid var(--line-bright);
+    border-top: 3px solid var(--pop);
+  }
+  .expect-card .exp-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--pop-bright); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .expect-card h3 { font-family: 'Anton', sans-serif; font-weight: 400; font-size: 1.4rem; color: var(--cream); text-transform: uppercase; line-height: 1.05; margin-bottom: 1rem; }
+  .expect-card p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-soft); }
+
+  /* FINAL CTA */
+  .cta { padding: 5rem 0; background: linear-gradient(180deg, var(--bg) 0%, var(--dark) 100%); text-align: center; border-top: 2px solid var(--pop); position: relative; }
+  .cta::before { content: ''; position: absolute; top:0; left:50%; transform: translateX(-50%); width: 400px; height: 400px; background: radial-gradient(circle, var(--pop-glow), transparent 70%); pointer-events: none; }
+  .cta > .container { position: relative; }
+  .cta .label { display: block; margin-bottom: 1.2rem; }
+  .cta h2 { font-family: 'Anton', sans-serif; font-size: clamp(2.4rem, 5.5vw, 4rem); color: var(--cream); line-height: 1; margin-bottom: 1.5rem; font-weight: 400; text-transform: uppercase; letter-spacing: -0.01em; }
+  .cta h2 em { color: var(--pop); font-style: normal; }
+  .cta p { font-size: 1.05rem; color: var(--ink-soft); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.55; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+  .cta .btn { padding: 1.2rem 2.5rem; font-family: 'Anton', sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: 2px solid var(--pop); transition: all 0.2s; display: inline-block; font-weight: 400; }
+  .cta .btn.primary { background: var(--pop); color: var(--dark); }
+  .cta .btn.primary:hover { background: var(--pop-bright); border-color: var(--pop-bright); }
+
+  .cta .sig { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; text-align: left; max-width: 780px; margin-left: auto; margin-right: auto; flex-wrap: wrap; gap: 1.5rem; }
+  .sig-block .label { color: var(--pop-bright); display: block; margin-bottom: 0.4rem; }
+  .sig-block p { color: var(--cream); font-weight: 700; margin-bottom: 0.2rem; }
+  .sig-block .role { color: var(--ink-mute); font-size: 0.82rem; }
+
+  /* DISCLAIMER */
+  .disclaimer { background: var(--dark); padding: 2.5rem 4vw 2rem; border-top: 1px solid var(--line); }
+  .disclaimer .inner { max-width: 1160px; margin: 0 auto; }
+  .disclaimer .label { color: var(--pop); margin-bottom: 0.8rem; display: block; }
+  .disclaimer p { font-size: 0.76rem; line-height: 1.65; color: var(--ink-mute); max-width: 980px; font-style: italic; }
+
+  footer { padding: 2rem 4vw; background: #000; color: var(--ink-mute); display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; flex-wrap: wrap; gap: 1rem; }
+  footer .wm { color: var(--pop); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand-stack">
+    <span class="brand-am">Advanced Marketers<sup>®</sup></span>
+    <span class="brand-x">×</span>
+    <span class="brand-client">Pro Sewer &amp; Drains</span>
+  </div>
+  <div class="id">GROWTH PROPOSAL · AUGUST 2026</div>
+</div>
+
+<!-- SECTION NAV -->
+<nav class="section-nav" id="sectionNav">
+  <div class="section-nav-inner">
+    <a href="#reality" data-target="reality">01 · Reality</a>
+    <a href="#math" data-target="math">02 · Math</a>
+    <a href="#timeline" data-target="timeline">03 · Timeline</a>
+    <a href="#package" data-target="package">04 · Package</a>
+    <a href="#recommendation" data-target="recommendation">05 · Why Now</a>
+    <a href="#expectations" data-target="expectations">06 · Expectations</a>
+    <a href="https://app.pandadoc.com/document/v2?token=2228c94b81d9613f1ed0dd9e1ec73453dec6a6c6" target="_blank" rel="noopener">→ Sign Agreement</a>
+  </div>
+</nav>
+
+<!-- STICKY BOTTOM CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-label"><strong>Launch Pro Sewer &amp; Drains right</strong> · Accelerator · Month-to-month trial</div>
+    <div class="sticky-cta-btns">
+      <a href="https://app.pandadoc.com/document/v2?token=2228c94b81d9613f1ed0dd9e1ec73453dec6a6c6" target="_blank" rel="noopener">Approve Accelerator · $8,000</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      <div class="label" style="color: var(--pop-bright);">PREPARED FOR MARCO MOLINA · AUGUST 5, 2026</div>
+    </div>
+
+    <h1 class="hero-title display">You've built other plumbers' businesses.<br><em>Now let's build yours.</em></h1>
+
+    <p class="hero-sub">
+      For years, ACR has been the subcontractor other plumbing companies call when the job gets serious. Speedee, Lincoln, Barker &amp; Sons, High Speed Rooter. You're the crew behind the crew. Now Pro Sewer &amp; Drains is your name on the truck, your number on the ad, your brand in the homeowner's head. This proposal is the plan to build that from Day 1.
+    </p>
+
+    <div class="hero-meta">
+      <div>
+        <span class="label">Referred By</span>
+        <div class="val">Lincoln + Speedee</div>
+      </div>
+      <div>
+        <span class="label">Package</span>
+        <div class="val">Accelerator</div>
+      </div>
+      <div>
+        <span class="label">Kickoff</span>
+        <div class="val">Live in 2 weeks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01: THE REALITY -->
+<section id="reality">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">01 · The Reality</div>
+      <h2 class="sec-title">What we know about <em>your business.</em></h2>
+      <p class="lead">Straight from our call. The numbers you gave us. The story behind them. This is what we're building the plan around.</p>
+    </div>
+
+    <div class="reality-grid">
+      <div class="reality-card">
+        <span class="label-inline">Close Rate</span>
+        <div class="stat">80%</div>
+        <p>Eight out of ten sewer replacement opportunities close. That's an elite rate. Most residential plumbers are at 30 to 40%. This tells us the technicians know how to sell in the home. All we need to do is put more calls in front of them.</p>
+      </div>
+      <div class="reality-card">
+        <span class="label-inline">Avg Sewer Ticket</span>
+        <div class="stat">$8K</div>
+        <p>Sewer replacement average sits between $8,000 and $12,000. You're priced fair, not high. That means you can outclose competitors who overprice, and you can afford to spend on marketing without eating the whole margin.</p>
+      </div>
+      <div class="reality-card">
+        <span class="label-inline">Profit Margin</span>
+        <div class="stat">55%</div>
+        <p>Because you built the sub infrastructure first, your cost basis is 40 to 50% lower than most direct-to-consumer plumbers. That's a permanent competitive edge. Every marketing dollar goes further because your margins are wider.</p>
+      </div>
+      <div class="reality-card">
+        <span class="label-inline">Speed to Job</span>
+        <div class="stat">2 hr</div>
+        <p>Same-day dispatch inside an hour or two. Google Ads penalizes slow response, and homeowners with backed-up toilets convert to whoever picks up first. Your operational speed is a direct CPL advantage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02: THE MATH -->
+<section id="math" class="alt">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">02 · The CPL Math</div>
+      <h2 class="sec-title">The math that makes <em>the $3M goal real.</em></h2>
+      <p class="lead">You told us the stretch goal is $3M this year. Here's the exact math on how the direct-to-consumer side gets you there, running just $5,000 in monthly Google spend.</p>
+    </div>
+
+    <div class="math-block">
+      <div class="math-compare">
+        <div class="math-col">
+          <span class="tag">Right now</span>
+          <h3>Where the direct revenue lives today.</h3>
+          <div class="math-row"><span class="l">Direct Google spend</span><span class="v">$0</span></div>
+          <div class="math-row"><span class="l">Monthly direct calls</span><span class="v">0-2</span></div>
+          <div class="math-row"><span class="l">Close rate on sewer</span><span class="v">80%</span></div>
+          <div class="math-row"><span class="l">Sewer jobs closed</span><span class="v">1-2</span></div>
+          <div class="math-row"><span class="l">Avg sewer ticket</span><span class="v">$8,000</span></div>
+          <div class="math-row big"><span class="l">Monthly direct revenue</span><span class="v">$8K-16K</span></div>
+        </div>
+        <div class="math-arrow">→</div>
+        <div class="math-col after">
+          <span class="tag">With us · Month 3+</span>
+          <h3>What $5K in Google ad spend does properly.</h3>
+          <div class="math-row"><span class="l">Direct Google spend</span><span class="v">$5,000</span></div>
+          <div class="math-row"><span class="l">Cost per lead (target)</span><span class="v">$250</span></div>
+          <div class="math-row"><span class="l">Monthly qualified calls</span><span class="v">20</span></div>
+          <div class="math-row"><span class="l">Close rate on sewer</span><span class="v">80%</span></div>
+          <div class="math-row"><span class="l">Sewer jobs closed</span><span class="v">16</span></div>
+          <div class="math-row"><span class="l">Avg sewer ticket</span><span class="v">$8,000</span></div>
+          <div class="math-row big"><span class="l">Monthly direct revenue</span><span class="v">$128,000</span></div>
+        </div>
+      </div>
+
+      <div class="math-callout">
+        <strong>What that means for the $3M goal:</strong> $128,000 per month in direct-to-consumer sewer work is $1.5M annually, on top of your existing $2.3M in sub revenue. That gets you to $3.8M, past your stretch goal. And this is at $5K/month in ad spend. Scale to $10K spend once we have the data, and the math doubles. That's the compounding you can't get from subcontracting alone.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03: TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">03 · The Timeline</div>
+      <h2 class="sec-title">From new brand to <em>direct-to-consumer machine.</em></h2>
+      <p class="lead">Four phases. Six months. Everything we do, in order.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-row">
+        <div class="timeline-num">01</div>
+        <div class="timeline-body">
+          <span class="phase-tag">Week 1-2 · Foundation</span>
+          <h3>Build the Pro Sewer &amp; Drains launch stack</h3>
+          <p>New brand, new website, new tracking, new ad accounts. Everything gets built clean from the ground up so the launch is right the first time.</p>
+          <ul>
+            <li>New website designed and built (mobile-first, conversion-focused, FAQ for AEO)</li>
+            <li>Landing pages for top 5 services: sewer replacement, drain unclog, hydrojet, spot repair, camera inspection</li>
+            <li>Google Ads account created, campaigns structured, keywords mapped</li>
+            <li>Housecall Pro integration with call tracking + lead attribution</li>
+            <li>GoHighLevel automations wired: speed-to-lead, missed-call text-back</li>
+            <li>Google Business Profile submitted for verification (parallel workstream)</li>
+            <li>Realtor connection for office space (needed for GBP verification)</li>
+          </ul>
+        </div>
+        <div class="timeline-timing">Weeks 1-2</div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-num">02</div>
+        <div class="timeline-body">
+          <span class="phase-tag">Week 2-4 · Ads Live</span>
+          <h3>Google Ads live, first calls coming in</h3>
+          <p>Ads go live end of Week 2. First leads start hitting Week 3. Higher CPL in the beginning while we filter out the wasted spend, then it starts dropping fast.</p>
+          <ul>
+            <li>Google Search + Local Service Ads live (once GBP verified)</li>
+            <li>Facebook + Instagram paid campaigns launched (structured campaigns, not boosted posts)</li>
+            <li>Initial CPL: $300 to $400 per call while we collect data</li>
+            <li>10 content stills produced for Meta ad creative</li>
+            <li>Daily negative keyword additions to cut wasted spend fast</li>
+            <li>First jobs booked from Google, Housecall Pro attribution live</li>
+          </ul>
+        </div>
+        <div class="timeline-timing">Weeks 2-4</div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-num">03</div>
+        <div class="timeline-body">
+          <span class="phase-tag">Month 2-3 · CPL Drop</span>
+          <h3>CPL drops, GBP verified, LSA kicks in</h3>
+          <p>Two things happen at Month 2-3. First, Google Ads has enough data to optimize. CPL drops from $400 down toward $200. Second, GBP verification completes and Local Service Ads go live, which is where the cheapest calls come from.</p>
+          <ul>
+            <li>Google Business Profile verified, appears on maps</li>
+            <li>Local Service Ads (LSA) live, generating $120 to $160 calls</li>
+            <li>Google Search CPL down to $200-$250</li>
+            <li>SEO content live: 3+ new service pages per month</li>
+            <li>AEO showing up in ChatGPT, Google AI, Perplexity, Claude searches</li>
+            <li>First real Housecall Pro data on booked jobs from Google</li>
+          </ul>
+        </div>
+        <div class="timeline-timing">Months 2-3</div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-num">04</div>
+        <div class="timeline-body">
+          <span class="phase-tag">Months 4-6 · Compound</span>
+          <h3>Full stack running, direct revenue compounds</h3>
+          <p>By Month 6, all channels running at target CPL. SEO organic traffic compounding. AEO producing free leads from AI search. LSA at the top of the maps. Direct-to-consumer revenue is a real, predictable second income stream alongside your sub work.</p>
+          <ul>
+            <li>Target Google CPL of $150-$200 hit and stabilized</li>
+            <li>LSA generating consistent $120 to $160 per lead</li>
+            <li>SEO organic traffic compounding (typically 3-4x from baseline by Month 6)</li>
+            <li>AEO delivering free leads from AI search</li>
+            <li>Monthly QBR covering full marketing P&amp;L</li>
+            <li>Ready to scale ad spend from $5K to $10K/month with data to justify it</li>
+          </ul>
+        </div>
+        <div class="timeline-timing">Months 4-6</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04: THE PACKAGE -->
+<section id="package" class="alt">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">04 · Your Package</div>
+      <h2 class="sec-title">The Accelerator package. <em>Built for the launch phase.</em></h2>
+      <p class="lead">Because you're paying the first 2 months upfront, we discount $1,000/month off the standard $5,000 rate. Month-to-month during the 60-day trial. If it's not working, you walk. Month 3, the 6-month commitment kicks in at standard $5,000/mo.</p>
+    </div>
+
+    <div class="package-grid">
+      <div class="package-card">
+        <div class="package-badge">YOUR PLAN</div>
+        <div class="package-tier">Stage 02 · Accelerator</div>
+        <div class="package-name">The Accelerator Package</div>
+        <div class="package-tagline">Full-stack digital marketing built to launch Pro Sewer &amp; Drains from zero to a direct-to-consumer revenue engine. This is the tier for operators who are ready to move fast and build the machine right the first time.</div>
+
+        <div class="package-price-block">
+          <div class="package-price-tier">Months 1-2 · Trial · Prepaid Upfront</div>
+          <div class="package-price-main">$4,000<span class="mo">/mo</span></div>
+          <div class="package-price-then">$8,000 paid at signing (covers Months 1-2 at $4,000/mo, $1,000/mo discount off standard $5,000 rate) · Plus 10% of ad spend management · Ad budget of $5,000/mo recommended · Standard $5,000/mo + 10% ad spend applies Month 3+ when 6-month contract kicks in</div>
+        </div>
+
+        <span class="package-includes-lbl">What's Included</span>
+        <ul class="package-includes">
+          <li>Full website design + build (mobile-first)</li>
+          <li>Landing pages for top service categories</li>
+          <li>Google Search Ads + Performance Max</li>
+          <li>Google Local Service Ads (LSA)</li>
+          <li>Facebook + Instagram paid ads</li>
+          <li>Housecall Pro CRM integration</li>
+          <li>GoHighLevel automations (speed-to-lead)</li>
+          <li>Missed-call text-back automation</li>
+          <li>SEO + <strong>AEO for AI search engines</strong></li>
+          <li>10 content stills per month</li>
+          <li><strong>Biweekly call with growth specialists</strong></li>
+          <li>Monthly business coaching + strategy</li>
+          <li>Real-time attribution dashboard</li>
+          <li>Monthly performance reports</li>
+          <li>Creative team support (logo/branding help)</li>
+          <li>Realtor connection for office space (bonus)</li>
+        </ul>
+
+        <div class="package-cta">
+          <a href="https://app.pandadoc.com/document/v2?token=2228c94b81d9613f1ed0dd9e1ec73453dec6a6c6" class="btn" target="_blank" rel="noopener">Approve &amp; Pay $8,000 → Kickoff This Week</a>
+          <div class="note">$8,000 prepaid covers Months 1-2 at the $4,000/mo discounted rate. Ad spend paid directly into your own Google/Meta accounts (never marked up). 10% ad management fee billed monthly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05: RECOMMENDATION -->
+<section id="recommendation">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">05 · Why Accelerator, Why Now</div>
+      <h2 class="sec-title">The specific case <em>for Pro Sewer &amp; Drains.</em></h2>
+    </div>
+
+    <div class="rec-block">
+      <h3>Why <em>Accelerator</em> is the right fit for your launch.</h3>
+
+      <p>You're not an established plumber trying to fix a broken account. You're launching a brand new customer-facing company from scratch. Accelerator is built for exactly this moment. Here's why:</p>
+
+      <ul class="why-list">
+        <li><strong>You're not paying for stuff you don't need yet.</strong> The Empire tier includes on-site video crew every month, which is powerful for brand-building but overkill for Month 1 when you don't even have a Google page verified. Accelerator gets you the CPL math and revenue engine without the video overhead. Upgrade to Empire later when the brand is established.</li>
+        <li><strong>Fresh brand = clean slate = zero legacy waste.</strong> Most operators come to us with 3 years of bad ad account decisions to unwind. You're launching fresh. Every campaign, every keyword, every landing page gets built right the first time. No cleanup phase, straight to optimization.</li>
+        <li><strong>Your 80% close rate is the multiplier.</strong> Most agencies pitch "we'll get you leads." What they don't tell you is that leads mean nothing if you can't close them. You close 8 out of 10 on sewer replacements. That means every lead we send you converts at 4x the industry average. Our ROI on your account is going to be embarrassing for the competition.</li>
+        <li><strong>Your 55% margin gives us runway.</strong> Even if the first month's CPL comes in at $400 per lead, you're still profitable on every closed sewer replacement. That's not the case for most plumbers we talk to. It means we can spend faster to get through the data and optimization phase without you sweating the burn.</li>
+        <li><strong>Sub work isn't going anywhere.</strong> While we build the direct-to-consumer engine, your $2.3M sub revenue keeps running. This isn't "bet the company on marketing." This is adding a second revenue stream that compounds on top of what you already do.</li>
+        <li><strong>Ismael, Lincoln, and Speedee already validated us.</strong> You didn't come to us cold. You came from two of our best clients who are hitting the exact numbers we're describing. That's the proof. This isn't theory.</li>
+      </ul>
+
+      <p style="margin-top: 2rem;">The deal: $8,000 upfront covers Months 1-2 at the discounted $4,000/month rate. 60-day trial where you can walk if it's not working. Month 3, the 6-month commitment kicks in at standard $5,000/month + 10% ad spend. Total service fees across the full 8-month engagement: $38,000 (plus 10% of ad spend, plus your ad budget going directly into your Google accounts and never marked up by us). If the CPL math in Section 02 holds, that pays back in weeks, not months. Let's build it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06: EXPECTATIONS -->
+<section id="expectations" class="alt">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-num">06 · What to Expect</div>
+      <h2 class="sec-title">Set the right <em>expectations up front.</em></h2>
+      <p class="lead">This is what actually happens Month 1, Month 3, and Month 6. No hype. Real ramp.</p>
+    </div>
+
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="exp-num">MONTH 1</div>
+        <h3>Foundation. First calls. Higher CPL.</h3>
+        <p>Ads go live end of Week 2. Website live end of Week 3. First leads by end of Month 1 at $300 to $400 per call while we collect data. Housecall Pro attribution active. Google Business Profile submitted for verification. Do NOT freak out at the initial CPL. This is the learning phase.</p>
+      </div>
+      <div class="expect-card">
+        <div class="exp-num">MONTH 2-3</div>
+        <h3>CPL drops. LSA live. Revenue starts.</h3>
+        <p>Google Business Profile verified. LSA live, generating $120-$160 calls. Google Search CPL drops to $200-$250. First $8K-$12K sewer replacement jobs closed from Google leads. SEO content compounding. Real revenue attribution data flowing through Housecall Pro.</p>
+      </div>
+      <div class="expect-card">
+        <div class="exp-num">MONTHS 4-6</div>
+        <h3>Machine running. Direct revenue predictable.</h3>
+        <p>Full stack running at target CPL. LSA + Google Search + Meta all producing consistent leads. SEO organic traffic 3-4x from baseline. AEO delivering free calls from AI search. Direct-to-consumer revenue is a real, predictable second income stream. Ready to scale ad spend from $5K to $10K with data behind it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="approve" class="cta">
+  <div class="container">
+    <span class="label">Next Step</span>
+    <h2>Let's build <em>Pro Sewer &amp; Drains.</em></h2>
+    <p>Click Approve, pay the $8,000 upfront (covers Months 1-2 at the discounted $4,000/mo rate), you'll be redirected to the service agreement to e-sign. Kickoff call within 48 hours. Website and campaigns live within 2 weeks. First leads coming in by end of Month 1.</p>
+
+    <div class="cta-buttons">
+      <a href="https://app.pandadoc.com/document/v2?token=2228c94b81d9613f1ed0dd9e1ec73453dec6a6c6" class="btn primary" target="_blank" rel="noopener">Approve Accelerator → $8,000</a>
+    </div>
+
+    <div class="sig">
+      <div class="sig-block">
+        <span class="label">Prepared By</span>
+        <p>Christian Paniagua</p>
+        <span class="role">Founder · Advanced Marketers</span>
+      </div>
+      <div class="sig-block">
+        <span class="label">Prepared For</span>
+        <p>Marco Molina</p>
+        <span class="role">ACR Trenchless Plumbing → Pro Sewer &amp; Drains · Pacoima, CA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section class="disclaimer">
+  <div class="inner">
+    <span class="label"><sup>*</sup> Important Notes &amp; Disclaimers</span>
+    <p>
+      All projections, timelines, cost-per-lead figures, cost-per-click figures, revenue estimates, and outcomes described in this proposal are modeled assumptions based on (a) the discovery call between Marco Molina and Christian Paniagua on August 5, 2026, (b) Advanced Marketers' blended account data from comparable Southern California plumbing operators at similar ad spend levels, (c) Client's stated 80% close rate on sewer replacement opportunities, $8,000 average sewer ticket, and 55% profit margin, and (d) publicly available Southern California residential plumbing market data. The $250 target CPL, $128,000 monthly direct revenue estimate, and $1.5M annualized direct revenue projection are illustrative benchmarks based on Client's stated close rate and average ticket. Actual results will vary based on: (1) seasonality and weather patterns in Client's Pacoima / North Orange County market; (2) competitive activity in the local plumbing market including but not limited to Barker &amp; Sons, High Speed Rooter, Speedee Drains, Lincoln Plumbing, and other regional operators; (3) changes in Google Ads, Meta Ads, LSA, and other ad platform policies, algorithms, pricing, or auction dynamics; (4) the timing of Google Business Profile verification (typically 30-45 days but can vary based on Google's discretion); (5) Client's CSR response time and technician availability; (6) Client's pricing strategy and closing rate consistency; (7) macroeconomic conditions and regulatory changes; (8) any other factors outside Advanced Marketers' reasonable control. Advanced Marketers makes no warranty, express or implied, regarding specific revenue outcomes, lead volume outcomes, cost-per-lead outcomes, or return-on-investment outcomes. Past performance of other clients (including but not limited to Lincoln Plumbing &amp; Rooter Inc, Speedee Drains and Plumbing, Capri Plumbing, and Major League Plumbing) is not indicative of future results for Client. This proposal is not a contract; the terms and conditions of the engagement will be set forth in the accompanying Empire Digital Growth Services Agreement (Accelerator tier). This proposal expires 14 days from the date shown above.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Advanced Marketers<sup>®</sup> · Google Premier Partner · Top 3% Globally</div>
+  <div><span class="wm">REVENUE FIRST.</span> ALWAYS.</div>
+</footer>
+
+<script>
+(function() {
+  var navLinks = document.querySelectorAll('.section-nav a');
+  var sections = ['reality','math','timeline','package','recommendation','expectations','approve']
+    .map(function(id) { return document.getElementById(id); })
+    .filter(function(el) { return el; });
+  var stickyCta = document.getElementById('stickyCta');
+  var approveSection = document.getElementById('approve');
+
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var targetId = this.getAttribute('data-target');
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      e.preventDefault();
+      var isMobile = window.innerWidth <= 700;
+      var offset = isMobile ? 108 : 128;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  function updateActiveSection() {
+    var scrollPos = window.pageYOffset + 200;
+    var current = null;
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollPos) current = section.id;
+    });
+    navLinks.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('data-target') === current);
+    });
+    if (approveSection) {
+      var approveRect = approveSection.getBoundingClientRect();
+      var isApproveVisible = approveRect.top < window.innerHeight && approveRect.bottom > 0;
+      stickyCta.classList.toggle('hidden', isApproveVisible);
+    }
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() { updateActiveSection(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateActiveSection();
+})();
+</script>
+
+</body>
+</html>

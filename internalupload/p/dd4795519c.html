@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluePoint Pools — All-Time Performance | Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --border:#2B2B35; --text:#EDEDF2; --muted:#8A8A99;
+    --accent:#7D7BF7; --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+    --accent-soft:rgba(125,123,247,.12); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:980px;margin:0 auto;padding:34px 24px 50px}
+  .kicker{font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);font-weight:700}
+  header.hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:22px}
+  .hero h1{font-size:27px;font-weight:760;margin-top:8px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  .hero .brand{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.7}
+  .hero .brand b{display:block;color:var(--text);font-size:14px;letter-spacing:3px;font-weight:760}
+  .hero .brand b i{color:var(--accent);font-style:normal}
+  .badge{display:inline-block;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:3px 14px;font-size:12px;color:#c9c8fb;margin-top:10px}
+  .funnel{display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;margin:8px 0 6px}
+  .step{flex:1 1 170px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;text-align:center}
+  .step .num{font-size:32px;font-weight:800;letter-spacing:-.5px}
+  .step .lbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);font-weight:700;margin-top:8px}
+  .step.spend .num{color:var(--text)}
+  .step.leads .num{color:var(--accent)}
+  .step.qual{border-color:var(--good);background:rgba(63,207,149,.07)}
+  .step.qual .num{color:var(--good)}
+  .step.gap{border-color:var(--warn)}
+  .step.gap .num{color:var(--warn);font-size:28px}
+  .farrow{align-self:center;color:var(--accent);font-size:26px;font-weight:800}
+  .oneliner{font-size:15.5px;color:#cfcfda;margin:16px 2px 4px;text-align:center}
+  .oneliner b{color:var(--text)}
+  .alertline{margin-top:14px;background:rgba(228,96,79,.08);border:1px solid var(--bad);border-radius:10px;padding:14px 18px;font-size:15px;color:#cfcfda;text-align:center}
+  .alertline b{color:var(--bad);font-size:17px}
+  .alertline .sub{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+  .ministats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .ministat{flex:1 1 150px;background:#131318;border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center}
+  .ministat b{display:block;font-size:18px;color:var(--text)}
+  .ministat span{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted)}
+  section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;margin-top:18px;scroll-margin-top:20px}
+  h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:4px}
+  section.alert{border:1px solid var(--bad);box-shadow:0 0 0 1px rgba(228,96,79,.15)}
+  section.alert h2{color:var(--bad)}
+  .h2sub{font-size:18px;font-weight:720;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--accent);font-weight:700}
+  td{padding:12px 10px;border-bottom:1px solid var(--border);vertical-align:middle;color:#cfcfda}
+  td b{color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  .money{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{display:inline-block;background:rgba(125,123,247,.1);border:1px solid var(--border);border-radius:6px;padding:1px 9px;font-size:11.5px;color:#b9b8f5;white-space:nowrap}
+  .q{color:var(--good);font-weight:650} .m{color:var(--bad);font-weight:650} .n{color:var(--muted)} .w{color:var(--warn);font-weight:650}
+  tr.total td{border-top:2px solid var(--accent);border-bottom:none;padding-top:14px}
+  .xrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;background:#131318;border:1px solid var(--border);border-radius:9px;margin-bottom:8px;font-size:13.5px;color:#cfcfda}
+  .xrow b{color:var(--text)}
+  .xrow .xtag{flex:0 0 auto;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:2px 10px}
+  .xrow.hot{border-left:4px solid var(--bad)}
+  .pnote{margin-top:12px;padding:10px 13px;border-left:3px solid var(--accent);background:rgba(125,123,247,.07);border-radius:0 8px 8px 0;font-size:12.5px;color:#c9c8fb;line-height:1.5}
+  .pnote.warn{border-left-color:var(--warn);background:rgba(217,164,65,.07);color:#e8d5ac}
+  .pnote.good{border-left-color:var(--good);background:rgba(63,207,149,.07);color:#bfe9d6}
+  .pnote.bad{border-left-color:var(--bad);background:rgba(228,96,79,.07);color:#f0b5ae}
+  .recs{counter-reset:rec;display:flex;flex-direction:column;gap:12px}
+  .rec{display:flex;gap:14px;font-size:15px;color:#cfcfda;align-items:flex-start}
+  .rec::before{counter-increment:rec;content:counter(rec);flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:#0D0D12;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rec b{color:var(--text)}
+  details{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);margin-top:14px;overflow:hidden}
+  details summary{cursor:pointer;padding:16px 22px;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::after{content:"+";font-size:18px;color:var(--accent)}
+  details[open] summary::after{content:"–"}
+  details summary:hover{color:var(--text)}
+  details .inner{padding:4px 24px 22px;border-top:1px solid var(--border)}
+  details .inner p{font-size:14px;color:#cfcfda;margin:10px 0}
+  details .inner p b{color:var(--text)}
+  .fineprint{font-size:12.5px;color:var(--muted);margin-top:12px}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--muted);line-height:1.9}
+  footer .fbrand{letter-spacing:3px;font-weight:760;color:var(--text);font-size:12.5px}
+  footer .fbrand i{color:var(--accent);font-style:normal}
+  @media print{body{background:#0D0D12!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} section{break-inside:avoid} details{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="kicker">Growth System · All-Time Account Review</div>
+      <h1>BluePoint Pools — <span>All-Time Performance</span></h1>
+      <div class="sub">Every call reviewed word-for-word against recordings &amp; transcripts (104 call records)</div>
+      <span class="badge">Account live Nov 20, 2025 – Jul 16, 2026 · ~8 months</span>
+    </div>
+    <div class="brand">
+      <b>ADVANCED <i>MARKETERS</i></b>
+      Orange County, CA<br>Prepared July 16, 2026
+    </div>
+  </header>
+
+  <!-- FUNNEL -->
+  <div class="funnel">
+    <div class="step spend"><div class="num">$5,247</div><div class="lbl">Google spend all-time</div></div>
+    <div class="farrow">→</div>
+    <div class="step leads"><div class="num">7</div><div class="lbl">Prospects reached a human</div></div>
+    <div class="farrow">→</div>
+    <div class="step qual"><div class="num">7</div><div class="lbl">Qualified — 100%</div></div>
+    <div class="farrow">→</div>
+    <div class="step gap"><div class="num">$16,600</div><div class="lbl">Tracked quote value*</div></div>
+  </div>
+  <p class="oneliner"><b>Every single prospect who reached a human became a qualified lead — 7 for 7.</b> *And $16,600 is only what we could verify by listening: 6 booked estimate visits have no recorded outcome anywhere.</p>
+  <div class="alertline">
+    6 named buyers left voicemails and never got a callback ≈ <b>$42,000–$84,000 in missed quote value</b>
+    <span class="sub">Modeled at the account's own 100% answered-to-qualified rate × the $14k benchmark deal, discounted to 50% on the low end. Modeled, not tracked — and it excludes the general contractor below, who represents repeat business.</span>
+  </div>
+  <div class="ministats">
+    <div class="ministat"><b>100%</b><span>Answered → qualified</span></div>
+    <div class="ministat"><b>~15%</b><span>Callers reaching a human</span></div>
+    <div class="ministat"><b>$249.85</b><span>Cost per lead</span></div>
+    <div class="ministat"><b>$9.06</b><span>Avg CPC</span></div>
+    <div class="ministat"><b>104</b><span>Call records reviewed</span></div>
+  </div>
+
+  <!-- QUALIFIED LEDGER -->
+  <section id="qualified">
+    <h2>The Qualified Seven</h2>
+    <div class="h2sub">Every prospect who got through — and what happened</div>
+    <table>
+      <thead><tr><th>Lead</th><th>When</th><th>Project</th><th class="money">Value</th><th>Outcome on the call</th></tr></thead>
+      <tbody>
+        <tr><td><b>Mark</b> · Diamond Bar</td><td>Jan 22</td><td>Remodel — tile, jacuzzi, decking (vacation home)</td><td class="money n">unrecorded</td><td class="q">Estimate booked, Sat 11 AM</td></tr>
+        <tr><td><b>Anthony Giorgio</b> · Redlands</td><td>Jan 26</td><td>Replaster + retile, wants finish samples</td><td class="money n">unrecorded</td><td class="q">Estimate booked, next morning</td></tr>
+        <tr><td><b>Cynthia Chandler</b> · Yucaipa</td><td>Jan 28</td><td>Deck cracking/buckling on 26-year-old pool</td><td class="money n">unrecorded</td><td class="q">Estimate booked, Feb 5</td></tr>
+        <tr><td><b>Pump caller</b> · (714) 334-1619</td><td>Mar 18</td><td>Pentair IntelliFlo replacement</td><td class="money"><b class="q">$2,600</b></td><td class="q">Quoted live on the call</td></tr>
+        <tr><td><b>Kimi Wilson</b> · Alta Loma</td><td>Jun 11</td><td>Tile cleaning + restoration (20-yr-old pool)</td><td class="money n">unrecorded</td><td class="q">Estimate booked, Jun 12 11 AM</td></tr>
+        <tr><td><b>Mary</b> · Glendora</td><td>Jun 12–25</td><td>PebbleFina remodel — rejected 3 competitors</td><td class="money"><b class="q">~$14,000</b></td><td class="q">Estimate rescheduled Jun 26 — <b>confirm!</b></td></tr>
+        <tr><td><b>David Vega</b> · Covina</td><td>Jul 2</td><td><b>Full backyard:</b> bigger pool, jacuzzi, water feature, fire pit, outdoor kitchen</td><td class="money n">unrecorded</td><td class="q">Active — likely the biggest deal here</td></tr>
+        <tr class="total"><td><b>TOTAL VERIFIED</b></td><td></td><td></td><td class="money"><b class="q" style="font-size:17px">$16,600</b></td><td><b class="w">6 estimate visits, zero recorded outcomes</b></td></tr>
+      </tbody>
+    </table>
+    <p class="fineprint">Plus Mike Hart (Apr 13–14) — a 2021 build customer with deteriorating coping around his spa awaiting a warranty visit. Existing customer, not counted as a lead — but he's how we learned the account's two operational bombshells below.</p>
+  </section>
+
+  <!-- MISSED -->
+  <section class="alert" id="missed">
+    <h2>The Missed Money</h2>
+    <div class="h2sub">Named buyers who left voicemails — no callback on record</div>
+    <div class="xrow hot"><span><b>Joe Ramirez — GENERAL CONTRACTOR, EOC 360 Construction</b> · (562) 619-9486 · Mar 9 · "I have a client that's looking at installing a new pool" — B2B relationship, repeat business potential</span><span class="xtag">NEW BUILD</span></div>
+    <div class="xrow hot"><span><b>Steve</b> · (951) 453-6450 · Jun 18 · "looking for someone to design our pool for us in our backyard"</span><span class="xtag">NEW BUILD</span></div>
+    <div class="xrow hot"><span><b>Todd Coverneer</b> · (714) 357-4455 · Jun 22 · "calling about a potential pool remodel"</span><span class="xtag">REMODEL</span></div>
+    <div class="xrow hot"><span><b>Marisa</b> · (951) 532-9552 · Jun 6 · quartz finish redo, "need a free estimate" — left two messages</span><span class="xtag">REMODEL</span></div>
+    <div class="xrow"><span><b>Jeff Bowie</b> · (951) 334-8348 · May 16 · questions about pool construction</span><span class="xtag">NEW BUILD</span></div>
+    <div class="xrow"><span><b>Abe Quibbon</b> · (909) 292-6969 · Mar 17 · acrylic pool-deck project</span><span class="xtag">DECK</span></div>
+    <p class="fineprint">Plus ~7 more missed callers whose intent is unknowable (never spoke, no message) and Harry Anesta (Jul 16 — verify first: his stated address is New York). The (951) 570-9385 caller opted out by text after two unanswered voicemails — the live example of what slow callbacks cost.</p>
+  </section>
+
+  <!-- OPS FINDINGS -->
+  <section id="ops">
+    <h2>Found In The Recordings</h2>
+    <div class="h2sub">Two fixable reasons callers give up</div>
+    <div class="pnote bad"><b>Omar's callback number displays as "SCAM" on caller ID.</b> Mike Hart said it to his face on the Apr 14 call: "your number shows as a 626 scam." Customers are screening out BluePoint's own callbacks. Fix: register the outbound numbers with the carriers' branded-caller-ID services (Free Caller Registry / First Orion / Hiya).</div>
+    <div class="pnote warn"><b>The voicemail box was FULL at least twice</b> (Mar 17 and Mar 27) — callers heard "mailbox is full" and physically couldn't leave a message. Those callers are gone with no trace.</div>
+    <div class="pnote"><b>And the CRM has never been worked:</b> 100 opportunities all parked in "New Lead," $0 values, zero marked won or lost — which is why 6 of the 7 qualified deals above have no recorded quote or outcome. The pipeline stages exist; nobody moves the cards.</div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="next">
+    <h2>The Plan</h2>
+    <div class="h2sub">In priority order</div>
+    <div class="recs">
+      <div class="rec"><div><b>Call the six named missed buyers this week</b> — Joe Ramirez (the GC) first. Scripts write themselves: "You reached out about your pool project and we want to make it right."</div></div>
+      <div class="rec"><div><b>Close the loop on the seven qualified deals.</b> What happened at Mark's, Anthony's, Cynthia's, Kimi's estimates? Did Mary's Jun 26 visit happen? Get David Vega's design meeting booked. Put every answer in the CRM with a dollar value.</div></div>
+      <div class="rec"><div><b>Fix caller ID ("SCAM") and the voicemail box.</b> Zero-cost fixes that recover callbacks the ads already paid for.</div></div>
+      <div class="rec"><div><b>Answer rate &amp; tracked lines:</b> only ~15% of callers reach a human. Live coverage during ad hours plus every ad number routed through tracked lines — every point of answer rate is worth ~$14k of pipeline at this account's numbers.</div></div>
+    </div>
+  </section>
+
+  <!-- APPENDICES -->
+  <details>
+    <summary>Appendix · Google Ads detail (all-time)</summary>
+    <div class="inner">
+      <p><b>Nov 1, 2025 – Jul 13, 2026:</b> $5,246.89 spend · 8,948 impressions · 579 clicks · $9.06 CPC · 19 conversions (12 form fills + 7 call conversions) · $276.15 per conversion. AM-standard CPL: $249.85 (19 conversions + 2 missed ad calls = 21 leads). Campaign: AM_DS_Pool Custom-Construction-Remodeling_Form+Calls; "pool remodeling companies" (Pool Remodel ad group) drives the qualified conversations. Note: Google reported 33 tracked ad calls but only 7 as conversions — short and missed calls never count.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Appendix · Filtered out — how we keep the numbers honest</summary>
+    <div class="inner">
+      <div class="pnote good" style="margin-top:14px"><b>Every call was reviewed before it counted.</b> All exclusions below are verifiable in the recordings.</div>
+      <div style="margin-top:12px">
+        <div class="xrow"><span><b>Fiberglass / precast inquiries ×4</b> — services BluePoint doesn't offer (Feb 19, Mar 3 Bloomberg Landscape, Mar 11 Josh, Jul 9–13 Chris ×3 — the fiberglass quote seeker)</span><span class="xtag">NOT A FIT</span></div>
+        <div class="xrow"><span><b>Out of service area ×3</b> — Victorville, Lancaster/Antelope Valley (Shaucy Johnson ×2), politely declined</span><span class="xtag">OUT OF AREA</span></div>
+        <div class="xrow"><span><b>Job seekers ×2</b> — plaster specialist + pool worker (January)</span><span class="xtag">NOT A LEAD</span></div>
+        <div class="xrow"><span><b>Engineering-only caller</b> — wanted structural engineering to bid out himself (Jan 13)</span><span class="xtag">NOT A FIT</span></div>
+        <div class="xrow"><span><b>Spam &amp; wrong numbers</b> — AT&amp;T robocall (401), home-loan telemarketer (213), misdials ×4, "stop calling me" (outbound complaint)</span><span class="xtag">SPAM / WRONG #</span></div>
+      </div>
+    </div>
+  </details>
+
+  <footer>
+    <span class="fbrand">ADVANCED <i>MARKETERS</i></span><br>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; support@advancedmarketers.co<br>
+    Sources: Google Ads (103-105-1775) via Supermetrics · GoHighLevel CRM — 104 call records, recordings &amp; transcripts, full-history sweep Jul 16, 2026 · quote values verified from call audio; "unrecorded" = no CRM entry exists
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AM Attack Checklist · Billing Roster · Week of 7/20</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1a2233; --muted:#5c6674; --line:#e4e7ec;
+    --red:#c0392b; --red-bg:#fdeeec; --amber:#9a6700; --amber-bg:#fff6e0;
+    --green:#1a7f37; --green-bg:#e9f7ee; --blue:#1f5fbf; --gray-bg:#eef0f3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#12151b; --card:#1b1f27; --ink:#e8ebf0; --muted:#9aa3b0; --line:#2a303b;
+      --red:#ff7b6b; --red-bg:#3a221f; --amber:#e8b93f; --amber-bg:#37301a;
+      --green:#5fce82; --green-bg:#1d3125; --blue:#7aa7ee; --gray-bg:#242a34; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:28px 20px 80px}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:6px}
+  .progress{position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;font-size:13px;font-weight:600}
+  .bar{height:8px;background:var(--gray-bg);border-radius:99px;overflow:hidden;margin-top:6px}
+  .bar i{display:block;height:100%;width:0%;background:var(--green);border-radius:99px;transition:width .2s}
+  h2{font-size:15px;margin:26px 0 8px}
+  .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px}
+  .t-red{background:var(--red-bg);color:var(--red)} .t-amber{background:var(--amber-bg);color:var(--amber)} .t-green{background:var(--green-bg);color:var(--green)}
+  ul.check{list-style:none;margin:0 0 6px;padding:0;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  ul.check li{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13.5px}
+  ul.check li:last-child{border-bottom:none}
+  ul.check li .box{flex:0 0 auto;width:18px;height:18px;border:2px solid var(--muted);border-radius:5px;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff}
+  ul.check li.done .box{background:var(--green);border-color:var(--green)}
+  ul.check li.done .txt{text-decoration:line-through;color:var(--muted)}
+  .acct{font-weight:700}
+  .m{font-variant-numeric:tabular-nums;color:var(--muted)}
+  .note{font-size:12px;color:var(--muted);margin:4px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Attack Checklist — Billing Roster Edition</h1>
+  <div class="sub">Every account below is from <b>Copy of billing</b> — charged in June and/or July 2026 only. One checkbox per account. July so far: <b>$184,880 collected of $264,115 expected</b> — most of the gap is the day-21–31 charges hitting this week. Flags merged from the Meta heartbeat (7/21), ClickUp, Slack, Zoom. Click to check; saves in your browser.</div>
+  <div class="progress"><span id="count">0 / 0 done</span><div class="bar"><i id="fill"></i></div></div>
+
+  <h2>🚨 Decide BEFORE the charge hits this week <span class="tag t-red">cancel/risk accounts with a June charge and a billing day of 21–31</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Ram Dump Truck</span> <span class="m">$2,000 · day 24</span> — CANCELLED client. Stop the 7/24 charge AND confirm Google Ads off.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JH Disposal</span> <span class="m">$3,572 in June · day 24</span> — wants out of contract (red list). Decide before 7/24: charge, pause, or release.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Sierra Trimlight</span> <span class="m">$2,543 in June · day 29</span> — cancel request + their card declining. Stop the 7/29 auto-charge, run the save/collect play instead (Mak).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Vizeon Construction</span> <span class="m">day 27 · June marked "paid for this month"</span> — 0 active Meta campaigns (tampering account). Fix delivery BEFORE charging 7/27 or this becomes a refund.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Clog Monkey</span> <span class="m">$499 · day 28</span> — client silent 32+ days on a website build. Confirm you should still charge 7/28.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Piggies Air Conditioning</span> <span class="m">day 26 · goes to $3,500</span> — price bump hits 7/26; strategy call happened 7/16, make sure Ruben knows the new number.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Shelby Plumbing</span> <span class="m">day 22 · goes to $3,500</span> — price bump today/tomorrow; Meta just went live — confirm client saw results talk before the higher charge.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">LV Heating &amp; Cooling</span> <span class="m">day 29 · goes to $3,500</span> — bump hits 7/29 but Google side still blocked. Clear it first or hold the bump.</span></li>
+  </ul>
+
+  <h2>🔴 July charge MISSED — billing day already passed, no July payment <span class="tag t-red">chase today</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Allegiance 76 HVAC</span> <span class="m">day 15 · June $2,500 · July blank</span> — sitting in the CANCELS tab but ads are LIVE and spending $52/day. Rebill + move back to active, or turn ads off. Money is leaking one way or the other.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Bluepoint Pools</span> <span class="m">day 13 · June $3,675 · July blank</span> — card failing here AND Meta payment unsettled. Full billing reset call.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Apollo Home Solutions</span> <span class="m">day 8 · June $2,000 · July blank</span> — sheet literally says "remind tim to rebill." Tim: rebill.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Palm Valley Insurance</span> <span class="m">June $15,000 · July $0</span> — biggest June payer went to zero; Meta unsettled too. Status call this week.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Primal Windows</span> <span class="m">June $3,500 · July blank</span> — ads spending $128/day. Find the billing day and collect.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Next Level Sheet Metal</span> <span class="m">day 17 · June $598 · July blank</span> — small but missed; rebill.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Amaral's Construction</span> <span class="m">June $2,000 · July $1,000 partial, "2500 left"</span> — ghosting + partial payments. Leadership decision: collect the $2,500 balance or cut.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Crown Detail AZ</span> <span class="m">June $499 charged AFTER the 5/14 cancel</span> — verify that June charge was legit; stop future charges; close out.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Nations Insurance</span> <span class="m">July $1,500 restart after June gap</span> — confirm the restart terms are documented (was $17k+/mo, now retainer-only).</span></li>
+  </ul>
+
+  <h2>🆕 First July charge — sold / up next <span class="tag t-green">Paul's lane, money already collected</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">M.L. Berni Co.</span> <span class="m">July $6,500 — biggest new sign</span> — package-marker conflict on the board; $6,500 says premium package. Resolve + kickoff this week.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Lincoln Plumbing &amp; Rooter</span> <span class="m">July $10,000</span> — already optimizing their GAds (Mak). Highest-paying account on the sheet — weekly updates non-negotiable.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Apex Landscape</span> <span class="m">July $2,500 · Day 9</span> — on track (Mak), keep the 14-day clock.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">At Your Service H&amp;C</span> <span class="m">July $2,500 · Day 10</span> — PAID and gone quiet. Call today; clock is burning their money.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">The Alliance 247</span> <span class="m">July $2,500</span> — no POC yet → Paul owns kickoff.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Inland Renovation</span> <span class="m">July $2,500</span> — signed 7/20, already charged → Paul owns kickoff.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Emberline Shower Enclosures</span> <span class="m">July $2,500</span> — onboarding due 7/28; ad account exists.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Premium Plumbing &amp; Drain</span> <span class="m">July $2,500 · Day 5</span> — website/SEO build on track (Simon).</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Atlas (az atlass)</span> <span class="m">July $1,200</span> — onboarding call was this morning 9 AM — confirm held + modules done.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">5blox website package</span> <span class="m">second $2,500 in July</span> — they're paying for TWO lines now; ads acct showing $0 delivery on 83 campaigns — fix before they connect those dots.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Heavy Duty Metal Buildings (2nd package)</span> <span class="m">new $1,500 line · day 13</span> — second package started; confirm scope is staffed.</span></li>
+  </ul>
+
+  <h2>💳 Charges hitting this week (day 21–31, June paid, normal accounts) <span class="tag t-amber">verify delivery is clean before each charge</span></h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Leo's Landscaping</span> <span class="m">$2,637 · day 22</span> — spending $47/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">OC Rain Gutters SEO line</span> <span class="m">$99 · day 22</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Quickfix Home Solutions</span> <span class="m">$2,892 · day 23</span> — spending $40/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Javiers Landscape</span> <span class="m">$2,268 · day 23</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Prime Lux Floors</span> <span class="m">$3,627 · day 24</span> — spending $81/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Down The Line Plumbing</span> <span class="m">$2,719 · day 25</span> — spending $90/day ✓ · LSA insurance doc still owed</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Absolute Best Plumbing</span> <span class="m">$4,267 · day 27</span> — spending $51/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">East Valley Feed &amp; Tack</span> <span class="m">$2,691 · day 27</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Roof City Professionals</span> <span class="m">$3,500 · day 27</span> — Google live 7/14 ✓, Meta 0 campaigns (intended?)</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">La Mini Splits</span> <span class="m">$3,736 · day 27</span> — spending $23/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Unleashed Electric</span> <span class="m">$499 · day 27</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JC Concrete Restoration (Carlos)</span> <span class="m">$1,500 · day 28</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Lorenzo's Painting</span> <span class="m">$199 · day 29</span></span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JQ Glassworks</span> <span class="m">$3,949 · day 30</span> — ⚠️ Meta payment UNSETTLED; fix before charging or expect a fight</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Longhorn Landscapes</span> <span class="m">$2,500 · day 30</span> — Meta 0 campaigns; confirm channel before charge</span></li>
+  </ul>
+
+  <h2>🟢 Paid June + July — Jaime's monitoring roster, one check each = "delivery verified this week"</h2>
+  <div class="note">These are billing clean. Checking one off = you (or Jaime) confirmed ads/work are actually delivering this week. Known flags noted.</div>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Pro Made Roofing</span> <span class="m">$3,748</span> — ⚠️ decline history; spending $89/day</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Haro HVAC</span> <span class="m">$3,655</span> — ⚠️ our charge cleared but THEIR Meta ad payment is unsettled = ads blocked while paying us. Fix fast.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Forbes Fencing</span> <span class="m">$3,815</span> — spending ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Forbes Landscape</span> <span class="m">$1,500</span> — launched Mon 7/20 ✓ post confirmation in channel</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">5 Blox (ads line)</span> <span class="m">$2,500</span> — 🚨 83 campaigns, $0 delivery — payment/delivery check TODAY</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Next Era HVAC</span> <span class="m">$3,500</span> — Meta spending ✓, Google paused (verification) — they're paying full freight on half delivery</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Saucedo Plumbing</span> <span class="m">$3,605</span> — ads ✓, channel silent 2+ wks — post an update</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">OG Plumbing</span> <span class="m">$2,500 · goes to $3,500</span> — spending ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Reel Electric</span> <span class="m">$3,190 · goes to $3,500</span> — live 7/13 ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Cortex Plastering</span> <span class="m">$2,000</span> — ⚠️ chargeback-pattern watch</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">His Hands Plumbing</span> <span class="m">$5,000</span> — 1 ad in policy review</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Vera Plumbing</span> <span class="m">$3,921</span> — spending $133/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">All City Janitorial</span> <span class="m">$3,462</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Contreras Welding</span> <span class="m">$2,969</span> — re-live 7/16, spending ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">GG&amp;N Plumbing</span> <span class="m">$2,435</span> — ⚠️ Meta payment cycling; spending ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Rising Green</span> <span class="m">$3,641</span> — spending ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Premium Floor &amp; Design</span> <span class="m">$4,620</span> — top Meta spender $476/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Pinpon Junk Removal</span> <span class="m">$3,000</span> — spending $64/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Major League Plumbing (+ SEO line)</span> <span class="m">$3,314 + $1,500</span> — ⚠️ ML Plumbing Meta shows 0 campaigns w/ trailing spend — confirm intended</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JLG Tree Service</span> <span class="m">$2,500</span> — Meta 0 campaigns; call held 7/14 ✓ — confirm channel plan</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Central Roofing</span> <span class="m">$5,121</span> — big riser ($3.5k→$5.1k) — make sure reporting justifies it</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Roof Solutions</span> <span class="m">$3,937</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Total Door Service</span> <span class="m">$4,845</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Mad Differential</span> <span class="m">$4,663</span> — spending $47/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Moreno Building &amp; Dev</span> <span class="m">$3,609</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Heavy Duty Metal</span> <span class="m">$3,258</span> — spending $106/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Sky View Maintenance</span> <span class="m">$2,403</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Bay Area Roofing</span> <span class="m">$3,563</span> — spending $175/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">J&amp;C Concrete (Jose)</span> <span class="m">$3,100</span> — spending $46/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Precision Drywall &amp; Paint</span> <span class="m">$3,573</span> — spending $55/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Pro Integrity Plumbing</span> <span class="m">$4,447</span> — spending $168/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Bella Banana Pet Spa</span> <span class="m">$2,102</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">OC Coastal Clean</span> <span class="m">$1,697</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">OC Rain Gutters</span> <span class="m">$2,459</span> — spending $55/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">JG Concrete</span> <span class="m">$2,500</span> — spending $88/day ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Lopez Brothers Drywall</span> <span class="m">$3,579</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">M&amp;M Cellars</span> <span class="m">$5,000</span> — Day 88 build — show progress or this churns</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Andy's Pools</span> <span class="m">$3,642</span> — ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Prestige Heating &amp; Air</span> <span class="m">$2,315</span> — ✓ (don't confuse with Prestige Builders)</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Roofing Pro</span> <span class="m">$3,819</span> — Meta 0 campaigns — Google-side client, confirm</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Ground Up Plumbing</span> <span class="m">$499</span> — website build just starting (Day 25)</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Golden Rule Construction</span> <span class="m">$399 · day 3</span> — flat fee; note: contract ends in November</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Build By JM LLC (line 1)</span> <span class="m">$199 · day 4</span> — flat fee ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Build By JM LLC (line 2)</span> <span class="m">$199 · day 11</span> — flat fee ✓ (two $199 lines — confirm both are intentional)</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Paver Rescue LLC — Tampa</span> <span class="m">$100 · day 6</span> — flat fee ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Mariachi Corazón de Maria</span> <span class="m">$199 · day 6</span> — flat fee ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">LaFara Luxury Properties</span> <span class="m">$299 · day 9</span> — flat fee ✓</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Western LINQ</span> <span class="m">$399</span> — note: contract ends Dec '26; June was $1,080 (catch-up?) — verify</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Digital Diagnosis</span> <span class="m">$1,000 July one-off</span> — confirm deliverable shipped</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Prime Air Solutions</span> <span class="m">$499 July</span> — new diagnosis/one-off — confirm next step pitched</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Van's Carpet and Flooring</span> <span class="m">$299 June, no July</span> — sporadic charges (Jan, then June) — active or not?</span></li>
+  </ul>
+
+  <h2>⚪ On billing but stopped after May/June — confirm churn or restart</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Caliber K9</span> — last charged May ($4,000) BUT Meta campaigns still on at $0 spend and weekly calls still scheduled. Active client or not? Decide.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">WestCoast Fence Pros</span> — charges declined May→June (was $3,500/mo), campaigns still enabled at $0. Save or shut down.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Green Ladder Roofing</span> — June marked "free," no July — but weekly meetings held and ads spending $104/day. When does billing restart?</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Rosewood Landscape</span> — June $0.00 — churned quietly? Close out or reactivate.</span></li>
+  </ul>
+
+  <h2>🪦 Cancels tab — every row with June/July money, close each out properly</h2>
+  <ul class="check">
+    <li><span class="box"></span><span class="txt"><span class="acct">Celco</span> <span class="m">$2,500 June · "no more payments"</span> — confirm final charge was agreed; archive.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Morfin Plumbing</span> <span class="m">$2,007 June</span> — churned; ads verified OFF ✓ — confirm June was the final charge, no July.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Axxel Plumbing</span> <span class="m">$2,500 June · "goes to 3500"</span> — SAVED as website-only 7/12 — set the new billing amount/date and move OUT of cancels tab.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Allegiance 76 HVAC</span> <span class="m">$2,500 June · day 15 · no July</span> — in cancels tab but ads LIVE at $52/day. Rebill or shut off — pick one today.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Luxury Turf &amp; Green</span> <span class="m">$3,581 July · day 3</span> — charged THIS month but sitting in cancels tab. Active or not? Fix the sheet.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Hector Soto / KHX Construction</span> <span class="m">"goes to 3500" in July, no dollar charge</span> — set the restart date or close.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Bear Windows</span> <span class="m">$1,174 June</span> — trailing percentage charges — final invoice or ongoing?</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Moreno Construction &amp; Renovation</span> <span class="m">$1,250 June (partial)</span> — collect remainder or write off.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">NLN Consulting</span> <span class="m">$299 June · day 11 · no July</span> — flat-fee stopped — churned this month? Confirm.</span></li>
+    <li><span class="box"></span><span class="txt"><span class="acct">Prestige Builders &amp; Design</span> <span class="m">$3,579 charged in AUGUST column</span> — the $3,579 collection landed but in the wrong month column + Meta still unsettled. Verify payment real, fix sheet, close out (Johnny).</span></li>
+  </ul>
+
+  <div class="note">Source: "Copy of billing" (June 2026 + July 2026 columns, pulled 7/21) · flags from AM Meta Heartbeat 7/21 11:53 AM, ClickUp, Slack, Zoom. Accounts not charged in June or July are excluded (that's why Valle, Texan, Solar etc. dropped off).</div>
+</div>
+<script>
+  var items = document.querySelectorAll('ul.check li');
+  var count = document.getElementById('count'), fill = document.getElementById('fill');
+  var KEY = 'am-attack-checklist-billing-2026-07-21';
+  function idFor(li){
+    var s = li.querySelector('.txt').textContent.trim(), h = 0;
+    for (var i = 0; i < s.length; i++){ h = ((h << 5) - h + s.charCodeAt(i)) | 0; }
+    return 'i' + h;
+  }
+  function loadState(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
+  function saveState(state){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+  var state = loadState();
+  function render(li){
+    var done = !!state[idFor(li)];
+    li.classList.toggle('done', done);
+    li.querySelector('.box').textContent = done ? '✓' : '';
+  }
+  function update(){
+    var done = document.querySelectorAll('ul.check li.done').length;
+    count.textContent = done + ' / ' + items.length + ' done';
+    fill.style.width = (items.length ? (100*done/items.length) : 0) + '%';
+  }
+  items.forEach(function(li){
+    render(li);
+    li.addEventListener('click', function(){
+      var id = idFor(li);
+      if (state[id]) { delete state[id]; } else { state[id] = 1; }
+      saveState(state); render(li); update();
+    });
+  });
+  update();
+</script>
+</body>
+</html>

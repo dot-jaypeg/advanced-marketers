@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Marketers — Sales Team QA Scores · Week of July 27 – August 2, 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --panel2:#1B1B24; --panel3:#22222B; --line:#2B2B35;
+    --txt:#EDEDF2; --muted:#8A8A99; --purple:#7D7BF7; --purple-deep:#5A58C4;
+    --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font:15px/1.55 Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:38px 26px 60px}
+  .kicker{letter-spacing:.28em;text-transform:uppercase;font-size:10px;font-weight:700;color:var(--purple)}
+  .kicker.mut{color:var(--muted)}
+  header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:10px}
+  .brand .nm{font-weight:800;font-size:15px;letter-spacing:.02em}
+  .brand .sub{letter-spacing:.4em;text-transform:uppercase;font-size:9px;color:var(--muted);margin-top:2px}
+  h1{font-size:32px;font-weight:800;margin:10px 0 4px}
+  h1 em{font-style:normal;color:var(--purple)}
+  .datesub{color:var(--muted);font-size:13.5px}
+  .meta{display:flex;flex-wrap:wrap;gap:26px;margin:22px 0 30px;padding:16px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .meta div{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+  .meta b{display:block;font-size:19px;color:var(--txt);letter-spacing:0;margin-top:2px}
+  .meta b.pp{color:var(--purple)}
+  h2.sec{margin:36px 0 14px;font-size:19px}
+  .secsub{color:var(--muted);font-size:12.5px;margin:-10px 0 14px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+  .hl{border:1px solid var(--purple);background:linear-gradient(180deg,#1b1b2a,#16161D);border-radius:14px;padding:16px 20px;margin-bottom:14px;font-size:13.5px}
+  .hl b{color:var(--purple)}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  td{padding:11px 8px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center;font-variant-numeric:tabular-nums}
+  .role{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:var(--panel3);color:var(--muted)}
+  .role.cl{color:var(--purple)}
+  .role.st{color:var(--good)}
+  .score{font-weight:800;font-size:17px}
+  .s-good{color:var(--good)} .s-mid{color:var(--warn)} .s-na{color:var(--muted);font-weight:700;font-size:13px}
+  .barwrap{background:var(--panel3);border-radius:6px;overflow:hidden;width:100%}
+  .bar{height:8px;border-radius:6px;min-width:3px;background:linear-gradient(90deg,var(--purple-deep),var(--purple))}
+  .bar.zero{background:var(--bad);width:2px !important}
+  .delta{font-size:12px;font-weight:800}
+  .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--muted)}
+  .pill{display:inline-block;font-size:12px;font-weight:800;border-radius:8px;padding:3px 11px}
+  .pill.p5{background:rgba(63,207,149,.15);color:var(--good)}
+  .pill.p4{background:rgba(125,123,247,.16);color:var(--purple)}
+  .pill.p3{background:rgba(217,164,65,.15);color:var(--warn)}
+  .pill.pna{background:var(--panel3);color:var(--muted)}
+  .flag{border-left:3px solid var(--bad);background:var(--panel2);border-radius:0 10px 10px 0;padding:13px 17px;margin-bottom:11px;font-size:13px}
+  .flag h3{font-size:13.5px;color:var(--bad);margin-bottom:3px}
+  .flag.warn{border-left-color:var(--warn)} .flag.warn h3{color:var(--warn)}
+  .flag.good{border-left-color:var(--good)} .flag.good h3{color:var(--good)}
+  .flag.info{border-left-color:var(--muted)} .flag.info h3{color:var(--muted)}
+  .flag p{color:#c9c9d6}
+  q{font-style:italic;color:#dcdce8}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .repcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .repcard h3{font-size:16px;font-weight:800;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+  .repcard .cm{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+  .repcard .line{font-size:13px;margin:7px 0}
+  .repcard .line span{color:var(--purple);font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:1px}
+  .repcard blockquote{margin:10px 0 0;padding:9px 14px;border-left:3px solid var(--purple);background:var(--panel2);border-radius:0 8px 8px 0;font-size:12.5px;color:#c9c9d6;font-style:italic}
+  .dims{margin:8px 0 4px}
+  .dims td{padding:6px 6px;font-size:12.5px;color:#c9c9d6}
+  .dims td.d{width:30px;text-align:center;font-weight:800}
+  .d5{color:var(--good)}.d4{color:var(--purple)}.d3{color:var(--warn)}.d2{color:var(--bad)}.d1{color:var(--bad)}.dna{color:var(--muted)}
+  .chartbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+  .mgmt{border:1px dashed var(--warn);border-radius:14px;padding:18px 20px;margin-top:34px;background:var(--panel2)}
+  .mgmt h2{font-size:16px;color:var(--warn);margin-bottom:4px}
+  .mgmt p{font-size:13px;color:#c9c9d6;margin:8px 0}
+  footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:center;line-height:2}
+  .mini{font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <div class="nm">ADVANCED</div>
+    <div class="sub">M A R K E T E R S</div>
+  </div>
+  <div class="kicker mut" style="padding-top:6px">WEEKLY QA SCORECARD · SALES TEAM</div>
+</header>
+
+<h1>Sales Team <em>QA Scores</em></h1>
+<p class="datesub">Week of July 27 – August 2, 2026 · GoHighLevel phone + SMS/email + Zoom recordings · Prepared for Chris Paniagua</p>
+
+<div class="meta">
+  <div>Threads scanned<b>200</b></div>
+  <div>Rep calls attributed<b class="pp">231</b></div>
+  <div>Transcripts reviewed<b>18 GHL + 23 VTT</b></div>
+  <div>SMS / email reviewed<b>140</b></div>
+  <div>Diagnosis revenue<b class="pp">$1,000</b></div>
+  <div>Team payouts owed<b>$200</b></div>
+</div>
+
+<div class="hl"><b>Week in one line:</b> Kyle takes the board at <b>83</b> (+12) with two confirmed $500 diagnoses and $6,500 in Closed Won revenue, Anthony gives back last week's spike to <b>74</b> on team-high 159 dials — his follow-up, not his call skill, is the only thing holding him down — Jaden slips to <b>73</b> as recording hygiene repeats for a fourth straight week, <b>Angel Ayala logged zero dials</b>, total attributed dial volume fell 52% week over week, and there are <b>zero critical flags</b>.</div>
+
+<h2 class="sec">Dialing Activity by Rep</h2>
+<p class="secsub">The by-USER view GHL's native report can't show — its call report groups by phone NUMBER and setters share rotating outbound lines; this attributes every call by the userId on the message itself. Counts are a strong floor from scanned call threads, not an exact total. Shared lines "Sales One"/"Sales Two": no rep-attributable calls this window. Former reps Z Stewart &amp; Patrick Schwerdtfeger (departed Jul 8): zero activity and no longer present in the location user list, as expected.</p>
+<div class="panel">
+<table>
+<thead><tr><th>Rep</th><th>Role</th><th style="width:24%">Dials</th><th class="num">Connects ≥30s</th><th class="num">Rate</th><th class="num">Talk min</th><th class="num">Avg connect</th><th class="num">In / Out</th></tr></thead>
+<tbody>
+<tr><td><b>Anthony Aguilar</b></td><td><span class="role st">Setter</span></td><td><div class="barwrap"><div class="bar" style="width:100%"></div></div><span class="mini">159</span></td><td class="num">37</td><td class="num">23.3%</td><td class="num">73.4</td><td class="num">101s</td><td class="num">5 / 154</td></tr>
+<tr><td><b>Jaden Bashaw</b></td><td><span class="role cl">Closer</span></td><td><div class="barwrap"><div class="bar" style="width:25%"></div></div><span class="mini">39</span></td><td class="num">11</td><td class="num">28.2%</td><td class="num">20.3</td><td class="num">99s</td><td class="num">4 / 35</td></tr>
+<tr><td><b>Kyle Kellner</b></td><td><span class="role cl">Audit Rep</span></td><td><div class="barwrap"><div class="bar" style="width:16%"></div></div><span class="mini">25</span></td><td class="num">13</td><td class="num">52.0%</td><td class="num">89.5</td><td class="num">413s</td><td class="num">3 / 22</td></tr>
+<tr><td><b>Angel Ayala</b></td><td><span class="role st">Setter</span></td><td><div class="barwrap"><div class="bar zero"></div></div><span class="mini" style="color:var(--bad);font-weight:700">0</span></td><td class="num">0</td><td class="num">—</td><td class="num">0</td><td class="num">—</td><td class="num">0 / 0</td></tr>
+<tr><td><b>Paul Rastrelli</b> <span class="mini">(VP — activity only, reviewed at management level)</span></td><td><span class="role">VP</span></td><td><div class="barwrap"><div class="bar" style="width:5%"></div></div><span class="mini">8</span></td><td class="num">3</td><td class="num">37.5%</td><td class="num">13.2</td><td class="num">242s</td><td class="num">0 / 8</td></tr>
+</tbody>
+</table>
+<p class="mini" style="margin-top:10px"><b style="color:var(--bad)">Angel Ayala: 0 dials, 0 connects.</b> His user record (SPtnJNgiol0fWq547GwQ) is active and not deleted in GHL, and no calls are attributable to him under his own line or either shared line in the window — confirm whether he was on PTO, reassigned, or inactive. Third consecutive week he cannot be graded. · Team-wide attributed calls dropped from 484 to 231 (−52%) week over week; no calls at all were logged Sat 8/1 or Sun 8/2, and Mon 7/27 logged only 5. · Jaden also ran 12 Zoom sessions (5 substantive discoveries, 20–70 min) — phone stats understate him. · Kyle's 52% connect rate and 413s average connect are the highest on the team and reflect a worked, warm pipeline.</p>
+</div>
+
+<h2 class="sec">Digital Diagnosis Sales &amp; Payouts</h2>
+<p class="secsub">$500 client revenue per diagnosis · $100 rep payout each · deduped across ADV Master + RAW Houston pipelines.</p>
+<div class="panel">
+<table>
+<thead><tr><th>Rep</th><th class="num">Diagnoses</th><th class="num">Client revenue</th><th class="num">Payout owed</th><th>Clients</th></tr></thead>
+<tbody>
+<tr><td><b>Kyle Kellner</b></td><td class="num">2</td><td class="num">$1,000</td><td class="num">$200</td><td class="mini">Enrique Lopez (7/29) · Ruben Vazquez (7/29)</td></tr>
+<tr><td><b>Total confirmed</b></td><td class="num"><b>2</b></td><td class="num"><b>$1,000</b></td><td class="num"><b>$200</b></td><td></td></tr>
+</tbody>
+</table>
+<p class="mini" style="margin-top:10px"><b style="color:var(--warn)">Two items to verify before payout closes:</b><br>
+1. <b>Eli Ramos (Kyle, 7/31)</b> — Kyle sold the $500 diagnosis live on the recorded call (<q>And it's this is just $500… whenever you come on board with us, we actually give you that $500 back</q> [559]; <q>how much you're gonna invoice me right now?</q> / <q>Just 500.</q> [766–769]), but the CRM opportunity was staged straight to <b>Closed Won at $2,500</b> rather than to Closed - Digital Diagnosis. If that's a same-day diagnosis→package upgrade, Kyle is owed a third $100 and the count is 3 / $1,500. If it's a mis-stage, correct the record.<br>
+2. <b>Diego Arce ($499, Jaden, 7/31)</b> — this opportunity moved <b>backward</b> into Closed - Digital Diagnosis on 7/31 after being reported as a Closed Won conversion on 7/21 in last week's report. Treated here as a CRM re-stage, not a new sale; <b>no payout applied</b> pending confirmation.</p>
+<p class="mini" style="margin-top:10px"><b>Conversions to Closed Won this week (commission-eligible):</b> Miguel Guerra <b style="color:var(--good)">$4,000</b> (7/28, Kyle) · Eli Ramos <b style="color:var(--good)">$2,500</b> (7/31, Kyle) · London Ramirez <b style="color:var(--good)">$5,000</b> (7/31, assigned to Chris Paniagua — confirm which rep gets credit) · Ryan Malvaso <b style="color:var(--good)">$2,500</b> (8/1, <b>unassigned</b> — needs an owner before commission can be calculated). Total <b>$14,000</b> booked, <b>$6,500</b> of it attributed to Kyle.</p>
+</div>
+
+<h2 class="sec">QA Scores — Week over Week</h2>
+<p class="secsub">8-dimension sales rubric · 1–5 per dimension · N/A never penalizes · Overall = avg of scored dimensions × 20 · setters role-adjusted · sorted by this week's score, descending.</p>
+<div class="panel">
+<table>
+<thead><tr><th>Rep</th><th>Role</th><th class="num">This week</th><th class="num">Jul 27</th><th class="num">Trend</th><th>Evidence reviewed</th></tr></thead>
+<tbody>
+<tr><td><b>Kyle Kellner</b></td><td><span class="role cl">Audit Rep</span></td><td class="num"><span class="score s-good">83</span></td><td class="num">71</td><td class="num"><span class="delta up">▲ +12</span></td><td class="mini">8 GHL transcripts (85 min) · 76 SMS/email</td></tr>
+<tr><td><b>Anthony Aguilar</b></td><td><span class="role st">Setter</span></td><td class="num"><span class="score s-mid">74</span></td><td class="num">86</td><td class="num"><span class="delta down">▼ −12</span></td><td class="mini">7 GHL transcripts (29 min) · 159 dials · 18 msgs</td></tr>
+<tr><td><b>Jaden Bashaw</b></td><td><span class="role cl">Closer</span></td><td class="num"><span class="score s-mid">73</span></td><td class="num">78</td><td class="num"><span class="delta down">▼ −5</span></td><td class="mini">11 Zoom (399 min) + 3 GHL · 58 SMS/email</td></tr>
+<tr><td><b>Angel Ayala</b></td><td><span class="role st">Setter</span></td><td class="num"><span class="pill pna">NO ACTIVITY</span></td><td class="num">n/a</td><td class="num"><span class="delta flat">—</span></td><td class="mini">0 calls · not graded, 3rd straight week · last graded 80 (Jul 4)</td></tr>
+</tbody>
+</table>
+<p class="mini" style="margin-top:10px">Paul Rastrelli (VP of Sales) is not scored in the team report per owner direction — his review is handled at management level. Z Stewart / Patrick Schwerdtfeger departed Jul 8 — trend lines ended, no new scores.</p>
+</div>
+<div class="chartbox">
+<div class="kicker" style="margin-bottom:10px">Score Trend · Jun 19 → Aug 3</div>
+<canvas id="trend" height="118"></canvas>
+</div>
+
+<h2 class="sec">Flags</h2>
+<p class="secsub">Owner policy (July 2026): live card collection by phone, gatekeeper-pass lines, review solicitation, and results / income claims &amp; stats used as talk track are ACCEPTED — never scored, never flagged. Critical severity is reserved for chargeback coaching and password collection only.</p>
+<div class="flag good">
+<h3>Critical flags: NONE</h3>
+<p>All 18 GHL transcripts, 23 Zoom VTTs and 140 SMS/email messages were explicitly searched for chargeback coaching (<q>call the number on the back of your card</q> / dispute-as-refund-path) and for password collection. Zero instances anywhere. Kyle's Jul 4 chargeback line has now stayed clean for <b>three consecutive weeks</b>. The only chargeback reference in the whole corpus is Paul <i>preventing</i> one on an internal call.</p>
+</div>
+<div class="flag warn">
+<h3>Recording hygiene · Jaden Bashaw — 4th week, root cause unresolved</h3>
+<p><b>The specific July offense did not recur — nothing profane or disparaging was directed at a prospect this week, and no slurs, ethnic jokes or pressure conduct appear anywhere.</b> What has not changed is stopping the recording. Five sessions captured personal audio: the 7/30 8-min room opens <q>Hang up, I'm on TikTok</q> [00:17] and later <q>Come on, dude, what the fuck is all these fucking…</q> [06:41]; the 7/30 20-min room is 20 minutes of personal logistics with roughly a dozen f-words — and he took a live inbound company call inside it (<q>Hello, advanced marketers, this is Jaden</q> [15:16]); the 7/31 58-min room captures <q>He's like, fuck that shit, dude</q> [34:58]. Most important: the <b>prospect-named</b> Chavez discovery recording ran ~2.5 minutes past the prospect's exit at [17:33] and captured a profane personal argument. <i>Attribution note:</i> the Chavez VTT labels every utterance "Jaden Bashaw" including obvious prospect lines, so the voice in that tail cannot be confirmed as his — what holds either way is that a client-named recording was left running. The fix is one habit: end meeting → stop recording → then anything else.</p>
+</div>
+<div class="flag warn">
+<h3>Rep-originated profanity on recorded prospect calls · Kyle Kellner</h3>
+<p>~8 instances across 4 recorded calls, all rapport-register rather than aimed at anyone: <q>you've just been hearing a lot of shit</q> (Eli, call3 [49]); <q>we pride ourselves on being able to deliver what the fuck we say we're gonna do</q> (call3 [289]); <q>I'm not blowing smoke up your ass</q> (Ruben, call2 [806]); <q>I would definitely give you some free shit</q> (Andy, call4 [54]). No named competitor was disparaged and no prospect was pressured — he explicitly backed off Andy and Ken on budget, and turned down a Zoom with a driving prospect. Worth noting that last week's combativeness flag <b>did not recur</b>; this is a lighter, different issue.</p>
+</div>
+<div class="flag warn">
+<h3>Card data captured in an SMS thread · Kyle Kellner</h3>
+<p><q>Hey Ely i need to get the cvc number from the back of the card</q> (7/28 20:42); the prospect replied with the three digits four minutes later. The owner's carve-out covers <i>verbal</i> collection <i>by phone</i>; this leaves card data sitting in the GHL conversation record. One-line fix: call back for the CVC instead of texting for it.</p>
+</div>
+<div class="flag info">
+<h3>Coaching note (not a flag) · Anthony Aguilar</h3>
+<p>On the Robert Mitchell call the prospect made repeated race-based remarks about Philadelphia and Anthony affirmed with <q>Yeah. Yeah. I've heard about that.</q> [98]. Not a slur or a joke by the rep — but on a recorded line the better move is a neutral redirect back to business. Client-originated profanity appeared on two of his calls; he did not reciprocate on either.</p>
+</div>
+<div class="flag info">
+<h3>FYI — not scored per owner policy</h3>
+<p><b>Verbal card collection:</b> 2 instances, both Kyle on recorded lines (Enrique, call1 [1693–1727]; Eli, call3 [791–827]). Zero for Jaden and Anthony. <b>Results / stats talk track (accepted):</b> Kyle's <q>That is where 85 of all business is done on the Internet, period, is the front page of Google</q> (call1 [540], repeated call2) and search-volume figures (<q>searched 920 times in the last thirty days</q> call1; <q>1,716 times</q> call4; <q>over 1,100 times</q> call5); Jaden's <q>you're within the top 3 people that pops up, that's taking 67% of the traffic</q> and <q>a 300% booking rate, 75% reduction in spam unqualified</q> (70min PMR), <q>two weeks. I tell people two weeks</q> and <q>you literally get onboarded within 24 hours</q> (Chavez); the automated SMS sequence running in all three threads (<q>Premium Floor: $20K to $300K/month</q>, <q>Titanium Solar… Acquired for $75M</q>, <q>20x and 50x returns</q>). <b>Verify list:</b> "Google Premier partner" cited as <i>less than 2%</i> by Kyle on call1 but as <i>top 3%</i> in his own SMS the day before — the two figures don't match and both are in market; "$2.3 million a month in ad spend" (Jaden) vs "$2M/month" in prior weeks; "10 years in business" (both); headcount cited as "about 20 people" by Kyle and "about 40 people" by Jaden; Jaden's <q>we're an affiliate of theirs [GoHighLevel], so we have kind of a special couple extra things</q>; internal titles inconsistent to prospects — Jaden introduced Paul as "my VP of Sales… 18 years", Paul introduced himself on the same account as "Director of Agency Operations". <b>Sample limits:</b> GHL speakers are unnamed (S0/S1) and the rep is inferred from context; the transcript sample is the longest calls per rep, so setter figures skew toward engaged conversations and under-represent short / no-book connects — <i>recommend pulling a random sample including short connects next week</i>.</p>
+</div>
+
+<h2 class="sec">Rep Scorecards</h2>
+<div class="grid">
+
+<div class="repcard">
+<h3>Kyle Kellner <span class="pill p5">83</span> <span class="delta up">▲ +12</span></h3>
+<div class="cm">Audit Rep · 8 GHL calls (85 min) · 76 SMS/email · 8 dims scored</div>
+<table class="dims">
+<tr><td class="d d5">5</td><td>Opening — fast ID then real local hooks (Philadelphia/Freehold, Tijuana/San Diego, Houston barbecue); warm even on no-money calls</td></tr>
+<tr><td class="d d4">4</td><td>Discovery — consistent set: crew size, res vs commercial, who answers the phone, avg ticket, close rate. Gap is budget + decision-maker</td></tr>
+<tr><td class="d d4">4</td><td>Pitch — strong competitor-traffic and search-volume-to-job-value math; the Enrique pricing block ran ~4 min unbroken</td></tr>
+<tr><td class="d d4">4</td><td>Objections — handled "been burned," "contracts aren't my favorite word," "no money right now" with the two-month de-risk</td></tr>
+<tr><td class="d d5">5</td><td>Closing — two $500 audits closed live, invoice sent mid-call for Ruben, Zoom booked with date and time on every open call</td></tr>
+<tr><td class="d d5">5</td><td>Follow-up — inbound replies typically 33 sec–4 min; audit link, contract and onboarding all out within 20 min of the close</td></tr>
+<tr><td class="d d3">3</td><td>CRM — reads the setter's notes before dialing, but a nurture template signed "– Chris" went out under his thread and duplicate reminders left Eli texting "????"</td></tr>
+<tr><td class="d d3">3</td><td>Compliance — no chargeback language, refused a Zoom with a driving prospect; docked for ~8 rep profanities and CVC captured by text</td></tr>
+</table>
+<div class="line"><span>Top strength</span>Converts stalled contractors into paid $500 audits on a single call by grounding the pitch in the prospect's own ticket size and close rate, then locking the Zoom, the invoice and the follow-up window before hanging up.</div>
+<div class="line"><span>Growth area</span>Answer the direct question before pivoting to price — Ruben asked exactly what gets him onto page one and got a price quote instead.</div>
+<blockquote>"I maybe I just wanna help you even if you don't go with us. Like, what do you even, like, need?" — disarming a burned prospect; that call ended in a card-on-file audit sale (call3, Eli Ramos [96])</blockquote>
+</div>
+
+<div class="repcard">
+<h3>Anthony Aguilar <span class="pill p3">74</span> <span class="delta down">▼ −12</span></h3>
+<div class="cm">Setter · 7 GHL calls (29 min) · 159 dials · 18 msgs · 7 dims scored</div>
+<table class="dims">
+<tr><td class="d d4">4</td><td>Opening — identical clean opener on all 7 calls, switches to fluent Spanish within seconds when asked</td></tr>
+<tr><td class="d d4">4</td><td>Discovery — 5-part qual set hit on 5 of 7 calls even inside a 128s call; revenue is asked <i>after</i> the booking so it gates nothing</td></tr>
+<tr><td class="d dna">N/A</td><td>Pitch — setter role; value framing appears only incidentally, not enough scope to score fairly</td></tr>
+<tr><td class="d d4">4</td><td>Objections — converted Miguel's "out of the country" into a dated slot, adapted Zoom→phone for Brisa, honest on Bob's mismatch</td></tr>
+<tr><td class="d d5">5</td><td>Closing — 5 of 7 booked with a specific date, time and confirmed time zone; the 2 non-books were correct disqualifications</td></tr>
+<tr><td class="d d2">2</td><td>Follow-up — only 5 of 18 thread messages are his, all sent 7/29; he booked 4+ appointments on 7/30–7/31 and sent zero confirmations</td></tr>
+<tr><td class="d d3">3</td><td>CRM — verifies details live, but entered Brisa's call without her record and SMS'd a prospect an internal Slack URL before the Zoom link</td></tr>
+<tr><td class="d d4">4</td><td>Compliance — no chargeback, no card collection, no rep profanity, no pressure; held off 5 for affirming a race-based prospect remark</td></tr>
+</table>
+<div class="line"><span>Top strength</span>Books dated, time-zone-confirmed appointments at a high rate while still running a full qualification set in calls averaging under two minutes — and disqualifies cleanly instead of padding the calendar.</div>
+<div class="line"><span>Growth area</span>Send a personal confirmation text with the link within 60 seconds of every booking — he booked 4+ appointments on 7/30–7/31 and sent none, and a prospect told him live she'd never received anything.</div>
+<blockquote>"I never received a text message from from you guys." — the follow-up gap surfacing on a live call (call5, Brisa Contreras [139])</blockquote>
+<p class="mini" style="margin-top:9px">The −12 is a follow-up score, not a skill regression: his call execution is at or above last week's level. Fix the confirmation habit and he is back in the 80s.</p>
+</div>
+
+<div class="repcard">
+<h3>Jaden Bashaw <span class="pill p3">73</span> <span class="delta down">▼ −5</span></h3>
+<div class="cm">Closer · 11 Zoom (399 min) + 3 GHL · 58 SMS/email · 8 dims scored</div>
+<table class="dims">
+<tr><td class="d d4">4</td><td>Opening — warm and consistent on every Zoom and dial; docked for ~3 min of dead air at the head of the Chavez call</td></tr>
+<tr><td class="d d5">5</td><td>Discovery — best on the team: avg job size, monthly leads, close rate, LY vs YTD revenue, headcount, capacity ceiling, magic-wand question</td></tr>
+<tr><td class="d d4">4</td><td>Pitch — screen-shares live keyword and click data, de-sells to fit the prospect's stage; pricing delivery muddled ("$4.99 a month" for a $499 product)</td></tr>
+<tr><td class="d d4">4</td><td>Objections — strong reframes on the 9-month SEO timeline and "burned by 3 agencies"; folded flat on the Chavez "I'll talk to my team Monday" stall</td></tr>
+<tr><td class="d d3">3</td><td>Closing — only 1 of 5 live conversations ended with a booked date; David ($20M, actively courting three competitors) got only an email confirmation</td></tr>
+<tr><td class="d d3">3</td><td>Follow-up — fast where he engaged (3-min SMS reply, 5-touch nurture across 4 days), but two live threads went dead after the prospect replied</td></tr>
+<tr><td class="d d4">4</td><td>CRM — directed 3 Sunglow audits, pulled competitor names back out of the call transcript, caught and repaired a setter double-booking</td></tr>
+<tr><td class="d d2">2</td><td>Compliance — clean on every zero-tolerance item, but heavy rep profanity captured on five recorded sessions including one under a prospect's name</td></tr>
+</table>
+<div class="line"><span>Top strength</span>Asks real qualifying questions and then tells prospects the truth about what they should <i>not</i> buy yet — which is why two agency-burned buyers both put him in their top consideration set.</div>
+<div class="line"><span>Growth area</span>Own the next step — four of five live conversations ended without a date on the calendar; book the follow-up Zoom on the call, especially on David/Sunglow where three competitors are actively bidding.</div>
+<blockquote>"I wouldn't recommend some marketing package, just from where you're at right now. You have plenty of leads, there's no point in me trying to pump more leads into you when you're trying to get the old ones." — Jose discovery, 7/30 [46:12]</blockquote>
+</div>
+
+<div class="repcard">
+<h3>Angel Ayala <span class="pill pna">NOT GRADED</span></h3>
+<div class="cm">Setter · 0 calls · 3rd straight week ungraded</div>
+<p class="mini" style="margin:10px 0">No calls, SMS or email are attributable to Angel's user ID anywhere in the July 27 – August 2 window, under his own line or either shared sales line. His GHL user record is active and not deleted.</p>
+<p class="mini" style="margin:10px 0">This is an escalation rather than a continuation: he ran 39 dials the prior week and 0 this week. There is no evidence base to score him on, and scoring him zero would be inaccurate — the rubric requires evidence.</p>
+<div class="line"><span>Action</span>Confirm status before next week's run — PTO, reassignment, or inactive. His last graded score was 80 (Jul 4), so this reads as a coverage question rather than a performance one.</div>
+</div>
+
+</div>
+
+<div class="mgmt">
+<h2>For management only — not for team distribution</h2>
+<p><b>Paul Rastrelli (VP of Sales) · 12 Zoom VTTs + 12 messages + 8 dials reviewed. Not scored per owner direction.</b></p>
+<p><b>Chargeback-coaching check: clear.</b> The only chargeback reference all week is Paul <i>preventing</i> one — <q>She retains her website, we got her all the login credentials, she's ready to rock and roll on her end. We avoided, like, a chargeback.</q> (7/28, 17min [09:48]) — resolving the Stacey Booker complaint with a $199 refund rather than a dispute. No rep was coached toward the card-issuer path.</p>
+<p><b>Password collection check: clear.</b> No credential requests. The only adjacent talk is standard onboarding prep telling reps to warn clients they'll need to locate their <i>own</i> platform access (7/29, 52min [28:19]).</p>
+<p><b>Other items:</b> (1) Minor — disparaged a client on an internal recorded line: <q>But I want to see what he sent you, see how big of a schmuck this guy is.</q> (7/29, 36min [24:25]). Client not present; only instance of its kind all week. (2) Not his conduct but surfaced by him and worth knowing: a Mexico-based hire is working with no paperwork — Paul: <q>you still weren't given an offer letter or a contract yet, huh?</q> / Cynthia Suedan: <q>Yeah, I don't have any of those, I just started working.</q> (7/30, 17min [02:37]). He flagged it and committed to fixing it; worth confirming it closed.</p>
+<p><b>Bottom line:</b> nothing serious on Paul this week. Both critical checks come back clean and the between-call segments contain no profanity toward prospects, slurs, or pressure conduct.</p>
+</div>
+
+<footer>
+ADVANCED MARKETERS · SALES SYSTEM<br>
+135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; advancedmarketers.co<br>
+<span style="text-transform:none;letter-spacing:.02em">Calls and messages on company lines are recorded and reviewed for quality assurance and coaching. Reps are aware of this program.</span>
+</footer>
+
+</div>
+<script>
+const ctx = document.getElementById('trend');
+const labels = ['Jun 19','Jul 4','Jul 20','Jul 27','Aug 3'];
+const mk = (label,data,color,dash)=>({label,data,borderColor:color,backgroundColor:color,tension:.32,borderWidth:2.4,pointRadius:4,pointHoverRadius:6,spanGaps:false,borderDash:dash||[]});
+new Chart(ctx,{
+  type:'line',
+  data:{labels,datasets:[
+    mk('Kyle Kellner',    [null, 74, 69, 71, 83], '#3FCF95'),
+    mk('Anthony Aguilar', [74,   70, 71, 86, 74], '#7D7BF7'),
+    mk('Jaden Bashaw',    [86,   69, 71, 78, 73], '#D9A441'),
+    mk('Angel Ayala',     [73,   80, null, null, null], '#E4604F'),
+    mk('Z Stewart (departed)',   [63, null, null, null, null], '#5A58C4', [5,4]),
+    mk('Patrick S. (departed)',  [null, 78, null, null, null], '#8A8A99', [5,4])
+  ]},
+  options:{
+    responsive:true,
+    plugins:{
+      legend:{labels:{color:'#8A8A99',font:{size:11},boxWidth:12,usePointStyle:true}},
+      tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y===null?'not graded':c.parsed.y}`}}
+    },
+    scales:{
+      y:{min:55,max:95,ticks:{color:'#8A8A99',font:{size:11}},grid:{color:'#2B2B35'}},
+      x:{ticks:{color:'#8A8A99',font:{size:11}},grid:{color:'#22222B'}}
+    }
+  }
+});
+</script>
+</body>
+</html>

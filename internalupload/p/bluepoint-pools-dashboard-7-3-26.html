@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluePoint Pools — Lead &amp; Call Performance | Advanced Marketers</title>
+<style>
+  :root{
+    --bg:#0D0D12; --panel:#16161D; --border:#2B2B35; --text:#EDEDF2; --muted:#8A8A99;
+    --accent:#7D7BF7; --good:#3FCF95; --bad:#E4604F; --warn:#D9A441;
+    --accent-soft:rgba(125,123,247,.12); --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+  .wrap{max-width:1080px;margin:0 auto;padding:34px 24px 50px}
+
+  .kicker{font-size:11px;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);font-weight:700}
+  header.hero{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:20px}
+  .hero h1{font-size:28px;font-weight:760;letter-spacing:.2px;margin-top:8px}
+  .hero h1 span{color:var(--accent)}
+  .hero .sub{color:var(--muted);font-size:14px;margin-top:6px}
+  .hero .brand{text-align:right;font-size:12.5px;color:var(--muted);line-height:1.7}
+  .hero .brand b{display:block;color:var(--text);font-size:14px;letter-spacing:3px;font-weight:760}
+  .hero .brand b i{color:var(--accent);font-style:normal}
+  .badge{display:inline-block;background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:3px 14px;font-size:12px;color:#c9c8fb;margin-top:10px}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:6px 0 8px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+  .kpi .label{font-size:10.5px;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);font-weight:700}
+  .kpi .value{font-size:32px;font-weight:760;margin-top:8px;color:var(--text)}
+  .kpi .note{font-size:12.5px;color:var(--muted);margin-top:5px}
+  .kpi.accent .value{color:var(--accent)} .kpi.good .value{color:var(--good)}
+  .kpi.warn .value{color:var(--warn)} .kpi.bad .value{color:var(--bad)}
+
+  section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 26px;margin-top:16px}
+  section.highlight{border:1px solid var(--accent);box-shadow:0 0 0 1px var(--accent-soft), 0 8px 30px rgba(125,123,247,.08)}
+  h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--accent);margin-bottom:4px}
+  .h2sub{font-size:17px;font-weight:720;color:var(--text);margin-bottom:14px}
+
+  .deal{display:flex;gap:20px;flex-wrap:wrap;align-items:stretch}
+  .deal .main{flex:2 1 340px}
+  .deal .side{flex:1 1 230px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:10px;padding:15px 17px;font-size:13.5px;color:#d6d5fb}
+  .deal .side b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:7px}
+  .pill{display:inline-block;border-radius:999px;padding:2px 11px;font-size:11.5px;font-weight:700;letter-spacing:.5px}
+  .pill.hot{background:rgba(228,96,79,.15);color:var(--bad);border:1px solid rgba(228,96,79,.5)}
+  .pill.open{background:rgba(217,164,65,.14);color:var(--warn);border:1px solid rgba(217,164,65,.5)}
+  .deal p{font-size:14px;margin:7px 0;color:#cfcfda}
+  .deal p b{color:var(--text)}
+  .quote{border-left:3px solid var(--accent);background:rgba(125,123,247,.08);padding:11px 15px;border-radius:0 8px 8px 0;font-size:13.5px;font-style:italic;color:#c9c8fb;margin:12px 0}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{font-size:10.5px;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);text-align:left;padding:9px 10px;border-bottom:1px solid var(--accent);font-weight:700}
+  td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;color:#cfcfda}
+  td b{color:var(--text)}
+  tr:last-child td{border-bottom:none}
+  .tag{display:inline-block;background:rgba(125,123,247,.1);border:1px solid var(--border);border-radius:6px;padding:1px 9px;font-size:12px;color:#b9b8f5;white-space:nowrap}
+  .status-q{color:var(--good);font-weight:650}.status-m{color:var(--bad);font-weight:650}.status-n{color:var(--muted)}
+
+  .bars{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+  .bar-row{display:grid;grid-template-columns:200px 1fr 46px;gap:12px;align-items:center;font-size:13.5px;color:#cfcfda}
+  .bar-row b{color:var(--text)}
+  .bar-track{background:#0f0f15;border:1px solid var(--border);border-radius:6px;height:24px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;color:#0D0D12;font-size:11.5px;font-weight:750;padding-left:9px;white-space:nowrap}
+
+  .callback{display:flex;justify-content:space-between;gap:10px;padding:12px 15px;background:#131318;border:1px solid var(--border);border-left:4px solid var(--bad);border-radius:8px;margin-bottom:9px;font-size:13.5px;flex-wrap:wrap;color:#cfcfda}
+  .callback b{color:var(--text);font-size:14px}
+  .callback.stale{border-left-color:var(--warn)}
+  .callback.dnc{border-left-color:#4a4a58;opacity:.7}
+  .callback .when{color:var(--muted)}
+  .callback .when b{color:var(--bad)}
+
+  .recs{counter-reset:rec;display:flex;flex-direction:column;gap:11px}
+  .rec{display:flex;gap:13px;font-size:14px;color:#cfcfda}
+  .rec::before{counter-increment:rec;content:counter(rec);flex:0 0 26px;height:26px;border-radius:50%;background:var(--accent);color:#0D0D12;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rec b{color:var(--text)}
+
+  .fineprint{font-size:12.5px;color:var(--muted);margin-top:12px}
+
+  html{scroll-behavior:smooth}
+  .chain{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin:14px 0 6px}
+  .chip{flex:1 1 200px;background:#131318;border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative}
+  .chip .big{font-size:26px;font-weight:760}
+  .chip .cap{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .chip.c1 .big{color:var(--bad)} .chip.c2 .big{color:var(--good)} .chip.c3 .big{color:var(--accent)}
+  .chip.c3{border-color:var(--accent);background:var(--accent-soft)}
+  .arrow{align-self:center;color:var(--accent);font-size:20px;font-weight:800;flex:0 0 auto}
+  .proj{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+  .proj .pcard{flex:1 1 220px;border-radius:10px;padding:16px 18px;border:1px solid var(--border);background:#131318}
+  .proj .pcard.now{border-left:4px solid var(--warn)}
+  .proj .pcard.model{border:1px solid var(--good);background:rgba(63,207,149,.07)}
+  .proj .plabel{font-size:10.5px;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);font-weight:700}
+  .proj .pval{font-size:28px;font-weight:760;margin-top:6px}
+  .proj .pcard.now .pval{color:var(--warn)} .proj .pcard.model .pval{color:var(--good)}
+  .proj .pnote{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+  .rec-row{display:grid;grid-template-columns:minmax(210px,1fr) 2fr;gap:12px;align-items:center;padding:12px 14px;background:#131318;border:1px solid var(--border);border-radius:9px;margin-bottom:9px}
+  .rec-row .meta{font-size:13.5px;color:#cfcfda}
+  .rec-row .meta b{color:var(--text);display:block}
+  .rec-row .meta .sub{font-size:12px;color:var(--muted)}
+  .rec-row audio{width:100%;height:36px}
+  .rec-row.star{border-color:var(--accent);background:var(--accent-soft)}
+  @media (max-width:640px){.rec-row{grid-template-columns:1fr}}
+  nav.menu{position:sticky;top:0;z-index:50;background:rgba(13,13,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);margin:0 -24px 18px;padding:0 24px}
+  nav.menu .inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+  nav.menu .inner::-webkit-scrollbar{display:none}
+  nav.menu .logo{font-size:12px;letter-spacing:2.5px;font-weight:760;color:var(--text);margin-right:14px;white-space:nowrap}
+  nav.menu .logo i{color:var(--accent);font-style:normal}
+  nav.menu a{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:650;letter-spacing:.6px;padding:6px 12px;border-radius:999px;white-space:nowrap;transition:color .15s,background .15s}
+  nav.menu a:hover{color:var(--text);background:var(--accent-soft)}
+  nav.menu a.hot{color:#f0a9a1}
+  nav.menu a.hot:hover{color:var(--bad);background:rgba(228,96,79,.12)}
+  section{scroll-margin-top:64px}
+  .kpis{scroll-margin-top:64px}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--muted);line-height:1.9}
+  footer .fbrand{letter-spacing:3px;font-weight:760;color:var(--text);font-size:12.5px}
+  footer .fbrand i{color:var(--accent);font-style:normal}
+  @media print{body{background:#0D0D12!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} .wrap{padding:10px} section,.kpi{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="menu">
+    <div class="inner">
+      <span class="logo">ADVANCED <i>MARKETERS</i></span>
+      <a href="#overview">Overview</a>
+      <a href="#opportunity">#1 Opportunity</a>
+      <a href="#deal" class="hot">Priority Deal</a>
+      <a href="#callbacks">Callbacks</a>
+      <a href="#attribution">Attribution</a>
+      <a href="#answer-rate">Answer Rate</a>
+      <a href="#recordings">Recordings</a>
+      <a href="#filtered">Filtered Out</a>
+      <a href="#recommendations">Recommendations</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="kicker">Growth System · Client Performance Report</div>
+      <h1>BluePoint Pools — <span>Lead &amp; Call Performance</span></h1>
+      <div class="sub">Google Ads call attribution &amp; phone-lead quality, verified against call transcripts</div>
+      <span class="badge">Reporting window: May 4 – July 2, 2026</span>
+    </div>
+    <div class="brand">
+      <b>ADVANCED <i>MARKETERS</i></b>
+      Orange County, CA<br>Prepared July 3, 2026
+    </div>
+  </header>
+
+  <div class="kpis" id="overview">
+    <div class="kpi">
+      <div class="label">Ad spend</div>
+      <div class="value">$1,797</div>
+      <div class="note">2,081 impressions · 125 clicks · $14.38 CPC</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Leads</div>
+      <div class="value">9</div>
+      <div class="note">6 form fills + 3 tracked phone leads</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Cost per lead (CPL)</div>
+      <div class="value">$199.67</div>
+      <div class="note">Spend ÷ total tracked leads</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">Cost per qualified lead (CPQL)</div>
+      <div class="value">$599.01</div>
+      <div class="note">3 qualified · calls ≥ 60s kept, short/missed removed</div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi bad">
+      <div class="label">Missed calls</div>
+      <div class="value">11 <span style="font-size:16px;color:var(--muted)">of 13</span></div>
+      <div class="note">85% of inbound calls never reached a human</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Answered calls</div>
+      <div class="value">2</div>
+      <div class="note">Both from the same caller — 1 of 5 unique callers</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">Qualified rate on answered calls</div>
+      <div class="value">100%</div>
+      <div class="note">Every caller who reached a human became a qualified lead</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Active pipeline</div>
+      <div class="value">~$14K</div>
+      <div class="note">Glendora remodel — competitor-quoted benchmark</div>
+    </div>
+  </div>
+  <p class="fineprint" style="margin:8px 4px 0">Lead definitions (Advanced Marketers standard): Total Leads = tracked Google Ads conversions + missed ad calls · Qualified Leads = Total Leads − calls needing review (missed or under 60 seconds) · CPL = spend ÷ Total Leads · CPQL = spend ÷ Qualified Leads. The 3 tracked phone leads trace to one unique caller (the Glendora deal); missed/answered counts come from CRM call logs verified against recordings.</p>
+
+  <!-- #1 OPPORTUNITY -->
+  <section class="highlight" id="opportunity">
+    <h2>The #1 Opportunity</h2>
+    <div class="h2sub">Answering the phone is worth more than any campaign optimization</div>
+
+    <div class="chain">
+      <div class="chip c1">
+        <div class="big">85%</div>
+        <div class="cap">of inbound calls hit voicemail — 11 of 13 callers never reached a human</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip c2">
+        <div class="big">100%</div>
+        <div class="cap">of callers who <i>did</i> reach a human became qualified leads with real projects</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="chip c3">
+        <div class="big">50%+</div>
+        <div class="cap">of the missed callers were likely qualified buyers too — people searching "pool remodeling companies" and dialing don't call for fun</div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="pcard now">
+        <div class="plabel">CPQL — tracked today</div>
+        <div class="pval">$599</div>
+        <div class="pnote">Based only on the calls that connected. Every qualified buyer lost to voicemail inflates this number.</div>
+      </div>
+      <div class="pcard model">
+        <div class="plabel">Projected CPQL — if calls get answered</div>
+        <div class="pval">~$359</div>
+        <div class="pnote"><b>Modeled, not tracked:</b> if just half of the 4 missed unique callers had qualified (3 → 5 qualified leads at the same spend). We can't verify — unanswered calls leave no conversation to review — and the true figure could be lower still.</div>
+      </div>
+    </div>
+
+    <p style="font-size:14px;margin-top:16px;color:#cfcfda"><b style="color:var(--text)">Why this compounds inside Google's algorithm:</b> Google's smart bidding learns from call outcomes. Calls that connect and run long register as conversions — talk time is a buying signal — so Google goes and finds <i>more searchers who look like that caller</i>. Unanswered and seconds-long calls register as non-conversions, teaching the algorithm that these searchers are the <i>wrong</i> audience, and it quietly shifts budget toward a different type of clicker. Every voicemail isn't just one lost lead — it's training data pushing the campaign away from the exact buyers it already found. Fixing answer rate doesn't just recover leads; it makes every future ad dollar smarter.</p>
+  </section>
+
+  <!-- ACTIVE DEAL -->
+  <section class="highlight" id="deal">
+    <h2>Priority Deal In Motion</h2>
+    <div class="h2sub">Glendora Pool Remodel &nbsp;<span class="pill hot">NEEDS CONFIRMATION</span></div>
+    <div class="deal">
+      <div class="main">
+        <p><b>Mary — Glendora, CA &nbsp;·&nbsp; (626) 533-6121</b> &nbsp;<span class="pill open">Pool Remodel</span></p>
+        <p>Remodeling the pool at her rental property so a family friend can move in. Wants a <b>smooth pebble finish (PebbleFina / mini pebble)</b>, keeping the existing tile and equipment. Pool is nearly drained and she wants it fixed as soon as possible.</p>
+        <div class="quote">"I'm down to nobody now." — after rejecting three competitors (cheap plaster pitch, a $14,000 cash-only demand, and one that doesn't install PebbleFina)</div>
+        <p><b>Timeline:</b> Called Jun 12 (15-min conversation, estimate booked Jun 16 — missed due to a family emergency) → called back Jun 25 → <b>estimate rescheduled to Jun 26, 11:00 AM</b>. No call activity since.</p>
+      </div>
+      <div class="side">
+        <b>Next Action</b>
+        Confirm the June 26 estimate visit happened and issue the proposal. She has rejected every competitor — this deal is BluePoint's to lose. Note: her phone doesn't accept voicemail; call ~30 min ahead, retry rather than leaving messages.
+      </div>
+    </div>
+  </section>
+
+  <!-- URGENT CALLBACKS -->
+  <section id="callbacks">
+    <h2>Recoverable Leads</h2>
+    <div class="h2sub">Missed callers awaiting a callback</div>
+    <div class="callback">
+      <div><b>(720) 856-9155</b> — went to voicemail, no callback logged <span class="tag">Meta lead</span></div>
+      <div class="when">Jul 1, 8:07 AM — <b>call back now</b></div>
+    </div>
+    <div class="callback stale">
+      <div><b>(401) 656-5076</b> — went to voicemail, no callback logged <span class="tag">Meta call</span></div>
+      <div class="when">Jun 2 — stale, still worth one attempt</div>
+    </div>
+    <div class="callback stale">
+      <div><b>(415) 236-5943</b> — called twice (Jun 5 &amp; Jun 23), never reached anyone <span class="tag">Google Business Profile</span></div>
+      <div class="when">Two attempts = high intent, lost to voicemail</div>
+    </div>
+    <div class="callback dnc">
+      <div><b>(951) 570-9385</b> — two voicemails Jun 19, then texted "Stop"</div>
+      <div class="when">Opted out — do not contact (a late callback costing a lead)</div>
+    </div>
+  </section>
+
+  <!-- ATTRIBUTION -->
+  <section id="attribution">
+    <h2>Google Ads Call Attribution</h2>
+    <div class="h2sub">Which ads make the phone ring</div>
+    <table>
+      <thead><tr><th>Date</th><th>Ad group</th><th>Search keyword</th><th>Duration</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>May 16</td><td>Pool Construction Company</td><td><span class="tag">—</span></td><td>30s</td><td class="status-m">Not connected</td></tr>
+        <tr><td>May 22</td><td>Custom Pools</td><td><span class="tag">custom swimming pools</span></td><td>19s</td><td class="status-m">Not connected</td></tr>
+        <tr><td>Jun 5</td><td>Custom Pools</td><td><span class="tag">custom swimming pools</span></td><td>—</td><td class="status-m">Not connected</td></tr>
+        <tr><td>Jun 6</td><td>Pool Remodel</td><td><span class="tag">pool remodeling companies</span></td><td>14s</td><td class="status-m">Not connected</td></tr>
+        <tr><td>Jun 6</td><td>Pool Remodel</td><td><span class="tag">pool remodeling companies</span></td><td>35s</td><td class="status-m">Not connected</td></tr>
+        <tr><td>Jun 11</td><td>Pool Remodel</td><td><span class="tag">pool remodeling companies</span></td><td><b>3m 20s</b></td><td class="status-q">Qualified length — no CRM record ⚠</td></tr>
+        <tr><td>Jun 12</td><td>Pool Remodel</td><td><span class="tag">pool remodeling companies</span></td><td>1m 03s</td><td class="status-q">Became the Glendora deal (Mary)</td></tr>
+        <tr><td>Jun 18</td><td>Custom Pools</td><td><span class="tag">custom swimming pools</span></td><td>38s</td><td class="status-m">Not connected</td></tr>
+        <tr><td>Jun 25</td><td>Pool Remodel</td><td><span class="tag">pool remodeling companies</span></td><td><b>8m 56s</b></td><td class="status-q">Glendora deal — estimate rescheduled</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:18px">
+      <div class="bars">
+        <div class="bar-row"><span><b>Pool Remodel</b> ad group</span><div class="bar-track"><div class="bar-fill" style="width:56%;background:var(--accent)">5 calls · both qualified calls</div></div><span>5</span></div>
+        <div class="bar-row"><span><b>Custom Pools</b> ad group</span><div class="bar-track"><div class="bar-fill" style="width:33%;background:#5a58c9">3 calls</div></div><span>3</span></div>
+        <div class="bar-row"><span><b>Pool Construction Co.</b></span><div class="bar-track"><div class="bar-fill" style="width:11%;background:#3d3c86"></div></div><span>1</span></div>
+      </div>
+      <p class="fineprint">"Pool remodeling companies" is the money keyword: it drove 5 of 9 calls including every qualified conversation. Notable: the Glendora lead reported finding BluePoint through an AI search assistant that referred her via the ad — an emerging referral path worth watching.</p>
+    </div>
+  </section>
+
+  <!-- ANSWER RATE -->
+  <section id="answer-rate">
+    <h2>Answer Rate</h2>
+    <div class="h2sub">The biggest revenue lever in this account</div>
+    <div class="bars">
+      <div class="bar-row"><span>Calls answered live</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--good)">2</div></div><span>15%</span></div>
+      <div class="bar-row"><span>Voicemail / missed / no answer</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--bad)">11</div></div><span>85%</span></div>
+    </div>
+    <p style="font-size:14px;margin-top:13px;color:#cfcfda">Of 13 tracked inbound call events this window, only 2 reached a person — both from the same caller, and both became long sales conversations (15 min and 9 min). At the current CPL, each unanswered caller represents roughly $200 of ad spend left on the table. The one deal now in the pipeline exists <i>because</i> automated missed-call texts and callback workflows kept that caller engaged — full projection in The #1 Opportunity above.</p>
+  </section>
+
+  <!-- RECORDINGS -->
+  <section id="recordings">
+    <h2>Call Recordings</h2>
+    <div class="h2sub">Listen to the calls behind the numbers</div>
+
+    <div class="rec-row star">
+      <div class="meta"><b>Mary — the 15-minute qualifying call</b><span class="sub">Jun 12 · 2:47 PM · (626) 533-6121 · Pool Remodel ad</span></div>
+      <audio controls preload="none" src="recordings/2026-06-12T21-47-56_16265336121_completed_892s.wav"></audio>
+    </div>
+    <div class="rec-row star">
+      <div class="meta"><b>Mary — the 9-minute follow-up, estimate rescheduled</b><span class="sub">Jun 25 · 11:40 AM · (626) 533-6121 · Pool Remodel ad</span></div>
+      <audio controls preload="none" src="recordings/2026-06-25T18-40-55_16265336121_completed_538s.wav"></audio>
+    </div>
+    <div class="rec-row">
+      <div class="meta"><b>Mary — first callback connection (46s)</b><span class="sub">Jun 12 · 12:56 PM · recovered by the missed-call workflow</span></div>
+      <audio controls preload="none" src="recordings/2026-06-12T19-56-49_16265336121_completed_46s.wav"></audio>
+    </div>
+    <div class="rec-row">
+      <div class="meta"><b>(720) 856-9155 — voicemail, awaiting callback</b><span class="sub">Jul 1 · 8:07 AM · Meta lead · URGENT</span></div>
+      <audio controls preload="none" src="recordings/2026-07-01T15-07-22_17208569155_voicemail_0s.wav"></audio>
+    </div>
+    <div class="rec-row">
+      <div class="meta"><b>(401) 656-5076 — voicemail, never called back</b><span class="sub">Jun 2 · 4:02 PM · Meta call lead</span></div>
+      <audio controls preload="none" src="recordings/2026-06-02T23-02-13_14016565076_voicemail_0s.wav"></audio>
+    </div>
+    <div class="rec-row">
+      <div class="meta"><b>(415) 236-5943 — caller reached voicemail greeting, hung up</b><span class="sub">Jun 5 · 4:45 PM · GBP lead · what 85% of callers experience</span></div>
+      <audio controls preload="none" src="recordings/2026-06-05T23-45-14_14152365943_completed_12s.wav"></audio>
+    </div>
+
+    <p class="fineprint">Players work when this report is opened from the shared folder (the recordings folder travels with it). All calls are recorded and retained in the CRM — the full library including every voicemail is in the recordings folder alongside this file.</p>
+  </section>
+
+  <!-- EXCLUSIONS -->
+  <section id="filtered">
+    <h2>Filtered Out</h2>
+    <div class="h2sub">Keeping your lead counts honest</div>
+    <table>
+      <tbody>
+        <tr><td>(951) 790-7572</td><td>Wrong number — caller was looking for a different pool company from a mailer</td><td class="status-n">Excluded</td></tr>
+        <tr><td>(213) 634-4380</td><td>Telemarketer (home-loan sales call), plus one voicemail-only attempt</td><td class="status-n">Excluded</td></tr>
+      </tbody>
+    </table>
+    <p class="fineprint">Every call is verified against its actual recording transcript before it counts as a lead — cost-per-lead figures reflect real prospects only.</p>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section id="recommendations">
+    <h2>Recommendations</h2>
+    <div class="h2sub">Five moves, in priority order</div>
+    <div class="recs">
+      <div class="rec"><div><b>Confirm the Glendora estimate today.</b> The ~$14K remodel has no remaining competitors. If the Jun 26 visit slipped, rebook immediately (call twice — her phone takes no voicemail).</div></div>
+      <div class="rec"><div><b>Fix live answering during ad hours</b> (see The #1 Opportunity above). Forwarding to a backup line or answering service during 8 AM – 6 PM would multiply lead volume at the same ad spend — and feed Google the talk-time conversion signals that make bidding smarter.</div></div>
+      <div class="rec"><div><b>Call back (720) 856-9155 now</b> and make same-hour callback the standard — the Jun 19 caller who opted out after a slow response shows the cost of waiting.</div></div>
+      <div class="rec"><div><b>Shift budget toward "pool remodeling companies."</b> It produced every qualified conversation this window; Custom Pools keywords ring the phone but haven't connected to a real conversation yet.</div></div>
+      <div class="rec"><div><b>Route all ad calls through tracked lines.</b> One 3m 20s call from the Jun 11 ad click never appeared in the CRM — likely a qualified lead lost to an untracked forwarding number.</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fbrand">ADVANCED <i>MARKETERS</i></span><br>
+    135 S Lemon St Ste D, Orange, CA 92856 &nbsp;|&nbsp; (650) 250-0405 &nbsp;|&nbsp; support@advancedmarketers.co<br>
+    Call classifications verified against call recordings &amp; transcripts · Data: Google Ads, GoHighLevel CRM
+  </footer>
+</div>
+</body>
+</html>
